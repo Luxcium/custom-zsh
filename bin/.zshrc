@@ -1,6 +1,6 @@
 #! /usr/bin/env zsh
 echo "${BEGIN_LOADING} ${0} ${END_LOADING}"
-
+unsetopt PROMPT_SP
 # echo -n "\u001b[0m\u001b[34m# LOADING... $0 \u001b[31;1m\n"
 
 # echo -n "\u001b[0m\u001b[34m#\n  LOADING... (!!  USER   .zshrc)\u001b[31;1m\n"

@@ -31,15 +31,15 @@ function precmd() {
         export ENV_LOADED='true'
         # renew
         autocomplete
-        # hardcls
-        clear
+        hardcls
         load_oh_my_zsh
         load_compute_p9k
         load_tmux_functions
         compute_path
-        local ZSH_V=$($(echo $0 --version))
-        local ZSH_VERSION=${ZSH_V}
-        echo "${normal}$CLRLN$BYL9K_TERM$(tput setaf 2) $TERM_ICO  ${ZSH_VERSION} ${BKBK}${normal}"
+        local ZSH_X=$(echo $0)
+        local ZSH_V=$($(echo "${ZSH_X/'-'/}" --version))
+        export MY_ZSH_VERSION=" ${TERM_ICO}  ${ZSH_V%%' (x86'*}"
+        echo "${normal}$CLRLN$BYL9K_TERM$(tput setaf 2)${MY_ZSH_VERSION} ${BKBK}${normal}"
 
     fi
     if [ "$NODE_VERSION" != "$(cut -d 'v' -f 2 <<<$(node -v))" ]; then

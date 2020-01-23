@@ -1,2 +1,2 @@
 #! /usr/bin/env zsh
-echo "${BEGIN_LOADING} ${0} ${END_LOADING}"
+echo -n "${BEGIN_LOADING} ${0} ${END_LOADING}\n"

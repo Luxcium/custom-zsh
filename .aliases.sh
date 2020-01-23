@@ -26,6 +26,7 @@ echo "${BEGIN_LOADING} ${0} ${END_LOADING}"
 
 # aliases for zsh
 function load_aliases() {
+	echo "${BEGIN_FUNCTION} 'load_aliases()' ${END_FUNCTION}"
 	aliases_functions
 	################
 	## AZUR ALIAS ##
@@ -210,7 +211,7 @@ function load_aliases() {
 	# alias ylint='linters'
 	alias yi0='concurrently  "rm yarn.lock" "rm -f package-lock.json" "rm -f pnpm-lock.yaml" "rm -rf node_modules" "npm i -g yarn@latest" > /dev/null;'
 	alias yi1='yarn install --force --audit --link-duplicates --check-files;'
-	alias yu='fnm install latest-erbium && fnm install latest && npm i -g concurrently@latest yarn@latest typescript@latest npm@latest ts-node@latest vsce@latest  pnpm@latest  > /dev/null 2>&1 &'
+	alias yu='fnm install latest-erbium && fnm use latest-erbium && fnm default $(node -v) && fnm install latest && npm i -g concurrently@latest yarn@latest typescript@latest npm@latest ts-node@latest vsce@latest  pnpm@latest  > /dev/null 2>&1 &'
 	# alias yi3='yarn add -D typescript@rc @types/node@latest ts-node@latest > /dev/null 2>&1 &'
 	alias yi='yi0; yi1; yu' # yi3'
 
@@ -265,7 +266,7 @@ function load_aliases() {
 	alias q='exit'
 	alias alsa="atom ${ZSH_LUXCIUM}/.aliases.sh"
 	alias alsc="code ${ZSH_LUXCIUM}/.aliases.sh"
-	alias als="source ${ZSH_LUXCIUM}/.aliases.sh;load_aliases; echo 'source ${ZSH_LUXCIUM}/.aliases.sh'"
+	alias als="source ${MY_ALIASES};load_aliases"
 	alias alc=alsc
 	alias ala=alsa
 	alias finder='open .'
@@ -281,9 +282,8 @@ function load_aliases() {
 	alias cnftmx='atom ~/.tmux.conf'
 	clearall='\u001b[2J\u001b[0;0H'
 
-	export NODE_REPL_SCRIPT="${ZSH_LUXCIUM}/repl/node-repl/repl.js"
-	export nodelatest='/Users/neb_401/.fnm/aliases/latest/bin'
-	alias js="clear; env NODE_NO_READLINE=1 rlwrap ${nodelatest}/node ${NODE_REPL_SCRIPT}"
+	alias js="hardcls; env NODE_NO_READLINE=1 rlwrap ${NODELATEST}/node ${NODE_REPL_SCRIPT}"
+
 	# alias node="env NODE_NO_READLINE=1 rlwrap node"
 	# new-session -A -s luxcium-io
 	## heroku logs -t -a luxcium
@@ -303,14 +303,17 @@ function layouts() {
 	export LD_FN_COLR="${LD_COLR}"
 	export LD_FN_ICO_COLR="\u001b[0m\u001b[35;1m"
 	export LD_FN_ICO="${LD_FN_ICO_COLR}${FNCT_ICO}${LD_FN_COLR}"
-	export BEGIN_LOADING="${LD_COLR} ${H_SYM} ${LD_ICO} LOADING ... >"
-	export BEGIN_FUNCTION="${LD_FN_COLR} ${H_SYM} ${LD_FN_ICO} FUNCTION... >"
+	export BEGIN_LOADING="${LD_COLR} ${H_SYM} ${LD_ICO} ... >"
+	export BEGIN_FUNCTION="${LD_FN_COLR} ${H_SYM} ${LD_FN_ICO} ... >"
 	export END_LOADING="\u001b[0m\u001b[31;1m${LBOLD}"
 	export END_FUNCTION="${END_LOADING}"
+
+	echo "${BEGIN_FUNCTION} 'layouts()' ${END_FUNCTION}"
 
 }
 
 function load_layouts() {
+
 	export NPM_ICO='\ue71e'
 	export NPM_FOLDER_ICO='\ue5fa'
 	export LDNCLR="${BBCOLR} $NPM_FOLDER_ICO ${YBCOLR}${normal}"
@@ -432,9 +435,13 @@ function load_layouts() {
 	export BRL9K_COGS="$BNR$FNK $COGS_ICO $BNK$FNR${normal}"
 	export BGL9K_COGS="$BNG$FNK $COGS_ICO $BNK$FNG${normal}"
 	layouts
+	echo "${BEGIN_FUNCTION} 'load_layouts()' ${END_FUNCTION}"
+
 }
 
 function tmcode() {
+	echo "${BEGIN_FUNCTION} 'tmcode()' ${END_FUNCTION}"
+
 	source $PATH_TMUX_BIN/tmux-functions.sh
 	tmp-set-cache
 	TMUX_SESSION="Default"
@@ -453,6 +460,7 @@ function tmcode() {
 }
 
 function useful_functions() {
+	echo "${BEGIN_FUNCTION} 'useful_functions()' ${END_FUNCTION}"
 
 	# Functions ==============================================
 
@@ -531,6 +539,7 @@ function useful_functions() {
 }
 
 function aliases_functions() {
+	echo "${BEGIN_FUNCTION} 'aliases_functions()' ${END_FUNCTION}"
 
 	function lsf() {
 		echo ''
@@ -586,8 +595,8 @@ function aliases_functions() {
 	}
 
 	function hardcls() {
-		echo '\u001b[2J'
-		echo '\u001b[0;0H'
+		echo -n '\u001b[2J'
+		echo -n '\u001b[0;0H'
 	}
 
 	function cd() {
