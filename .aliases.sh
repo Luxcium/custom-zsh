@@ -1,3 +1,6 @@
+echo "${BEGIN_LOADING} ${0} ${END_LOADING}"
+# echo -n "\u001b[0m\u001b[34m# LOADING... $0 \u001b[31;1m\n"
+
 ################################################################################
 ##                                                                            ##
 ##              !!! PLEASE USE CAUTION WHEN USING THIS FILE !!!               ##
@@ -23,6 +26,7 @@
 
 # aliases for zsh
 function load_aliases() {
+	aliases_functions
 	################
 	## AZUR ALIAS ##
 	################
@@ -80,9 +84,9 @@ function load_aliases() {
 
 	## QUESTRADE
 
-	alias runqt='ts-node --pretty "/Users/neb_401/Developer/LuxciumProject/questrade-ts/src/test/playground/debug/debug.ts"'
-	alias buildqt='tsc --pretty -p "/Users/neb_401/Developer/LuxciumProject/questrade-ts/configs/tsconfig.commonjs.json"'
-	alias wbuildqt='tsc --pretty -w -p "/Users/neb_401/Developer/LuxciumProject/questrade-ts/configs/tsconfig.commonjs.json"'
+	alias runqt='ts-node --pretty "${HOME}/Developer/LuxciumProject/questrade-ts/src/test/playground/debug/debug.ts"'
+	alias buildqt='tsc --pretty -p "${HOME}/Developer/LuxciumProject/questrade-ts/configs/tsconfig.commonjs.json"'
+	alias wbuildqt='tsc --pretty -w -p "${HOME}/Developer/LuxciumProject/questrade-ts/configs/tsconfig.commonjs.json"'
 	alias startqt='node /Users/neb_401/Developer/LuxciumProject/questrade-ts/build/src/test/playground/debug/debug.js'
 	alias bstartqt='buildqt && startqt'
 	alias bnsqt='bstartqt'
@@ -287,6 +291,25 @@ function load_aliases() {
 
 }
 
+function layouts() {
+
+	export H_SYM="#"
+	# echo "${BEGIN_LOADING} ${0} ${END_LOADING}"
+	# echo "${BEGIN_FUNCTION} ${0} ${END_FUNCTION}"
+	export LD_COLR="\u001b[0m\u001b[34m"
+	export LD_ICO_COLR="\u001b[0m\u001b[33m"
+	export LD_ICO="${LD_ICO_COLR}${COG_ICO}${LD_COLR}"
+
+	export LD_FN_COLR="${LD_COLR}"
+	export LD_FN_ICO_COLR="\u001b[0m\u001b[35;1m"
+	export LD_FN_ICO="${LD_FN_ICO_COLR}${FNCT_ICO}${LD_FN_COLR}"
+	export BEGIN_LOADING="${LD_COLR} ${H_SYM} ${LD_ICO} LOADING ... >"
+	export BEGIN_FUNCTION="${LD_FN_COLR} ${H_SYM} ${LD_FN_ICO} FUNCTION... >"
+	export END_LOADING="\u001b[0m\u001b[31;1m${LBOLD}"
+	export END_FUNCTION="${END_LOADING}"
+
+}
+
 function load_layouts() {
 	export NPM_ICO='\ue71e'
 	export NPM_FOLDER_ICO='\ue5fa'
@@ -301,9 +324,11 @@ function load_layouts() {
 	export JS_ICO='\uf81d'
 	export NODE_ICO='\ue718'
 	export COG_ICO='\uf013'
+	export COG_ICO='\uf013'
 	export COGS_ICO='\uf085'
 	export COGS_ICO_X=$(echo '\uf085')
 	export WARN_ICO='\uf071'
+	export FNCT_ICO='\uf794'
 
 	export FNK='\u001b[30m' # Black: \u001b[30m
 	export FNR='\u001b[31m' # Red: \u001b[31m
@@ -406,6 +431,7 @@ function load_layouts() {
 	export BYL9K_COGS="$BNY$FNK $COGS_ICO $BNK$FNY${normal}"
 	export BRL9K_COGS="$BNR$FNK $COGS_ICO $BNK$FNR${normal}"
 	export BGL9K_COGS="$BNG$FNK $COGS_ICO $BNK$FNG${normal}"
+	layouts
 }
 
 function tmcode() {
@@ -426,6 +452,207 @@ function tmcode() {
 	tmp-reset-to-cache
 }
 
+function useful_functions() {
+
+	# Functions ==============================================
+
+	# return 1 if global command line program installed, else 0
+	# example
+	# echo "node: $(program_is_installed node)"
+	function program_is_installed() {
+		# set to 1 initially
+		local return_=1
+		# set to 0 if not found
+		type $1 >/dev/null 2>&1 || { local return_=0; }
+		# return value
+		echo "$return_"
+	}
+
+	# return 1 if local npm package is installed at ./node_modules, else 0
+	# example
+	# echo "gruntacular : $(npm_package_is_installed gruntacular)"
+	function npm_package_is_installed() {
+		# set to 1 initially
+		local return_=1
+		# set to 0 if not found
+		ls node_modules | grep $1 >/dev/null 2>&1 || { local return_=0; }
+		# return value
+		echo "$return_"
+	}
+
+	# display a message in red with a cross by it
+	# example
+	# echo echo_fail "No"
+	function echo_fail() {
+		# echo first argument in red
+		printf "\e[31m✘ ${1}"
+		# reset colours back to normal
+		printf "\033\e[0m"
+	}
+
+	# display a message in green with a tick by it
+	# example
+	# echo echo_fail "Yes"
+	function echo_pass() {
+		# echo first argument in green
+		printf "\e[32m✔ ${1}"
+		# reset colours back to normal
+		printf "\033\e[0m"
+	}
+
+	# echo pass or fail
+	# example
+	# echo echo_if 1 "Passed"
+	# echo echo_if 0 "Failed"
+	function echo_if() {
+		if [ $1 == 1 ]; then
+			echo_pass $2
+		else
+			echo_fail $2
+		fi
+	}
+
+	# ============================================== Functions
+
+	# command line programs
+	echo "node    $(echo_if $(program_is_installed node))"
+	echo "gulp    $(echo_if $(program_is_installed gulp))"
+	echo "webpack $(echo_if $(program_is_installed webpack))"
+	echo "eslint  $(echo_if $(program_is_installed eslint))"
+	echo "tsc     $(echo_if $(program_is_installed tsc))"
+	echo "brew    $(echo_if $(program_is_installed brew))"
+	echo "gem     $(echo_if $(program_is_installed gem))"
+
+	# local npm packages
+	echo "lodash  $(echo_if $(npm_package_is_installed lodash))"
+	echo "react   $(echo_if $(npm_package_is_installed react))"
+	echo "angular $(echo_if $(npm_package_is_installed angular))"
+
+}
+
+function aliases_functions() {
+
+	function lsf() {
+		echo ''
+		pwd | lolcat
+		colorls --almost-all --gs -f
+		pwd | lolcat
+		echo ''
+	}
+
+	function lsd() {
+		echo ''
+		pwd | lolcat
+		colorls --all -d
+		pwd | lolcat
+		echo ''
+	}
+
+	function ll() {
+		echo ''
+		pwd | lolcat
+		colorls -lA --sd --gs
+		pwd | lolcat
+		echo ''
+	}
+
+	function lf() {
+		echo ''
+		pwd | lolcat
+		colorls -lA --sf -f
+		pwd | lolcat
+		echo ''
+	}
+
+	function ld() {
+		echo ''
+		pwd | lolcat
+		colorls -lA --sd -d
+		pwd | lolcat
+		echo ''
+	}
+
+	function lc() {
+
+		colorls -a --sd --gs -S
+		pwd | lolcat -ta -d 5
+		echo ''
+	}
+
+	function cls() {
+		print "${clearall}"
+		pwd | lolcat
+
+	}
+
+	function hardcls() {
+		echo '\u001b[2J'
+		echo '\u001b[0;0H'
+	}
+
+	function cd() {
+
+		builtin cd $@
+		echo ''
+		pwd | lolcat
+		colorls -lA --sd -d
+		pwd | lolcat
+		echo ''
+	}
+
+	# brew configurations
+
+	# function perseus() {
+	#     export WITH_ANACONDA=false
+	#     compute_path && echo "The sleeping Medusa decapitated."
+	# }
+
+	# function medusa() {
+	#     export WITH_ANACONDA=true
+	#     echo "Perseus  turning  to stone."
+	#     compute_path
+	# }
+
+	function brewdoc() {
+		# FROM: (SOURCE) https://hashrocket.com/blog/posts/keep-anaconda-from-constricting-your-homebrew-installs
+		# (C) 2018 HASHROCKET (used without permision)
+		# perseus
+		command echo '>     UPDATING BREW  . . . '
+		command brew update
+		command echo '>     UPGRADING BREW  . . . '
+		command brew upgrade
+		command echo '>     Remove old symlinks  . . . '
+		command brew cleanup --prune-prefix
+		command echo ">     If nothing is returned to the terminal you're up-to-date  . . . "
+		command brew outdated
+		command echo '>     List forumlas that can be cleaned up  . . . '
+		command brew cleanup -n
+		command echo '>     Remove all old formulae from brew and cask  . . . '
+		command brew cleanup
+		command echo '>     Show the individual packages installed  . . . '
+		command brew list
+		command echo '>     Looking if everything is working correctly  . . . '
+		command brew doctor
+		# command echo '>     Will also uninstall && reinstall all Globals NPM and PNPM  . . . '
+		# reinstallNPMGlobal
+		# medusa
+	}
+
+	function brew() {
+		# perseus
+		command brew "$@"
+		# medusa
+	}
+
+	function brewx() {
+		command brew "$@"
+	}
+
+	function ts-react-app() {
+		npx create-react-app $1 --typescript
+	}
+
+}
 ##!!0###########################################################################
 ##!!                                                                          ##
 #+!!         Copyright (c) 2019-present Benjamin Vincent Kasapoglu            ##

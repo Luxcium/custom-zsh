@@ -1,3 +1,6 @@
+echo "${BEGIN_LOADING} ${0} ${END_LOADING}"
+# echo -n "\u001b[0m\u001b[34m# LOADING... $0 \u001b[31;1m\n"
+
 ################################################################################
 ##                                                                            ##
 ##              !!! PLEASE USE CAUTION WHEN USING THIS FILE !!!               ##
@@ -24,15 +27,20 @@
 function precmd() {
 
     if [ "$ENV_LOADED" != 'true' ]; then
-        source_all
+        # source_all
         export ENV_LOADED='true'
-        renew
+        # renew
         autocomplete
-        hardcls
+        # hardcls
+        clear
         load_oh_my_zsh
         load_compute_p9k
         load_tmux_functions
         compute_path
+        local ZSH_V=$($(echo $0 --version))
+        local ZSH_VERSION=${ZSH_V}
+        echo "${normal}$CLRLN$BYL9K_TERM$(tput setaf 2) $TERM_ICO  ${ZSH_VERSION} ${BKBK}${normal}"
+
     fi
     if [ "$NODE_VERSION" != "$(cut -d 'v' -f 2 <<<$(node -v))" ]; then
         compute_p9k

@@ -1,3 +1,5 @@
+echo "${BEGIN_LOADING} ${0} ${END_LOADING}"
+# echo -n "\u001b[0m\u001b[34m# LOADING... $0 \u001b[31;1m\n"
 ################################################################################
 ##                                                                            ##
 ##              !!! PLEASE USE CAUTION WHEN USING THIS FILE !!!               ##
@@ -22,13 +24,16 @@
 ################################################################################
 
 function load_compute_p9k() {
-    echo -ne "${normal}$CLRLN$LDSCLR$(tput setaf 1) \uf085 ${bold} LOADING!.. load_compute_p9k()${normal}"
+    # echo '\u001b[0m\u001b[34m# function load_compute_p9k() ...'
+
+    echo -ne "${normal}$CLRLN$LDSCLR$(tput setaf 1) \uf085 ${bold} LOADING!.. load_compute_p10k()${normal}"
+
     export COMPUTE_POWERLEVEL9K_ON='true'
-    source ${ZSH_LUXCIUM}/.compute_p9k.sh
+    source ${ZSH_SOURCES}/.compute_p9k.sh
     p9k_load
-    source "$ZSH/custom/themes/powerlevel10k/powerlevel9k.zsh-theme"
-    # ZSH_THEME="powerlevel9k/powerlevel9k"
-    echo -ne "${normal}$CLRLN$LDLCLR$(tput setaf 2) \uf013 ${bold} DONE! load_compute_p9k()${normal}"
+    source "${POWERLEVEL10K}/powerlevel10k.zsh-theme"
+
+    echo -ne "${normal}$CLRLN$LDLCLR$(tput setaf 2) \uf013 ${bold} DONE! load_compute_p10k()${normal}"
 }
 
 ##!!0###########################################################################

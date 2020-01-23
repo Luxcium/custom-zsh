@@ -1,3 +1,4 @@
+echo "${BEGIN_LOADING} ${0} ${END_LOADING}"
 ################################################################################
 ##                                                                            ##
 ##              !!! PLEASE USE CAUTION WHEN USING THIS FILE !!!               ##
@@ -22,6 +23,8 @@
 ################################################################################
 
 function autocomplete() {
+	echo "${BEGIN_FUNCTION} 'autocomplete()' ${END_FUNCTION}"
+	# echo '\u001b[0m\u001b[34m# FUNCTION.. >autocomplete() \u001b[31;1m'
 	# # heroku autocomplete setup
 	PATH_HEROKU_AC_ZSH_SETUP=/Users/neb_401/Library/Caches/heroku/autocomplete/zsh_setup && test -f $PATH_HEROKU_AC_ZSH_SETUP && source $PATH_HEROKU_AC_ZSH_SETUP
 

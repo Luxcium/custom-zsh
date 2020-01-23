@@ -1,3 +1,4 @@
+echo "${BEGIN_LOADING} ${0} ${END_LOADING}"
 ################################################################################
 ##                                                                            ##
 ##              !!! PLEASE USE CAUTION WHEN USING THIS FILE !!!               ##
@@ -21,7 +22,6 @@
 ##                                                                            ##
 ################################################################################
 
-echo -n "\u001b[0m\u001b[34m# LOADING... (!!! CUSTOM .zlogout)\u001b[31;1m\n"
 say -v 'tom' '[[volm 0.1]] [[rate 225]] GOOD  BYE!'
 hardcls
 

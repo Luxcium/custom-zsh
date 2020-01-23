@@ -1,3 +1,5 @@
+echo "${BEGIN_LOADING} ${0} ${END_LOADING}"
+# echo -n "\u001b[0m\u001b[34m# LOADING... $0 \u001b[31;1m\n"
 ################################################################################
 ##                                                                            ##
 ##              !!! PLEASE USE CAUTION WHEN USING THIS FILE !!!               ##
@@ -22,25 +24,24 @@
 ################################################################################
 
 function source_less() {
-
-	source "${ZSH_LUXCIUM}/.aliases.sh"
-	load_aliases
+	echo "${BEGIN_FUNCTION} 'source_less()' ${END_FUNCTION}"
 
 	source "${ZSH_LUXCIUM}/.compute_path.sh"
 	load_paths
 
 	source "${PATH_ZSH_FLAGS}/flg-shortcuts.sh"
-	source "${PATH_ZSH_FUNCTIONS}/aliases-functions.zsh"
 	source "${PATH_ZSH_FUNCTIONS}/editallzprofiles.zsh"
 	source "${PATH_ZSH_FUNCTIONS}/load_compute_p9k.zsh"
 	source "${PATH_ZSH_FUNCTIONS}/load_oh_my_zsh.zsh"
 	source "${ZSH_LUXCIUM}/.autocomplete.sh"
 	source "${ZSH_LUXCIUM}/completion/node_bash_completion.sh"
 	source "${ZSH_LUXCIUM}/completion/npm.completion.sh"
-	source "${PATH_ZSH_FUNCTIONS}/useful_function.sh"
 }
 
 function source_zsh() {
+	echo "${BEGIN_FUNCTION} 'source_zsh()' ${END_FUNCTION}"
+
+	# echo '\u001b[0m\u001b[34m# FUNCTION.. >source_zsh() \u001b[31;1m'
 	source_less
 
 	setopt appendhistory
@@ -48,7 +49,7 @@ function source_zsh() {
 	setopt beep
 	bindkey -e
 
-	HISTFILE="/Users/neb_401/.zsh_history"
+	HISTFILE="${HOME}/.zsh_history"
 	HISTSIZE=1000000
 	SAVEHIST=1000000
 	setopt BANG_HIST              # Treat the '!' character specially during expansion.
@@ -68,50 +69,24 @@ function source_zsh() {
 
 alias renew='resource_all'
 function source_all() {
-	source_zsh
+	echo "${BEGIN_FUNCTION} 'source_all()' ${END_FUNCTION}"
+	# echo '\u001b[0m\u001b[34m# FUNCTION.. >source_all() \u001b[31;1m'
 
+	source_zsh
 	npm_completion
 	load_layouts
 
 	source "${PATH_ZSH_FUNCTIONS}/precmd.zsh"
 
-	export PYTHONSTARTUP="/Users/neb_401/.pythonrc"
+	export PYTHONSTARTUP="${HOME}/.pythonrc"
 
 	source $PATH_TMUX_BIN/tmux-functions.sh
 	# spectrum
 	function resource_all() {
 		source "${ZSH_LUXCIUM}/.source_all.sh"
 		source_all
+		source "${MY_ALIASES}"
+		load_aliases
 	}
 
 }
-
-##!!0###########################################################################
-##!!                                                                          ##
-#+!!         Copyright (c) 2019-present Benjamin Vincent Kasapoglu            ##
-#&!!                                                                          ##
-#&!!   This Source Code Form is subject to the terms of the Mozilla Public    ##
-#&!!   License, v. 2.0. If a copy of the MPL was not distributed with this    ##
-#&!!         file, You can obtain one at http://mozilla.org/MPL/2.0/.         ##
-#&!!                                                                          ##
-##!!   The above copyright notice and this license notice shall be included   ##
-##!!         in all copies or substantial portions of the Software.           ##
-##!!                                                                          ##
-##!!          ------------------------------------------------------          ##
-##!!                                                                          ##
-##!!    Disclaimer of Warranty                                                ##
-##!!   -------------------------                                              ##
-##!!                                                                          ##
-##!!   Covered Software is provided under this License on an "as is"          ##
-##!!   basis, without warranty of any kind, either expressed, implied, or     ##
-##!!   statutory, including, without limitation, warranties that the          ##
-##!!   Covered Software is free of defects, merchantable, fit for a           ##
-##!!   particular purpose or non-infringing. The entire risk as to the        ##
-##!!   quality and performance of the Covered Software is with You.           ##
-##!!   Should any Covered Software prove defective in any respect, You        ##
-##!!   (not any Contributor) assume the cost of any necessary servicing,      ##
-##!!   repair, or correction. This disclaimer of warranty constitutes an      ##
-##!!   essential part of this License. No use of any Covered Software is      ##
-##!!   authorized under this License except under this disclaimer.            ##
-##!!                                                                          ##
-##!!0###########################################################################

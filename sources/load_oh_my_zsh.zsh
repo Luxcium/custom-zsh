@@ -1,3 +1,5 @@
+echo "${BEGIN_LOADING} ${0} ${END_LOADING}"
+# echo -n "\u001b[0m\u001b[34m# LOADING... $0 \u001b[31;1m\n"
 ################################################################################
 ##                                                                            ##
 ##              !!! PLEASE USE CAUTION WHEN USING THIS FILE !!!               ##
@@ -22,6 +24,7 @@
 ################################################################################
 
 function load_oh_my_zsh() {
+    # echo '\u001b[0m\u001b[34m# function load_oh_my_zsh() ...'
     echo -n "${normal}$CLRLN$LDSCLR$(tput setaf 1) \uf085 ${bold} LOADING!.. load_oh_my_zsh()${normal}"
     # Uncomment the following line to disable bi-weekly auto-update checks.
     DISABLE_AUTO_UPDATE="true"
@@ -39,7 +42,7 @@ function load_oh_my_zsh() {
     # under VCS as dirty. This makes repository status check for large repositories
     # much, much faster.
     # DISABLE_UNTRACKED_FILES_DIRTY="true"
-    plugins=(git zsh-completions vscode)
+    plugins=(git vscode)
     source $ZSH/oh-my-zsh.sh
     unalias ll
     echo -n "${normal}$CLRLN$LDLCLR$(tput setaf 2) \uf013 ${bold} DONE! load_oh_my_zsh()${normal}"

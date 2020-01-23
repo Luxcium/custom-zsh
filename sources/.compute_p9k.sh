@@ -1,3 +1,4 @@
+# echo -n "\u001b[0m\u001b[34m# LOADING... $0 \u001b[31;1m\n"
 ################################################################################
 ##                                                                            ##
 ##              !!! PLEASE USE CAUTION WHEN USING THIS FILE !!!               ##
@@ -21,7 +22,8 @@
 ##                                                                            ##
 ################################################################################
 
-compute_p9k() {
+function compute_p9k() {
+	# echo 'function compute_p9k() '
 
 	# if [ "$NODE_VERSION" != "$(cut -d 'v' -f 2 <<<$(node -v))" ]; then
 
@@ -86,6 +88,7 @@ compute_p9k() {
 }
 
 p9k_load() {
+	# echo 'function p9k_load() '
 
 	TS_ICON=$'\uf071'
 	JS_BG='yellow'

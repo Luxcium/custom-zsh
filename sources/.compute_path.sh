@@ -1,3 +1,5 @@
+echo "${BEGIN_LOADING} ${0} ${END_LOADING}"
+# echo -n "\u001b[0m\u001b[34m# LOADING... $0 \u001b[31;1m\n"
 ################################################################################
 ##                                                                            ##
 ##              !!! PLEASE USE CAUTION WHEN USING THIS FILE !!!               ##
@@ -24,6 +26,9 @@
 # If you need to have gettext first in your PATH run:
 #   echo 'export export PATH="/usr/local/opt/gettext/bin:$PATH"' >> ~/.zshrc
 function load_paths() {
+  echo "${BEGIN_FUNCTION} 'load_paths()' ${END_FUNCTION}"
+  # echo '\u001b[0m\u001b[34m# FUNCTION.. >load_paths() \u001b[31;1m'
+
   # /Users/neb_401/.vscode-insiders/extensions
   # Completion folder
   export PATH_COMPLETION="${ZSH_LUXCIUM}/completion"
@@ -40,11 +45,16 @@ function load_paths() {
   # /Users/neb_401/.vscode-insiders/extensions/dev-pop-n-lock-theme-vscode
   export DEV_POPNLOCK="${PATH_INSDR_CODE_EXT}/dev-pop-n-lock-theme-vscode"
 
-  export PATH_ZSH_FUNCTIONS="${ZSH_LUXCIUM}/functions"
+  export PATH_ZSH_FUNCTIONS="${ZSH_LUXCIUM}"
   export PATH_ZSH_FLAGS="${ZSH_LUXCIUM}/flags"
   export ZSH_FLAGS_VALUES="${ZSH_LUXCIUM}/flags/values"
 
-  export PATH_TMUX_CONFIG="${ZSH_LUXCIUM}/tmux"
+  #
+  # /Users/neb_401/ahmyzsh/custom-tmux
+  # export AHMYZSH="${HOME}/ahmyzsh"
+  # export CUSTOM_TMUX="${AHMYZSH}/custom-tmux"
+  #
+  export PATH_TMUX_CONFIG="${CUSTOM_TMUX}"
   export PATH_TMUX_BIN="${PATH_TMUX_CONFIG}/bin"
   export TMUX_COMMON_CONF="${PATH_TMUX_CONFIG}/common.tmux.config"
   export TMUX_COMMON_THEME="${PATH_TMUX_CONFIG}/theme.tmux.config"
@@ -62,11 +72,11 @@ function load_paths() {
   export WITH_BIN_GEM='true'
   export PATH_BIN_GEM='/usr/local/lib/ruby/gems/2.6.0/bin:/usr/local/opt/ruby/bin'
 
-  PERL5LIB="/Users/neb_401/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"
+  PERL5LIB="${HOME}/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"
   export PERL5LIB
-  PERL_LOCAL_LIB_ROOT="/Users/neb_401/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"
+  PERL_LOCAL_LIB_ROOT="${HOME}/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"
   export PERL_LOCAL_LIB_ROOT
-  PERL_MB_OPT='--install_base "/Users/neb_401/perl5"'
+  PERL_MB_OPT='--install_base "${HOME}/perl5"'
   export PERL_MB_OPT
   PERL_MM_OPT='INSTALL_BASE=/Users/neb_401/perl5'
   export PERL_MM_OPT
@@ -77,6 +87,8 @@ function load_paths() {
 
 SHOW_LOAD_CUTLS="true"
 function compute_path() {
+  # echo '\u001b[0m\u001b[34m# function compute_path() ...'
+
   export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
   export PATH="$PATH_TMUX_BIN/:${PATH}"
   if [ "$WITH_RBENV" = 'true' ]; then
@@ -125,11 +137,11 @@ function compute_path() {
   local HOMEtemp=$HOME
   local HOME='/Users/neb_401'
   export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-  export PATH="/Users/neb_401/perl5/bin:${PATH}"
+  export PATH="${HOME}/perl5/bin:${PATH}"
   export PATH="/opt/X11/bin:${PATH}"
   export PATH="/usr/local/MacGPG2/bin:${PATH}"
   export PATH="/usr/local/share/dotnet:${PATH}"
-  export PATH="/Users/neb_401/.dotnet/tools:${PATH}"
+  export PATH="${HOME}/.dotnet/tools:${PATH}"
   export PATH="/usr/local/opt/sqlite/bin:${PATH}"
   export PATH="/usr/local/share/zsh/site-functions:${PATH}"
   export PATH="$HOME/anaconda3/tungsten/bin:${PATH}"
