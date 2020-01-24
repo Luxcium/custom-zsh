@@ -1,7 +1,6 @@
 #! /usr/bin/env zsh
 # echo -n "\u001b[0m\u001b[34m# LOADING... $0 \u001b[31;1m\n"
 source "${MY_ALIASES}"
-load_layouts
 load_aliases
 echo "${BEGIN_LOADING} ${0} ${END_LOADING}"
 # GITHUB_TOKEN="${MAC_BOOK_PRO_ENV_REPO_GIST_HOOK_NOTIFICATIONS}"
@@ -33,6 +32,3 @@ export NODE_LOCAL_ENV='true'
 export NODE_REMOTE_ENV='true'
 export NODE_TEST_ENV='false'
 export SERVER='dev-server'
-
-# source "${ZSH_LUXCIUM}/.source_all.sh"
-# source_all # Includes load_paths, load_layouts & load_aliases

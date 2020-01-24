@@ -1,6 +1,4 @@
 echo "${BEGIN_LOADING} ${0} ${END_LOADING}"
-# echo -n "\u001b[0m\u001b[34m# LOADING... $0 \u001b[31;1m\n"
-
 ################################################################################
 ##                                                                            ##
 ##              !!! PLEASE USE CAUTION WHEN USING THIS FILE !!!               ##
@@ -25,10 +23,10 @@ echo "${BEGIN_LOADING} ${0} ${END_LOADING}"
 ################################################################################
 
 function precmd() {
-
+    # echo 'precmd()'
     if [ "$ENV_LOADED" != 'true' ]; then
         # source_all
-        export ENV_LOADED='true'
+        ENV_LOADED='true'
         # renew
         autocomplete
         hardcls

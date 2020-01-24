@@ -26,16 +26,16 @@ echo "${BEGIN_LOADING} ${0} ${END_LOADING}"
 function source_less() {
 	echo "${BEGIN_FUNCTION} 'source_less()' ${END_FUNCTION}"
 
-	source "${ZSH_LUXCIUM}/.compute_path.sh"
+	. "${ZSH_LUXCIUM}/.compute_path.sh"
 	load_paths
 
-	source "${PATH_ZSH_FLAGS}/flg-shortcuts.sh"
-	source "${PATH_ZSH_FUNCTIONS}/editallzprofiles.zsh"
-	source "${PATH_ZSH_FUNCTIONS}/load_compute_p9k.zsh"
-	source "${PATH_ZSH_FUNCTIONS}/load_oh_my_zsh.zsh"
-	source "${ZSH_LUXCIUM}/.autocomplete.sh"
-	source "${ZSH_LUXCIUM}/completion/node_bash_completion.sh"
-	source "${ZSH_LUXCIUM}/completion/npm.completion.sh"
+	. "${PATH_ZSH_FLAGS}/flg-shortcuts.sh"
+	. "${PATH_ZSH_FUNCTIONS}/editallzprofiles.zsh"
+	. "${PATH_ZSH_FUNCTIONS}/load_compute_p9k.zsh"
+	. "${PATH_ZSH_FUNCTIONS}/load_oh_my_zsh.zsh"
+	. "${ZSH_LUXCIUM}/.autocomplete.sh"
+	. "${ZSH_LUXCIUM}/completion/node_bash_completion.sh"
+	. "${ZSH_LUXCIUM}/completion/npm.completion.sh"
 }
 
 function source_zsh() {
