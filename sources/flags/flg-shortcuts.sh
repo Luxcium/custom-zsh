@@ -21,9 +21,9 @@
 ##                                                                            ##
 ################################################################################
 
-source ${PATH_ZSH_FLAGS}/flg-AUTO_LOAD_ALL.sh
-source ${PATH_ZSH_FLAGS}/flg-GNU_COREUTILS.sh
-source ${PATH_ZSH_FLAGS}/flg-TMUX_START.sh
+source ${ZSH_FLAGS}/flg-AUTO_LOAD_ALL.sh
+source ${ZSH_FLAGS}/flg-GNU_COREUTILS.sh
+source ${ZSH_FLAGS}/flg-TMUX_START.sh
 
 AUTO_LOAD_ALL='true'
 GNU_COREUTILS='true'

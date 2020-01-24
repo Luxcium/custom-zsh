@@ -26,6 +26,7 @@ echo "${BEGIN_LOADING} ${0} ${END_LOADING}"
 
 # aliases for zsh
 function load_aliases() {
+	load_layouts
 	echo "${BEGIN_FUNCTION} 'load_aliases()' ${END_FUNCTION}"
 	aliases_functions
 	################
@@ -283,6 +284,7 @@ function load_aliases() {
 	clearall='\u001b[2J\u001b[0;0H'
 
 	alias js="hardcls; env NODE_NO_READLINE=1 rlwrap ${NODELATEST}/node ${NODE_REPL_SCRIPT}"
+	# alias zshenv="code ~/.zshenv"
 
 	# alias node="env NODE_NO_READLINE=1 rlwrap node"
 	# new-session -A -s luxcium-io
@@ -363,8 +365,8 @@ function layouts() {
 	export LD_FN_COLR="${LD_COLR}"
 	export LD_FN_ICO_COLR="\u001b[0m\u001b[35;1m"
 	export LD_FN_ICO="${LD_FN_ICO_COLR}${FNCT_ICO}${LD_FN_COLR}"
-	export BEGIN_LOADING="${LD_COLR} ${H_SYM} ${LD_ICO} ... >"
-	export BEGIN_FUNCTION="${LD_FN_COLR} ${H_SYM} ${LD_FN_ICO} ... >"
+	export BEGIN_LOADING="${LD_COLR} ${H_SYM} ${LD_ICO}  >"
+	export BEGIN_FUNCTION="${LD_FN_COLR} ${H_SYM} ${LD_FN_ICO}  >"
 	export END_LOADING="\u001b[0m\u001b[31;1m${LBOLD}"
 	export END_FUNCTION="${END_LOADING}"
 
@@ -520,7 +522,7 @@ function tmcode() {
 }
 
 function useful_functions() {
-	echo "${BEGIN_FUNCTION} 'useful_functions()' ${END_FUNCTION}"
+	# echo "${BEGIN_FUNCTION} 'useful_functions()' ${END_FUNCTION}"
 
 	# Functions ==============================================
 
@@ -573,7 +575,7 @@ function useful_functions() {
 	# echo echo_if 1 "Passed"
 	# echo echo_if 0 "Failed"
 	function echo_if() {
-		if [ $1 == 1 ]; then
+		if [ $1 = 1 ]; then
 			echo_pass $2
 		else
 			echo_fail $2
@@ -583,18 +585,33 @@ function useful_functions() {
 	# ============================================== Functions
 
 	# command line programs
-	echo "node    $(echo_if $(program_is_installed node))"
-	echo "gulp    $(echo_if $(program_is_installed gulp))"
-	echo "webpack $(echo_if $(program_is_installed webpack))"
-	echo "eslint  $(echo_if $(program_is_installed eslint))"
-	echo "tsc     $(echo_if $(program_is_installed tsc))"
-	echo "brew    $(echo_if $(program_is_installed brew))"
-	echo "gem     $(echo_if $(program_is_installed gem))"
+	function versions() {
+		printf "\033\e[0m"
+		env echo "  $(echo_if $(program_is_installed node))  node $(env node -v)"
+		env echo "  $(echo_if $(program_is_installed npm))  npm v$(env npm -v)"
+		env echo "  $(echo_if $(program_is_installed yarn))  yarn v$(env yarn -v)"
+		env echo "  $(echo_if $(program_is_installed pnpm))  pnpm v$(env pnpm -v)"
+		env echo "  $(echo_if $(program_is_installed tmux))  $(env tmux -V)"
+		env echo "  $(echo_if $(program_is_installed eslint))  eslint $(env eslint -v)"
+		env echo "  $(echo_if $(program_is_installed tsc))  TypeScript $(env tsc -v)"
+		env echo "  $(echo_if $(program_is_installed conda))  $(env conda -V)"
+		env echo "  $(echo_if $(program_is_installed python))  $(env python -V)"
+		env echo "  $(echo_if $(program_is_installed rbenv))  $(env rbenv -v)"
+		env echo "  $(echo_if $(program_is_installed gem))  gem v$(env gem -v)"
+		env echo "  $(echo_if $(program_is_installed ruby))  $(env ruby -v)"
+		env echo "  $(echo_if $(program_is_installed brew))  $(env command brew -v)"
+	}
+
+	# echo "gulp    $(echo_if $(program_is_installed gulp))  "
+	# echo "webpack $(echo_if $(program_is_installed webpack))  "
+	# echo "conda $(echo_if $(program_is_installed conda))
+	# echo "  $(echo_if $(program_is_installed redis))  redis"
+	# echo "grep2   $(echo_if $(program_is_installed grep2))"
 
 	# local npm packages
-	echo "lodash  $(echo_if $(npm_package_is_installed lodash))"
-	echo "react   $(echo_if $(npm_package_is_installed react))"
-	echo "angular $(echo_if $(npm_package_is_installed angular))"
+	# echo "lodash  $(echo_if $(npm_package_is_installed lodash))"
+	# echo "react   $(echo_if $(npm_package_is_installed react))"
+	# echo "angular $(echo_if $(npm_package_is_installed angular))"
 
 }
 
@@ -671,21 +688,23 @@ function aliases_functions() {
 
 	# brew configurations
 
-	# function perseus() {
-	#     export WITH_ANACONDA=false
-	#     compute_path && echo "The sleeping Medusa decapitated."
-	# }
+	function perseus() {
+		export WITH_ANACONDA=false
+		compute_path && echo "The sleeping Medusa decapitated."
+	}
 
-	# function medusa() {
-	#     export WITH_ANACONDA=true
-	#     echo "Perseus  turning  to stone."
-	#     compute_path
-	# }
+	function medusa() {
+		export WITH_ANACONDA=true
+		echo "Perseus  turning  to stone."
+		compute_path
+		useful_functions
+		# hardcls
+	}
 
 	function brewdoc() {
 		# FROM: (SOURCE) https://hashrocket.com/blog/posts/keep-anaconda-from-constricting-your-homebrew-installs
 		# (C) 2018 HASHROCKET (used without permision)
-		# perseus
+		perseus
 		command echo '>     UPDATING BREW  . . . '
 		command brew update
 		command echo '>     UPGRADING BREW  . . . '
@@ -702,15 +721,22 @@ function aliases_functions() {
 		command brew list
 		command echo '>     Looking if everything is working correctly  . . . '
 		command brew doctor
+		command echo '>     UPGRADING NPM   . . . '
+		npm install -g npm@latest
+		command echo '>     UPGRADING YARN   . . . '
+		npm install -g yarn@latest
+		command echo '>     UPGRADING PNPM   . . . '
+		npm install -g pnpm@latest
 		# command echo '>     Will also uninstall && reinstall all Globals NPM and PNPM  . . . '
 		# reinstallNPMGlobal
-		# medusa
+		medusa
+
 	}
 
 	function brew() {
-		# perseus
+		perseus
 		command brew "$@"
-		# medusa
+		medusa
 	}
 
 	function brewx() {
@@ -722,32 +748,3 @@ function aliases_functions() {
 	}
 
 }
-##!!0###########################################################################
-##!!                                                                          ##
-#+!!         Copyright (c) 2019-present Benjamin Vincent Kasapoglu            ##
-#&!!                                                                          ##
-#&!!   This Source Code Form is subject to the terms of the Mozilla Public    ##
-#&!!   License, v. 2.0. If a copy of the MPL was not distributed with this    ##
-#&!!         file, You can obtain one at http://mozilla.org/MPL/2.0/.         ##
-#&!!                                                                          ##
-##!!   The above copyright notice and this license notice shall be included   ##
-##!!         in all copies or substantial portions of the Software.           ##
-##!!                                                                          ##
-##!!          ------------------------------------------------------          ##
-##!!                                                                          ##
-##!!    Disclaimer of Warranty                                                ##
-##!!   -------------------------                                              ##
-##!!                                                                          ##
-##!!   Covered Software is provided under this License on an "as is"          ##
-##!!   basis, without warranty of any kind, either expressed, implied, or     ##
-##!!   statutory, including, without limitation, warranties that the          ##
-##!!   Covered Software is free of defects, merchantable, fit for a           ##
-##!!   particular purpose or non-infringing. The entire risk as to the        ##
-##!!   quality and performance of the Covered Software is with You.           ##
-##!!   Should any Covered Software prove defective in any respect, You        ##
-##!!   (not any Contributor) assume the cost of any necessary servicing,      ##
-##!!   repair, or correction. This disclaimer of warranty constitutes an      ##
-##!!   essential part of this License. No use of any Covered Software is      ##
-##!!   authorized under this License except under this disclaimer.            ##
-##!!                                                                          ##
-##!!0###########################################################################
