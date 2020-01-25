@@ -110,8 +110,6 @@ function alloff() {
     # zsh
 }
 
-# source ${PATH_ZSH_FLAGS}/flg-AUTO_LOAD_nv-m.sh
-
 # AUTO_LOAD_nv-m='true'
 
 # if [ -f ${ZSH_FLAGS_VALUES}/.AUTO_LOAD_nv-m ]; then
