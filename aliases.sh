@@ -499,7 +499,7 @@ function aliases_functions() {
         (
             builtin cd $AHMYZSH
             git_add_comit_push "${1}" &
-        ) &
+        ) &>/dev/null
         (
             builtin cd $CUSTOM_TMUX
             git_add_comit_push "${1}" &
