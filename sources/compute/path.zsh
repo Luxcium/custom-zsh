@@ -3,7 +3,7 @@ function compute_path() {
 
     export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
 
-    export PATH="$PATH_TMUX_BIN:${PATH}"
+    export PATH="$TMUX_BIN:${PATH}"
 
     if [ "$WITH_ANACONDA" = 'true' ]; then
         S1="${ZSH_SOURCES}/conda-initialize.zsh"
@@ -42,7 +42,7 @@ function compute_path() {
         export PATH="/usr/local/opt/sqlite/lib/pkgconfig:${PATH}"
         export PATH="/usr/local/opt/unzip/bin:${PATH}"
     fi
-
+    export PATH="/usr/local/opt/ncurses/bin:${PATH}"
     # local HOMEtemp=$HOME
     # local HOME='/Users/neb_401'
     export PATH="${HOME}/.yarn/bin:${HOME}/.config/yarn/global/node_modules/.bin:${PATH}"

@@ -65,7 +65,7 @@ function load_aliases() {
     alias sqt='startqt'
     alias lxq="cd ${PATH_LXIO_PRJ}/questrade-ts"
     alias lxqc="mycode ${PATH_LXIO_PRJ}/questrade-ts && cd ${PATH_LXIO_PRJ}/questrade-ts"
-    alias lxqtx="env tmux -uv -f ${PATH_TMUX_CONFIG}/questrade.tmux.conf new-session -A -s questrade-ts -c ${PATH_LXIO_PRJ}/questrade-ts"
+    alias lxqtx="env tmux -uv -f ${TMUX_CONFIGS}/questrade.tmux.conf new-session -A -s questrade-ts -c ${PATH_LXIO_PRJ}/questrade-ts"
 
     alias qtrun='runqt'
     alias qtbuild='buildqt'
@@ -78,8 +78,8 @@ function load_aliases() {
     # alias lxic='tmuxlxic; tmux new-session -A -s luxcium-io;'
     alias lxcq='lxqc'
 
-    alias txio="env tmux -uv -f ${PATH_TMUX_CONFIG}/luxcium.tmux.conf new-session -A -s luxcium-io -c ${PATH_LXIO_PRJ}/luxcium.io"
-    # alias mxdef="tmux -uv -f ${PATH_TMUX_CONFIG}/common.tmux.conf new-session -A -s luxcium-io -c ${PATH_LXIO_PRJ}/luxcium.io"
+    alias txio="env tmux -uv -f ${TMUX_CONFIGS}/luxcium.tmux.conf new-session -A -s luxcium-io -c ${PATH_LXIO_PRJ}/luxcium.io"
+    # alias mxdef="tmux -uv -f ${TMUX_CONFIGS}/common.tmux.conf new-session -A -s luxcium-io -c ${PATH_LXIO_PRJ}/luxcium.io"
 
     alias lux="open $PATH_LXIO_PRJ"
     alias lxz="cd ${ZSH_LUXCIUM}"
@@ -328,7 +328,7 @@ function aliases_functions() {
     function tmcode() {
         echo "${BEGIN_FUNCTION} 'tmcode()' ${END_FUNCTION}"
 
-        source $PATH_TMUX_BIN/tmux-functions.sh
+        source $TMUX_BIN/tmux-functions.sh
         tmp-set-cache
         TMUX_SESSION="Default"
         TMUX_WINDOW_0="dev-pop-n-lock"
@@ -471,14 +471,6 @@ function aliases_functions() {
     function ts-react-app() {
         npx create-react-app $1 --typescript
     }
-    function git_add_comit_push() {
-        git add .
-        git commit -am "adding functionalities"
-        git push --tags --progress
-        git push --all --progress
-        git fetch
-
-    }
     function source_load_aliases() {
         AHMYZSH="${HOME}/ahmyzsh"
 
@@ -496,30 +488,37 @@ function aliases_functions() {
         . "${BASE_LAYOUTS}"
         load_layouts
     }
+    function git_add_comit_push() {
+        git add .
+        git commit -am "${1:=adding functionalities}"
+        git push --tags --progress
+        git push --all --progress
+        git fetch
+    }
     function ahmyzsh_git_update() {
         (
             builtin cd $AHMYZSH
-            git_add_comit_push
+            git_add_comit_push "${1}"
         )
         (
             builtin cd $CUSTOM_TMUX
-            git_add_comit_push
+            git_add_comit_push "${1}"
         )
         (
             builtin cd $CUSTOM_ZSH
-            git_add_comit_push
+            git_add_comit_push "${1}"
         )
         (
             builtin cd $NODE_REPL
-            git_add_comit_push
+            git_add_comit_push "${1}"
         )
         (
             builtin cd $POWERLINE
-            git_add_comit_push
+            git_add_comit_push "${1}"
         )
         (
             builtin cd $PYTHON_REPL
-            git_add_comit_push
+            git_add_comit_push "${1}"
         )
         # AHMYZSH="${HOME}/ahmyzsh"
         # CUSTOM_TMUX="${AHMYZSH}/custom-tmux"
