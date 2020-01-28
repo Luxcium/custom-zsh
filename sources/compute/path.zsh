@@ -1,11 +1,15 @@
 function compute_path() {
+    echo "${BEGIN_LOADING} ${0} ${END_LOADING}"
 
     export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
 
     export PATH="$PATH_TMUX_BIN:${PATH}"
 
     if [ "$WITH_ANACONDA" = 'true' ]; then
-        export PATH="${PATH_ANACONDA3}:${PATH}"
+        S1="${ZSH_SOURCES}/conda-initialize.zsh"
+        echo "${BEGIN_LOADING} ${S1} ${END_LOADING}"
+        . "${S1}"
+        conda_init
     fi
     if [ "$WITH_RBENV" = 'true' ]; then
         export PATH="$PATH_RBENV:${PATH}"
@@ -50,6 +54,7 @@ function compute_path() {
     export PATH="${HOME}/.dotnet/tools:${PATH}"
     export PATH="/usr/local/opt/sqlite/bin:${PATH}"
     export PATH="/usr/local/share/zsh/site-functions:${PATH}"
+
     # export HOME=$HOMEtemp
     eval "$(rbenv init -)"
     # FNM

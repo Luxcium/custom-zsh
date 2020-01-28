@@ -66,6 +66,7 @@ function useful_functions() {
 		printf "\033\e[0m"
 		env echo "  $(echo_if $(program_is_installed node))  node $(env node -v)"
 		env echo "  $(echo_if $(program_is_installed npm))  npm v$(env npm -v)"
+		env echo "  $(echo_if $(program_is_installed fnm))  fnm v$(env fnm -v)"
 		env echo "  $(echo_if $(program_is_installed yarn))  yarn v$(env yarn -v)"
 		env echo "  $(echo_if $(program_is_installed pnpm))  pnpm v$(env pnpm -v)"
 		env echo "  $(echo_if $(program_is_installed tmux))  $(env tmux -V)"
@@ -99,6 +100,9 @@ function useful_functions() {
 		install-peerdeps -Y -g eslint-plugin-unicorn@latest
 		install-peerdeps -Y -g @typescript-eslint/parser@latest
 		install-peerdeps -Y -g @typescript-eslint/eslint-plugin
+	}
+	function update_npm() {
+		( (npm i -g npm@latest yarn@latest pnpm@latest &) 2>/dev/null)
 	}
 	function zsh_version() {
 		local ZSH_X=$(echo $0)

@@ -1,6 +1,7 @@
 function autocomplete() {
     source "${ZSH_COMPLETION}/node_bash_completion.sh"
     source "${ZSH_COMPLETION}/npm.completion.sh"
+    npm_completion
     # Load Zsh tools for syntax highlighting and autosuggestions
     HOMEBREW_FOLDER="/usr/local/share"
     source "$HOMEBREW_FOLDER/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"

@@ -321,6 +321,7 @@ function load_aliases() {
     alias zshx="zsh --xtrace"
     alias zshy="zsh --shwordsplit"
 
+    aliases_functions
 }
 function aliases_functions() {
 
@@ -420,8 +421,7 @@ function aliases_functions() {
 
     function medusa() {
         export WITH_ANACONDA=true
-        echo "Perseus  turning  to stone."
-        compute_path
+        compute_path && echo "Perseus turning  to stone."
         useful_functions
         # hardcls
     }
@@ -470,6 +470,53 @@ function aliases_functions() {
 
     function ts-react-app() {
         npx create-react-app $1 --typescript
+    }
+    function git_add_comit_push() {
+        git add .
+        git commit -am "adding functionalities"
+        push
+    }
+    function ahmyzsh_git_update() {
+        (
+            cd $AHMYZSH
+            git_add_comit_push
+        )
+        (
+            cd $CUSTOM_TMUX
+            git_add_comit_push
+        )
+        (
+            cd $CUSTOM_ZSH
+            git_add_comit_push
+        )
+        (
+            cd $NODE_REPL
+            git_add_comit_push
+        )
+        (
+            cd $OHMYZSH
+            git_add_comit_push
+        )
+        (
+            cd $POWERLEVEL10K
+            git_add_comit_push
+        )
+        (
+            cd $POWERLINE
+            git_add_comit_push
+        )
+        (
+            cd $PYTHON_REPL
+            git_add_comit_push
+        )
+        # AHMYZSH="${HOME}/ahmyzsh"
+        # CUSTOM_TMUX="${AHMYZSH}/custom-tmux"
+        # CUSTOM_ZSH="${AHMYZSH}/custom-zsh"
+        # NODE_REPL="${AHMYZSH}/node-repl"
+        # OHMYZSH="${AHMYZSH}/ohmyzsh"
+        # POWERLEVEL10K="${AHMYZSH}/powerlevel10k"
+        # POWERLINE="${AHMYZSH}/powerline"
+        # PYTHON_REPL="${AHMYZSH}/python-repl"
     }
 
 }

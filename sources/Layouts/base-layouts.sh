@@ -20,10 +20,19 @@ function layouts() {
 function load_layouts() {
 
     export NPM_ICO='\ue71e'
+    separator1='e0bc' # 
+    separator2='e0b8' # 
+    U='\u'
+    e0ba=e0ba
+    export LEFT_SEPRATOR="${U}${separator1}"
+    export LEFT_SEPRATOR2="${U}${separator2}"
+
+    export RIGHT_SEPRATOR="${U}${e0ba}"
+
     export NPM_FOLDER_ICO='\ue5fa'
-    export LDNCLR="${BBCOLR} $NPM_FOLDER_ICO ${YBCOLR}${normal}"
-    export BYL9K_NPM="${BBCOLR} $NPM_ICO ${YBCOLR}${normal}"
-    export BYL9K_NPM_FOLDER="${BBCOLR} $NPM_FOLDER_ICO ${YBCOLR}${normal}"
+    export LDNCLR="${BBCOLR} $NPM_FOLDER_ICO ${YBCOLR}${LEFT_SEPRATOR}${normal}"
+    export BYL9K_NPM="${BBCOLR} $NPM_ICO ${YBCOLR}${LEFT_SEPRATOR}${normal}"
+    export BYL9K_NPM_FOLDER="${BBCOLR} $NPM_FOLDER_ICO ${YBCOLR}${LEFT_SEPRATOR}${normal}"
 
     export GNU_ICO='\ue779'
     export APPLE_ICO='\uf179'
@@ -127,22 +136,24 @@ function load_layouts() {
     export BKBK="$BKBG$BKFG"
     export RVSD='\u001b[7m'
 
-    export ELCLR="${BBCOLR} $TERM_ICO ${YBCOLR}${normal}"
-    export SLCLR="${BBCOLR} $TERM_ICO ${YBCOLR}${normal}"
-    export LDSCLR="${BBCOLR} $COGS_ICO ${YBCOLR}${normal}"
-    export LDLCLR="${BBCOLR} $COG_ICO ${YBCOLR}${normal}"
+    export ELCLR="${BBCOLR} $TERM_ICO ${YBCOLR}${LEFT_SEPRATOR}${normal}"
+    export SLCLR="${BBCOLR} $TERM_ICO ${YBCOLR}${LEFT_SEPRATOR}${normal}"
+    export LDSCLR="${BBCOLR} $COGS_ICO ${YBCOLR}${LEFT_SEPRATOR}${normal}"
+    export LDLCLR="${BBCOLR} $COG_ICO ${YBCOLR}${LEFT_SEPRATOR}${normal}"
 
-    export BYL9K_GNU="${BBCOLR} $GNU_ICO ${YBCOLR}${normal}"
-    export BYL9K_APPLE="${BBCOLR} $APPLE_ICO ${YBCOLR}${normal}"
-    export BYL9K_TERM="${BBCOLR} $TERM_ICO ${YBCOLR}${normal}"
-    export BYL9K_TS="${BBCOLR} $TS_ICO ${YBCOLR}${normal}"
-    export BYL9K_JS="${BBCOLR} $JS_ICO ${YBCOLR}${normal}"
-    export BYL9K_NODE="${BBCOLR} $NODE_ICO ${YBCOLR}${normal}"
-    export BYL9K_COG="${BBCOLR} $COG_ICO ${YBCOLR}${normal}"
-    export BYL9K_COGS="${BBCOLR} $COGS_ICO ${YBCOLR}${normal}"
-    export BYL9K_COGS="${BBCOLR} $COGS_ICO ${YBCOLR}${normal}"
-    export BYL9K_COGS="$BNY$FNK $COGS_ICO $BNK$FNY${normal}"
-    export BRL9K_COGS="$BNR$FNK $COGS_ICO $BNK$FNR${normal}"
-    export BGL9K_COGS="$BNG$FNK $COGS_ICO $BNK$FNG${normal}"
+    export BYL9K_GNU="${BBCOLR} ${GNU_ICO} ${YBCOLR}${LEFT_SEPRATOR2}${normal}"
+    export BYL9K_APPLE="${BBCOLR} $APPLE_ICO ${YBCOLR}${LEFT_SEPRATOR2}${normal}"
+    export BYL9K_TERM="${BBCOLR} $TERM_ICO ${YBCOLR}${LEFT_SEPRATOR2}${normal}"
+    export BYL9K_TS="${BBCOLR} $TS_ICO ${YBCOLR}${LEFT_SEPRATOR2}${normal}"
+    export BYL9K_JS="${BBCOLR} $JS_ICO ${YBCOLR}${LEFT_SEPRATOR2}${normal}"
+    export BYL9K_NODE="${BBCOLR} $NODE_ICO ${YBCOLR}${LEFT_SEPRATOR2}${normal}"
+    export BYL9K_COG="${BBCOLR} $COG_ICO ${YBCOLR}${LEFT_SEPRATOR2}${normal}"
+    export BYL9K_COGS="${BBCOLR} $COGS_ICO ${YBCOLR}${LEFT_SEPRATOR2}${normal}"
+    export BYL9K_COGS="${BBCOLR} $COGS_ICO ${YBCOLR}${LEFT_SEPRATOR2}${normal}"
+    export BYL9K_COGS="$BNY$FNK $COGS_ICO $BNK$FNY${LEFT_SEPRATOR2}${normal}"
+    export BRL9K_COGS="$BNR$FNK $COGS_ICO $BNK$FNR${LEFT_SEPRATOR2}${normal}"
+    export BGL9K_COGS="$BNG$FNK $COGS_ICO $BNK$FNG${LEFT_SEPRATOR2}${normal}"
+
+    layouts
 
 }

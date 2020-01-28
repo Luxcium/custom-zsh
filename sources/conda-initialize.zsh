@@ -1,6 +1,5 @@
 function conda_init() {
 
-    # if [ "$LOAD_LATER" != 'true' ]; then
     if [ -x /usr/libexec/path_helper ]; then
         eval $(/usr/libexec/path_helper -s)
     fi
@@ -22,5 +21,4 @@ function conda_init() {
 
     }
 
-    # fi
 }
