@@ -498,27 +498,27 @@ function aliases_functions() {
     function ahmyzsh_git_update() {
         (
             builtin cd $AHMYZSH
-            git_add_comit_push "${1}"
+            git_add_comit_push "${1}" &
         ) &
         (
             builtin cd $CUSTOM_TMUX
-            git_add_comit_push "${1}"
+            git_add_comit_push "${1}" &
         ) &
         (
             builtin cd $CUSTOM_ZSH
-            git_add_comit_push "${1}"
+            git_add_comit_push "${1}" &
         ) &
         (
             builtin cd $NODE_REPL
-            git_add_comit_push "${1}"
+            git_add_comit_push "${1}" &
         ) &
         (
             builtin cd $POWERLINE
-            git_add_comit_push "${1}"
+            git_add_comit_push "${1}" &
         ) &
         (
             builtin cd $PYTHON_REPL
-            git_add_comit_push "${1}"
+            git_add_comit_push "${1}" &
         ) &
         # AHMYZSH="${HOME}/ahmyzsh"
         # CUSTOM_TMUX="${AHMYZSH}/custom-tmux"
