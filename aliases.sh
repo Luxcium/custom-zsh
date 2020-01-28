@@ -472,10 +472,12 @@ function aliases_functions() {
         npx create-react-app $1 --typescript
     }
     function git_add_comit_push() {
-        source_load_aliases
         git add .
         git commit -am "adding functionalities"
-        push
+        git push --tags --progress
+        git push --all --progress
+        fetch
+
     }
     function source_load_aliases() {
         AHMYZSH="${HOME}/ahmyzsh"
