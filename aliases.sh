@@ -478,15 +478,19 @@ function aliases_functions() {
         push
     }
     function source_load_aliases() {
+        AHMYZSH="${HOME}/ahmyzsh"
+
+        . "${AHMYZSH}/LOAD_ENV.zsh"
+
         . "${AHMYZSH}/PATHS.zsh"
 
         . "${CUSTOM_ZSH}/notice.sh"
 
-        export MY_ALIASES="${CUSTOM_ZSH}/aliases.sh"
+        MY_ALIASES="${CUSTOM_ZSH}/aliases.sh"
         . "${MY_ALIASES}"
         load_aliases
 
-        export BASE_LAYOUTS="${CUSTOM_ZSH}/sources/layouts/base-layouts.sh"
+        BASE_LAYOUTS="${CUSTOM_ZSH}/sources/layouts/base-layouts.sh"
         . "${BASE_LAYOUTS}"
         load_layouts
     }
