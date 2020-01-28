@@ -478,35 +478,35 @@ function aliases_functions() {
     }
     function ahmyzsh_git_update() {
         (
-            cd $AHMYZSH
+            builtin cd $AHMYZSH
             git_add_comit_push
         )
         (
-            cd $CUSTOM_TMUX
+            builtin cd $CUSTOM_TMUX
             git_add_comit_push
         )
         (
-            cd $CUSTOM_ZSH
+            builtin cd $CUSTOM_ZSH
             git_add_comit_push
         )
         (
-            cd $NODE_REPL
+            builtin cd $NODE_REPL
             git_add_comit_push
         )
         (
-            cd $OHMYZSH
+            builtin cd $OHMYZSH
             git_add_comit_push
         )
         (
-            cd $POWERLEVEL10K
+            builtin cd $POWERLEVEL10K
             git_add_comit_push
         )
         (
-            cd $POWERLINE
+            builtin cd $POWERLINE
             git_add_comit_push
         )
         (
-            cd $PYTHON_REPL
+            builtin cd $PYTHON_REPL
             git_add_comit_push
         )
         # AHMYZSH="${HOME}/ahmyzsh"
