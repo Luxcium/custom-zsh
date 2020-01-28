@@ -472,9 +472,23 @@ function aliases_functions() {
         npx create-react-app $1 --typescript
     }
     function git_add_comit_push() {
+        source_load_aliases
         git add .
         git commit -am "adding functionalities"
         push
+    }
+    function source_load_aliases() {
+        . "${AHMYZSH}/PATHS.zsh"
+
+        . "${CUSTOM_ZSH}/notice.sh"
+
+        export MY_ALIASES="${CUSTOM_ZSH}/aliases.sh"
+        . "${MY_ALIASES}"
+        load_aliases
+
+        export BASE_LAYOUTS="${CUSTOM_ZSH}/sources/layouts/base-layouts.sh"
+        . "${BASE_LAYOUTS}"
+        load_layouts
     }
     function ahmyzsh_git_update() {
         (
