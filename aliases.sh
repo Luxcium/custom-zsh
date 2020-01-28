@@ -476,7 +476,7 @@ function aliases_functions() {
         git commit -am "adding functionalities"
         git push --tags --progress
         git push --all --progress
-        fetch
+        git fetch
 
     }
     function source_load_aliases() {
