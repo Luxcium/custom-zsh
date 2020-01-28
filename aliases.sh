@@ -514,14 +514,6 @@ function aliases_functions() {
             git_add_comit_push
         )
         (
-            builtin cd $OHMYZSH
-            git_add_comit_push
-        )
-        (
-            builtin cd $POWERLEVEL10K
-            git_add_comit_push
-        )
-        (
             builtin cd $POWERLINE
             git_add_comit_push
         )
