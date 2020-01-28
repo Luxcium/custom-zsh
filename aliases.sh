@@ -503,23 +503,23 @@ function aliases_functions() {
         (
             builtin cd $CUSTOM_TMUX
             git_add_comit_push "${1}" &
-        ) &
+        ) &>/dev/null
         (
             builtin cd $CUSTOM_ZSH
             git_add_comit_push "${1}" &
-        ) &
+        ) &>/dev/null
         (
             builtin cd $NODE_REPL
             git_add_comit_push "${1}" &
-        ) &
+        ) &>/dev/null
         (
             builtin cd $POWERLINE
             git_add_comit_push "${1}" &
-        ) &
+        ) &>/dev/null
         (
             builtin cd $PYTHON_REPL
             git_add_comit_push "${1}" &
-        ) &
+        ) &>/dev/null
         # AHMYZSH="${HOME}/ahmyzsh"
         # CUSTOM_TMUX="${AHMYZSH}/custom-tmux"
         # CUSTOM_ZSH="${AHMYZSH}/custom-zsh"
