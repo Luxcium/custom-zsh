@@ -562,10 +562,18 @@ function aliases_functions() {
         # local myTY_=$(cat $HOME/.tty)
         # if [ "$myTY_" != "" ]; then
         eval $(echo "(
-        totty1n2 ohmyzsh-update
-        totty1n2 powerlevel10k-update
-        totty1n2 powerline-update
+            totty1n2 ohmyzsh-update
+            totty1n2 custom-zsh-update
+            totty1n2 node-repl-update
+            totty1n2 python-repl-update
+            totty1n2 custom-tmux-update
+            totty1n2 powerlevel10k-update
+            totty1n2 powerline-update
+
+
         )")
+        totty1n2 "custom-update ${AHMYZSH_PATH}/"
+
         return 0
         # fi
 
@@ -577,52 +585,70 @@ function aliases_functions() {
         # return 0
 
     }
+    function custom-update() {
+        eval $(echo "(
+            builtin cd ${1}/;
+            git add .;
+            git commit -am "refresh/update";
+            push;
+            git checkout ${2:-'master'};
+            pull;
+            git pull origin ${2:-'master'} -t --ff;
+            push;
+            git checkout luxcium;
+            pull;
+            git pull origin ${2:-'master'} -t --ff;
+            push;) $(cattty 1)")
+        return 0
+    }
+
+    function custom-upstream-update() {
+        eval $(echo "(
+            builtin cd ${1}/;
+            git add .;
+            git commit -am "refresh/update";
+            push;
+            git checkout ${2:-'master'};
+            pull;
+            git pull upstream ${2:-'master'} -t --ff;
+            push;
+            git checkout luxcium;
+            pull;
+            git pull origin ${2:-'master'} -t --ff;
+            push;) $(cattty 1)")
+        return 0
+    }
+    #  ohmyzsh-update;
+    #  powerlevel10k-update;
+    #  powerline-update;
+    #  custom-zsh-update;
+    #  node-repl-update;
+    #  python-repl-update;
+    #  custom-tmux-update;
+
     function ohmyzsh-update() {
-
-        eval $(echo "(
-        builtin cd /Users/neb_401/ahmyzsh/ohmyzsh;
-        git checkout master;
-        pull;
-        git pull upstream master -t --ff;
-        push;
-        git checkout luxcium;
-        pull;
-        git pull origin master -t --ff;
-        push;) $(cattty 1)")
-        return 0
+        totty1n2 "custom-upstream-update ${OHMYZSH_PATH}/"
     }
-
     function powerlevel10k-update() {
-
-        eval $(echo "(
-        builtin cd /Users/neb_401/ahmyzsh/powerlevel10k;
-        git checkout master;
-        pull;
-        git pull upstream master -t --ff;
-        push;
-        git checkout luxcium;
-        pull;
-        git pull origin master -t --ff;
-        push;
-        )$(cattty 1)")
-        return 0
+        totty1n2 "custom-upstream-update ${POWERLEVLE10K_PATH}/"
     }
-
     function powerline-update() {
-
-        eval $(echo "(
-        builtin cd /Users/neb_401/ahmyzsh/powerline;
-        git checkout develop;
-        pull;
-        git pull upstream develop -t --ff;
-        push;
-        git checkout luxcium;
-        pull;
-        git pull origin develop -t --ff;
-        push;
-        )$(cattty 1)")
-        return 0
+        totty1n2 "custom-upstream-update ${POWERLINE_PATH}/ develop"
     }
+
+    function custom-zsh-update() {
+        totty1n2 "custom-update ${CUSTOM_ZSH_PATH}/"
+    }
+    function node-repl-update() {
+        totty1n2 "custom-update ${NODE_REPL_PATH}/"
+    }
+    function python-repl-update() {
+        totty1n2 "custom-update ${PYTHON_REPL_PATH}/"
+    }
+    function custom-tmux-update() {
+        totty1n2 "custom-update ${CUSTOM_TMUX_PATH}/"
+    }
+
     function totty1n2() {
         local myTY_=$(cat $HOME/.tty)
         if [ "$myTY_" != "" ]; then
