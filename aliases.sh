@@ -570,7 +570,7 @@ function aliases_functions() {
 
 
         )")
-        totty2 "custom-update ${AHMYZSH_PATH}/"
+        totty1n2 "custom-update ${AHMYZSH_PATH}/"
 
         return 0
     }
