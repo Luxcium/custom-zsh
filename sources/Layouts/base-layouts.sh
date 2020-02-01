@@ -22,10 +22,11 @@ function load_layouts() {
     export NPM_ICO='\ue71e'
     separator1='e0bc' # 
     separator2='e0b8' # 
+    separator3='e0b0' # 
     U='\u'
     e0ba=e0ba
-    export LEFT_SEPRATOR="${U}${separator1}"
-    export LEFT_SEPRATOR2="${U}${separator2}"
+    export LEFT_SEPRATOR="${U}${separator3}"
+    export LEFT_SEPRATOR2="${U}${separator3}"
 
     export RIGHT_SEPRATOR="${U}${e0ba}"
 

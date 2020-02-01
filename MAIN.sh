@@ -3,6 +3,10 @@ function source_all() {
 
 	echo "${BEGIN_FUNCTION} 'source_all()' ${END_FUNCTION}"
 
+	S1="${ZSH_SOURCES}/functions.zsh"
+	echo "${BEGIN_LOADING} ${S1} ${END_LOADING}"
+	. "${S1}"
+
 	# if [ "$LOAD_ONCE_01_A" != 'true' ]; then
 	S1="${ZSH_SOURCES}/load-oh-my-zsh.zsh"
 	echo "${BEGIN_LOADING} ${S1} ${END_LOADING}"
@@ -59,6 +63,7 @@ function source_all() {
 	. "${S1}"
 	# fi
 	# fi
+	# sleep 100
 
 }
 
@@ -68,6 +73,7 @@ function load_zshenv() {
 	#$ Interactive,Script,login,non-login
 
 	compute_path
+	# load_functions_definitions
 
 	# if [ "$LOAD_LATER" != 'true' ]; then
 	# fi

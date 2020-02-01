@@ -105,7 +105,7 @@ function load_aliases() {
     # Use main Visual Studio Code version by default
     : ${VSCODE:=code}
 
-    alias vsc="$VSCODE ."
+    # alias vsc="$VSCODE ."
     alias vsca="$VSCODE --add"
     alias vscd="$VSCODE --diff"
     alias vscg="$VSCODE --goto"
