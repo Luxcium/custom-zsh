@@ -559,31 +559,20 @@ function aliases_functions() {
 
     function ahmyzsh-update() {
 
-        # local myTY_=$(cat $HOME/.tty)
-        # if [ "$myTY_" != "" ]; then
         eval $(echo "(
-            totty1n2 custom-zsh-update
-            totty1n2 custom-tmux-update
-            totty1n2 node-repl-update
-            totty1n2 python-repl-update
-            totty1n2 ohmyzsh-update
-            totty1n2 powerlevel10k-update
-            totty1n2 powerline-update
+            totty2 custom-zsh-update
+            totty2 custom-tmux-update
+            totty2 node-repl-update
+            totty2 python-repl-update
+            totty2 ohmyzsh-update
+            totty2 powerlevel10k-update
+            totty2 powerline-update
 
 
         )")
-        totty1n2 "custom-update ${AHMYZSH_PATH}/"
+        totty2 "custom-update ${AHMYZSH_PATH}/"
 
         return 0
-        # fi
-
-        # eval $(echo "(
-        # ohmyzsh-update ;
-        # powerlevel10k-update ;
-        # powerline-update ;
-        # )")
-        # return 0
-
     }
     function custom-update() {
         eval $(echo "(
@@ -598,7 +587,7 @@ function aliases_functions() {
             git checkout luxcium;
             pull;
             git pull origin ${2:-'master'} -t --ff;
-            push;) $(cattty 1)")
+            push;)")
         return 0
     }
 
@@ -615,7 +604,7 @@ function aliases_functions() {
             git checkout luxcium;
             pull;
             git pull origin ${2:-'master'} -t --ff;
-            push;) $(cattty 1)")
+            push;)")
         return 0
     }
     #  ohmyzsh-update;
@@ -627,26 +616,26 @@ function aliases_functions() {
     #  custom-tmux-update;
 
     function ohmyzsh-update() {
-        totty1n2 "custom-upstream-update ${OHMYZSH_PATH}/"
+        eval "custom-upstream-update ${OHMYZSH_PATH}/"
     }
     function powerlevel10k-update() {
-        totty1n2 "custom-upstream-update ${POWERLEVLE10K_PATH}/"
+        eval "custom-upstream-update ${POWERLEVLE10K_PATH}/"
     }
     function powerline-update() {
-        totty1n2 "custom-upstream-update ${POWERLINE_PATH}/ develop"
+        eval "custom-upstream-update ${POWERLINE_PATH}/ develop"
     }
 
     function custom-zsh-update() {
-        totty1n2 "custom-update ${CUSTOM_ZSH_PATH}/"
+        eval "custom-update ${CUSTOM_ZSH_PATH}/"
     }
     function node-repl-update() {
-        totty1n2 "custom-update ${NODE_REPL_PATH}/"
+        eval "custom-update ${NODE_REPL_PATH}/"
     }
     function python-repl-update() {
-        totty1n2 "custom-update ${PYTHON_REPL_PATH}/"
+        eval "custom-update ${PYTHON_REPL_PATH}/"
     }
     function custom-tmux-update() {
-        totty1n2 "custom-update ${CUSTOM_TMUX_PATH}/"
+        eval "custom-update ${CUSTOM_TMUX_PATH}/"
     }
 
     function totty1n2() {
