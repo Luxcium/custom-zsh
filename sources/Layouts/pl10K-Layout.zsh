@@ -7,27 +7,105 @@ function compute_pl10k() {
 
     export NPM_VERSION="$(npm -v)"
     export POWERLEVEL9K_CUSTOM_NPM="echo -n '\ue71e ' $NPM_VERSION"
+    # export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+    #     custom_js
+    #     battery
+    #     custom_node
+    #     custom_npm
+    #     custom_tsx
+    #     newline # !! -----------------------------------------------------------
+    #     os_icon
+    #     user
+    #     dir
+    #     newline # !! -----------------------------------------------------------
+    #     anaconda
+    #     custom_js
+    #     rbenv
+    #     load
+    #     dir_writable
+    #     ssh
+    #     status
+    #     vcs
+    #     custom_tsx
+    # )
+    # export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
+    #     command_execution_time
+    #     ram
+    #     disk_usage
+    #     custom_js
+    #     background_jobs
+    # )
+    typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+        custom_tsx
+        time        # current time
+        custom_js   #
+        battery     # internal battery
+        load        # CPU load
+        disk_usage  # disk usage
+        ram         # free RAM
+        todo        # !todo items (https://github.com/todotxt/todo.txt-cli)
+        timewarrior # timewarrior tracking status (https://timewarrior.net/)
+        status      # exit code of the last command
+        newline     # !! ======================[ Line #1 ]======================
+        os_icon     # os identifier
+        user        #
+        dir         # current directory
+        newline     # !! ======================[ Line #2 ]======================
+        vcs         # git status
+        prompt_char # prompt symbol
 
-    export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
-        custom_js
-        battery
-        custom_node
+    )
+    typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
+        # custom_js
+        # context # user@hostname
+        # custom_js
+        # public_ip # public IP address
+        # local_ip  # public IP address
+        # proxy   # system-wide http/https/ftp proxy
+        # example # example user-defined segment (see prompt_example function below)
+        # swap        # used swap
+        # =========================[ Line #1 ]=========================
+        # azure                  # azure account name (https://docs.microsoft.com/en-us/cli/azure)
+        # vi_mode                # vi mode (you don't need this if you've enabled prompt_char)
+        command_execution_time # duration of the last command
+        # direnv                 # direnv status (https://direnv.net/)
+        # virtualenv             # python virtual environment (https://docs.python.org/3/library/venv.html)
         custom_npm
-        custom_tsx
-        newline # !!!
-        os_icon
-        user
-        dir
-        newline # !!!
-        anaconda
-        custom_js
-        rbenv
-        load
-        dir_writable
-        ssh
-        status
-        vcs
-        custom_tsx
+        node_version    # node.js version
+        newline         # !! =======================[ Line #2 ]=======================
+        rbenv           # ruby version from rbenv (https://github.com/rbenv/rbenv)
+        anaconda        # conda environment (https://conda.io/)
+        background_jobs # presence of background jobs
+        # pyenv                  # python environment (https://github.com/pyenv/pyenv)
+        # goenv                  # go environment (https://github.com/syndbg/goenv)
+        # nodenv                 # node.js version from nodenv (https://github.com/nodenv/nodenv)
+        # nvm                    # node.js version from nvm (https://github.com/nvm-sh/nvm)
+        # nodeenv                # node.js environment (https://github.com/ekalinin/nodeenv)
+        # newline # ! ! =======================[ Line #2 ]=======================
+        # go_version             # go version (https://golang.org)
+        # rust_version           # rustc version (https://www.rust-lang.org)
+        # dotnet_version         # .NET version (https://dotnet.microsoft.com)
+        # rvm                # ruby version from rvm (https://rvm.io)
+        # fvm                # flutter version management (https://github.com/leoafarias/fvm)
+        # luaenv             # lua version from luaenv (https://github.com/cehoffman/luaenv)
+        # jenv               # java version from jenv (https://github.com/jenv/jenv)
+        # plenv              # perl version from plenv (https://github.com/tokuhirom/plenv)
+        # kubecontext        # current kubernetes context (https://kubernetes.io/)
+        # terraform          # terraform workspace (https://www.terraform.io)
+        # aws                # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
+        # aws_eb_env         # aws elastic beanstalk environment (https://aws.amazon.com/elasticbeanstalk/)
+        # gcloud             # google cloud cli account and project (https://cloud.google.com/)
+        # google_app_cred    # google application credentials (https://cloud.google.com/docs/authentication/production)
+
+        # nordvpn            # nordvpn connection status, linux only (https://nordvpn.com/)
+        # ranger             # ranger shell (https://github.com/ranger/ranger)
+        # nnn                # nnn shell (https://github.com/jarun/nnn)
+        # vim_shell          # vim shell indicator (:sh)
+        # midnight_commander # midnight commander shell (https://midnight-commander.org/)
+        # nix_shell          # nix shell (https://nixos.org/nixos/nix-pills/developing-with-nix-shell.html)
+        # vi_mode            # vi mode (you don't need this if you've enabled prompt_char)
+        # vpn_ip             # virtual private network indicator
+
     )
 
     export POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR="${LEFT_SEPRATOR}"
@@ -90,7 +168,7 @@ function load_pl10K() {
 
     export POWERLEVEL9K_RPROMPT_ON_NEWLINE=false
     export POWERLEVEL9K_PROMPT_ON_NEWLINE=false
-    export POWERLEVEL9K_PROMPT_ADD_NEWLINE=false
+    export POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 
     # os_icon
     export POWERLEVEL9K_OS_ICON_BACKGROUND='blue'
@@ -157,32 +235,95 @@ function load_pl10K() {
     export POWERLEVEL9K_TIME_FOREGROUND='008'
     export POWERLEVEL9K_TIME_BACKGROUND='black'
 
-    # Customise the Powerlevel9k prompts
-    export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
-        custom_js
-        battery
-        custom_tsx
-        newline # !!!
-        os_icon
-        user
-        dir
-        newline # !!!
-        custom_js
-        rbenv
-        load
-        dir_writable
-        ssh
-        status
-        vcs
+    typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+        # =========================[ Line #1 ]=========================
+        # os_icon               # os identifier
+        dir # current directory
+        vcs # git status
+        # =========================[ Line #2 ]=========================
+        newline
+        # prompt_char           # prompt symbol
+    )
+    typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
+        # =========================[ Line #1 ]=========================
+        # status                 # exit code of the last command
+        # command_execution_time # duration of the last command
+        # background_jobs        # presence of background jobs
+        # direnv                 # direnv status (https://direnv.net/)
+        # virtualenv             # python virtual environment (https://docs.python.org/3/library/venv.html)
+        # anaconda               # conda environment (https://conda.io/)
+        # pyenv                  # python environment (https://github.com/pyenv/pyenv)
+        # goenv                  # go environment (https://github.com/syndbg/goenv)
+        # nodenv                 # node.js version from nodenv (https://github.com/nodenv/nodenv)
+        # nvm                    # node.js version from nvm (https://github.com/nvm-sh/nvm)
+        # nodeenv                # node.js environment (https://github.com/ekalinin/nodeenv)
+        # node_version           # node.js version
+        # go_version             # go version (https://golang.org)
+        # rust_version           # rustc version (https://www.rust-lang.org)
+        # dotnet_version         # .NET version (https://dotnet.microsoft.com)
+        # rbenv                  # ruby version from rbenv (https://github.com/rbenv/rbenv)
+        # rvm                    # ruby version from rvm (https://rvm.io)
+        # fvm                    # flutter version management (https://github.com/leoafarias/fvm)
+        # luaenv                 # lua version from luaenv (https://github.com/cehoffman/luaenv)
+        # jenv                   # java version from jenv (https://github.com/jenv/jenv)
+        # plenv                  # perl version from plenv (https://github.com/tokuhirom/plenv)
+        # kubecontext            # current kubernetes context (https://kubernetes.io/)
+        # terraform              # terraform workspace (https://www.terraform.io)
+        # aws                    # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
+        # aws_eb_env             # aws elastic beanstalk environment (https://aws.amazon.com/elasticbeanstalk/)
+        # azure                  # azure account name (https://docs.microsoft.com/en-us/cli/azure)
+        # gcloud                 # google cloud cli account and project (https://cloud.google.com/)
+        # google_app_cred        # google application credentials (https://cloud.google.com/docs/authentication/production)
+        # context                # user@hostname
+        # nordvpn                # nordvpn connection status, linux only (https://nordvpn.com/)
+        # ranger                 # ranger shell (https://github.com/ranger/ranger)
+        # nnn                    # nnn shell (https://github.com/jarun/nnn)
+        # vim_shell              # vim shell indicator (:sh)
+        # midnight_commander     # midnight commander shell (https://midnight-commander.org/)
+        # nix_shell              # nix shell (https://nixos.org/nixos/nix-pills/developing-with-nix-shell.html)
+        # vi_mode                # vi mode (you don't need this if you've enabled prompt_char)
+        # vpn_ip                # virtual private network indicator
+        # load                  # CPU load
+        # disk_usage            # disk usage
+        # ram                   # free RAM
+        # swap                  # used swap
+        # todo        # todo items (https://github.com/todotxt/todo.txt-cli)
+        # timewarrior # timewarrior tracking status (https://timewarrior.net/)
+        # time                  # current time
+        # =========================[ Line #2 ]=========================
+        newline
+        # public_ip             # public IP address
+        # proxy                 # system-wide http/https/ftp proxy
+        # battery               # internal battery
+        # example               # example user-defined segment (see prompt_example function below)
     )
 
-    export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
-        command_execution_time
-        ram
-        disk_usage
-        custom_js
-        background_jobs
-    )
+    # Customise the Powerlevel9k prompts
+    # export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+    #     custom_js
+    #     battery
+    #     custom_tsx
+    #     newline # !!!
+    #     os_icon
+    #     user
+    #     dir
+    #     newline # !!!
+    #     custom_js
+    #     rbenv
+    #     load
+    #     dir_writable
+    #     ssh
+    #     status
+    #     vcs
+    # )
+
+    # export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
+    #     command_execution_time
+    #     ram
+    #     disk_usage
+    #     custom_js
+    #     background_jobs
+    # )
 
     # Load Nerd Fonts with Powerlevel9k theme for Zsh
     export POWERLEVEL9K_MODE='nerdfont-complete'

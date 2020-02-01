@@ -11,8 +11,8 @@ function load_aliases() {
     # alias dx='tmux detach'
     alias nx='tmux neww'
     alias dx='tmux detach -a; mxd'
-    alias kx='tmux kill-session -a; killall tmux'
-    alias k='tmux kill-session -a; killall tmux'
+    alias kx='notmytty; tmux kill-session -a; killall tmux'
+    alias k='notmytty; tmux kill-session -a; killall tmux'
     alias detach='tmux detach'
     alias mylab=" tmux new-window -d -c '/Users/neb_401/JupyterLab' -n 'Jupyter Lab' 'env jupyter lab'"
     alias jlab=" tmux new-window -d -n 'Jupyter Lab' 'env jupyter lab'"
@@ -28,6 +28,7 @@ function load_aliases() {
     # NodeJS Repl
 
     # alias lxXX="cd ${PATH_LXXXY}"
+
     alias vsx="cd ${PATH_LXIO}; code -n ${PATH_LXIO}"
     alias vx=vsx
     alias vsz="cd ${ZSH_CUSTOM}; code -n ${ZSH_CUSTOM}"
@@ -150,7 +151,9 @@ function load_aliases() {
     ##################
     ## GIT / GITHUB ##
     ##################
-
+    alias check='git checkout master'
+    alias check-master='git checkout master'
+    alias check-luxcium='git checkout luxcium'
     alias push='git push --tags --progress; git push --all --progress; fetch'
     alias gs='git fetch   --auto-gc   -t;git status'
     alias pull='git pull --all -t'
@@ -530,4 +533,121 @@ function aliases_functions() {
         # PYTHON_REPL="${AHMYZSH}/python-repl"
     }
 
+    function mytty() {
+        tty >~/.tty
+    }
+    function notmytty() {
+        echo -n '' >~/.tty
+    }
+
+    function cattty() {
+        local myTY_=$(cat $HOME/.tty)
+        if [ "$myTY_" != "" ]; then
+            if [ "${1:-0}" = 1 ]; then
+                echo -n "1>$(cat $HOME/.tty)"
+                return 0
+            fi
+            if [ "${1:-0}" = 2 ]; then
+                echo -n "2>$(cat $HOME/.tty)"
+                return 0
+            fi
+            echo "$(cat $HOME/.tty)"
+            return 0
+        fi
+        return 1
+    }
+
+    function ahmyzsh-update() {
+
+        # local myTY_=$(cat $HOME/.tty)
+        # if [ "$myTY_" != "" ]; then
+        eval $(echo "(
+        totty1n2 ohmyzsh-update
+        totty1n2 powerlevel10k-update
+        totty1n2 powerline-update
+        )")
+        return 0
+        # fi
+
+        # eval $(echo "(
+        # ohmyzsh-update ;
+        # powerlevel10k-update ;
+        # powerline-update ;
+        # )")
+        # return 0
+
+    }
+    function ohmyzsh-update() {
+
+        eval $(echo "(
+        builtin cd /Users/neb_401/ahmyzsh/ohmyzsh;
+        git checkout master;
+        pull;
+        git pull upstream master -t --ff;
+        push;
+        git checkout luxcium;
+        pull;
+        git pull origin master -t --ff;
+        push;) $(cattty 1)")
+        return 0
+    }
+
+    function powerlevel10k-update() {
+
+        eval $(echo "(
+        builtin cd /Users/neb_401/ahmyzsh/powerlevel10k;
+        git checkout master;
+        pull;
+        git pull upstream master -t --ff;
+        push;
+        git checkout luxcium;
+        pull;
+        git pull origin master -t --ff;
+        push;
+        )$(cattty 1)")
+        return 0
+    }
+
+    function powerline-update() {
+
+        eval $(echo "(
+        builtin cd /Users/neb_401/ahmyzsh/powerline;
+        git checkout develop;
+        pull;
+        git pull upstream develop -t --ff;
+        push;
+        git checkout luxcium;
+        pull;
+        git pull origin develop -t --ff;
+        push;
+        )$(cattty 1)")
+        return 0
+    }
+    function totty1n2() {
+        local myTY_=$(cat $HOME/.tty)
+        if [ "$myTY_" != "" ]; then
+            eval $(echo "(((${1:-echo nothing to do}) &)$(cattty 2))$(cattty 1)")
+            return 0
+        fi
+        eval $(echo "(${1:-echo nothing to do})")
+        return 0
+
+    }
+    function totty1() {
+        local myTY_=$(cat $HOME/.tty)
+        if [ "$myTY_" != "" ]; then
+            eval $(echo "(${1:-echo nothing to do})$(cattty 1)")
+            return 0
+        fi
+        eval $(echo "(${1:-echo nothing to do})")
+    }
+    function totty2() {
+        local myTY_=$(cat $HOME/.tty)
+        if [ "$myTY_" != "" ]; then
+            eval $(echo "(${1:-echo nothing to do})$(cattty 2)")
+            return 0
+        fi
+        eval $(echo "(${1:-echo nothing to do})")
+        return 0
+    }
 }
