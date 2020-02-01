@@ -616,26 +616,26 @@ function aliases_functions() {
     #  custom-tmux-update;
 
     function ohmyzsh-update() {
-        eval "custom-upstream-update ${OHMYZSH_PATH}/"
+        totty1 "custom-upstream-update ${OHMYZSH_PATH}/"
     }
     function powerlevel10k-update() {
-        eval "custom-upstream-update ${POWERLEVLE10K_PATH}/"
+        totty1 "custom-upstream-update ${POWERLEVLE10K_PATH}/"
     }
     function powerline-update() {
-        eval "custom-upstream-update ${POWERLINE_PATH}/ develop"
+        totty1 "custom-upstream-update ${POWERLINE_PATH}/ develop"
     }
 
     function custom-zsh-update() {
-        eval "custom-update ${CUSTOM_ZSH_PATH}/"
+        totty1 "custom-update ${CUSTOM_ZSH_PATH}/"
     }
     function node-repl-update() {
-        eval "custom-update ${NODE_REPL_PATH}/"
+        totty1 "custom-update ${NODE_REPL_PATH}/"
     }
     function python-repl-update() {
-        eval "custom-update ${PYTHON_REPL_PATH}/"
+        totty1 "custom-update ${PYTHON_REPL_PATH}/"
     }
     function custom-tmux-update() {
-        eval "custom-update ${CUSTOM_TMUX_PATH}/"
+        totty1 "custom-update ${CUSTOM_TMUX_PATH}/"
     }
 
     function totty1n2() {
