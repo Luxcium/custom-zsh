@@ -562,11 +562,11 @@ function aliases_functions() {
         # local myTY_=$(cat $HOME/.tty)
         # if [ "$myTY_" != "" ]; then
         eval $(echo "(
-            totty1n2 ohmyzsh-update
             totty1n2 custom-zsh-update
+            totty1n2 custom-tmux-update
             totty1n2 node-repl-update
             totty1n2 python-repl-update
-            totty1n2 custom-tmux-update
+            totty1n2 ohmyzsh-update
             totty1n2 powerlevel10k-update
             totty1n2 powerline-update
 
