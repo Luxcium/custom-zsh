@@ -558,7 +558,7 @@ function aliases_functions() {
     }
 
     function ahmyzsh-update() {
-        ahmyzsh-update_ &
+        (ahmyzsh-update_ &)
     }
 
     function ahmyzsh-update_() {
