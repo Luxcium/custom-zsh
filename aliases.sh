@@ -558,6 +558,10 @@ function aliases_functions() {
     }
 
     function ahmyzsh-update() {
+        ahmyzsh-update_ &
+    }
+
+    function ahmyzsh-update_() {
 
         eval $(echo "(
             totty2 custom-zsh-update
