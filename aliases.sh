@@ -589,7 +589,8 @@ function aliases_functions() {
                 cattty2 $@
                 return 0
             fi
-            echo "$(cat $HOME/.tty1)"
+                echo -n "1>$(cat $HOME/.tty1)"
+            # echo "$(cat $HOME/.tty1)"
             return 0
         fi
         return 1
@@ -605,18 +606,19 @@ function aliases_functions() {
                 echo -n "2>$(cat $HOME/.tty2)"
                 return 0
             fi
-            echo "$(cat $HOME/.tty2)"
+                echo -n "2>$(cat $HOME/.tty2)"
+            # echo "$(cat $HOME/.tty2)"
             return 0
         fi
         return 1
     }
 
     function toSD1n2() {
-        local myTY_=$(cat $HOME/.tty)
-        if [ "$myTY_" != "" ]; then
-            eval $(echo "(((${1:-echo nothing to do}) &)$(cattty 2))$(cattty 1)")
+        # local myTY_=$(cat $HOME/.tty)
+        # if [ "$myTY_" != "" ]; then
+            eval $(echo "(((${1:-echo nothing to do}) &)$(cattty2))$(cattty1)")
             return 0
-        fi
+        # fi
         eval $(echo "(${1:-echo nothing to do})")
         return 0
 
