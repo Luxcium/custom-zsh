@@ -616,28 +616,28 @@ function aliases_functions() {
     function toSD1n2() {
         # local myTY_=$(cat $HOME/.tty)
         # if [ "$myTY_" != "" ]; then
-            eval $(echo "(((${1:-echo nothing to do}) &)$(cattty2))$(cattty1)")
+            eval $(echo "(((${@:-echo nothing to do}) &)$(cattty2))$(cattty1)")
             return 0
         # fi
-        eval $(echo "(${1:-echo nothing to do})")
+        eval $(echo "(${@:-echo nothing to do})")
         return 0
 
     }
     function toSDOUT1() {
         local myTY_=$(cat $HOME/.tty1)
         if [ "$myTY_" != "" ]; then
-            eval $(echo "(${1:-echo nothing to do})$(cattty1)")
+            eval $(echo "(${@:-echo nothing to do})$(cattty1)")
             return 0
         fi
-        eval $(echo "(${1:-echo nothing to do})")
+        eval $(echo "(${@:-echo nothing to do})")
     }
     function toSDERR2() {
         local myTY_=$(cat $HOME/.tty2)
         if [ "$myTY_" != "" ]; then
-            eval $(echo "(${1:-echo nothing to do})$(cattty2)")
+            eval $(echo "(${@:-echo nothing to do})$(cattty2)")
             return 0
         fi
-        eval $(echo "(${1:-echo nothing to do})")
+        eval $(echo "(${@:-echo nothing to do})")
         return 0
     }
 
