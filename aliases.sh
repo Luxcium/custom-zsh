@@ -648,13 +648,13 @@ function aliases_functions() {
     function ahmyzsh-update_() {
 
         eval $(echo "(
-            toSDERR2 custom-zsh-update
-            toSDERR2 custom-tmux-update
-            toSDERR2 node-repl-update
-            toSDERR2 python-repl-update
-            toSDERR2 ohmyzsh-update
-            toSDERR2 powerlevel10k-update
-            toSDERR2 powerline-update
+            toSD1n2 custom-zsh-update
+            toSD1n2 custom-tmux-update
+            toSD1n2 node-repl-update
+            toSD1n2 python-repl-update
+            toSD1n2 ohmyzsh-update
+            toSD1n2 powerlevel10k-update
+            toSD1n2 powerline-update
 
 
         )")
