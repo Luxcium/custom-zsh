@@ -626,7 +626,7 @@ function aliases_functions() {
     function toSDOUT1() {
         local myTY_=$(cat $HOME/.tty1)
         if [ "$myTY_" != "" ]; then
-            eval $(echo "(${1:-echo nothing to do})$(cattty 1)")
+            eval $(echo "(${1:-echo nothing to do})$(cattty1)")
             return 0
         fi
         eval $(echo "(${1:-echo nothing to do})")
@@ -634,7 +634,7 @@ function aliases_functions() {
     function toSDERR2() {
         local myTY_=$(cat $HOME/.tty2)
         if [ "$myTY_" != "" ]; then
-            eval $(echo "(${1:-echo nothing to do})$(cattty 2)")
+            eval $(echo "(${1:-echo nothing to do})$(cattty2)")
             return 0
         fi
         eval $(echo "(${1:-echo nothing to do})")
@@ -648,13 +648,13 @@ function aliases_functions() {
     function ahmyzsh-update_() {
 
         eval $(echo "(
-            toSD1n2 custom-zsh-update
-            toSD1n2 custom-tmux-update
-            toSD1n2 node-repl-update
-            toSD1n2 python-repl-update
-            toSD1n2 ohmyzsh-update
-            toSD1n2 powerlevel10k-update
-            toSD1n2 powerline-update
+            toSDERR2 custom-zsh-update
+            toSDERR2 custom-tmux-update
+            toSDERR2 node-repl-update
+            toSDERR2 python-repl-update
+            toSDERR2 ohmyzsh-update
+            toSDERR2 powerlevel10k-update
+            toSDERR2 powerline-update
 
 
         )")
