@@ -11,12 +11,22 @@ function load_aliases() {
     # alias dx='tmux detach'
     alias nx='tmux neww'
     alias dx='tmux detach -a; mxd'
-    alias kx='notmytty; tmux kill-session -a; killall tmux'
-    alias k='notmytty; tmux kill-session -a; killall tmux'
+    alias k='_p9k_dump_instant_prompt;notmytty; tmux kill-session -a; killall tmux'
+    alias kx='k'
     alias detach='tmux detach'
     alias mylab=" tmux new-window -d -c '/Users/neb_401/JupyterLab' -n 'Jupyter Lab' 'env jupyter lab'"
     alias jlab=" tmux new-window -d -n 'Jupyter Lab' 'env jupyter lab'"
 
+    alias n='new'
+    alias quit='tmux detach'
+    alias q='_p9k_dump_instant_prompt;exit'
+    alias alsa="atom ${MY_ALIASES}"
+    alias alsc="code ${MY_ALIASES}"
+    alias als="source ${MY_ALIASES};load_aliases"
+    alias alc=alsc
+    alias ala=alsa
+    alias finder='open .'
+    alias allo='echo allo tout le monde'
     ####################
     ## Projects ALIAS ##
     ####################
@@ -226,8 +236,7 @@ function load_aliases() {
 
     alias chrome='Google\ Chrome\ Canary --remote-debugging-port=222'
     alias lsc='lc'
-    alias new='zsh -i -l'
-    alias new='zsh -i -l'
+    alias new='_p9k_dump_instant_prompt && zsh -i'
     alias newnlni='zsh --no-login --no-interactive'
     alias newninl='newnlni'
     alias newni='zsh --login --no-interactive'
@@ -235,16 +244,6 @@ function load_aliases() {
     alias newl='zsh --login'
     alias newi='zsh --interactive'
 
-    alias n='zsh'
-    alias quit='tmux detach'
-    alias q='exit'
-    alias alsa="atom ${MY_ALIASES}"
-    alias alsc="code ${MY_ALIASES}"
-    alias als="source ${MY_ALIASES};load_aliases"
-    alias alc=alsc
-    alias ala=alsa
-    alias finder='open .'
-    alias allo='echo allo tout le monde'
     # alias tmcode='insdr /Users/neb_401/.vscode-insiders/extensions/dev-pop-n-lock-theme-vscode'
     # alias gitAll='/Users/neb_401/gitAll3.sh'
     alias hconf='code ~/.hyper.js'
@@ -535,26 +534,109 @@ function aliases_functions() {
 
     function mytty() {
         tty >~/.tty
+        tty >~/.tty1
+        tty >~/.tty2
     }
+    function mytty0() {
+        tty >~/.tty
+    }
+    function mytty1() {
+        tty >~/.tty1
+    }
+    function mytty2() {
+        tty >~/.tty2
+    }
+
     function notmytty() {
         echo -n '' >~/.tty
+        echo -n '' >~/.tty1
+        echo -n '' >~/.tty2
+    }
+    function notmytty0() {
+        echo -n '' >~/.tty
+    }
+    function notmytty1() {
+        echo -n '' >~/.tty1
+    }
+    function notmytty2() {
+        echo -n '' >~/.tty2
     }
 
     function cattty() {
         local myTY_=$(cat $HOME/.tty)
         if [ "$myTY_" != "" ]; then
             if [ "${1:-0}" = 1 ]; then
-                echo -n "1>$(cat $HOME/.tty)"
+                cattty1 $@
                 return 0
             fi
             if [ "${1:-0}" = 2 ]; then
-                echo -n "2>$(cat $HOME/.tty)"
+                cattty2 $@
                 return 0
             fi
             echo "$(cat $HOME/.tty)"
             return 0
         fi
         return 1
+    }
+    function cattty1() {
+        local myTY_=$(cat $HOME/.tty1)
+        if [ "$myTY_" != "" ]; then
+            if [ "${1:-0}" = 1 ]; then
+                echo -n "1>$(cat $HOME/.tty1)"
+                return 0
+            fi
+            if [ "${1:-0}" = 2 ]; then
+                cattty2 $@
+                return 0
+            fi
+            echo "$(cat $HOME/.tty1)"
+            return 0
+        fi
+        return 1
+    }
+    function cattty2() {
+        local myTY_=$(cat $HOME/.tty2)
+        if [ "$myTY_" != "" ]; then
+            if [ "${1:-0}" = 1 ]; then
+                cattty1 $@
+                return 0
+            fi
+            if [ "${1:-0}" = 2 ]; then
+                echo -n "2>$(cat $HOME/.tty2)"
+                return 0
+            fi
+            echo "$(cat $HOME/.tty2)"
+            return 0
+        fi
+        return 1
+    }
+
+    function toSD1n2() {
+        local myTY_=$(cat $HOME/.tty)
+        if [ "$myTY_" != "" ]; then
+            eval $(echo "(((${1:-echo nothing to do}) &)$(cattty 2))$(cattty 1)")
+            return 0
+        fi
+        eval $(echo "(${1:-echo nothing to do})")
+        return 0
+
+    }
+    function toSDOUT1() {
+        local myTY_=$(cat $HOME/.tty1)
+        if [ "$myTY_" != "" ]; then
+            eval $(echo "(${1:-echo nothing to do})$(cattty 1)")
+            return 0
+        fi
+        eval $(echo "(${1:-echo nothing to do})")
+    }
+    function toSDERR2() {
+        local myTY_=$(cat $HOME/.tty2)
+        if [ "$myTY_" != "" ]; then
+            eval $(echo "(${1:-echo nothing to do})$(cattty 2)")
+            return 0
+        fi
+        eval $(echo "(${1:-echo nothing to do})")
+        return 0
     }
 
     function ahmyzsh-update() {
@@ -564,17 +646,17 @@ function aliases_functions() {
     function ahmyzsh-update_() {
 
         eval $(echo "(
-            totty2 custom-zsh-update
-            totty2 custom-tmux-update
-            totty2 node-repl-update
-            totty2 python-repl-update
-            totty2 ohmyzsh-update
-            totty2 powerlevel10k-update
-            totty2 powerline-update
+            toSDERR2 custom-zsh-update
+            toSDERR2 custom-tmux-update
+            toSDERR2 node-repl-update
+            toSDERR2 python-repl-update
+            toSDERR2 ohmyzsh-update
+            toSDERR2 powerlevel10k-update
+            toSDERR2 powerline-update
 
 
         )")
-        totty1n2 "custom-update ${AHMYZSH_PATH}/"
+        toSD1n2 "custom-update ${AHMYZSH_PATH}/"
 
         return 0
     }
@@ -611,62 +693,27 @@ function aliases_functions() {
             push;)")
         return 0
     }
-    #  ohmyzsh-update;
-    #  powerlevel10k-update;
-    #  powerline-update;
-    #  custom-zsh-update;
-    #  node-repl-update;
-    #  python-repl-update;
-    #  custom-tmux-update;
 
     function ohmyzsh-update() {
-        totty1 "custom-upstream-update ${OHMYZSH_PATH}/"
+        toSDOUT1 "custom-upstream-update ${OHMYZSH_PATH}/"
     }
     function powerlevel10k-update() {
-        totty1 "custom-upstream-update ${POWERLEVLE10K_PATH}/"
+        toSDOUT1 "custom-upstream-update ${POWERLEVLE10K_PATH}/"
     }
     function powerline-update() {
-        totty1 "custom-upstream-update ${POWERLINE_PATH}/ develop"
+        toSDOUT1 "custom-upstream-update ${POWERLINE_PATH}/ develop"
     }
 
     function custom-zsh-update() {
-        totty1 "custom-update ${CUSTOM_ZSH_PATH}/"
+        toSDOUT1 "custom-update ${CUSTOM_ZSH_PATH}/"
     }
     function node-repl-update() {
-        totty1 "custom-update ${NODE_REPL_PATH}/"
+        toSDOUT1 "custom-update ${NODE_REPL_PATH}/"
     }
     function python-repl-update() {
-        totty1 "custom-update ${PYTHON_REPL_PATH}/"
+        toSDOUT1 "custom-update ${PYTHON_REPL_PATH}/"
     }
     function custom-tmux-update() {
-        totty1 "custom-update ${CUSTOM_TMUX_PATH}/"
-    }
-
-    function totty1n2() {
-        local myTY_=$(cat $HOME/.tty)
-        if [ "$myTY_" != "" ]; then
-            eval $(echo "(((${1:-echo nothing to do}) &)$(cattty 2))$(cattty 1)")
-            return 0
-        fi
-        eval $(echo "(${1:-echo nothing to do})")
-        return 0
-
-    }
-    function totty1() {
-        local myTY_=$(cat $HOME/.tty)
-        if [ "$myTY_" != "" ]; then
-            eval $(echo "(${1:-echo nothing to do})$(cattty 1)")
-            return 0
-        fi
-        eval $(echo "(${1:-echo nothing to do})")
-    }
-    function totty2() {
-        local myTY_=$(cat $HOME/.tty)
-        if [ "$myTY_" != "" ]; then
-            eval $(echo "(${1:-echo nothing to do})$(cattty 2)")
-            return 0
-        fi
-        eval $(echo "(${1:-echo nothing to do})")
-        return 0
+        toSDOUT1 "custom-update ${CUSTOM_TMUX_PATH}/"
     }
 }

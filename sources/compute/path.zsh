@@ -6,7 +6,7 @@ function compute_path() {
     export PATH="$TMUX_BIN:${PATH}"
 
     if [ "$WITH_ANACONDA" = 'true' ]; then
-        S1="${ZSH_SOURCES}/conda-initialize.zsh"
+        local S1="${ZSH_SOURCES}/conda-initialize.zsh"
         echo "${BEGIN_LOADING} ${S1} ${END_LOADING}"
         . "${S1}"
         conda_init

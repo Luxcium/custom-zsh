@@ -3,67 +3,78 @@ function source_all() {
 
 	echo "${BEGIN_FUNCTION} 'source_all()' ${END_FUNCTION}"
 
-	S1="${ZSH_SOURCES}/functions.zsh"
+	local S1="${ZSH_SOURCES}/functions.zsh"
 	echo "${BEGIN_LOADING} ${S1} ${END_LOADING}"
 	. "${S1}"
+	# (zcompile "${S1}" &)
 
 	# if [ "$LOAD_ONCE_01_A" != 'true' ]; then
-	S1="${ZSH_SOURCES}/load-oh-my-zsh.zsh"
+	local S1="${ZSH_SOURCES}/load-oh-my-zsh.zsh"
 	echo "${BEGIN_LOADING} ${S1} ${END_LOADING}"
 	. "${S1}"
+	# (zcompile "${S1}" &)
 	# fi
 	# if [ "$LOAD_ONCE_01_B" != 'true' ]; then
-	S1="${POWERLINE_BINDINGS}/zsh/powerline.zsh"
+	local S1="${POWERLINE_BINDINGS}/zsh/powerline.zsh"
 	echo "${BEGIN_LOADING} ${S1} ${END_LOADING}"
 	. "${S1}"
+	# (zcompile "${S1}" &)
 	# fi
-	# if [ "$LOAD_ONCE_01_C" != 'true' ]; then
-	S1="${POWERLEVEL10K}/powerlevel10k.zsh-theme"
+	# :# if [ "$LOAD_ONCE_01_C" != 'true' ]; then
+	local S1="${POWERLEVEL10K}/powerlevel10k.zsh-theme"
 	echo "${BEGIN_LOADING} ${S1} ${END_LOADING}"
 	. "${S1}"
-	# fi
-	# if [ "$LOAD_ONCE_01_D" != 'true' ]; then
-	S1="${ZSH_LAYOUTS}/pl10K-Layout.zsh"
+	# (zcompile "${S1}" &)
+	# :# fi
+	# :# if [ "$LOAD_ONCE_01_D" != 'true' ]; then
+	local S1="${ZSH_LAYOUTS}/pl10K-Layout.zsh"
 	echo "${BEGIN_LOADING} ${S1} ${END_LOADING}"
 	. "${S1}"
-	# fi
+	# (zcompile "${S1}" &)
+	# :# fi
 	# if [ "$LOAD_ONCE_01_E" != 'true' ]; then
-	S1="${ZSH_SOURCES}/say-bye.zsh"
+	local S1="${ZSH_SOURCES}/say-bye.zsh"
 	echo "${BEGIN_LOADING} ${S1} ${END_LOADING}"
 	. "${S1}"
+	# (zcompile "${S1}" &)
 	# fi
 	# if [ "$LOAD_ONCE_01_F" != 'true' ]; then
-	S1="${ZSH_SOURCES}/useful_functions.zsh"
+	local S1="${ZSH_SOURCES}/useful_functions.zsh"
 	echo "${BEGIN_LOADING} ${S1} ${END_LOADING}"
+	# (zcompile "${S1}" &)
 	. "${S1}"
 	# fi
 	# if [ "$LOAD_ONCE_01_G" != 'true' ]; then
-	S1="${ZSH_COMPLETION}/autocomplete.sh"
+	local S1="${ZSH_COMPLETION}/autocomplete.sh"
 	echo "${BEGIN_LOADING} ${S1} ${END_LOADING}"
 	. "${S1}"
+	# (zcompile "${S1}" &)
 	# fi
 	# if [ "$LOAD_ONCE_01_H" != 'true' ]; then
-	S1="${ZSH_COMPUTE}/path.zsh"
+	local S1="${ZSH_COMPUTE}/path.zsh"
 	echo "${BEGIN_LOADING} ${S1} ${END_LOADING}"
 	. "${S1}"
+	# (zcompile "${S1}" &)
 	# fi
 	# if [ "$LOAD_ONCE_01_I" != 'true' ]; then
-	S1="${ZSH_SOURCES}/options.zsh"
+	local S1="${ZSH_SOURCES}/options.zsh"
 	echo "${BEGIN_LOADING} ${S1} ${END_LOADING}"
 	. "${S1}"
+	# (zcompile "${S1}" &)
 	# fi
 	# if [ "$LOAD_ONCE_01_J" != 'true' ]; then
-	S1="${ZSH_FLAGS}/flg-shortcuts.sh"
+	local S1="${ZSH_FLAGS}/flg-shortcuts.sh"
 	echo "${BEGIN_LOADING} ${S1} ${END_LOADING}"
 	. "${S1}"
+	# (zcompile "${S1}" &)
 	# fi
 	# if [ "$LOAD_ONCE_01_H" != 'true' ]; then
-	S1="${TMUX_LOADER}"
+	local S1="${TMUX_LOADER}"
 	echo "${BEGIN_LOADING} ${S1} ${END_LOADING}"
 	. "${S1}"
+	# (zcompile "${S1}" &)
 	# fi
 	# fi
-	# sleep 100
 
 }
 
@@ -90,7 +101,9 @@ function load_zprofile() {
 
 function load_zshrc() {
 	# if [ "$LOAD_ONCE_04" != 'true' ]; then
+
 	echo "${BEGIN_FUNCTION} 'load_zshrc()' ${END_FUNCTION}"
+
 	#$ Interactive,login,non-login
 
 	load_oh_my_zsh
@@ -118,7 +131,8 @@ function load_zlogout() {
 
 	echo "${BEGIN_FUNCTION} 'load_zlogout()' ${END_FUNCTION}"
 	#$ Interactive,login
-	# say_bye_tom
+	say_bye_tom
+	_p9k_dump_instant_prompt
 	hardcls
 	# fi
 }
@@ -151,7 +165,7 @@ function precmd() {
 		ENV_LOADED='true'
 		hardcls
 		gnu_coreutils
-
+		# _p9k_dump_instant_prompt
 		export LOAD_LATER='true'
 	fi
 	if [ "$NODE_VERSION" != "$(cut -d 'v' -f 2 <<<$(node -v))" ]; then
