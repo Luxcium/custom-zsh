@@ -226,6 +226,45 @@ function precmd() {
 
 }
 
+function source_load_all() {
+	TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
+
+	AHMYZSH="${HOME}/ahmyzsh"
+
+	. "${AHMYZSH}/initial_load.zsh"
+
+	. "${AHMYZSH}/paths.sh"
+
+	. "${CUSTOM_ZSH}/notice.sh"
+
+	source_all
+	init_projects_paths
+	init_paths
+	load_my_envs
+
+	local S1="${POWERLINE_BINDINGS}/zsh/powerline.zsh"
+	. "${S1}"
+
+	BASE_LAYOUTS="${CUSTOM_ZSH}/sources/layouts/base-layouts.sh"
+	. "${BASE_LAYOUTS}"
+	load_layouts
+
+	MY_ALIASES="${CUSTOM_ZSH}/aliases.sh"
+	. "${MY_ALIASES}"
+	load_aliases
+
+	COMPUTE_PATH="${ZSH_COMPUTE}/path.zsh"
+	. "${COMPUTE_PATH}"
+	. $HOME/.cache/path.env
+
+	compute_path
+	load_oh_my_zsh
+	load_options
+	load_autocomplete
+	echo "${BEGIN_FUNCTION} $(timer_now) 'source_load_all()' ${END_FUNCTION}"
+
+}
+
 # # |----------------|-----------|-----------|------|
 # # |                |Interactive|Interactive|Script|
 # # |----------------|-----------|-----------|------|
