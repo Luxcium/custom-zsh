@@ -1,15 +1,14 @@
 function compute_path() {
-    echo "${BEGIN_LOADING} ${0} ${END_LOADING}"
-
     export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
 
     export PATH="$TMUX_BIN:${PATH}"
 
     if [ "$WITH_ANACONDA" = 'true' ]; then
+        local TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
         local S1="${ZSH_SOURCES}/conda-initialize.zsh"
-        echo "${BEGIN_LOADING} ${S1} ${END_LOADING}"
         . "${S1}"
         conda_init
+        echo "${BEGIN_LOADING} $(timer_now) ${S1} ${END_LOADING}"
     fi
     if [ "$WITH_RBENV" = 'true' ]; then
         export PATH="$PATH_RBENV:${PATH}"
@@ -56,20 +55,30 @@ function compute_path() {
     export PATH="/usr/local/share/zsh/site-functions:${PATH}"
 
     # export HOME=$HOMEtemp
+    local TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
     eval "$(rbenv init -)"
-    # FNM
-    eval "$(fnm env --multi)"
-    # eval "$(/usr/local/bin/fnm env --multi)"
-    function gnu_coreutils() {
-        if [ "$SHOW_LOAD_CUTLS" = 'true' ]; then
-            if [ "$GNU_COREUTILS" != 'true' ]; then
-                echo -n "${normal}${CLRLN}${BYL9K_GNU}$(tput setaf 2) ${COG_ICO} ${bold} $(tput setaf 2)GNU/Linux utils$(tput setaf 1) NOT in function${BKBK}${normal}\n"
-            fi
-            if [ "$GNU_COREUTILS" = 'true' ]; then
+    echo "${BEGIN_LOADING} $(timer_now)  eval \$(rbenv init -) ${END_LOADING}"
 
-                echo -n "${normal}${CLRLN}${BYL9K_GNU}$(tput setaf 2) ${COG_ICO} ${bold} $(tput setaf 2)GNU/Linux utils$(tput setaf 2) are in function${BKBK}${normal}\n"
-            fi
-            SHOW_LOAD_CUTLS="false"
+    # FNM
+    local TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
+    eval "$(fnm env --multi)"
+    echo "${BEGIN_LOADING} $(timer_now) eval \$(fnm env --multi) ${END_LOADING}"
+
+    echo PATH=\"$PATH\" >$HOME/.cache/path.env
+
+    # eval "$(/usr/local/bin/fnm env --multi)"
+
+}
+
+function gnu_coreutils() {
+    if [ "$SHOW_LOAD_CUTLS" = 'true' ]; then
+        if [ "$GNU_COREUTILS" != 'true' ]; then
+            echo -n "${normal}${CLRLN}${BYL9K_GNU}$(tput setaf 2) ${COG_ICO} ${bold} $(tput setaf 2)GNU/Linux utils$(tput setaf 1) NOT in function${BKBK}${normal}\n"
         fi
-    }
+        if [ "$GNU_COREUTILS" = 'true' ]; then
+
+            echo -n "${normal}${CLRLN}${BYL9K_GNU}$(tput setaf 2) ${COG_ICO} ${bold} $(tput setaf 2)GNU/Linux utils$(tput setaf 2) are in function${BKBK}${normal}\n"
+        fi
+        SHOW_LOAD_CUTLS="false"
+    fi
 }

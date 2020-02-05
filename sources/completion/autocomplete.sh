@@ -1,4 +1,5 @@
-function autocomplete() {
+function load_autocomplete() {
+
     source "${ZSH_COMPLETION}/node_bash_completion.sh"
     source "${ZSH_COMPLETION}/npm.completion.sh"
     npm_completion

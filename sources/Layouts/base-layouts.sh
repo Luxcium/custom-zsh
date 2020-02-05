@@ -1,8 +1,6 @@
 function layouts() {
 
     export H_SYM="#"
-    # echo "${BEGIN_LOADING} ${0} ${END_LOADING}"
-    # echo "${BEGIN_FUNCTION} ${0} ${END_FUNCTION}"
     export LD_COLR="\u001b[0m\u001b[34m"
     export LD_ICO_COLR="\u001b[0m\u001b[33m"
     export LD_ICO="${LD_ICO_COLR}${COG_ICO}${LD_COLR}"
@@ -159,5 +157,4 @@ function load_layouts() {
     export RD_COGS_PROMPT="${normal}${CLRLN}${BRL9K_COGS}$(tput setaf 1) ${COG_ICO} ${bold} $(tput setaf 2)"
 
     layouts
-
 }

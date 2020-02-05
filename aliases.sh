@@ -1,4 +1,5 @@
 function load_aliases() {
+
     ################
     ## AZUR ALIAS ##
     ################
@@ -261,461 +262,66 @@ function load_aliases() {
     # alias node="env NODE_NO_READLINE=1 rlwrap node"
     # new-session -A -s luxcium-io
     ## heroku logs -t -a luxcium
-    alias htaillog="curl 'https://www.luxcium.io' &>/dev/null; heroku logs -t -a luxcium"
-    alias xsh="zsh -x"
-    alias zshli="zsh -l -i"
-    alias zshi="zsh -l -i"
-    alias zshl="zsh -l -i"
+    # alias htaillog="curl 'https://www.luxcium.io' &>/dev/null; heroku logs -t -a luxcium"
+    # alias xsh="zsh -x"
+    # alias zshli="zsh -l -i"
+    # alias zshi="zsh -l -i"
+    # alias zshl="zsh -l -i"
 
-    alias zsh0="zsh --mpleteinword"
-    alias zsh1="zsh --printexitvalue"
-    alias zsh2="zsh --no-autoresume"
-    alias zsh3="zsh --no-nomatch"
-    alias zsh4="zsh --globdots"
-    alias zsh5="zsh --notify"
-    alias zsh6="zsh --beep"
-    alias zsh7="zsh --ignoreeof"
-    alias zsh8="zsh --markdirs"
-    alias zsh9="zsh --autocontinue"
-    alias zshB="zsh --no-bashrematch"
-    alias zshC="zsh --no-checkjobs"
-    alias zshD="zsh --pushdtohome"
-    alias zshE="zsh --pushdsilent"
-    alias zshF="zsh --no-glob"
-    alias zshG="zsh --nullglob"
-    alias zshH="zsh --rmstarsilent"
-    alias zshI="zsh --ignorebraces"
-    alias zshJ="zsh --appendhistory"
-    alias zshK="zsh --no-badpattern"
-    alias zshL="zsh --sunkeyboardhack"
-    alias zshM="zsh --singlelinezle"
-    alias zshN="zsh --autoparamslash"
-    alias zshO="zsh --continueonerror"
-    alias zshP="zsh --rcexpandparam"
-    alias zshQ="zsh --pathdirs"
-    alias zshR="zsh --longlistjobs"
-    alias zshS="zsh --recexact"
-    alias zshT="zsh --cbases"
-    alias zshU="zsh --mailwarning"
-    alias zshV="zsh --no-promptcr"
-    alias zshW="zsh --autoremoveslash"
-    alias zshX="zsh --listtypes"
-    alias zshY="zsh --menucomplete"
-    alias zshZ="zsh --zle"
-    alias zsha="zsh --allexport"
-    alias zshd="zsh --no-globalrcs"
-    alias zshe="zsh --errexit"
-    alias zshf="zsh --no-rcs"
-    alias zshg="zsh --histignorespace"
-    alias zshh="zsh --histignoredups"
-    alias zshi="zsh --interactive"
-    alias zshk="zsh --interactivecomments"
-    alias zshl="zsh --login"
-    alias zshm="zsh --monitor"
-    alias zshn="zsh --no-exec"
-    alias zshp="zsh --privileged"
-    alias zshr="zsh --restricted"
-    alias zshs="zsh --shinstdin"
-    alias zsht="zsh --singlecommand"
-    alias zshu="zsh --no-unset"
-    alias zshv="zsh --verbose"
-    alias zshw="zsh --cdablevars"
-    alias zshx="zsh --xtrace"
-    alias zshy="zsh --shwordsplit"
+    # alias zsh0="zsh --mpleteinword"
+    # alias zsh1="zsh --printexitvalue"
+    # alias zsh2="zsh --no-autoresume"
+    # alias zsh3="zsh --no-nomatch"
+    # alias zsh4="zsh --globdots"
+    # alias zsh5="zsh --notify"
+    # alias zsh6="zsh --beep"
+    # alias zsh7="zsh --ignoreeof"
+    # alias zsh8="zsh --markdirs"
+    # alias zsh9="zsh --autocontinue"
+    # alias zshB="zsh --no-bashrematch"
+    # alias zshC="zsh --no-checkjobs"
+    # alias zshD="zsh --pushdtohome"
+    # alias zshE="zsh --pushdsilent"
+    # alias zshF="zsh --no-glob"
+    # alias zshG="zsh --nullglob"
+    # alias zshH="zsh --rmstarsilent"
+    # alias zshI="zsh --ignorebraces"
+    # alias zshJ="zsh --appendhistory"
+    # alias zshK="zsh --no-badpattern"
+    # alias zshL="zsh --sunkeyboardhack"
+    # alias zshM="zsh --singlelinezle"
+    # alias zshN="zsh --autoparamslash"
+    # alias zshO="zsh --continueonerror"
+    # alias zshP="zsh --rcexpandparam"
+    # alias zshQ="zsh --pathdirs"
+    # alias zshR="zsh --longlistjobs"
+    # alias zshS="zsh --recexact"
+    # alias zshT="zsh --cbases"
+    # alias zshU="zsh --mailwarning"
+    # alias zshV="zsh --no-promptcr"
+    # alias zshW="zsh --autoremoveslash"
+    # alias zshX="zsh --listtypes"
+    # alias zshY="zsh --menucomplete"
+    # alias zshZ="zsh --zle"
+    # alias zsha="zsh --allexport"
+    # alias zshd="zsh --no-globalrcs"
+    # alias zshe="zsh --errexit"
+    # alias zshf="zsh --no-rcs"
+    # alias zshg="zsh --histignorespace"
+    # alias zshh="zsh --histignoredups"
+    # alias zshi="zsh --interactive"
+    # alias zshk="zsh --interactivecomments"
+    # alias zshl="zsh --login"
+    # alias zshm="zsh --monitor"
+    # alias zshn="zsh --no-exec"
+    # alias zshp="zsh --privileged"
+    # alias zshr="zsh --restricted"
+    # alias zshs="zsh --shinstdin"
+    # alias zsht="zsh --singlecommand"
+    # alias zshu="zsh --no-unset"
+    # alias zshv="zsh --verbose"
+    # alias zshw="zsh --cdablevars"
+    # alias zshx="zsh --xtrace"
+    # alias zshy="zsh --shwordsplit"
 
-    aliases_functions
-}
-function aliases_functions() {
-
-    function tmcode() {
-        echo "${BEGIN_FUNCTION} 'tmcode()' ${END_FUNCTION}"
-
-        source $TMUX_BIN/tmux-functions.sh
-        tmp-set-cache
-        TMUX_SESSION="Default"
-        TMUX_WINDOW_0="dev-pop-n-lock"
-        PATH_TMUX_SESSION="${DEV_POPNLOCK}"
-        insdr "${DEV_POPNLOCK}"
-        tmux has-session -t $TMUX_SESSION 2>/dev/null
-        if [ $? != 0 ]; then
-            tmux new -s $TMUX_SESSION -d -n $TMUX_WINDOW_0 -c $PATH_TMUX_SESSION
-            tmux-config
-        else
-            tmux new-window -t $TMUX_SESSION -n $TMUX_WINDOW_0 -c $PATH_TMUX_SESSION
-        fi
-        tmux-attach
-        tmp-reset-to-cache
-    }
-    function lsf() {
-        echo ''
-        pwd | lolcat
-        colorls --almost-all --gs -f
-        pwd | lolcat
-        echo ''
-    }
-
-    function lsd() {
-        echo ''
-        pwd | lolcat
-        colorls --all -d
-        pwd | lolcat
-        echo ''
-    }
-
-    function ll() {
-        echo ''
-        pwd | lolcat
-        colorls -lA --sd --gs
-        pwd | lolcat
-        echo ''
-    }
-
-    function lf() {
-        echo ''
-        pwd | lolcat
-        colorls -lA --sf -f
-        pwd | lolcat
-        echo ''
-    }
-
-    function ld() {
-        echo ''
-        pwd | lolcat
-        colorls -lA --sd -d
-        pwd | lolcat
-        echo ''
-    }
-
-    function lc() {
-
-        colorls -a --sd --gs -S
-        pwd | lolcat -ta -d 5
-        echo ''
-    }
-
-    function cls() {
-        print "${clearall}"
-        pwd | lolcat
-
-    }
-
-    function hardcls() {
-        echo -n '\u001b[2J'
-        echo -n '\u001b[0;0H'
-    }
-
-    function cd() {
-
-        builtin cd $@
-        echo ''
-        pwd | lolcat
-        colorls -lA --sd -d
-        pwd | lolcat
-        echo ''
-    }
-
-    # brew configurations
-
-    function perseus() {
-        export WITH_ANACONDA=false
-        compute_path && echo "The sleeping Medusa decapitated."
-    }
-
-    function medusa() {
-        export WITH_ANACONDA=true
-        compute_path && echo "Perseus turning  to stone."
-        useful_functions
-        # hardcls
-    }
-
-    function brewdoc() {
-        # FROM: (SOURCE) https://hashrocket.com/blog/posts/keep-anaconda-from-constricting-your-homebrew-installs
-        # (C) 2018 HASHROCKET (used without permision)
-        perseus
-        command echo '>     UPDATING BREW  . . . '
-        command brew update
-        command echo '>     UPGRADING BREW  . . . '
-        command brew upgrade
-        command echo '>     Remove old symlinks  . . . '
-        command brew cleanup --prune-prefix
-        command echo ">     If nothing is returned to the terminal you're up-to-date  . . . "
-        command brew outdated
-        command echo '>     List forumlas that can be cleaned up  . . . '
-        command brew cleanup -n
-        command echo '>     Remove all old formulae from brew and cask  . . . '
-        command brew cleanup
-        command echo '>     Show the individual packages installed  . . . '
-        command brew list
-        command echo '>     Looking if everything is working correctly  . . . '
-        command brew doctor
-        command echo '>     UPGRADING NPM   . . . '
-        npm install -g npm@latest
-        command echo '>     UPGRADING YARN   . . . '
-        npm install -g yarn@latest
-        command echo '>     UPGRADING PNPM   . . . '
-        npm install -g pnpm@latest
-        # command echo '>     Will also uninstall && reinstall all Globals NPM and PNPM  . . . '
-        # reinstallNPMGlobal
-        medusa
-
-    }
-
-    function brew() {
-        perseus
-        command brew "$@"
-        medusa
-    }
-
-    function brewx() {
-        command brew "$@"
-    }
-
-    function ts-react-app() {
-        npx create-react-app $1 --typescript
-    }
-    function source_load_aliases() {
-        AHMYZSH="${HOME}/ahmyzsh"
-
-        . "${AHMYZSH}/LOAD_ENV.zsh"
-
-        . "${AHMYZSH}/PATHS.zsh"
-
-        . "${CUSTOM_ZSH}/notice.sh"
-
-        MY_ALIASES="${CUSTOM_ZSH}/aliases.sh"
-        . "${MY_ALIASES}"
-        load_aliases
-
-        BASE_LAYOUTS="${CUSTOM_ZSH}/sources/layouts/base-layouts.sh"
-        . "${BASE_LAYOUTS}"
-        load_layouts
-    }
-    function git_add_comit_push() {
-        git add .
-        git commit -am "${1:=adding functionalities}"
-        git push --tags --progress
-        git push --all --progress
-        git fetch
-    }
-    function ahmyzsh_git_update() {
-        (
-            builtin cd $AHMYZSH
-            git_add_comit_push "${1}" &
-        ) &>/dev/null
-        (
-            builtin cd $CUSTOM_TMUX
-            git_add_comit_push "${1}" &
-        ) &>/dev/null
-        (
-            builtin cd $CUSTOM_ZSH
-            git_add_comit_push "${1}" &
-        ) &>/dev/null
-        (
-            builtin cd $NODE_REPL
-            git_add_comit_push "${1}" &
-        ) &>/dev/null
-        (
-            builtin cd $POWERLINE
-            git_add_comit_push "${1}" &
-        ) &>/dev/null
-        (
-            builtin cd $PYTHON_REPL
-            git_add_comit_push "${1}" &
-        ) &>/dev/null
-        # AHMYZSH="${HOME}/ahmyzsh"
-        # CUSTOM_TMUX="${AHMYZSH}/custom-tmux"
-        # CUSTOM_ZSH="${AHMYZSH}/custom-zsh"
-        # NODE_REPL="${AHMYZSH}/node-repl"
-        # OHMYZSH="${AHMYZSH}/ohmyzsh"
-        # POWERLEVEL10K="${AHMYZSH}/powerlevel10k"
-        # POWERLINE="${AHMYZSH}/powerline"
-        # PYTHON_REPL="${AHMYZSH}/python-repl"
-    }
-
-    function mytty() {
-        tty >~/.tty
-        tty >~/.tty1
-        tty >~/.tty2
-    }
-    function mytty0() {
-        tty >~/.tty
-    }
-    function mytty1() {
-        tty >~/.tty1
-    }
-    function mytty2() {
-        tty >~/.tty2
-    }
-
-    function notmytty() {
-        echo -n '' >~/.tty
-        echo -n '' >~/.tty1
-        echo -n '' >~/.tty2
-    }
-    function notmytty0() {
-        echo -n '' >~/.tty
-    }
-    function notmytty1() {
-        echo -n '' >~/.tty1
-    }
-    function notmytty2() {
-        echo -n '' >~/.tty2
-    }
-
-    function cattty() {
-        local myTY_=$(cat $HOME/.tty)
-        if [ "$myTY_" != "" ]; then
-            if [ "${1:-0}" = 1 ]; then
-                cattty1 $@
-                return 0
-            fi
-            if [ "${1:-0}" = 2 ]; then
-                cattty2 $@
-                return 0
-            fi
-            echo "$(cat $HOME/.tty)"
-            return 0
-        fi
-        return 1
-    }
-    function cattty1() {
-        local myTY_=$(cat $HOME/.tty1)
-        if [ "$myTY_" != "" ]; then
-            if [ "${1:-0}" = 1 ]; then
-                echo -n "1>$(cat $HOME/.tty1)"
-                return 0
-            fi
-            if [ "${1:-0}" = 2 ]; then
-                cattty2 $@
-                return 0
-            fi
-                echo -n "1>$(cat $HOME/.tty1)"
-            # echo "$(cat $HOME/.tty1)"
-            return 0
-        fi
-        return 1
-    }
-    function cattty2() {
-        local myTY_=$(cat $HOME/.tty2)
-        if [ "$myTY_" != "" ]; then
-            if [ "${1:-0}" = 1 ]; then
-                cattty1 $@
-                return 0
-            fi
-            if [ "${1:-0}" = 2 ]; then
-                echo -n "2>$(cat $HOME/.tty2)"
-                return 0
-            fi
-                echo -n "2>$(cat $HOME/.tty2)"
-            # echo "$(cat $HOME/.tty2)"
-            return 0
-        fi
-        return 1
-    }
-
-    function toSD1n2() {
-        # local myTY_=$(cat $HOME/.tty)
-        # if [ "$myTY_" != "" ]; then
-            eval $(echo "(((${@:-echo nothing to do}) &)$(cattty2))$(cattty1)")
-            return 0
-        # fi
-        eval $(echo "(${@:-echo nothing to do})")
-        return 0
-
-    }
-    function toSDOUT1() {
-        local myTY_=$(cat $HOME/.tty1)
-        if [ "$myTY_" != "" ]; then
-            eval $(echo "(${@:-echo nothing to do})$(cattty1)")
-            return 0
-        fi
-        eval $(echo "(${@:-echo nothing to do})")
-    }
-    function toSDERR2() {
-        local myTY_=$(cat $HOME/.tty2)
-        if [ "$myTY_" != "" ]; then
-            eval $(echo "(${@:-echo nothing to do})$(cattty2)")
-            return 0
-        fi
-        eval $(echo "(${@:-echo nothing to do})")
-        return 0
-    }
-
-    function ahmyzsh-update() {
-        (ahmyzsh-update_ &)
-    }
-
-    function ahmyzsh-update_() {
-
-        eval $(echo "(
-            toSDERR2 custom-zsh-update
-            toSDERR2 custom-tmux-update
-            toSDERR2 node-repl-update
-            toSDERR2 python-repl-update
-            toSDERR2 ohmyzsh-update
-            toSDERR2 powerlevel10k-update
-            toSDERR2 powerline-update
-
-
-        )")
-        toSD1n2 "custom-update ${AHMYZSH_PATH}/"
-
-        return 0
-    }
-    function custom-update() {
-        eval $(echo "(
-            builtin cd ${1}/;
-            git add .;
-            git commit -am "refresh/update";
-            push;
-            git checkout ${2:-'master'};
-            pull;
-            git pull origin ${2:-'master'} -t --ff;
-            push;
-            git checkout luxcium;
-            pull;
-            git pull origin ${2:-'master'} -t --ff;
-            push;)")
-        return 0
-    }
-
-    function custom-upstream-update() {
-        eval $(echo "(
-            builtin cd ${1}/;
-            git add .;
-            git commit -am "refresh/update";
-            push;
-            git checkout ${2:-'master'};
-            pull;
-            git pull upstream ${2:-'master'} -t --ff;
-            push;
-            git checkout luxcium;
-            pull;
-            git pull origin ${2:-'master'} -t --ff;
-            push;)")
-        return 0
-    }
-
-    function ohmyzsh-update() {
-        toSDOUT1 "custom-upstream-update ${OHMYZSH_PATH}/"
-    }
-    function powerlevel10k-update() {
-        toSDOUT1 "custom-upstream-update ${POWERLEVLE10K_PATH}/"
-    }
-    function powerline-update() {
-        toSDOUT1 "custom-upstream-update ${POWERLINE_PATH}/ develop"
-    }
-
-    function custom-zsh-update() {
-        toSDOUT1 "custom-update ${CUSTOM_ZSH_PATH}/"
-    }
-    function node-repl-update() {
-        toSDOUT1 "custom-update ${NODE_REPL_PATH}/"
-    }
-    function python-repl-update() {
-        toSDOUT1 "custom-update ${PYTHON_REPL_PATH}/"
-    }
-    function custom-tmux-update() {
-        toSDOUT1 "custom-update ${CUSTOM_TMUX_PATH}/"
-    }
 }

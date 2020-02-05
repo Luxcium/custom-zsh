@@ -9,7 +9,6 @@ fi
 # # alias renew='resource_all'
 
 # # function source_all() {
-# # 	echo "${BEGIN_FUNCTION} 'source_all()' ${END_FUNCTION}"
 # # echo '\u001b[0m\u001b[34m# FUNCTION.. >source_all() \u001b[31;1m'
 
 # # function resource_all() {
