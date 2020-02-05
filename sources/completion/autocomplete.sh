@@ -8,6 +8,18 @@ function load_autocomplete() {
     source "$HOMEBREW_FOLDER/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
     source "$HOMEBREW_FOLDER/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
+    # pip zsh completion start
+    function _pip_completion() {
+        local words cword
+        read -Ac words
+        read -cn cword
+        reply=($(COMP_WORDS="$words[*]" \
+            COMP_CWORD=$((cword - 1)) \
+            PIP_AUTO_COMPLETE=1 $words[1]))
+    }
+    compctl -K _pip_completion pip
+    # pip zsh completion end
+
     # The following lines were added by compinstall
     zstyle ':completion:*' completer _list _oldlist _expand _complete _ignored _match _correct _approximate _prefix
     zstyle ':completion:*' expand prefix
@@ -22,7 +34,6 @@ function load_autocomplete() {
         compinit
     done
     compinit -C
-
     # End of lines added for compinstall
     # autoload -U compinit && compinit
 }

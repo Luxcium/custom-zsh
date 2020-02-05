@@ -31,7 +31,7 @@ function source_all() {
 		. "${S1}"
 		. $HOME/.cache/path.env
 		# compute_path
-		echo "${BEGIN_FUNCTION} $(timer_now) 'compute_path()' ${END_FUNCTION}"
+		echo "${BEGIN_FUNCTION} $(timer_now) 'load_compute_path_now()' ${END_FUNCTION}"
 	}
 
 	function source_notice_now() {
@@ -149,9 +149,11 @@ function load_zshenv() {
 
 	if [ "$PARENT_ENV_LOADED" != 'true' ]; then
 		source_layouts_now
+		load_compute_path_now
 		source_autocomplete_now
 		load_oh_my_zsh_now
 	else
+		load_compute_path_now
 		source_autocomplete_now
 
 	fi
@@ -160,7 +162,6 @@ function load_zshenv() {
 	source_functions_now
 	source_flags_now
 	source_TMUX_loader_now
-	load_compute_path_now
 
 }
 
