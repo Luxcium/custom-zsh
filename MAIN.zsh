@@ -237,25 +237,22 @@ function source_load_all() {
 
 	. "${CUSTOM_ZSH}/notice.sh"
 
-	source_all
 	init_projects_paths
 	init_paths
 	load_my_envs
 
-	local S1="${POWERLINE_BINDINGS}/zsh/powerline.zsh"
-	. "${S1}"
+	source_all
 
-	BASE_LAYOUTS="${CUSTOM_ZSH}/sources/layouts/base-layouts.sh"
-	. "${BASE_LAYOUTS}"
-	load_layouts
+	source_powerline_now
 
-	MY_ALIASES="${CUSTOM_ZSH}/aliases.sh"
-	. "${MY_ALIASES}"
-	load_aliases
-
-	COMPUTE_PATH="${ZSH_COMPUTE}/path.zsh"
-	. "${COMPUTE_PATH}"
-	. $HOME/.cache/path.env
+	source_layouts_now
+	source_aliases_now
+	source_flags_now
+	source_functions_now
+	load_compute_path_now
+	load_oh_my_zsh_now
+	source_autocomplete_now
+	source_TMUX_loader_now
 
 	compute_path
 	load_oh_my_zsh
