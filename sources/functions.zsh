@@ -327,7 +327,7 @@ function load_functions_definitions() {
     }
     function custom-update() {
         eval $(echo "(
-            builtin cd ${1}/;
+            builtin cd ${1};
             git add .;
             git commit -am "refresh/update";
             push;
@@ -344,7 +344,7 @@ function load_functions_definitions() {
 
     function custom-upstream-update() {
         eval $(echo "(
-            builtin cd ${1}/;
+            builtin cd ${1};
             git add .;
             git commit -am "refresh/update";
             push;
@@ -360,26 +360,26 @@ function load_functions_definitions() {
     }
 
     function ohmyzsh-update() {
-        toSDOUT1 "custom-upstream-update ${OHMYZSH_PATH}/"
+        toSDOUT1 "custom-upstream-update ${OHMYZSH}/"
     }
     function powerlevel10k-update() {
-        toSDOUT1 "custom-upstream-update ${POWERLEVLE10K_PATH}/"
+        toSDOUT1 "custom-upstream-update ${POWERLEVLE10K}/"
     }
     function powerline-update() {
-        toSDOUT1 "custom-upstream-update ${POWERLINE_PATH}/ develop"
+        toSDOUT1 "custom-upstream-update ${POWERLINE}/ develop"
     }
 
     function custom-zsh-update() {
-        toSDOUT1 "custom-update ${CUSTOM_ZSH_PATH}/"
+        toSDOUT1 "custom-update ${CUSTOM_ZSH}/"
     }
     function node-repl-update() {
-        toSDOUT1 "custom-update ${NODE_REPL_PATH}/"
+        toSDOUT1 "custom-update ${NODE_REP}/"
     }
     function python-repl-update() {
-        toSDOUT1 "custom-update ${PYTHON_REPL_PATH}/"
+        toSDOUT1 "custom-update ${PYTHON_REPl}/"
     }
     function custom-tmux-update() {
-        toSDOUT1 "custom-update ${CUSTOM_TMUX_PATH}/"
+        toSDOUT1 "custom-update ${CUSTOM_TMUX}/"
     }
 }
 function useful_functions() {
