@@ -243,14 +243,14 @@ function load_functions_definitions() {
         local myTY_=$(cat $HOME/.tty1)
         if [ "$myTY_" != "" ]; then
             if [ "${1:-0}" = 1 ]; then
-                echo -n "1>$(cat $HOME/.tty1)"
+                echo -n " 1>$(cat $HOME/.tty1)"
                 return 0
             fi
             if [ "${1:-0}" = 2 ]; then
                 cattty2 $@
                 return 0
             fi
-            echo -n "1>$(cat $HOME/.tty1)"
+            echo -n " 1>$(cat $HOME/.tty1)"
             # echo "$(cat $HOME/.tty1)"
             return 0
         fi
@@ -264,10 +264,10 @@ function load_functions_definitions() {
                 return 0
             fi
             if [ "${1:-0}" = 2 ]; then
-                echo -n "2>$(cat $HOME/.tty2)"
+                echo -n " 2>$(cat $HOME/.tty2)"
                 return 0
             fi
-            echo -n "2>$(cat $HOME/.tty2)"
+            echo -n " 2>$(cat $HOME/.tty2)"
             # echo "$(cat $HOME/.tty2)"
             return 0
         fi
@@ -277,28 +277,28 @@ function load_functions_definitions() {
     function toSD1n2() {
         # local myTY_=$(cat $HOME/.tty)
         # if [ "$myTY_" != "" ]; then
-        eval $(echo "(((${@:-echo nothing to do}) &)$(cattty2))$(cattty1)")
+        eval $(echo "${@:-echo nothing to do} $(cattty2) $(cattty1)")
         return 0
         # fi
-        eval $(echo "(${@:-echo nothing to do})")
+        eval $(echo "${@:-echo nothing to do}")
         return 0
 
     }
     function toSDOUT1() {
         local myTY_=$(cat $HOME/.tty1)
         if [ "$myTY_" != "" ]; then
-            eval $(echo "((${@:-echo nothing to do}) &)$(cattty1)")
+            eval $(echo "${@:-echo nothing to do} $(cattty1)")
             return 0
         fi
-        eval $(echo "(${@:-echo nothing to do})")
+        eval $(echo "${@:-echo nothing to do}")
     }
     function toSDERR2() {
         local myTY_=$(cat $HOME/.tty2)
         if [ "$myTY_" != "" ]; then
-            eval $(echo "((${@:-echo nothing to do}) &)$(cattty2)")
+            eval $(echo "${@:-echo nothing to do} $(cattty2)")
             return 0
         fi
-        eval $(echo "(${@:-echo nothing to do})")
+        eval $(echo "${@:-echo nothing to do}")
         return 0
     }
     alias to0="toSD1n2"

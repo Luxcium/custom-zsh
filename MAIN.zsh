@@ -225,8 +225,12 @@ function precmd() {
 	fi
 
 }
-
+alias reload="source_load_all"
+alias load="source_load_all"
 function source_load_all() {
+	toSD1n2 source_load_all_
+}
+function source_load_all_() {
 	TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
 
 	AHMYZSH="${HOME}/ahmyzsh"
@@ -257,7 +261,7 @@ function source_load_all() {
 	compute_path
 	load_oh_my_zsh
 	load_options
-	load_autocomplete
+	# load_autocomplete
 	echo "${BEGIN_FUNCTION} $(timer_now) 'source_load_all()' ${END_FUNCTION}"
 
 }
