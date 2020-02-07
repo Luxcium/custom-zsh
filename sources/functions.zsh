@@ -321,7 +321,7 @@ function load_functions_definitions() {
 
 
         )")
-        toSD1n2 "custom-update ${AHMYZSH_PATH}/"
+        toSD1n2 "custom-update ${AHMYZSH}/"
 
         return 0
     }
