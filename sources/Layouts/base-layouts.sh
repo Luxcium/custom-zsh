@@ -1,20 +1,3 @@
-function layouts() {
-
-    export H_SYM="#"
-    export LD_COLR="\u001b[0m\u001b[34m"
-    export LD_ICO_COLR="\u001b[0m\u001b[33m"
-    export LD_ICO="${LD_ICO_COLR}${COG_ICO}${LD_COLR}"
-
-    export LD_FN_COLR="${LD_COLR}"
-    export LD_FN_ICO_COLR="\u001b[0m\u001b[35;1m"
-    export LD_FN_ICO="${LD_FN_ICO_COLR}${FNCT_ICO}${LD_FN_COLR}"
-    export BEGIN_LOADING="${LD_COLR} ${H_SYM} ${LD_ICO}  >"
-    export BEGIN_FUNCTION="${LD_FN_COLR} ${H_SYM} ${LD_FN_ICO}  >"
-    export END_LOADING="\u001b[0m\u001b[31;1m${LBOLD}"
-    export END_FUNCTION="${END_LOADING}"
-
-}
-
 function load_layouts() {
 
     export NPM_ICO='\ue71e'
@@ -40,11 +23,9 @@ function load_layouts() {
     export JS_ICO='\uf81d'
     export NODE_ICO='\ue718'
     export COG_ICO='\uf013'
-    export COG_ICO='\uf013'
     export COGS_ICO='\uf085'
     export COGS_ICO_X=$(echo '\uf085')
     export WARN_ICO='\uf071'
-    export FNCT_ICO='\uf794'
 
     export FNK='\u001b[30m' # Black: \u001b[30m
     export FNR='\u001b[31m' # Red: \u001b[31m
@@ -156,5 +137,4 @@ function load_layouts() {
     export GR_COGS_PROMPT="${normal}${CLRLN}${BGL9K_COGS}$(tput setaf 2) ${COG_ICO} ${bold} $(tput setaf 2)${BKBK}${normal}"
     export RD_COGS_PROMPT="${normal}${CLRLN}${BRL9K_COGS}$(tput setaf 1) ${COG_ICO} ${bold} $(tput setaf 2)"
 
-    layouts
 }

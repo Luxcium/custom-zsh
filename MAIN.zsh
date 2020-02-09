@@ -1,14 +1,4 @@
 function source_all() {
-
-	TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
-	function timer_now() {
-		local TIMER_NOW=$(/usr/local/bin/gdate +%s%N)
-		local TIMER_VALUE=$(((${TIMER_NOW} - ${TIMER_THEN}) / 1000000))
-
-		echo -n "${TIMER_VALUE} "
-		return 0
-	}
-
 	function activate_instant_prompt() {
 		# # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 		# # Initialization code that may require console input (password prompts, [y/n]
@@ -16,21 +6,58 @@ function source_all() {
 		# clear
 		hardcls
 		typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
-		export POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+		typeset -g POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 
 		local S1="${ZSH_SOURCES}/instant-prompt"
 		echo "${normal}${CLRLN}${BYL9K_GNU}$(tput setaf 2) ${COG_ICO} ${S1} ${END_LOADING} $(tput setaf 2)${BKBK}${normal}"
 		. "${S1}"
-
 	}
 
-	function load_compute_path_now() {
+	# function source_layouts_now() {
+	# 	TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
 
+	# 	echo "${BEGIN_FUNCTION} $(timer_now) 'load_layouts()' ${END_FUNCTION}"
+	# }
+
+	# function source_flags_now() {
+	# 	TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
+
+	# 	echo "${BEGIN_FUNCTION} $(timer_now) 'init_flags()' ${END_FUNCTION}"
+	# }
+
+	# function source_aliases_now() {
+	# 	TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
+
+	# 	echo "${BEGIN_FUNCTION} $(timer_now) 'load_aliases()' ${END_FUNCTION}"
+	# }
+
+	function source_functions_now() {
+		TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
+		## source_functions_now
+		local S1="${ZSH_SOURCES}/functions.zsh"
+		. "${S1}"
+		load_functions_definitions
+		## source_aliases_now
+		export MY_ALIASES="${CUSTOM_ZSH}/aliases.sh"
+		. "${MY_ALIASES}"
+		load_aliases
+		## source_layouts_now
+		export BASE_LAYOUTS="${ZSH_SOURCES}/layouts/base-layouts.sh"
+		. "${BASE_LAYOUTS}"
+		load_layouts
+		## source_flags_now
+		local S1="${ZSH_FLAGS}/flg-shortcuts.sh"
+		. "${S1}"
+		init_flags
+		echo "${BEGIN_FUNCTION} $(timer_now) 'load_functions_definitions()' ${END_FUNCTION}"
+	}
+	source_functions_now
+
+	function load_compute_path_now() {
 		TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
 		local S1="${ZSH_COMPUTE}/path.zsh"
 		. "${S1}"
 		. $HOME/.cache/path.env
-		# compute_path
 		echo "${BEGIN_FUNCTION} $(timer_now) 'load_compute_path_now()' ${END_FUNCTION}"
 	}
 
@@ -41,69 +68,11 @@ function source_all() {
 		echo "${BEGIN_LOADING} $(timer_now) ${S1} ${END_LOADING}"
 	}
 
-	function tmux_functions() {
-		TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
-		local S1="${TMUX_FUNCTIONS}/index.sh"
-		. "${S1}"
-		echo "${BEGIN_LOADING} $(timer_now) ${S1} ${END_LOADING}"
-	}
-
-	function source_TMUX_functions() {
-		TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
-		local S1="${CUSTOM_ZSH}/tmux-functions.sh"
-		. "${S1}"
-		echo "${BEGIN_LOADING} $(timer_now) ${S1} ${END_LOADING}"
-		tmux_functions
-		source_TMUX_loader_now
-
-	}
-
-	function source_layouts_now() {
-
-		TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
-		export BASE_LAYOUTS="${ZSH_SOURCES}/layouts/base-layouts.sh"
-		. "${BASE_LAYOUTS}"
-		load_layouts
-		echo "${BEGIN_FUNCTION} $(timer_now) 'load_layouts()' ${END_FUNCTION}"
-	}
-
-	function source_aliases_now() {
-		TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
-		export MY_ALIASES="${CUSTOM_ZSH}/aliases.sh"
-		. "${MY_ALIASES}"
-		load_aliases
-		echo "${BEGIN_FUNCTION} $(timer_now) 'load_aliases()' ${END_FUNCTION}"
-	}
-
-	function source_functions_now() {
-		TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
-		local S1="${ZSH_SOURCES}/functions.zsh"
-		. "${S1}"
-		load_functions_definitions
-		echo "${BEGIN_FUNCTION} $(timer_now) 'load_functions_definitions()' ${END_FUNCTION}"
-	}
-
-	function source_flags_now() {
-		TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
-		local S1="${ZSH_FLAGS}/flg-shortcuts.sh"
-		. "${S1}"
-		init_flags
-		echo "${BEGIN_FUNCTION} $(timer_now) 'init_flags()' ${END_FUNCTION}"
-	}
-
 	function source_saybye_now() {
 		TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
 		local S1="${ZSH_SOURCES}/say-bye.zsh"
 		. "${S1}"
 		echo "${BEGIN_LOADING} $(timer_now) ${S1} ${END_LOADING}"
-	}
-
-	function source_TMUX_loader_now() {
-		TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
-		local S1="${TMUX_BIN}/tmux-loader.sh"
-		. "${S1}"
-		load_tmux
-		echo "${BEGIN_FUNCTION} $(timer_now) 'load_tmux()' ${END_FUNCTION}"
 	}
 
 	function load_options_now() {
@@ -137,14 +106,15 @@ function source_all() {
 		. "${S1}"
 		echo "${BEGIN_LOADING} $(timer_now) ${S1} ${END_LOADING}"
 	}
+
 	function load_powerlevel10k_now() {
 		TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
 		local S1="${POWERLEVEL10K}/powerlevel10k.zsh-theme"
 		. "${S1}"
 		echo "${BEGIN_LOADING} $(timer_now) ${S1} ${END_LOADING}"
 	}
-	function load_my_pl10K_layout_now() {
 
+	function load_my_pl10K_layout_now() {
 		TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
 		local S1="${ZSH_LAYOUTS}/pl10K-Layout.zsh"
 		. "${S1}"
@@ -152,10 +122,36 @@ function source_all() {
 		load_pl10K
 		echo "${BEGIN_FUNCTION} $(timer_now) 'load_pl10K()' ${END_FUNCTION}"
 	}
+
 	function compute_pl10K_now() {
 		TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
 		compute_pl10k
 		echo "${BEGIN_FUNCTION} $(timer_now) 'compute_pl10k()' ${END_FUNCTION}"
+	}
+
+	function TMUX_loader_now() {
+		TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
+		local S1="${TMUX_BIN}/tmux-loader.sh"
+		. "${S1}"
+		load_tmux
+		echo "${BEGIN_FUNCTION} $(timer_now) 'load_tmux()' ${END_FUNCTION}"
+	}
+
+	function tmux_functions() {
+		TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
+		local S1="${TMUX_FUNCTIONS}/index.sh"
+		. "${S1}"
+		echo "${BEGIN_LOADING} $(timer_now) ${S1} ${END_LOADING}"
+	}
+
+	function source_TMUX() {
+		tmux_functions
+		TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
+		local S1="${TMUX_FUNCTIONS}/tmux-functions.sh"
+		. "${S1}"
+		echo "${BEGIN_LOADING} $(timer_now) ${S1} ${END_LOADING}"
+		source_powerline_now
+		TMUX_loader_now
 	}
 
 }
@@ -163,21 +159,11 @@ function source_all() {
 function load_zshenv() {
 	# echo "${BEGIN_FUNCTION} 'load_zshenv()' ${END_FUNCTION}"
 	# 	#$ Interactive,Script,login,non-login
-
-	if [ "$PARENT_ENV_LOADED" != 'true' ]; then
-		source_layouts_now
-		load_compute_path_now
-		source_autocomplete_now
-		load_oh_my_zsh_now
-	else
-		load_compute_path_now
-		source_autocomplete_now
-
-	fi
-
-	source_aliases_now
-	source_functions_now
+	source_layouts_now
+	# source_aliases_now
 	source_flags_now
+	# source_TMUX
+	load_compute_path_now
 
 }
 
@@ -190,18 +176,16 @@ function load_zshrc() {
 	# echo "${BEGIN_FUNCTION} 'load_zshrc()' ${END_FUNCTION}"
 	# 	#$ Interactive,login,non-login
 
+	load_oh_my_zsh_now
+	source_autocomplete_now
 	load_my_pl10K_layout_now
 	activate_instant_prompt
+	load_powerlevel10k_now
 
 	if [ "$PARENT_ENV_LOADED" != 'true' ]; then
 		compute_path
 	else
-		load_oh_my_zsh_now
 	fi
-
-	load_powerlevel10k_now
-	source_saybye_now
-	source_TMUX_functions
 
 }
 
@@ -214,11 +198,11 @@ function load_zlogin() {
 function load_zlogout() {
 	# echo "${BEGIN_FUNCTION} 'load_zlogout()' ${END_FUNCTION}"
 	# 	#$ Interactive,login
+	source_saybye_now
 	(compute_path &)
 	(_p9k_dump_instant_prompt &)
 	say_bye_tom
 	hardcls
-	# 	# fi
 }
 
 function precmd() {
@@ -231,8 +215,10 @@ function precmd() {
 		export PARENT_ENV_LOADED='true'
 		ENV_LOADED='true'
 		# source_powerline_now
+		echo "${BEGIN_HOURGLASS_END_0} READY in $(timer_all) ms !${END_FUNCTION}"
 		hardcls
 		# clear
+
 		gnu_coreutils
 	else
 
@@ -265,13 +251,13 @@ function source_load_all_() {
 	source_powerline_now
 
 	source_layouts_now
-	source_aliases_now
+	# source_aliases_now
 	source_flags_now
 	source_functions_now
 	load_compute_path_now
 	load_oh_my_zsh_now
 	source_autocomplete_now
-	source_TMUX_functions
+	source_TMUX
 
 	compute_path
 	load_oh_my_zsh

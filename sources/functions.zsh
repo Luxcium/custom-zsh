@@ -381,8 +381,8 @@ function load_functions_definitions() {
     function custom-tmux-update() {
         toSDOUT1 "custom-update ${CUSTOM_TMUX}/"
     }
-}
-function useful_functions() {
+
+    # function useful_functions() {
 
     # Functions ==============================================
 
@@ -493,9 +493,27 @@ function useful_functions() {
         export MY_ZSH_VERSION=" ${TERM_ICO}  ${ZSH_V%%' (x86'*}"
         echo "${normal}$CLRLN$BYL9K_TERM$(tput setaf 2)${MY_ZSH_VERSION} ${BKBK}${normal}"
     }
-}
 
-# if [[ ! -o norcs ]]; then
-#     echo "... <commands to run if NO_RCS is not set,"
-#     echo "                    such as setting options> ..."
-# fi
+    function timer_now() {
+        local TIMER_NOW=$(/usr/local/bin/gdate +%s%N)
+        local TIMER_VALUE=$(((${TIMER_NOW} - ${TIMER_THEN}) / 1000000))
+
+        echo -n "${TIMER_VALUE} "
+        return 0
+    }
+
+    function timer_all() {
+        local TIMER_NOW=$(/usr/local/bin/gdate +%s%N)
+        local TIMER_VALUE=$(((${TIMER_NOW} - ${TIMER_ALL_THEN}) / 1000000))
+
+        echo -n "${TIMER_VALUE} "
+        return 0
+    }
+
+    # }
+
+    # if [[ ! -o norcs ]]; then
+    #     echo "... <commands to run if NO_RCS is not set,"
+    #     echo "                    such as setting options> ..."
+    # fi
+}
