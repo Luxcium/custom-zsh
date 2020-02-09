@@ -41,6 +41,23 @@ function source_all() {
 		echo "${BEGIN_LOADING} $(timer_now) ${S1} ${END_LOADING}"
 	}
 
+	function tmux_functions() {
+		TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
+		local S1="${TMUX_FUNCTIONS}/index.sh"
+		. "${S1}"
+		echo "${BEGIN_LOADING} $(timer_now) ${S1} ${END_LOADING}"
+	}
+
+	function source_TMUX_functions() {
+		TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
+		local S1="${CUSTOM_ZSH}/tmux-functions.sh"
+		. "${S1}"
+		echo "${BEGIN_LOADING} $(timer_now) ${S1} ${END_LOADING}"
+		tmux_functions
+		source_TMUX_loader_now
+
+	}
+
 	function source_layouts_now() {
 
 		TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
@@ -161,7 +178,6 @@ function load_zshenv() {
 	source_aliases_now
 	source_functions_now
 	source_flags_now
-	source_TMUX_loader_now
 
 }
 
@@ -185,6 +201,7 @@ function load_zshrc() {
 
 	load_powerlevel10k_now
 	source_saybye_now
+	source_TMUX_functions
 
 }
 
@@ -241,9 +258,7 @@ function source_load_all_() {
 
 	. "${CUSTOM_ZSH}/notice.sh"
 
-	init_projects_paths
 	init_paths
-	load_my_envs
 
 	source_all
 
@@ -256,7 +271,7 @@ function source_load_all_() {
 	load_compute_path_now
 	load_oh_my_zsh_now
 	source_autocomplete_now
-	source_TMUX_loader_now
+	source_TMUX_functions
 
 	compute_path
 	load_oh_my_zsh
