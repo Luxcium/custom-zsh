@@ -1,4 +1,75 @@
+function base_layouts() {
+
+    export FNR='\u001b[31m' # Red: \u001b[31m
+    export FNG='\u001b[32m' # Green: \u001b[32m
+    export FNY='\u001b[33m' # Yellow: \u001b[33m
+
+    export FBR='\u001b[31;1m' # Bright Red: \u001b[31;1m
+    export FBG='\u001b[32;1m' # Bright Green: \u001b[32;1m
+    export FBY='\u001b[33;1m' # Bright Yellow: \u001b[33;1m
+
+    export H_SYM="#  "
+    export LD_COLR="\u001b[0m\u001b[34m"
+    export LD_FN_COLR="${LD_COLR}"
+    export LD_ICO_COLR="\u001b[0m\u001b[33m"
+    export LD_ICO_COLR_0="\u001b[0m${FBG}"
+    export LD_ICO_COLR_1="\u001b[0m${FBY}"
+    export LD_ICO_COLR_2="\u001b[0m${FBR}"
+    export LD_ICO_COLR_OFF="\u001b[0m\u001b[34m"
+    export LD_FN_ICO_COLR="\u001b[0m\u001b[35;1m"
+
+    export COG_ICO='\uf013'       #// \uf013  COG_ICO
+    export FNCT_ICO='\uf794'      #// \uf794  FNCT_ICO
+    export LIGHTBULB="\uf835"     #// \uf835  LIGHTBULB
+    export LIGHTBULB_ON="\uf834"  #// \uf834  LIGHTBULB_ON
+    export HOURGLASS_END="\uf253" #// \uf253  HOURGLASS_END
+
+    export LD_ICO="${LD_ICO_COLR}${COG_ICO}${LD_COLR}"
+    export LD_FN_ICO="${LD_FN_ICO_COLR}${FNCT_ICO}${LD_FN_COLR}"
+    export LBULB_ICO="${LD_ICO_COLR_OFF}${LIGHTBULB}${LD_COLR}"
+    export LBULB_ON_ICO="${LD_ICO_COLR}${LIGHTBULB_ON}${LD_COLR}"
+    export HOURGLASS_END_ICO_0="${LD_ICO_COLR_0}${HOURGLASS_END}${LD_COLR}"
+    export HOURGLASS_END_ICO_1="${LD_ICO_COLR_1}${HOURGLASS_END}${LD_COLR}"
+    export HOURGLASS_END_ICO_2="${LD_ICO_COLR_2}${HOURGLASS_END}${LD_COLR}"
+
+    export BEGIN_SOURCING="${LD_COLR} ${H_SYM} ${LD_ICO}  >"
+    export BEGIN_FUNCTION="${LD_FN_COLR} ${H_SYM} ${LD_FN_ICO}  >"
+    export BEGIN_LBULB="${LD_COLR} ${H_SYM} ${LBULB_ICO}  "
+    export BEGIN_LBULB_ON="${LD_COLR} ${H_SYM} ${LBULB_ON_ICO}  "
+    export BEGIN_HOURGLASS_END_0="${LD_COLR} ${H_SYM} ${HOURGLASS_END_ICO_0}   "
+    export BEGIN_HOURGLASS_END_1="${LD_COLR} ${H_SYM} ${HOURGLASS_END_ICO_1}   "
+    export BEGIN_HOURGLASS_END_2="${LD_COLR} ${H_SYM} ${HOURGLASS_END_ICO_2}   "
+
+    export END_SOURCING="\u001b[0m\u001b[31;1m${LBOLD}"
+    export END_FUNCTION="${END_SOURCING}"
+
+    function hardcls() {
+        echo -n '\u001b[2J'
+        echo -n '\u001b[0;0H'
+    }
+
+    # export BASE_LAYOUTS="${ZSH_SOURCES}/layouts/base-layouts.sh"
+    # . BASE_LAYOUTS
+    # load_layouts
+}
+
 function load_layouts() {
+
+    export bold="$LBOLD"
+    export normal="$RSET"
+    export PZTX='\u001b[1;0H'
+    export PZT='\u001b[2;0H'
+    export PZTED='\u001b[0;50H'
+    export CLRZ='\u001b[2J'
+    export DW="${LDOWN_B}1B"
+    export UPW="${LUP_A}1A"
+    export CLRLN='\u001b[2K \u001b[0G'
+    export RWT='\u001b[54C'
+    export RWTT='\u001b[10C'
+    export BKBG='\u001b[40m'
+    export BKFG='\u001b[30m'
+    export YKBG='\u001b[43m'
+    export YKFG='\u001b[33m'
 
     export NPM_ICO='\ue71e'
     separator1='e0bc' # 
@@ -16,7 +87,12 @@ function load_layouts() {
     export BYL9K_NPM="${BBCOLR} $NPM_ICO ${YBCOLR}${LEFT_SEPRATOR}${normal}"
     export BYL9K_NPM_FOLDER="${BBCOLR} $NPM_FOLDER_ICO ${YBCOLR}${LEFT_SEPRATOR}${normal}"
 
+    export BBCOLR="$BKFG$YKBG"
     export GNU_ICO='\ue779'
+    export YBCOLR="$BKBG$YKFG"
+    export LEFT_SEPRATOR2="${U}${separator3}"
+    export BYL9K_GNU="${BBCOLR} ${GNU_ICO} ${YBCOLR}${LEFT_SEPRATOR2}${normal}"
+
     export APPLE_ICO='\uf179'
     export TERM_ICO='\uf120'
     export TS_ICO='\ufbe4'
@@ -90,29 +166,6 @@ function load_layouts() {
 
     export RSET='\u001b[0m'
 
-    function hardcls() {
-        echo -n '\u001b[2J'
-        echo -n '\u001b[0;0H'
-    }
-
-    export bold="$LBOLD"
-    export normal="$RSET"
-    export PZTX='\u001b[1;0H'
-    export PZT='\u001b[2;0H'
-    export PZTED='\u001b[0;50H'
-    export CLRZ='\u001b[2J'
-    export DW="${LDOWN_B}1B"
-    export UPW="${LUP_A}1A"
-    export CLRLN='\u001b[2K \u001b[0G'
-    export RWT='\u001b[54C'
-    export RWTT='\u001b[10C'
-    export BKBG='\u001b[40m'
-    export BKFG='\u001b[30m'
-    export YKBG='\u001b[43m'
-    export YKFG='\u001b[33m'
-
-    export YBCOLR="$BKBG$YKFG"
-    export BBCOLR="$BKFG$YKBG"
     export BKBK="$BKBG$BKFG"
     export RVSD='\u001b[7m'
 
@@ -121,7 +174,6 @@ function load_layouts() {
     export LDSCLR="${BBCOLR} $COGS_ICO ${YBCOLR}${LEFT_SEPRATOR}${normal}"
     export LDLCLR="${BBCOLR} $COG_ICO ${YBCOLR}${LEFT_SEPRATOR}${normal}"
 
-    export BYL9K_GNU="${BBCOLR} ${GNU_ICO} ${YBCOLR}${LEFT_SEPRATOR2}${normal}"
     export BYL9K_APPLE="${BBCOLR} $APPLE_ICO ${YBCOLR}${LEFT_SEPRATOR2}${normal}"
     export BYL9K_TERM="${BBCOLR} $TERM_ICO ${YBCOLR}${LEFT_SEPRATOR2}${normal}"
     export BYL9K_TS="${BBCOLR} $TS_ICO ${YBCOLR}${LEFT_SEPRATOR2}${normal}"
@@ -136,5 +188,7 @@ function load_layouts() {
 
     export GR_COGS_PROMPT="${normal}${CLRLN}${BGL9K_COGS}$(tput setaf 2) ${COG_ICO} ${bold} $(tput setaf 2)${BKBK}${normal}"
     export RD_COGS_PROMPT="${normal}${CLRLN}${BRL9K_COGS}$(tput setaf 1) ${COG_ICO} ${bold} $(tput setaf 2)"
+
+    base_layouts
 
 }

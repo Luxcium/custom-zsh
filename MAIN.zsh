@@ -106,6 +106,8 @@ function load_zshenv() {
 	# load_options_now
 	# fi
 
+	load_options_now
+
 	## source_functions_now
 	load_ "${ZSH_SOURCES}/functions.zsh" "load_functions_definitions"
 	## source_aliases_now
@@ -113,11 +115,10 @@ function load_zshenv() {
 	load_ "${MY_ALIASES}" "load_aliases"
 	## source_flags_now
 	load_ "${ZSH_FLAGS}/flg-shortcuts.sh" "init_flags"
+
 	## source_path_now
 	source_ "${ZSH_COMPUTE}/path.zsh"
 	. $HOME/.cache/path.env
-
-	load_options_now
 
 }
 
@@ -137,8 +138,8 @@ function load_zshrc() {
 	load_my_pl10K_layout_now
 
 	## source_layouts_now
-	export BASE_LAYOUTS="${ZSH_SOURCES}/layouts/base-layouts.sh"
-	load_ "${BASE_LAYOUTS}" "load_layouts"
+	# export BASE_LAYOUTS="${ZSH_SOURCES}/layouts/base-layouts.sh"
+	# load_ "${BASE_LAYOUTS}" "load_layouts"
 
 	source_powerlevel10k_now
 
