@@ -76,11 +76,6 @@ function load_functions_definitions() {
 
     }
 
-    function hardcls() {
-        echo -n '\u001b[2J'
-        echo -n '\u001b[0;0H'
-    }
-
     function cd() {
 
         builtin cd $@
@@ -158,6 +153,7 @@ function load_functions_definitions() {
         git push --all --progress
         git fetch
     }
+
     function ahmyzsh_git_update() {
         (
             builtin cd $AHMYZSH
@@ -198,12 +194,15 @@ function load_functions_definitions() {
         tty >~/.tty1
         tty >~/.tty2
     }
+
     function mytty0() {
         tty >~/.tty
     }
+
     function mytty1() {
         tty >~/.tty1
     }
+
     function mytty2() {
         tty >~/.tty2
     }
@@ -213,12 +212,15 @@ function load_functions_definitions() {
         echo -n '' >~/.tty1
         echo -n '' >~/.tty2
     }
+
     function notmytty0() {
         echo -n '' >~/.tty
     }
+
     function notmytty1() {
         echo -n '' >~/.tty1
     }
+
     function notmytty2() {
         echo -n '' >~/.tty2
     }
@@ -239,6 +241,7 @@ function load_functions_definitions() {
         fi
         return 1
     }
+
     function cattty1() {
         local myTY_=$(cat $HOME/.tty1)
         if [ "$myTY_" != "" ]; then
@@ -256,6 +259,7 @@ function load_functions_definitions() {
         fi
         return 1
     }
+
     function cattty2() {
         local myTY_=$(cat $HOME/.tty2)
         if [ "$myTY_" != "" ]; then
@@ -284,6 +288,7 @@ function load_functions_definitions() {
         return 0
 
     }
+
     function toSDOUT1() {
         local myTY_=$(cat $HOME/.tty1)
         if [ "$myTY_" != "" ]; then
@@ -292,6 +297,7 @@ function load_functions_definitions() {
         fi
         eval $(echo "${@:-echo nothing to do}")
     }
+
     function toSDERR2() {
         local myTY_=$(cat $HOME/.tty2)
         if [ "$myTY_" != "" ]; then
@@ -301,9 +307,11 @@ function load_functions_definitions() {
         eval $(echo "${@:-echo nothing to do}")
         return 0
     }
+
     alias to0="toSD1n2"
     alias to1="toSDOUT1"
     alias to2="toSDERR2"
+
     function ahmyzsh-update() {
         (ahmyzsh-update_ &)
     }
@@ -325,6 +333,7 @@ function load_functions_definitions() {
 
         return 0
     }
+
     function custom-update() {
         eval $(echo "(
             builtin cd ${1};
@@ -362,9 +371,11 @@ function load_functions_definitions() {
     function ohmyzsh-update() {
         toSDOUT1 "custom-upstream-update ${OHMYZSH}/"
     }
+
     function powerlevel10k-update() {
         toSDOUT1 "custom-upstream-update ${POWERLEVLE10K}/"
     }
+
     function powerline-update() {
         toSDOUT1 "custom-upstream-update ${POWERLINE}/ develop"
     }
@@ -372,12 +383,15 @@ function load_functions_definitions() {
     function custom-zsh-update() {
         toSDOUT1 "custom-update ${CUSTOM_ZSH}/"
     }
+
     function node-repl-update() {
         toSDOUT1 "custom-update ${NODE_REP}/"
     }
+
     function python-repl-update() {
         toSDOUT1 "custom-update ${PYTHON_REPl}/"
     }
+
     function custom-tmux-update() {
         toSDOUT1 "custom-update ${CUSTOM_TMUX}/"
     }
@@ -484,9 +498,11 @@ function load_functions_definitions() {
         install-peerdeps -Y -g @typescript-eslint/parser@latest
         install-peerdeps -Y -g @typescript-eslint/eslint-plugin
     }
+
     function update_npm() {
         ( (npm i -g npm@latest yarn@latest pnpm@latest &) 2>/dev/null)
     }
+
     function zsh_version() {
         local ZSH_X=$(echo $0)
         local ZSH_V=$($(echo "${ZSH_X/'-'/}" --version))
@@ -494,26 +510,44 @@ function load_functions_definitions() {
         echo "${normal}$CLRLN$BYL9K_TERM$(tput setaf 2)${MY_ZSH_VERSION} ${BKBK}${normal}"
     }
 
-    function timer_now() {
-        local TIMER_NOW=$(/usr/local/bin/gdate +%s%N)
-        local TIMER_VALUE=$(((${TIMER_NOW} - ${TIMER_THEN}) / 1000000))
-
-        echo -n "${TIMER_VALUE} "
-        return 0
+    alias reload="source_load_all"
+    alias load="source_load_all"
+    function source_load_all() {
+        toSD1n2 source_load_all_
     }
 
-    function timer_all() {
-        local TIMER_NOW=$(/usr/local/bin/gdate +%s%N)
-        local TIMER_VALUE=$(((${TIMER_NOW} - ${TIMER_ALL_THEN}) / 1000000))
+    function source_load_all_() {
+        TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
 
-        echo -n "${TIMER_VALUE} "
-        return 0
+        AHMYZSH="${HOME}/ahmyzsh"
+
+        . "${AHMYZSH}/initial_load.zsh"
+
+        . "${AHMYZSH}/paths.sh"
+
+        . "${CUSTOM_ZSH}/notice.sh"
+
+        init_paths
+
+        source_all
+        load_fab_four
+
+        source_TMUX
+
+        source_path_now
+        load_oh_my_zsh_now
+        load_autocomplete_now
+
+        load_oh_my_zsh
+        compute_path
+        # load_autocomplete
+        echo "${BEGIN_FUNCTION} $(timer_now) 'source_load_all()' ${END_FUNCTION}"
+
     }
-
-    # }
-
-    # if [[ ! -o norcs ]]; then
-    #     echo "... <commands to run if NO_RCS is not set,"
-    #     echo "                    such as setting options> ..."
-    # fi
 }
+
+# if [[ ! -o norcs ]]; then
+#     echo "... <commands to run if NO_RCS is not set,"
+#     echo "                    such as setting options> ..."
+# fi
+# }

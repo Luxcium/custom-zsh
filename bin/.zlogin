@@ -12,6 +12,6 @@
 ##                                                                            ##
 ################################################################################
 
-# echo -n "${BEGIN_LOADING} ${0} ${END_LOADING}\n"
+# echo -n "${BEGIN_SOURCING} ${0} ${END_SOURCING}\n"
 
 # source_zlogin

@@ -12,6 +12,6 @@
 ##                                                                            ##
 ################################################################################
 
-# echo "${BEGIN_LOADING} ${0} ${END_LOADING}"
+# echo "${BEGIN_SOURCING} ${0} ${END_SOURCING}"
 
 # source_zshrc

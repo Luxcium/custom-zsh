@@ -3,12 +3,22 @@ function compute_path() {
 
     export PATH="$TMUX_BIN:${PATH}"
 
+    # FNM
+    local TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
+    eval "$(fnm env --multi)"
+    echo "${BEGIN_SOURCING} $(timer_now) eval \$(fnm env --multi) ${END_SOURCING}"
+
+    # export HOME=$HOMEtemp
+    local TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
+    eval "$(rbenv init -)"
+    echo "${BEGIN_SOURCING} $(timer_now)  eval \$(rbenv init -) ${END_SOURCING}"
+
     if [ "$WITH_ANACONDA" = 'true' ]; then
         local TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
         local S1="${ZSH_SOURCES}/conda-initialize.zsh"
         . "${S1}"
         conda_init
-        echo "${BEGIN_LOADING} $(timer_now) ${S1} ${END_LOADING}"
+        echo "${BEGIN_SOURCING} $(timer_now) ${S1} ${END_SOURCING}"
     fi
     if [ "$WITH_RBENV" = 'true' ]; then
         export PATH="$PATH_RBENV:${PATH}"
@@ -53,16 +63,6 @@ function compute_path() {
     export PATH="${HOME}/.dotnet/tools:${PATH}"
     export PATH="/usr/local/opt/sqlite/bin:${PATH}"
     export PATH="/usr/local/share/zsh/site-functions:${PATH}"
-
-    # export HOME=$HOMEtemp
-    local TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
-    eval "$(rbenv init -)"
-    echo "${BEGIN_LOADING} $(timer_now)  eval \$(rbenv init -) ${END_LOADING}"
-
-    # FNM
-    local TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
-    eval "$(fnm env --multi)"
-    echo "${BEGIN_LOADING} $(timer_now) eval \$(fnm env --multi) ${END_LOADING}"
 
     echo PATH=\"$PATH\" >$HOME/.cache/path.env
 
