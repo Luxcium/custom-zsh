@@ -48,7 +48,7 @@ function source_all() {
 	}
 
 	function source_powerlevel10k_now() {
-		export ZSH_THEME="powerlevel10k/powerlevel10k"
+		export ZSH_THEME="../../powerlevel10k/powerlevel10k"
 		source_ "${POWERLEVEL10K}/powerlevel10k.zsh-theme"
 	}
 
