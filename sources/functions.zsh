@@ -90,12 +90,12 @@ function load_functions_definitions() {
 
     function perseus() {
         export WITH_ANACONDA=false
-        compute_path && echo "The sleeping Medusa decapitated."
+        reload_path && echo "The sleeping Medusa decapitated."
     }
 
     function medusa() {
         export WITH_ANACONDA=true
-        compute_path && echo "Perseus turning  to stone."
+        reload_path && echo "Perseus turning to stone."
         useful_functions
         # hardcls
     }

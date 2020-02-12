@@ -1,72 +1,72 @@
+function fnm_() {
+    eval "$(fnm env --multi)"
+}
+
+function rbenv_() {
+    eval "$(rbenv init -)"
+}
+
 function compute_path() {
     export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
-
-    export PATH="$TMUX_BIN:${PATH}"
+    add_to_path_ "${TMUX_BIN}"
+    add_to_path_ "${ZSH_BIN}"
 
     # FNM
-    local TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
-    eval "$(fnm env --multi)"
-    echo "${BEGIN_SOURCING} $(timer_now) eval \$(fnm env --multi) ${END_SOURCING}"
+    call_ fnm_
 
-    # export HOME=$HOMEtemp
-    local TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
-    eval "$(rbenv init -)"
-    echo "${BEGIN_SOURCING} $(timer_now)  eval \$(rbenv init -) ${END_SOURCING}"
+    #  HOME=$HOMEtemp
+    call_ rbenv_
 
     if [ "$WITH_ANACONDA" = 'true' ]; then
-        local TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
-        local S1="${ZSH_SOURCES}/conda-initialize.zsh"
-        . "${S1}"
-        conda_init
-        echo "${BEGIN_SOURCING} $(timer_now) ${S1} ${END_SOURCING}"
+        load_ "${ZSH_SOURCES}/conda-initialize.zsh" "conda_init"
     fi
-    if [ "$WITH_RBENV" = 'true' ]; then
-        export PATH="$PATH_RBENV:${PATH}"
-    fi
-    if [ "$WITH_BIN_GEM" = 'true' ]; then
-        export PATH="${PATH_BIN_GEM}:${PATH}"
-    fi
-    if [ "$WITH_CHROME" = 'true' ]; then
-        export PATH="$PATH_CHROME:${PATH}"
-    fi
+
+    # if [ "$WITH_RBENV" = 'true' ]; then
+    #     PATH="$PATH_RBENV:${PATH}"
+    # fi
+    # if [ "$WITH_BIN_GEM" = 'true' ]; then
+    #     PATH="${PATH_BIN_GEM}:${PATH}"
+    # fi
+    # if [ "$WITH_CHROME" = 'true' ]; then
+    #     PATH="$PATH_CHROME:${PATH}"
+    # fi
 
     if [ "$GNU_COREUTILS" = 'true' ]; then
-        export PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
-        export PATH="/usr/local/opt/apr-util/bin:${PATH}"
-        export PATH="/usr/local/opt/apr/bin:${PATH}"
-        export PATH="/usr/local/opt/binutils/bin:${PATH}"
-        export PATH="/usr/local/opt/ed/libexec/gnubin:${PATH}"
-        export PATH="/usr/local/opt/file-formula/bin:${PATH}"
-        export PATH="/usr/local/opt/findutils/libexec/gnubin:${PATH}"
-        export PATH="/usr/local/opt/gnu-getopt/bin:${PATH}"
-        export PATH="/usr/local/opt/gnu-indent/libexec/gnubin:${PATH}"
-        export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:${PATH}"
-        export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:${PATH}"
-        export PATH="/usr/local/opt/gnu-which/libexec/gnubin:${PATH}"
-        export PATH="/usr/local/opt/grep/libexec/gnubin:${PATH}"
-        export PATH="/usr/local/opt/m4/bin:${PATH}"
-        export PATH="/usr/local/opt/make/libexec/gnubin:${PATH}"
-        export PATH="/usr/local/opt/qt/bin:${PATH}"
-        export PATH="/usr/local/opt/sqlite/bin:${PATH}"
-        export PATH="/usr/local/opt/sqlite/lib/pkgconfig:${PATH}"
-        export PATH="/usr/local/opt/unzip/bin:${PATH}"
+        add_to_path_ "/usr/local/opt/coreutils/libexec/gnubin"
+        add_to_path_ "/usr/local/opt/apr-util/bin"
+        add_to_path_ "/usr/local/opt/apr/bin"
+        add_to_path_ "/usr/local/opt/binutils/bin"
+        add_to_path_ "/usr/local/opt/ed/libexec/gnubin"
+        add_to_path_ "/usr/local/opt/file-formula/bin"
+        add_to_path_ "/usr/local/opt/findutils/libexec/gnubin"
+        add_to_path_ "/usr/local/opt/gnu-getopt/bin"
+        add_to_path_ "/usr/local/opt/gnu-indent/libexec/gnubin"
+        add_to_path_ "/usr/local/opt/gnu-sed/libexec/gnubin"
+        add_to_path_ "/usr/local/opt/gnu-tar/libexec/gnubin"
+        add_to_path_ "/usr/local/opt/gnu-which/libexec/gnubin"
+        add_to_path_ "/usr/local/opt/grep/libexec/gnubin"
+        add_to_path_ "/usr/local/opt/m4/bin"
+        add_to_path_ "/usr/local/opt/make/libexec/gnubin"
+        add_to_path_ "/usr/local/opt/qt/bin"
+        add_to_path_ "/usr/local/opt/sqlite/bin"
+        add_to_path_ "/usr/local/opt/sqlite/lib/pkgconfig"
+        add_to_path_ "/usr/local/opt/unzip/bin"
     fi
-    export PATH="/usr/local/opt/ncurses/bin:${PATH}"
-    # local HOMEtemp=$HOME
-    # local HOME='/Users/neb_401'
-    export PATH="${HOME}/.yarn/bin:${HOME}/.config/yarn/global/node_modules/.bin:${PATH}"
-    export PATH="${HOME}/perl5/bin:${PATH}"
-    export PATH="/opt/X11/bin:${PATH}"
-    export PATH="/usr/local/MacGPG2/bin:${PATH}"
-    export PATH="/usr/local/share/dotnet:${PATH}"
-    export PATH="/usr/local/opt/gettext/bin:$PATH"
-    export PATH="${HOME}/.dotnet/tools:${PATH}"
-    export PATH="/usr/local/opt/sqlite/bin:${PATH}"
-    export PATH="/usr/local/share/zsh/site-functions:${PATH}"
 
-    echo PATH=\"$PATH\" >$HOME/.cache/path.env
+    add_to_path_ "/usr/local/opt/ncurses/bin"
+    add_to_path_ "${HOME}/.yarn/bin:${HOME}/.config/yarn/global/node_modules/.bin"
+    add_to_path_ "${HOME}/perl5/bin"
+    add_to_path_ "/opt/X11/bin"
+    add_to_path_ "/usr/local/MacGPG2/bin"
+    add_to_path_ "/usr/local/share/dotnet"
+    add_to_path_ "/usr/local/opt/gettext/bin"
+    add_to_path_ "${HOME}/.dotnet/tools"
+    add_to_path_ "/usr/local/opt/sqlite/bin"
+    add_to_path_ "/usr/local/share/zsh/site-functions"
 
-    # eval "$(/usr/local/bin/fnm env --multi)"
+    echo "PATH=\"$PATH\"" >$HOME/.cache/path.env
+
+    export PATH
 
 }
 
@@ -76,7 +76,6 @@ function gnu_coreutils() {
             echo -n "${normal}${CLRLN}${BYL9K_GNU}$(tput setaf 2) ${COG_ICO} ${bold} $(tput setaf 2)GNU/Linux utils$(tput setaf 1) NOT in function${BKBK}${normal}\n"
         fi
         if [ "$GNU_COREUTILS" = 'true' ]; then
-
             echo -n "${normal}${CLRLN}${BYL9K_GNU}$(tput setaf 2) ${COG_ICO} ${bold} $(tput setaf 2)GNU/Linux utils$(tput setaf 2) are in function${BKBK}${normal}\n"
         fi
         SHOW_LOAD_CUTLS="false"

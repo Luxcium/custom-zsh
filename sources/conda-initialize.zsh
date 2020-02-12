@@ -1,5 +1,22 @@
 function conda_init() {
 
+    # >>> conda initialize >>>
+    # !! Contents within this block are managed by 'conda init' !!
+    local __conda_setup="$('/Users/neb_401/miniconda3/niobium/bin/conda' 'shell.bash' 'hook' 2>/dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "/Users/neb_401/miniconda3/niobium/etc/profile.d/conda.sh" ]; then
+            . "/Users/neb_401/miniconda3/niobium/etc/profile.d/conda.sh"
+        else
+            export PATH="/Users/neb_401/miniconda3/niobium/bin:$PATH"
+        fi
+    fi
+    # <<< conda initialize <<<
+
+}
+function Xconda_init() {
+
     if [ -x /usr/libexec/path_helper ]; then
         eval $(/usr/libexec/path_helper -s)
     fi

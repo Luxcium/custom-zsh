@@ -1,9 +1,7 @@
 function pl10k_promt_loader() {
     export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
-        # typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
-        # os_icon # os identifier
-        custom_tsx
-        time      # current time
+        os_icon   # os identifier
+        user      #
         custom_js #
         battery   # internal battery
         load      # CPU load
@@ -11,15 +9,13 @@ function pl10k_promt_loader() {
         # ram         # free RAM
         # ! todo        # !todo items (https://github.com/todotxt/todo.txt-cli)
         # timewarrior # timewarrior tracking status (https://timewarrior.net/)
-        status      # exit code of the last command
-        newline     # !! ======================[ Line #1 ]======================
-        os_icon     # os identifier
-        user        #
-        dir         # current directory
-        newline     # !! ======================[ Line #2 ]======================
+        status  # exit code of the last command
+        newline # !! ======================[ Line #1 ]======================
+        dir     # current directory
+        newline # !! ======================[ Line #2 ]======================# custom_tsx
+        # os_icon     # os identifier
         vcs         # git status
         prompt_char # prompt symbol
-
     )
 
     export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
@@ -35,12 +31,15 @@ function pl10k_promt_loader() {
         # =========================[ Line #1 ]=========================
         # azure                  # azure account name (https://docs.microsoft.com/en-us/cli/azure)
         # vi_mode                # vi mode (you don't need this if you've enabled prompt_char)
-        command_execution_time # duration of the last command
         # direnv                 # direnv status (https://direnv.net/)
         # virtualenv             # python virtual environment (https://docs.python.org/3/library/venv.html)
+        custom_tsx
         custom_npm
-        node_version    # node.js version
-        newline         # !! =======================[ Line #2 ]=======================
+        node_version           # node.js version
+        time                   # current time
+        newline                # !! =======================[ Line #2 ]=======================
+        command_execution_time # duration of the last command
+        custom_pyt
         rbenv           # ruby version from rbenv (https://github.com/rbenv/rbenv)
         anaconda        # conda environment (https://conda.io/)
         background_jobs # presence of background jobs
@@ -116,9 +115,9 @@ function load_pl10K() {
     export POWERLEVEL9K_TIME_FOREGROUND='white'
     export POWERLEVEL9K_TIME_BACKGROUND='black'
 
-    export POWERLEVEL9K_RPROMPT_ON_NEWLINE=false
-    export POWERLEVEL9K_PROMPT_ON_NEWLINE=false
-    export POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+    # export POWERLEVEL9K_RPROMPT_ON_NEWLINE=false
+    # export POWERLEVEL9K_PROMPT_ON_NEWLINE=false
+    # export POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 
     # os_icon
     export POWERLEVEL9K_OS_ICON_BACKGROUND='blue'
@@ -155,9 +154,9 @@ function load_pl10K() {
     export POWERLEVEL9K_DIR_ETC_FOREGROUND='black'
 
     # Create prompt section
-    export POWERLEVEL9K_CUSTOM_PROMPT='echo -n '.''
-    export POWERLEVEL9K_CUSTOM_PROMPT_BACKGROUND='blue'
-    export POWERLEVEL9K_CUSTOM_PROMPT_FOREGROUND='black'
+    # export POWERLEVEL9K_CUSTOM_PROMPT='echo -n '.''
+    # export POWERLEVEL9K_CUSTOM_PROMPT_BACKGROUND='blue'
+    # export POWERLEVEL9K_CUSTOM_PROMPT_FOREGROUND='black'
 
     # Normal Disk Usage
     export POWERLEVEL9K_DISK_USAGE_NORMAL_FOREGROUND='blue'
@@ -206,6 +205,10 @@ function load_pl10K() {
     export POWERLEVEL9K_CUSTOM_TSX="echo -n $TS_ICON "
     export POWERLEVEL9K_CUSTOM_TSX_FOREGROUND='black'
     export POWERLEVEL9K_CUSTOM_TSX_BACKGROUND=$TS_BG
+
+    export POWERLEVEL9K_CUSTOM_PYT="echo -n $TS_ICON "
+    export POWERLEVEL9K_CUSTOM_PYT_FOREGROUND='black'
+    export POWERLEVEL9K_CUSTOM_PYT_BACKGROUND='green'
 
     export POWERLEVEL9K_NODE_VERSION_FOREGROUND='black'
     export POWERLEVEL9K_NODE_VERSION_BACKGROUND='green'

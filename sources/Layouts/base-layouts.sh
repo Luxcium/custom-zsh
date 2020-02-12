@@ -36,9 +36,9 @@ function base_layouts() {
     export BEGIN_FUNCTION="${LD_FN_COLR} ${H_SYM} ${LD_FN_ICO}  >"
     export BEGIN_LBULB="${LD_COLR} ${H_SYM} ${LBULB_ICO}  "
     export BEGIN_LBULB_ON="${LD_COLR} ${H_SYM} ${LBULB_ON_ICO}  "
-    export BEGIN_HOURGLASS_END_0="${LD_COLR} ${H_SYM} ${HOURGLASS_END_ICO_0}   "
-    export BEGIN_HOURGLASS_END_1="${LD_COLR} ${H_SYM} ${HOURGLASS_END_ICO_1}   "
-    export BEGIN_HOURGLASS_END_2="${LD_COLR} ${H_SYM} ${HOURGLASS_END_ICO_2}   "
+    export BEGIN_HOURGLASS_END_0="${LD_COLR} ${H_SYM} ${HOURGLASS_END_ICO_0}  >"
+    export BEGIN_HOURGLASS_END_1="${LD_COLR} ${H_SYM} ${HOURGLASS_END_ICO_1}  >"
+    export BEGIN_HOURGLASS_END_2="${LD_COLR} ${H_SYM} ${HOURGLASS_END_ICO_2}  >"
 
     export END_SOURCING="\u001b[0m\u001b[31;1m${LBOLD}"
     export END_FUNCTION="${END_SOURCING}"
