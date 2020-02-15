@@ -1,4 +1,9 @@
 function load_functions_definitions() {
+
+    function source_notice_now() {
+        source_ "${CUSTOM_ZSH}/notice.sh"
+    }
+
     function update_() {
         ( (conda update conda -y &>/dev/null) &)
         ( (conda update --all -y &>/dev/null) &)

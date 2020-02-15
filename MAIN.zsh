@@ -1,33 +1,5 @@
 function source_all() {
 
-	function add_to_path_() {
-		[ -z $1 ] || export PATH="${1}:${PATH}"
-	}
-	function call_() {
-		if [ -z $1 ]; then; else
-			TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
-			eval ${1}
-			[ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_FUNCTION} $(timer_now) '${1}()' ${END_FUNCTION}"
-		fi
-	}
-
-	function source_() {
-		if [ -z $1 ]; then; else
-			TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
-			. "${1}"
-			[ "${VERBOSA}" -gt 2 ] && echo "${BEGIN_SOURCING} $(timer_now) ${1} ${END_SOURCING}"
-		fi
-	}
-
-	function load_() {
-		source_ "${1}"
-		call_ ${2}
-	}
-
-	function source_notice_now() {
-		source_ "${CUSTOM_ZSH}/notice.sh"
-	}
-
 	function load_my_powerlevel10k_now() {
 		source_ "${ZSH_LAYOUTS}/pl10K-Layout.zsh"
 		call_ "load_my_powerlevel10k"
@@ -50,10 +22,8 @@ function source_all() {
 		source_ "${ZSH_SOURCES}/instant-prompt"
 		source_ "${POWERLEVEL10K}/powerlevel10k.zsh-theme"
 		call_ pl10k_promt_on
+		call_ compute_pl10k
 		# call_ compute_path
-		if [ "${NODE_VERSION}" = "$(cut -d 'v' -f 2 <<<$(node -v))" ]; then
-			call_ compute_pl10k
-		fi
 		# call_ pl10k_right_prompt_off
 	}
 
@@ -115,13 +85,12 @@ function load_zshenv() {
 	## load_options_now
 	load_ "${ZSH_SOURCES}/options.zsh" "load_options"
 
-	load_path
-
 	[ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_HOURGLASS_END_0} load_zshenv in $(timer_all) ms !${END_FUNCTION}"
 }
 
 function load_zshrc() {
 	# 	#$ Interactive,login,non-login
+	load_path
 
 	## load_functions_now
 	load_ "${ZSH_SOURCES}/functions.zsh" "load_functions_definitions"
@@ -149,10 +118,9 @@ function precmd() {
 		hardcls
 		gnu_coreutils
 	else
-
-	fi
-	if [ "${NODE_VERSION}" != "$(cut -d 'v' -f 2 <<<$(node -v))" ]; then
-		call_ compute_pl10k
+		# if [ "${NODE_VERSION}" != "$(cut -d 'v' -f 2 <<<$(node -v))" ]; then
+		# 	call_ compute_pl10k
+		# fi
 	fi
 
 }

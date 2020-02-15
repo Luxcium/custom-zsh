@@ -219,23 +219,6 @@ function load_my_powerlevel10k() {
         compute_pl10k
     }
 
-    alias lprompt='toggle_left_prompt'
-    function toggle_left_prompt() {
-        if [ $PL10K_LEFT_PROMPT_ON = 'true' ]; then
-            left_prompt_off
-        else
-            left_prompt_on
-        fi
-    }
-    alias rprompt='toggle_right_prompt'
-    function toggle_right_prompt() {
-        if [ $PL10K_RIGHT_PROMPT_ON = 'true' ]; then
-            right_prompt_off
-        else
-            right_prompt_on
-        fi
-    }
-
     function load_pl10K() {
         export TS_ICON=$'\uf071'
         export JS_BG='yellow'
@@ -381,12 +364,35 @@ function load_my_powerlevel10k() {
     function compute_pl10k() {
 
         load_pl10K
+        # /Users/neb_401/.cache/p10k-neb_401/NODE_VERSION
+        # /Users/neb_401/.cache/p10k-neb_401/NPM_VERSION
 
-        export NODE_VERSION="$(cut -d 'v' -f 2 <<<$(node -v))"
-        export POWERLEVEL9K_CUSTOM_NODE="echo -n '\uf898 ' $NODE_VERSION"
+        # export NODE_VERSION="$(cut -d 'v' -f 2 <<<$(node -v))"
+        # export POWERLEVEL9K_CUSTOM_NODE="echo -n '\uf898 ' $NODE_VERSION"
 
-        export NPM_VERSION="$(npm -v)"
+        ( (env echo $(npm -v) >"${CACHE_FOLDER}/NPM_VERSION" &))
+        export NPM_VERSION=$(cat "${CACHE_FOLDER}/NPM_VERSION")
         export POWERLEVEL9K_CUSTOM_NPM="echo -n '\ue71e ' $NPM_VERSION"
+        :
 
     }
+
+    alias lprompt='toggle_left_prompt'
+    function toggle_left_prompt() {
+        if [ $PL10K_LEFT_PROMPT_ON = 'true' ]; then
+            left_prompt_off
+        else
+            left_prompt_on
+        fi
+    }
+
+    alias rprompt='toggle_right_prompt'
+    function toggle_right_prompt() {
+        if [ $PL10K_RIGHT_PROMPT_ON = 'true' ]; then
+            right_prompt_off
+        else
+            right_prompt_on
+        fi
+    }
+
 }
