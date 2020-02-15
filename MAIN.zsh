@@ -1,14 +1,4 @@
 function source_all() {
-	function update_() {
-		( (conda update conda -y &>/dev/null) &)
-		( (conda update --all -y &>/dev/null) &)
-		( (update_npm &>/dev/null) &)
-		( (yarn global add yarn@latest &>/dev/null) &)
-		( (yarn global add npm@latest &>/dev/null) &)
-		( (yarn global add pnpm@latest &>/dev/null) &)
-		( (yarn global add typescript@latest &>/dev/null) &)
-		( (yarn global add ts-node@latest &>/dev/null) &)
-	}
 
 	function add_to_path_() {
 		[ -z $1 ] || export PATH="${1}:${PATH}"
@@ -38,6 +28,11 @@ function source_all() {
 		source_ "${CUSTOM_ZSH}/notice.sh"
 	}
 
+	function load_my_powerlevel10k_now() {
+		source_ "${ZSH_LAYOUTS}/pl10K-Layout.zsh"
+		call_ "load_my_powerlevel10k"
+	}
+
 	function activate_instant_prompt() {
 		# # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 		# # Initialization code that may require console input (password prompts, [y/n]
@@ -47,12 +42,19 @@ function source_all() {
 		export ZSH_THEME="../../powerlevel10k/powerlevel10k"
 
 		## load_my_pl10K_layout_now
-		load_ "${ZSH_LAYOUTS}/pl10K-Layout.zsh" "load_pl10K"
+		source_ "${ZSH_LAYOUTS}/pl10K-Layout.zsh"
+		call_ "load_my_powerlevel10k"
 		hardcls
 		# [ "${VERBOSA}" = 'true' ] &&
 		print "${normal}${CLRLN}${BYL9K_GNU}$(tput setaf 2) ${COG_ICO}  GNU/Linux utils are ... ${END_LOADING} $(tput setaf 2)${BKBK}${normal}"
 		source_ "${ZSH_SOURCES}/instant-prompt"
 		source_ "${POWERLEVEL10K}/powerlevel10k.zsh-theme"
+		call_ pl10k_promt_on
+		# call_ compute_path
+		if [ "${NODE_VERSION}" = "$(cut -d 'v' -f 2 <<<$(node -v))" ]; then
+			call_ compute_pl10k
+		fi
+		# call_ pl10k_right_prompt_off
 	}
 
 	function source_powerline_now() {
@@ -68,10 +70,6 @@ function source_all() {
 
 	function source_saybye_now() {
 		source_ "${ZSH_SOURCES}/say-bye.zsh"
-	}
-
-	function source_powerlevel10k_now() {
-
 	}
 
 	function load_oh_my_zsh_now() {
@@ -90,7 +88,7 @@ function source_all() {
 	}
 
 	function compute_pl10K_now() {
-		load_ "${ZSH_LAYOUTS}/pl10K-Layout.zsh" "compute_pl10k"
+		call_ "compute_pl10k"
 	}
 
 	function load_path() {
@@ -154,7 +152,7 @@ function precmd() {
 
 	fi
 	if [ "${NODE_VERSION}" != "$(cut -d 'v' -f 2 <<<$(node -v))" ]; then
-		compute_pl10k
+		call_ compute_pl10k
 	fi
 
 }

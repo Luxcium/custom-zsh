@@ -1,5 +1,14 @@
 function load_functions_definitions() {
-
+    function update_() {
+        ( (conda update conda -y &>/dev/null) &)
+        ( (conda update --all -y &>/dev/null) &)
+        ( (update_npm &>/dev/null) &)
+        ( (yarn global add yarn@latest &>/dev/null) &)
+        ( (yarn global add npm@latest &>/dev/null) &)
+        ( (yarn global add pnpm@latest &>/dev/null) &)
+        ( (yarn global add typescript@latest &>/dev/null) &)
+        ( (yarn global add ts-node@latest &>/dev/null) &)
+    }
     function tmcode() {
 
         source $TMUX_BIN/tmux-functions.sh
