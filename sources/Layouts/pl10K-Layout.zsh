@@ -1,12 +1,15 @@
 function load_my_powerlevel10k() {
-    function pl10k_promt_on() {
+    function pl10k_prompt_on() {
         pl10k_left_prompt_on
         pl10k_right_prompt_on
+        compute_pl10k
+        return 0
     }
 
-    function pl10k_promt_loader() {
+    function pl10k_prompt_loader() {
         pl10k_left_prompt_loader
         pl10k_right_prompt_loader
+        return 0
     }
 
     function pl10k_left_prompt_on() {
@@ -34,6 +37,7 @@ function load_my_powerlevel10k() {
                 prompt_char # prompt symbol
             )
         }
+        return 0
     }
 
     function pl10k_right_prompt_on() {
@@ -100,6 +104,7 @@ function load_my_powerlevel10k() {
             )
 
         }
+        return 0
     }
 
     function pl10k_left_prompt_off() {
@@ -127,6 +132,7 @@ function load_my_powerlevel10k() {
                 # prompt_char # prompt symbol
             )
         }
+        return 0
     }
 
     function pl10k_right_prompt_off() {
@@ -193,30 +199,8 @@ function load_my_powerlevel10k() {
             )
 
         }
-    }
 
-    function left_prompt_on() {
-        pl10k_left_prompt_on
-
-        compute_pl10k
-    }
-
-    function left_prompt_off() {
-        pl10k_left_prompt_off
-
-        compute_pl10k
-    }
-
-    function right_prompt_on() {
-        pl10k_right_prompt_on
-
-        compute_pl10k
-    }
-
-    function right_prompt_off() {
-        pl10k_right_prompt_off
-
-        compute_pl10k
+        return 0
     }
 
     function load_pl10K() {
@@ -358,7 +342,9 @@ function load_my_powerlevel10k() {
         # Load Nerd Fonts with Powerlevel9k theme for Zsh
         export POWERLEVEL9K_MODE='nerdfont-complete'
 
-        pl10k_promt_loader
+        pl10k_prompt_loader
+        return 0
+
     }
 
     function compute_pl10k() {
@@ -373,26 +359,80 @@ function load_my_powerlevel10k() {
         ( (env echo $(npm -v) >"${CACHE_FOLDER}/NPM_VERSION" &))
         export NPM_VERSION=$(cat "${CACHE_FOLDER}/NPM_VERSION")
         export POWERLEVEL9K_CUSTOM_NPM="echo -n '\ue71e ' $NPM_VERSION"
-        :
+        return 0
 
+    }
+
+    function left_prompt_on() {
+        if [ $PL10K_LEFT_PROMPT_OFF = 'true' ]; then
+            pl10k_left_prompt_on
+            compute_pl10k
+            return 0
+        fi
+        return 1
+    }
+
+    function left_prompt_off() {
+        if [ $PL10K_LEFT_PROMPT_ON = 'true' ]; then
+            pl10k_left_prompt_off
+            compute_pl10k
+            return 0
+        fi
+        return 1
     }
 
     alias lprompt='toggle_left_prompt'
     function toggle_left_prompt() {
-        if [ $PL10K_LEFT_PROMPT_ON = 'true' ]; then
+        if [ "${1}" = 'off' ]; then
             left_prompt_off
-        else
+            return 0
+        elif [ "${1}" = 'on' ]; then
             left_prompt_on
+            return 0
+        elif [ $PL10K_LEFT_PROMPT_ON = 'true' ]; then
+            left_prompt_off
+            return 0
+        elif [ $PL10K_LEFT_PROMPT_OFF = 'true' ]; then
+            left_prompt_on
+            return 0
         fi
+        return 1
+    }
+
+    function right_prompt_on() {
+        if [ $PL10K_RIGHT_PROMPT_OFF = 'true' ]; then
+            pl10k_right_prompt_on
+            compute_pl10k
+            return 0
+        fi
+        return 1
+    }
+
+    function right_prompt_off() {
+        if [ $PL10K_RIGHT_PROMPT_ON = 'true' ]; then
+            pl10k_right_prompt_off
+            compute_pl10k
+            return 0
+        fi
+        return 1
     }
 
     alias rprompt='toggle_right_prompt'
     function toggle_right_prompt() {
-        if [ $PL10K_RIGHT_PROMPT_ON = 'true' ]; then
+        if [ "${1}" = 'off' ]; then
             right_prompt_off
-        else
+            return 0
+        elif [ "${1}" = 'on' ]; then
             right_prompt_on
+            return 0
+        elif [ $PL10K_RIGHT_PROMPT_ON = 'true' ]; then
+            right_prompt_off
+            return 0
+        elif [ $PL10K_RIGHT_PROMPT_OFF = 'true' ]; then
+            right_prompt_on
+            return 0
         fi
+
     }
 
 }

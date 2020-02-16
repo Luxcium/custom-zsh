@@ -189,6 +189,8 @@ function load_aliases() {
     alias newvsportable='bash <(curl -s   https://gist.githubusercontent.com/Luxcium/7357d34622c148f6041842321f315d7a/raw/a758b82e6818b9b9b664b210228ea93f9314c1b4/luxcium-vscode-portable.sh)'
     alias vsportablenew='newvsportable'
     alias portablevsnew='newvsportable'
+    alias portablevs='newvsportable'
+    # alias ='/Users/neb_401/Developer/VSCode-Instances/clean-16-fev-2020/VisualStudioCode.app'
     # author: https://github.com/MarsiBarsi
     # Use main Visual Studio Code version by default
     : ${VSCODE:=code}

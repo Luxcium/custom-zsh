@@ -5,26 +5,25 @@ function source_all() {
 		call_ "load_my_powerlevel10k"
 	}
 
+	function source_prompt() {
+		## load_my_pl10K_layout_now
+		source_ "${ZSH_LAYOUTS}/pl10K-Layout.zsh"
+		call_ "load_my_powerlevel10k"
+	}
+
 	function activate_instant_prompt() {
 		# # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 		# # Initialization code that may require console input (password prompts, [y/n]
 		# # confirmations, etc.) must go above this block, everything else may go below.
 
 		typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
-		export ZSH_THEME="../../powerlevel10k/powerlevel10k"
+		typeset -g ZSH_THEME="../../powerlevel10k/powerlevel10k"
 
-		## load_my_pl10K_layout_now
-		source_ "${ZSH_LAYOUTS}/pl10K-Layout.zsh"
-		call_ "load_my_powerlevel10k"
 		hardcls
-		# [ "${VERBOSA}" = 'true' ] &&
 		print "${normal}${CLRLN}${BYL9K_GNU}$(tput setaf 2) ${COG_ICO}  GNU/Linux utils are ... ${END_LOADING} $(tput setaf 2)${BKBK}${normal}"
 		source_ "${ZSH_SOURCES}/instant-prompt"
 		source_ "${POWERLEVEL10K}/powerlevel10k.zsh-theme"
-		call_ pl10k_promt_on
-		call_ compute_pl10k
-		# call_ compute_path
-		# call_ pl10k_right_prompt_off
+		call_ pl10k_prompt_on
 	}
 
 	function source_powerline_now() {
@@ -63,8 +62,10 @@ function source_all() {
 
 	function load_path() {
 		## load_flags_now
-		source_ "${ZSH_COMPUTE}/path.zsh"
 		load_ "${ZSH_FLAGS}/flg-shortcuts.sh" "init_flags"
+		## source_ path.zsh
+		source_ "${ZSH_COMPUTE}/path.zsh"
+		## load_path
 		. $HOME/.cache/path.env
 	}
 
@@ -78,22 +79,28 @@ function source_all() {
 function load_zshenv() {
 	# 	#$ Interactive,Script,login,non-login
 
+	## load_options_now
+	load_ "${ZSH_SOURCES}/options.zsh" "load_options"
+
+	## load_my_pl10K_layout_now
+	call_ source_prompt
+
+	## load_path_now
+	call_ load_path
+
 	## load_aliases_now
 	export MY_ALIASES="${CUSTOM_ZSH}/aliases.sh"
 	load_ "${MY_ALIASES}" "load_aliases"
 
-	## load_options_now
-	load_ "${ZSH_SOURCES}/options.zsh" "load_options"
+	## load_functions_now
+	load_ "${ZSH_SOURCES}/functions.zsh" "load_functions_definitions"
 
 	[ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_HOURGLASS_END_0} load_zshenv in $(timer_all) ms !${END_FUNCTION}"
 }
 
 function load_zshrc() {
 	# 	#$ Interactive,login,non-login
-	load_path
-
-	## load_functions_now
-	load_ "${ZSH_SOURCES}/functions.zsh" "load_functions_definitions"
+	# load_path
 
 	activate_instant_prompt
 	load_oh_my_zsh_now
