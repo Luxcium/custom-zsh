@@ -26,7 +26,7 @@ function load_aliases() {
     alias q='_p9k_dump_instant_prompt;exit'
     alias alsa="atom ${MY_ALIASES}"
     alias alsc="code ${MY_ALIASES}"
-    alias als="source ${MY_ALIASES};load_aliases"
+    alias als="load_ ${MY_ALIASES} 'load_aliases'"
     alias alc=alsc
     alias ala=alsa
     alias finder='open .'
@@ -118,7 +118,7 @@ function load_aliases() {
 
     alias vsx="cd ${PATH_LXIO}; code -n ${PATH_LXIO}"
     alias vx=vsx
-    alias vsz="cd ${ZSH_CUSTOM}; code -n ${ZSH_CUSTOM}"
+    alias vsz="cd ${CUSTOM_ZSH}/..; code -n ${CUSTOM_ZSH}/.."
     alias vz=vsz
     alias vsr="cd ${ZSH_LUXCIUM}/repl/node-repl; code -n ${ZSH_LUXCIUM}/repl/node-repl"
     alias vr=vr
@@ -170,8 +170,8 @@ function load_aliases() {
     # alias mxdef="tmux -uv -f ${TMUX_CONFIGS}/common.tmux.conf new-session -A -s luxcium-io -c ${PATH_LXIO_PRJ}/luxcium.io"
 
     alias lux="open $PATH_LXIO_PRJ"
-    alias lxz="cd ${ZSH_LUXCIUM}"
-    alias lxzc="mycode ${ZSH_LUXCIUM} && cd ${ZSH_LUXCIUM}"
+    alias lxz="cd ${CUSTOM_ZSH}/.."
+    alias lxzc="mycode ${CUSTOM_ZSH}/.. && cd ${CUSTOM_ZSH}/.."
     alias lx="mycode ${PATH_LXIO_PRJ}/luxcium.io && cd ${PATH_LXIO_PRJ}/luxcium.io"
     alias lxe="cd ${PATH_LXIO_PRJ}/iex-luxcium-api"
     alias lxec="mycode ${PATH_LXIO_PRJ}/iex-luxcium-api && cd ${PATH_LXIO_PRJ}/iex-luxcium-api"
@@ -278,9 +278,9 @@ function load_aliases() {
     # alias yi3='yarn add -D typescript@rc @types/node@latest ts-node@latest > /dev/null 2>&1 &'
     alias yi='yi0; yi1; yu' # yi3'
 
-    alias ya='yarn add -E -A --verbose --force'
-    alias yb='yarn run build --verbose --force'
-    alias yt='yarn run test --verbose'
+    alias ya='yarn add --exact --audit --force --link-duplicates --check-files --no-progress'
+    alias yb='yarn run build --force'
+    alias yt='yarn run test'
     ###############
     ## NPM ALIAS ##
     ###############

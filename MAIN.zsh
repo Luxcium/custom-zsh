@@ -28,6 +28,7 @@ function source_all() {
 
 	function source_powerline_now() {
 		source_ "${POWERLINE_BINDINGS}/zsh/powerline.zsh"
+		return 0
 	}
 
 	function source_tmux() {

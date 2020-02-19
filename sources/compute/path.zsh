@@ -10,7 +10,7 @@ function compute_path() {
     export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
     add_to_path_ "${TMUX_BIN}"
     add_to_path_ "${ZSH_BIN}"
-
+    # /bin
     # FNM
     call_ fnm_
 
@@ -20,16 +20,6 @@ function compute_path() {
     if [ "$WITH_ANACONDA" = 'true' ]; then
         load_ "${ZSH_SOURCES}/conda-initialize.zsh" "conda_init"
     fi
-
-    # if [ "$WITH_RBENV" = 'true' ]; then
-    #     PATH="$PATH_RBENV:${PATH}"
-    # fi
-    # if [ "$WITH_BIN_GEM" = 'true' ]; then
-    #     PATH="${PATH_BIN_GEM}:${PATH}"
-    # fi
-    # if [ "$WITH_CHROME" = 'true' ]; then
-    #     PATH="$PATH_CHROME:${PATH}"
-    # fi
 
     if [ "$GNU_COREUTILS" = 'true' ]; then
         add_to_path_ "/usr/local/opt/coreutils/libexec/gnubin"
@@ -61,8 +51,9 @@ function compute_path() {
     add_to_path_ "/usr/local/share/dotnet"
     add_to_path_ "/usr/local/opt/gettext/bin"
     add_to_path_ "${HOME}/.dotnet/tools"
-    add_to_path_ "/usr/local/opt/sqlite/bin"
     add_to_path_ "/usr/local/share/zsh/site-functions"
+
+    call_ eval $(docker-machine env default)
 
     echo "PATH=\"$PATH\"" >$HOME/.cache/path.env
 

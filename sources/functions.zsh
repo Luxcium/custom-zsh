@@ -4,16 +4,63 @@ function load_functions_definitions() {
         source_ "${CUSTOM_ZSH}/notice.sh"
     }
 
-    function update_() {
-        ( (conda update conda -y &>/dev/null) &)
-        ( (conda update --all -y &>/dev/null) &)
-        ( (update_npm &>/dev/null) &)
-        ( (yarn global add yarn@latest &>/dev/null) &)
-        ( (yarn global add npm@latest &>/dev/null) &)
-        ( (yarn global add pnpm@latest &>/dev/null) &)
-        ( (yarn global add typescript@latest &>/dev/null) &)
-        ( (yarn global add ts-node@latest &>/dev/null) &)
+    function update() {
+        (update_ >/dev/null)
+        (ls node_modules 1>/dev/null 2>&1)
+        if [ $? ]; then
+            if [ -f yarn.lock ]; then
+                S1='package-lock.json'
+                [ -f "${S1}" ] && (rm "${S1}" 1>/dev/null 2>&1)
+
+                S1='yarn-error.log'
+                [ -f "${S1}" ] && (rm "${S1}" 1>/dev/null 2>&1)
+
+                S1='yarn-error.log'
+                [ -f "${S1}" ] && (rm "${S1}" 1>/dev/null 2>&1)
+
+                S1='pnpm-lock.yaml'
+                [ -f "${S1}" ] && (rm "${S1}" 1>/dev/null 2>&1)
+
+                S1='node_modules/'
+                [ -d "${S1}" ] && (rm -r "${S1}" 1>/dev/null 2>&1)
+
+                (yarn install --force --audit --link-duplicates --check-files)
+
+                [ -f '.yarnclean' ] && (yarn autoclean --force) || (yarn autoclean --init && yarn autoclean --force)
+            fi
+        fi
+        return 0
     }
+    function update_() {
+        (fnm-update_ 2>/dev/null)
+        (yarn-update_ 2>/dev/null)
+        (conda-update_ 2>/dev/null)
+        return 0
+
+    }
+
+    function conda-update_() {
+        conda update conda -y &
+        conda update --all -y &
+        return 0
+    }
+
+    function fnm-update_() {
+        fnm install latest-dubnium &
+        fnm install latest-carbon &
+        fnm install latest-boron &
+        fnm install latest-argon &
+        fnm install latest-erbium && fnm use latest-erbium && fnm default $(node -v) && fnm install latest
+        return 0
+
+    }
+
+    function yarn-update_() {
+        yarn global add create-react-app@latest eslint-config-prettier@latest eslint@latest prettier@latest install-peerdeps@latest npm@latest pnpm@latest serve@latest shelljs@latest shx@latest ts-node@latest typescript@latest yarn@latest &
+        return 0
+
+    }
+
     function tmcode() {
 
         source $TMUX_BIN/tmux-functions.sh
@@ -110,8 +157,6 @@ function load_functions_definitions() {
     function medusa() {
         export WITH_ANACONDA=true
         reload_path && echo "Perseus turning to stone."
-        useful_functions
-        # hardcls
     }
 
     function brewdoc() {
@@ -511,10 +556,6 @@ function load_functions_definitions() {
         install-peerdeps -Y -g eslint-plugin-unicorn@latest
         install-peerdeps -Y -g @typescript-eslint/parser@latest
         install-peerdeps -Y -g @typescript-eslint/eslint-plugin
-    }
-
-    function update_npm() {
-        ( (npm i -g npm@latest yarn@latest pnpm@latest &) 2>/dev/null)
     }
 
     function zsh_version() {
