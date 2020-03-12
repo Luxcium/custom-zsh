@@ -137,6 +137,7 @@ function load_aliases() {
     LXI_SESSION='luxcium-io'
     alias lxi="cd ${PATH_LXIO_PRJ}/luxcium.io"
     alias lxicd="lxi; mycode ${PATH_LXIO_PRJ}/luxcium.io"
+    alias lxicd="lxi; mycode ${PATH_LXIO_PRJ}/luxcium.io"
     alias lximux="tmux-luxcium"
     alias lxicode="lxicd; lximux"
     # alias lxicode="lxcode; tmux new-session -A -s $LXI_SESSION"
@@ -172,7 +173,8 @@ function load_aliases() {
     alias lux="open $PATH_LXIO_PRJ"
     alias lxz="cd ${CUSTOM_ZSH}/.."
     alias lxzc="mycode ${CUSTOM_ZSH}/.. && cd ${CUSTOM_ZSH}/.."
-    alias lx="mycode ${PATH_LXIO_PRJ}/luxcium.io && cd ${PATH_LXIO_PRJ}/luxcium.io"
+    alias lx="cd ${PATH_LXIO_PRJ}/luxcium.io && mycode ${PATH_LXIO_PRJ}/luxcium.io"
+    alias lxc="mycode ${PATH_LXIO_PRJ}/luxcium.io && cd ${PATH_LXIO_PRJ}/luxcium.io"
     alias lxe="cd ${PATH_LXIO_PRJ}/iex-luxcium-api"
     alias lxec="mycode ${PATH_LXIO_PRJ}/iex-luxcium-api && cd ${PATH_LXIO_PRJ}/iex-luxcium-api"
     alias iexc="mycode ${PATH_LXIO_PRJ}/iex-luxcium-api && cd ${PATH_LXIO_PRJ}/iex-luxcium-api"
