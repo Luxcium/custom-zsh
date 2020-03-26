@@ -27,6 +27,27 @@ function load_functions_definitions() {
                 (yarn install --force --audit --link-duplicates --check-files)
 
                 [ -f '.yarnclean' ] && (yarn autoclean --force) || (yarn autoclean --init && yarn autoclean --force)
+
+                # yarn add -D eslint@latest typescript@latest ts-node@latest @types/node@latest
+                # yarn global add eslint@latest typescript@latest ts-node@latest @types/node@latest
+                # install-peerdeps -Y -D @typescript-eslint/eslint-plugin@latest
+                # install-peerdeps -Y -D @typescript-eslint/parser@latest
+                # install-peerdeps -Y -D eslint-config-airbnb-base@latest
+                # install-peerdeps -Y -D eslint-config-airbnb-typescript@latest
+                # install-peerdeps -Y -D eslint-config-airbnb@latest
+                # install-peerdeps -Y -D eslint-config-prettier@latest
+                # install-peerdeps -Y -D eslint-plugin-import@latest
+                # install-peerdeps -Y -D eslint-plugin-jsx-a11y@latest
+                # install-peerdeps -Y -D eslint-plugin-react-hooks@latest
+                # install-peerdeps -Y -D eslint-plugin-react@latest
+                # install-peerdeps -Y -D eslint-plugin-node@latest
+                # install-peerdeps -Y -D eslint-plugin-unicorn@latest
+
+                #                 warning "eslint-config-airbnb-typescript > eslint-config-airbnb@18.1.0" has unmet peer dependency "eslint-plugin-import@^2.20.1".
+                # warning "eslint-config-airbnb-typescript > eslint-config-airbnb@18.1.0" has unmet peer dependency "eslint-plugin-jsx-a11y@^6.2.3".
+                # warning "eslint-config-airbnb-typescript > eslint-config-airbnb@18.1.0" has unmet peer dependency "eslint-plugin-react@^7.19.0".
+                # warning "eslint-config-airbnb-typescript > eslint-config-airbnb@18.1.0" has unmet peer dependency "eslint-plugin-react-hooks@^2.5.0 || ^1.7.0".
+                # warning "eslint-config-airbnb-typescript > eslint-config-airbnb-base@14.1.0" has unmet peer dependency "eslint-plugin-import@^2.20.1".
             fi
         fi
         return 0
@@ -34,9 +55,15 @@ function load_functions_definitions() {
     function update_() {
         (fnm-update_ 2>/dev/null)
         (yarn-update_ 2>/dev/null)
+        (eslint_global 2>/dev/null)
         (conda-update_ 2>/dev/null)
         return 0
+    }
 
+    function cabal-update_() {
+        cabal update &
+        # conda update --all -y &
+        return 0
     }
 
     function conda-update_() {
@@ -50,15 +77,57 @@ function load_functions_definitions() {
         fnm install latest-carbon &
         fnm install latest-boron &
         fnm install latest-argon &
-        fnm install latest-erbium && fnm use latest-erbium && fnm default $(node -v) && fnm install latest
+        fnm install latest-erbium && fnm use latest-erbium && fnm default $(node -v) && fnm install latest &
         return 0
 
     }
 
     function yarn-update_() {
-        yarn global add create-react-app@latest eslint-config-prettier@latest eslint@latest prettier@latest install-peerdeps@latest npm@latest pnpm@latest serve@latest shelljs@latest shx@latest ts-node@latest typescript@latest yarn@latest &
+        yarn global add \
+            create-react-app@latest \
+            eslint-config-prettier@latest \
+            eslint@latest \
+            prettier@latest \
+            install-peerdeps@latest \
+            npm@latest \
+            pnpm@latest \
+            serve@latest \
+            shelljs@latest \
+            shx@latest \
+            ts-node@latest \
+            typescript@latest \
+            yarn@latest &
         return 0
 
+    }
+
+    function eslint_global() {
+        install-peerdeps -Y -g @typescript-eslint/parser@latest
+        install-peerdeps -Y -g @typescript-eslint/eslint-plugin@latest
+        install-peerdeps -Y -g eslint-config-airbnb-base@latest
+        install-peerdeps -Y -g eslint-config-prettier@latest
+        install-peerdeps -Y -g eslint-plugin-flowtype@latest
+        install-peerdeps -Y -g eslint-plugin-import@latest
+        install-peerdeps -Y -g eslint-plugin-jest@latest
+        install-peerdeps -Y -g eslint-plugin-jsx-a11y@latest
+        install-peerdeps -Y -g eslint-plugin-node@latest
+        install-peerdeps -Y -g eslint-plugin-prettier@latest
+        install-peerdeps -Y -g eslint-plugin-react-hooks@latest
+        install-peerdeps -Y -g eslint-plugin-react@latest
+        install-peerdeps -Y -g eslint-plugin-unicorn@latest
+        yarn-update_ &
+        return 0
+
+    }
+    function tsu() {
+        yarn add -D yarn@latest &&
+            yarn add -D eslint@latest typescript@latest ts-node@latest @types/node@latest &
+        yarn global add yarn@latest &&
+            yarn global add eslint@latest typescript@latest ts-node@latest @types/node@latest &
+    }
+    function ts-nightly() {
+        yarn add -D typescript@next ts-node@latest @types/node@latest tslib@latest &
+        yarn global add typescript@next ts-node@latest @types/node@latest tslib@latest &
     }
 
     function tmcode() {
@@ -546,17 +615,6 @@ function load_functions_definitions() {
     # echo "lodash  $(echo_if $(npm_package_is_installed lodash))"
     # echo "react   $(echo_if $(npm_package_is_installed react))"
     # echo "angular $(echo_if $(npm_package_is_installed angular))"
-
-    function eslint_global() {
-        yarn global add install-peerdeps@latest eslint@latest
-        install-peerdeps -Y -g eslint-config-airbnb-base@latest
-        install-peerdeps -Y -g eslint@latest
-        install-peerdeps -Y -g eslint-config-prettier@latest
-        install-peerdeps -Y -g eslint-plugin-import@latest
-        install-peerdeps -Y -g eslint-plugin-unicorn@latest
-        install-peerdeps -Y -g @typescript-eslint/parser@latest
-        install-peerdeps -Y -g @typescript-eslint/eslint-plugin
-    }
 
     function zsh_version() {
         local ZSH_X=$(echo $0)

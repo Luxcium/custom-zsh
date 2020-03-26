@@ -243,6 +243,8 @@ function load_aliases() {
     ## GIT / GITHUB ##
     ##################
     alias check='git checkout master'
+    alias add='git add -u --renormalize -v .'
+    alias addall='git add --all --renormalize -v .'
     alias check-master='git checkout master'
     alias check-luxcium='git checkout luxcium'
     alias push='git push --tags --progress; git push --all --progress; fetch'
