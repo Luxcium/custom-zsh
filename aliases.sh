@@ -136,10 +136,10 @@ function load_aliases() {
     ## LUXCIUM
     LXI_SESSION='luxcium-io'
     alias lxi="cd ${PATH_LXIO_PRJ}/luxcium.io"
-    alias lxicd="lxi; mycode ${PATH_LXIO_PRJ}/luxcium.io"
-    alias lxicd="lxi; mycode ${PATH_LXIO_PRJ}/luxcium.io"
+    alias lxicd=" mycode ${PATH_LXIO_PRJ}/luxcium.io; lxi;"
     alias lximux="tmux-luxcium"
     alias lxicode="lxicd; lximux"
+    alias lxic="lxicd;" # lximux
     # alias lxicode="lxcode; tmux new-session -A -s $LXI_SESSION"
     alias lxikill="tmux kill-session -t $LXI_SESSION"
 
@@ -340,8 +340,8 @@ function load_aliases() {
 
     alias js="hardcls; env NODE_NO_READLINE=1 rlwrap ${NODELATEST}/node ${NODE_REPL_SCRIPT}"
     # alias zshenv="code ~/.zshenv"
-
-    # alias node="env NODE_NO_READLINE=1 rlwrap node"
+    alias node="env NODE_NO_READLINE=1 rlwrap node"
+    # alias rlnode="env NODE_NO_READLINE=1 rlwrap node"
     # new-session -A -s luxcium-io
     ## heroku logs -t -a luxcium
     # alias htaillog="curl 'https://www.luxcium.io' &>/dev/null; heroku logs -t -a luxcium"
