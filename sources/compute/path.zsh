@@ -54,7 +54,7 @@ function compute_path() {
     add_to_path_ "/usr/local/share/zsh/site-functions"
     add_to_path_ "${HOME}/.local/bin"
 
-    call_ eval $(docker-machine env default)
+    # call_ eval $(docker-machine env default)
 
     echo "PATH=\"$PATH\"" >$HOME/.cache/path.env
 
@@ -65,10 +65,10 @@ function compute_path() {
 function gnu_coreutils() {
     if [ "$SHOW_LOAD_CUTLS" = 'true' ]; then
         if [ "$GNU_COREUTILS" != 'true' ]; then
-            echo -n "${normal}${CLRLN}${BYL9K_GNU}$(tput setaf 2) ${COG_ICO} ${bold} $(tput setaf 2)GNU/Linux utils$(tput setaf 1) NOT in function${BKBK}${normal}\n"
+            echo -n "${CLRLN}${normal}${BYL9K_GNU}$(tput setaf 2) ${COG_ICO}${bold} $(tput setaf 2)GNU/Linux utils are$(tput setaf 1) NOT in function${BKBK}${normal}\n"
         fi
         if [ "$GNU_COREUTILS" = 'true' ]; then
-            echo -n "${normal}${CLRLN}${BYL9K_GNU}$(tput setaf 2) ${COG_ICO} ${bold} $(tput setaf 2)GNU/Linux utils$(tput setaf 2) are in function${BKBK}${normal}\n"
+            echo -n "${CLRLN}${normal}${BYL9K_GNU}$(tput setaf 2) ${COG_ICO}${bold} $(tput setaf 2)GNU/Linux utils$(tput setaf 2) are in function${BKBK}${normal}\n"
         fi
         SHOW_LOAD_CUTLS="false"
     fi

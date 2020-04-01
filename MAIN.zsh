@@ -20,7 +20,7 @@ function source_all() {
 		typeset -g ZSH_THEME="../../powerlevel10k/powerlevel10k"
 
 		hardcls
-		print "${normal}${CLRLN}${BYL9K_GNU}$(tput setaf 2) ${COG_ICO}  GNU/Linux utils are ... ${END_LOADING} $(tput setaf 2)${BKBK}${normal}"
+		print "${CLRLN}${normal}${BYL9K_GNU}$(tput setaf 2) ${COG_ICO} GNU/Linux utils are ... ${END_LOADING} $(tput setaf 2)${BKBK}${normal}"
 		source_ "${ZSH_SOURCES}/instant-prompt"
 		source_ "${POWERLEVEL10K}/powerlevel10k.zsh-theme"
 		call_ pl10k_prompt_on
