@@ -12,7 +12,7 @@ function compute_path() {
     add_to_path_ "${ZSH_BIN}"
     # /bin
     # FNM
-    call_ fnm_
+    # call_ fnm_
 
     #  HOME=$HOMEtemp
     call_ rbenv_

@@ -100,7 +100,7 @@ function load_layouts() {
     export NODE_ICO='\ue718'
     export COG_ICO='\uf013'
     export COGS_ICO='\uf085'
-    export COGS_ICO_X=$(echo '\uf085')
+    # export COGS_ICO_X=$(echo '\uf085')
     export WARN_ICO='\uf071'
 
     export FNK='\u001b[30m' # Black: \u001b[30m

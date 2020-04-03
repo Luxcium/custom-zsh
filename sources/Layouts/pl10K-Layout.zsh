@@ -329,15 +329,15 @@ function load_my_powerlevel10k() {
         export POWERLEVEL9K_OS_ICON_FOREGROUND='black'
 
         # user - Default
-        export POWERLEVEL9K_USER_DEFAULT_ICON=$'\uF415'
-        export POWERLEVEL9K_USER_DEFAULT_FOREGROUND='008'
+        # export POWERLEVEL9K_USER_DEFAULT_ICON=$'\uF415'
+        export POWERLEVEL9K_USER_DEFAULT_FOREGROUND='red'
         export POWERLEVEL9K_USER_DEFAULT_BACKGROUND='black'
         # user - ROOT
-        export POWERLEVEL9K_USER_ROOT_ICON=$'\uf292'
+        # export POWERLEVEL9K_USER_ROOT_ICON=$'\uf292'
         export POWERLEVEL9K_USER_ROOT_FOREGROUND='red'
         export POWERLEVEL9K_USER_ROOT_BACKGROUND='black'
         # user - SUDO
-        export POWERLEVEL9K_USER_SUDO_ICON=$'\uF09C'
+        # export POWERLEVEL9K_USER_SUDO_ICON=$'\uF09C'
         export POWERLEVEL9K_USER_SUDO_FOREGROUND='green'
         export POWERLEVEL9K_USER_SUDO_BACKGROUND='black'
         # Other icons
