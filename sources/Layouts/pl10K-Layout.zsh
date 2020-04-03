@@ -20,7 +20,7 @@ function load_my_powerlevel10k() {
         function pl10k_left_prompt_loader() {
             export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
                 os_icon   # os identifier
-                user      #
+                context   #
                 custom_js #
                 battery   # internal battery
                 load      # CPU load
@@ -328,6 +328,8 @@ function load_my_powerlevel10k() {
         export POWERLEVEL9K_OS_ICON_BACKGROUND='blue'
         export POWERLEVEL9K_OS_ICON_FOREGROUND='black'
 
+        export POWERLEVEL9K_CONTEXT_FOREGROUND='008'
+        export POWERLEVEL9K_CONTEXT_BACKGROUND='black'
         # user - Default
         export POWERLEVEL9K_USER_DEFAULT_ICON=$'\uF415'
         export POWERLEVEL9K_USER_DEFAULT_FOREGROUND='008'
