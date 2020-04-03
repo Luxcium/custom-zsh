@@ -1,5 +1,5 @@
 function source_all() {
-
+	# echo "source_all()"
 	function load_my_powerlevel10k_now() {
 		source_ "${ZSH_LAYOUTS}/pl10K-Layout.zsh"
 		call_ "load_my_powerlevel10k"
@@ -205,3 +205,24 @@ function load_zlogout() {
 #   Uploads a file.
 # it2universion
 #   Sets the current unicode version.
+
+function reload_all_x() {
+	lux_principium
+	load_my_powerlevel10k_now
+	source_prompt
+	activate_instant_prompt
+	source_powerline_now
+	source_tmux
+	source_saybye_now
+	load_oh_my_zsh_now
+	load_autocomplete_now
+	compute_pl10K_now
+	load_path
+	reload_path
+	load_zshenv
+	load_zshrc
+	precmd
+	load_zprofile
+	load_zlogin
+	load_zlogout
+}

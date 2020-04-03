@@ -630,7 +630,8 @@ function load_functions_definitions() {
     }
 
     function source_load_all_() {
-        TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
+        # TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
+        TIMER_THEN=$(date +%s%N)
 
         AHMYZSH="${HOME}/ahmyzsh"
 
