@@ -122,9 +122,9 @@ function precmd() {
 	if [ "$ENV_LOADED" != 'true' ]; then
 		export PARENT_ENV_LOADED='true'
 		ENV_LOADED='true'
-		echo "${BEGIN_HOURGLASS_END_0} READY in $(timer_all) ms !${END_FUNCTION}"
+		# echo "${BEGIN_HOURGLASS_END_0} READY in $(timer_all) ms !${END_FUNCTION}"
 		hardcls
-		gnu_coreutils
+		# gnu_coreutils
 	else
 		# if [ "${NODE_VERSION}" != "$(cut -d 'v' -f 2 <<<$(node -v))" ]; then
 		# 	call_ compute_pl10k
@@ -215,4 +215,3 @@ function reload_all_x() {
 	load_zlogin
 	load_zlogout
 }
-reload_all_x

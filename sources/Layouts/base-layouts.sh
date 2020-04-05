@@ -33,7 +33,7 @@ function base_layouts() {
     export HOURGLASS_END_ICO_2="${LD_ICO_COLR_2}${HOURGLASS_END}${LD_COLR}"
 
     export BEGIN_SOURCING="${LD_COLR} ${H_SYM} ${LD_ICO}  >"
-    export BEGIN_FUNCTION="${LD_FN_COLR} ${H_SYM} ${LD_FN_ICO}  >"
+    export BEGIN_FUNCTION="${LD_FN_COLR} ${H_SYM}${LD_FN_ICO}  >"
     export BEGIN_LBULB="${LD_COLR} ${H_SYM} ${LBULB_ICO}  "
     export BEGIN_LBULB_ON="${LD_COLR} ${H_SYM} ${LBULB_ON_ICO}  "
     export BEGIN_HOURGLASS_END_0="${LD_COLR} ${H_SYM} ${HOURGLASS_END_ICO_0}  >"
@@ -72,15 +72,15 @@ function load_layouts() {
     export YKFG='\u001b[33m'
 
     export NPM_ICO='\ue71e'
-    separator1='e0bc' # 
-    separator2='e0b8' # 
-    separator3='e0b0' # 
-    U='\u'
-    e0ba=e0ba
-    export LEFT_SEPRATOR="${U}${separator3}"
-    export LEFT_SEPRATOR2="${U}${separator3}"
+    separator1='\ue0bc'
+    separator2='\ue0b8'
+    separator3='\ue0c6'
+    separator3r='\ue0c7'
 
-    export RIGHT_SEPRATOR="${U}${e0ba}"
+    export LEFT_SEPRATOR="${separator3} "
+    export LEFT_SEPRATOR2="${separator3} "
+
+    export RIGHT_SEPRATOR="${separator3r}"
 
     export NPM_FOLDER_ICO='\ue5fa'
     export LDNCLR="${BBCOLR} $NPM_FOLDER_ICO ${YBCOLR}${LEFT_SEPRATOR}${normal}"
