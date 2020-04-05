@@ -1,5 +1,10 @@
 function load_functions_definitions() {
 
+    function cdir() {
+        mkdir -p -- "$1" &&
+            cd -P -- "$1"
+    }
+
     function source_notice_now() {
         source_ "${CUSTOM_ZSH}/notice.sh"
     }
