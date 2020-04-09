@@ -1,96 +1,98 @@
 #! /usr/bin/env sh
 
-# script to updae (sync) main submodules of the project with
+# script to updae & sync main submodules of the project with
 # origin master & origin luxcium & origin pc-master-race
 
-(
-  cd "${ahmyzsh}/" && git checkout master && git pull --all -t
+cd /home/luxcium/ahmyzsh/custom-tmux/ &&
+  git checkout master && git pull --all -t
+cd /home/luxcium/ahmyzsh/custom-zsh/ &&
+  git checkout master && git pull --all -t
+cd /home/luxcium/ahmyzsh/nerd-fonts/ &&
+  git checkout master && git pull --all -t
+cd /home/luxcium/ahmyzsh/node-repl/ &&
+  git checkout master && git pull --all -t
+cd /home/luxcium/ahmyzsh/ohmyzsh/ &&
+  git checkout master && git pull --all -t
+cd /home/luxcium/ahmyzsh/powerlevel10k/ &&
+  git checkout master && git pull --all -t
+cd /home/luxcium/ahmyzsh/powerline/ &&
+  git checkout master && git pull --all -t
+cd /home/luxcium/ahmyzsh/python-repl/ &&
+  git checkout master && git pull --all -t
+sleep 1
+cd /home/luxcium/ahmyzsh/custom-tmux/ &&
   git checkout luxcium && git pull --all -t
-  git checkout pc-master-race && git pull --all -t
-  git push --tags --progress
-  git push --all --progress
-  git fetch -t
-  git fetch --all -v -u
-)
-
-(
-  cd "${ahmyzsh}/custom-tmux/" && git checkout master && git pull --all -t
+cd /home/luxcium/ahmyzsh/custom-zsh/ &&
   git checkout luxcium && git pull --all -t
-  git checkout pc-master-race && git pull --all -t
-  git push --tags --progress
-  git push --all --progress
-  git fetch -t
-  git fetch --all -v -u
-)
-
-(
-  cd "${ahmyzsh}/custom-zsh/" && git checkout master && git pull --all -t
+cd /home/luxcium/ahmyzsh/nerd-fonts/ &&
   git checkout luxcium && git pull --all -t
-  git checkout pc-master-race && git pull --all -t
-  git push --tags --progress
-  git push --all --progress
-  git fetch -t
-  git fetch --all -v -u
-)
-
-(
-  cd "${ahmyzsh}/nerd-fonts/" && git checkout master && git pull --all -t
+cd /home/luxcium/ahmyzsh/node-repl/ &&
   git checkout luxcium && git pull --all -t
-  git checkout pc-master-race && git pull --all -t
-  git push --tags --progress
-  git push --all --progress
-  git fetch -t
-  git fetch --all -v -u
-)
-
-(
-  cd "${ahmyzsh}/node-repl/" && git checkout master && git pull --all -t
+cd /home/luxcium/ahmyzsh/ohmyzsh/ &&
   git checkout luxcium && git pull --all -t
-  git checkout pc-master-race && git pull --all -t
-  git push --tags --progress
-  git push --all --progress
-  git fetch -t
-  git fetch --all -v -u
-)
-
-(
-  cd "${ahmyzsh}/ohmyzsh/" && git checkout master && git pull --all -t
+cd /home/luxcium/ahmyzsh/powerlevel10k/ &&
   git checkout luxcium && git pull --all -t
-  git checkout pc-master-race && git pull --all -t
-  git push --tags --progress
-  git push --all --progress
-  git fetch -t
-  git fetch --all -v -u
-)
-
-(
-  cd "${ahmyzsh}/powerlevel10k/" && git checkout master && git pull --all -t
+cd /home/luxcium/ahmyzsh/powerline/ &&
   git checkout luxcium && git pull --all -t
-  git checkout pc-master-race && git pull --all -t
-  git push --tags --progress
-  git push --all --progress
-  git fetch -t
-  git fetch --all -v -u
-)
-
-(
-  cd "${ahmyzsh}/powerline/" && git checkout master && git pull --all -t
+cd /home/luxcium/ahmyzsh/python-repl/ &&
   git checkout luxcium && git pull --all -t
+sleep 1
+cd /home/luxcium/ahmyzsh/custom-tmux/ &&
   git checkout pc-master-race && git pull --all -t
-  git push --tags --progress
-  git push --all --progress
-  git fetch -t
-  git fetch --all -v -u
-)
-
-(
-  cd "${ahmyzsh}/python-repl/" && git checkout master && git pull --all -t
-  git checkout luxcium && git pull --all -t
+cd /home/luxcium/ahmyzsh/custom-zsh/ &&
   git checkout pc-master-race && git pull --all -t
-  git push --tags --progress
-  git push --all --progress
-  git fetch -t
+cd /home/luxcium/ahmyzsh/nerd-fonts/ &&
+  git checkout pc-master-race && git pull --all -t
+cd /home/luxcium/ahmyzsh/node-repl/ &&
+  git checkout pc-master-race && git pull --all -t
+cd /home/luxcium/ahmyzsh/ohmyzsh/ &&
+  git checkout pc-master-race && git pull --all -t
+cd /home/luxcium/ahmyzsh/powerlevel10k/ &&
+  git checkout pc-master-race && git pull --all -t
+cd /home/luxcium/ahmyzsh/powerline/ &&
+  git checkout pc-master-race && git pull --all -t
+cd /home/luxcium/ahmyzsh/python-repl/ &&
+  git checkout pc-master-race && git pull --all -t
+sleep 1
+cd /home/luxcium/ahmyzsh/custom-tmux/ &&
+  git push --tags --progress &&
+  git push --all --progress &&
+  git fetch -t &&
   git fetch --all -v -u
-)
+cd /home/luxcium/ahmyzsh/custom-zsh/ &&
+  git push --tags --progress &&
+  git push --all --progress &&
+  git fetch -t &&
+  git fetch --all -v -u
+cd /home/luxcium/ahmyzsh/nerd-fonts/ &&
+  git push --tags --progress &&
+  git push --all --progress &&
+  git fetch -t &&
+  git fetch --all -v -u
+cd /home/luxcium/ahmyzsh/node-repl/ &&
+  git push --tags --progress &&
+  git push --all --progress &&
+  git fetch -t &&
+  git fetch --all -v -u
+cd /home/luxcium/ahmyzsh/ohmyzsh/ &&
+  git push --tags --progress &&
+  git push --all --progress &&
+  git fetch -t &&
+  git fetch --all -v -u
+cd /home/luxcium/ahmyzsh/powerlevel10k/ &&
+  git push --tags --progress &&
+  git push --all --progress &&
+  git fetch -t &&
+  git fetch --all -v -u
+cd /home/luxcium/ahmyzsh/powerline/ &&
+  git push --tags --progress &&
+  git push --all --progress &&
+  git fetch -t &&
+  git fetch --all -v -u
+cd /home/luxcium/ahmyzsh/python-repl/ &&
+  git push --tags --progress &&
+  git push --all --progress &&
+  git fetch -t &&
+  git fetch --all -v -u
 
 exit 0
