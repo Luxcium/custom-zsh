@@ -4,7 +4,6 @@
 # origin master & origin luxcium & origin pc-master-race
 cd /home/luxcium/ahmyzsh/ &&
   git checkout master
-sleep 2
 cd /home/luxcium/ahmyzsh/custom-tmux/ &&
   git checkout master && git pull --all -t
 cd /home/luxcium/ahmyzsh/custom-zsh/ &&
@@ -31,7 +30,6 @@ git add . &&
 
 cd /home/luxcium/ahmyzsh/ &&
   git checkout luxcium
-sleep 2
 cd /home/luxcium/ahmyzsh/custom-tmux/ &&
   git checkout luxcium && git pull --all -t
 cd /home/luxcium/ahmyzsh/custom-zsh/ &&
@@ -58,7 +56,6 @@ git add . &&
 
 cd /home/luxcium/ahmyzsh/ &&
   git checkout pc-master-race
-sleep 2
 cd /home/luxcium/ahmyzsh/custom-tmux/ &&
   git checkout pc-master-race && git pull --all -t
 cd /home/luxcium/ahmyzsh/custom-zsh/ &&
