@@ -24,8 +24,8 @@ cd /home/luxcium/ahmyzsh/ &&
   git checkout master
 sleep 5
 git add . &&
-  git commit -am 'auto update' &&
-  git push &&
+  git commit -am 'auto update'
+git push &&
   git pull --all -t
 
 cd /home/luxcium/ahmyzsh/ &&
@@ -50,8 +50,8 @@ cd /home/luxcium/ahmyzsh/ &&
   git checkout luxcium
 sleep 5
 git add . &&
-  git commit -am 'auto update' &&
-  git push &&
+  git commit -am 'auto update'
+git push &&
   git pull --all -t
 
 cd /home/luxcium/ahmyzsh/ &&
@@ -76,8 +76,8 @@ cd /home/luxcium/ahmyzsh/ &&
   git checkout pc-master-race
 sleep 5
 git add . &&
-  git commit -am 'auto update' &&
-  git push &&
+  git commit -am 'auto update'
+git push &&
   git pull --all -t
 (
   cd /home/luxcium/ahmyzsh/ &&
