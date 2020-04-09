@@ -4,6 +4,7 @@
 # origin master & origin luxcium & origin pc-master-race
 cd /home/luxcium/ahmyzsh/ &&
   git checkout master
+sleep 2
 cd /home/luxcium/ahmyzsh/custom-tmux/ &&
   git checkout master && git pull --all -t
 cd /home/luxcium/ahmyzsh/custom-zsh/ &&
@@ -20,17 +21,17 @@ cd /home/luxcium/ahmyzsh/powerline/ &&
   git checkout master && git pull --all -t
 cd /home/luxcium/ahmyzsh/python-repl/ &&
   git checkout master && git pull --all -t
-cd /home/luxcium/ahmyzsh/
-sleep 5
-git checkout master &&
-  git add . &&
+cd /home/luxcium/ahmyzsh/ &&
+  git checkout master
+sleep 2
+git add . &&
   git commit -am 'auto update' &&
   git push &&
   git pull --all -t
-à
 
 cd /home/luxcium/ahmyzsh/ &&
   git checkout luxcium
+sleep 2
 cd /home/luxcium/ahmyzsh/custom-tmux/ &&
   git checkout luxcium && git pull --all -t
 cd /home/luxcium/ahmyzsh/custom-zsh/ &&
@@ -47,16 +48,17 @@ cd /home/luxcium/ahmyzsh/powerline/ &&
   git checkout luxcium && git pull --all -t
 cd /home/luxcium/ahmyzsh/python-repl/ &&
   git checkout luxcium && git pull --all -t
-cd /home/luxcium/ahmyzsh/
-sleep 5
-git checkout luxcium &&
-  git add . &&
+cd /home/luxcium/ahmyzsh/ &&
+  git checkout luxcium
+sleep 2
+git add . &&
   git commit -am 'auto update' &&
   git push &&
   git pull --all -t
 
 cd /home/luxcium/ahmyzsh/ &&
   git checkout pc-master-race
+sleep 2
 cd /home/luxcium/ahmyzsh/custom-tmux/ &&
   git checkout pc-master-race && git pull --all -t
 cd /home/luxcium/ahmyzsh/custom-zsh/ &&
@@ -73,10 +75,10 @@ cd /home/luxcium/ahmyzsh/powerline/ &&
   git checkout pc-master-race && git pull --all -t
 cd /home/luxcium/ahmyzsh/python-repl/ &&
   git checkout pc-master-race && git pull --all -t
-cd /home/luxcium/ahmyzsh/
-sleep 5
-git checkout pc-master-race &&
-  git add . &&
+cd /home/luxcium/ahmyzsh/ &&
+  git checkout pc-master-race
+sleep 2
+git add . &&
   git commit -am 'auto update' &&
   git push &&
   git pull --all -t
