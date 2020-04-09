@@ -2,7 +2,8 @@
 
 # script to updae & sync main submodules of the project with
 # origin master & origin luxcium & origin pc-master-race
-
+cd /home/luxcium/ahmyzsh/ &&
+  git checkout master
 cd /home/luxcium/ahmyzsh/custom-tmux/ &&
   git checkout master && git pull --all -t
 cd /home/luxcium/ahmyzsh/custom-zsh/ &&
@@ -26,7 +27,10 @@ git checkout master &&
   git commit -am 'auto update' &&
   git push &&
   git pull --all -t
+à
 
+cd /home/luxcium/ahmyzsh/ &&
+  git checkout luxcium
 cd /home/luxcium/ahmyzsh/custom-tmux/ &&
   git checkout luxcium && git pull --all -t
 cd /home/luxcium/ahmyzsh/custom-zsh/ &&
@@ -51,6 +55,8 @@ git checkout luxcium &&
   git push &&
   git pull --all -t
 
+cd /home/luxcium/ahmyzsh/ &&
+  git checkout pc-master-race
 cd /home/luxcium/ahmyzsh/custom-tmux/ &&
   git checkout pc-master-race && git pull --all -t
 cd /home/luxcium/ahmyzsh/custom-zsh/ &&
