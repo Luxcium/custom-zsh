@@ -55,7 +55,8 @@ function compute_path() {
     add_to_path_ "${HOME}/.local/bin"
 
     # call_ eval $(docker-machine env default)
-
+    add_to_path_ "${HOME}/mongo-shell/bin"
+    add_to_path_ "${HOME}/envs"
     echo "PATH=\"$PATH\"" >$HOME/.cache/path.env
 
     export PATH

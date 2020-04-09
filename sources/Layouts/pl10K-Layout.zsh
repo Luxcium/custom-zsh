@@ -20,7 +20,7 @@ function load_my_powerlevel10k() {
             export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
                 # ====[ <-- LEFT PROMPT <-- ]====================[ Line #1 ]====
                 os_icon # os identifier
-                context #
+                user    # context #
                 load    # CPU load
                 status  # exit code of the last command
                 # ====[ <-- LEFT PROMPT <-- ]====================[ Line #2 ]====
@@ -134,21 +134,29 @@ function load_my_powerlevel10k() {
         export POWERLEVEL9K_OS_ICON_BACKGROUND='blue'
         export POWERLEVEL9K_OS_ICON_FOREGROUND='black'
 
-        # user - Default
+        # # user - Default
+        # # export POWERLEVEL9K_USER_DEFAULT_ICON=$'\uF415'
+        # export POWERLEVEL9K_USER_DEFAULT_FOREGROUND='red'
+        # export POWERLEVEL9K_USER_DEFAULT_BACKGROUND='black'
+        # # user - ROOT
+        # # export POWERLEVEL9K_USER_ROOT_ICON=$'\uf292'
+        # export POWERLEVEL9K_USER_ROOT_FOREGROUND='red'
+        # export POWERLEVEL9K_USER_ROOT_BACKGROUND='black'
+        # # user - SUDO
+        # # export POWERLEVEL9K_USER_SUDO_ICON=$'\uF09C'
+        # export POWERLEVEL9K_USER_SUDO_FOREGROUND='green'
+        # export POWERLEVEL9K_USER_SUDO_BACKGROUND='black'
+        # /Users/neb_401/.cache/p10k-neb_401/NODE_VERSION
+        # /Users/neb_401/.cache/p10k-neb_401/NPM_VERSION
+        # context # user@hostname
+        # example # example user-defined segment (see prompt_example function below)
+        # aws                # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-
+        # context # user@hostname
+        # example # example user-defined segment (see prompt_example function below)
+        # aws                # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
 
         export POWERLEVEL9K_CONTEXT_FOREGROUND='red'
         export POWERLEVEL9K_CONTEXT_BACKGROUND='black'
-        # export POWERLEVEL9K_USER_DEFAULT_ICON=$'\uF415'
-        export POWERLEVEL9K_USER_DEFAULT_FOREGROUND='red'
-        export POWERLEVEL9K_USER_DEFAULT_BACKGROUND='black'
-        # user - ROOT
-        # export POWERLEVEL9K_USER_ROOT_ICON=$'\uf292'
-        export POWERLEVEL9K_USER_ROOT_FOREGROUND='red'
-        export POWERLEVEL9K_USER_ROOT_BACKGROUND='black'
-        # user - SUDO
-        # export POWERLEVEL9K_USER_SUDO_ICON=$'\uF09C'
-        export POWERLEVEL9K_USER_SUDO_FOREGROUND='green'
-        export POWERLEVEL9K_USER_SUDO_BACKGROUND='black'
         # Other icons
         export POWERLEVEL9K_DIR_HOME_ICON=$'\uf015'
         export POWERLEVEL9K_DIR_HOME_SUBFOLDER_ICON=$'\uf115'
@@ -238,9 +246,6 @@ function load_my_powerlevel10k() {
 
     function compute_pl10k() {
 
-        # /Users/neb_401/.cache/p10k-neb_401/NODE_VERSION
-        # /Users/neb_401/.cache/p10k-neb_401/NPM_VERSION
-
         # export NODE_VERSION="$(cut -d 'v' -f 2 <<<$(node -v))"
         # export POWERLEVEL9K_CUSTOM_NODE="echo -n '\uf898 ' $NODE_VERSION"
 
@@ -319,10 +324,8 @@ function load_my_powerlevel10k() {
                 # prompt_char # prompt symbol
             )
             # typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
-            # context # user@hostname
             # custom_js
             # proxy   # system-wide http/https/ftp proxy
-            # example # example user-defined segment (see prompt_example function below)
             # swap        # used swap
             # vi_mode    # vi mode (you don't need this if you've enabled prompt_char)
             # direnv     # direnv status (https://direnv.net/)
@@ -351,7 +354,6 @@ function load_my_powerlevel10k() {
             # plenv              # perl version from plenv (https://github.com/tokuhirom/plenv)
             # kubecontext        # current kubernetes context (https://kubernetes.io/)
             # terraform          # terraform workspace (https://www.terraform.io)
-            # aws                # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-
             # custom_tsx
             # os_icon     # os identifier
             # custom_js  #
@@ -382,12 +384,10 @@ function load_my_powerlevel10k() {
             export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
                 # typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
                 # custom_js
-                # context # user@hostname
                 # custom_js
                 # public_ip # public IP address
                 # local_ip  # public IP address
                 # proxy   # system-wide http/https/ftp proxy
-                # example # example user-defined segment (see prompt_example function below)
                 # swap        # used swap
                 # =========================[ Line #1 ]=========================
                 # azure                  # azure account name (https://docs.microsoft.com/en-us/cli/azure)
@@ -420,7 +420,6 @@ function load_my_powerlevel10k() {
                 # plenv              # perl version from plenv (https://github.com/tokuhirom/plenv)
                 # kubecontext        # current kubernetes context (https://kubernetes.io/)
                 # terraform          # terraform workspace (https://www.terraform.io)
-                # aws                # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
                 # aws_eb_env         # aws elastic beanstalk environment (https://aws.amazon.com/elasticbeanstalk/)
                 # gcloud             # google cloud cli account and project (https://cloud.google.com/)
                 # google_app_cred    # google application credentials (https://cloud.google.com/docs/authentication/production)
