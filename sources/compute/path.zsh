@@ -53,7 +53,7 @@ function compute_path() {
     add_to_path_ "${HOME}/.dotnet/tools"
     add_to_path_ "/usr/local/share/zsh/site-functions"
     add_to_path_ "${HOME}/.local/bin"
-
+    add_to_path_ "${CUSTOM_ZSH}/bin"
     # call_ eval $(docker-machine env default)
     add_to_path_ "${HOME}/mongo-shell/bin"
     add_to_path_ "${HOME}/envs"
