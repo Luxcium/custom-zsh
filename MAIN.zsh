@@ -1,4 +1,5 @@
 function source_all() {
+	source_ "${TMUX_FUNCTIONS_INDEX}"
 
 	function load_my_powerlevel10k_now() {
 		source_ "${ZSH_LAYOUTS}/pl10K-Layout.zsh"
@@ -20,7 +21,9 @@ function source_all() {
 		typeset -g ZSH_THEME="../../powerlevel10k/powerlevel10k"
 
 		hardcls
-		print "${CLRLN}${normal}${BYL9K_GNU}$(tput setaf 2) ${COG_ICO} GNU/Linux utils are ... ${END_LOADING} $(tput setaf 2)${BKBK}${normal}"
+		# clear
+		# echo ${BBCOLR} toto
+		echo -n "${CLRLN}${normal}${BYL9K_GNU}$(tput setaf 2) ${COG_ICO}${bold} $(tput setaf 2)GNU/Linux utils$(tput setaf 2) are in function ${BKBK}${normal}${LEFT_TERMINATOR}\n"
 		source_ "${ZSH_SOURCES}/instant-prompt"
 		source_ "${POWERLEVEL10K}/powerlevel10k.zsh-theme"
 		call_ pl10k_prompt_on
@@ -124,6 +127,7 @@ function precmd() {
 		ENV_LOADED='true'
 		echo "${BEGIN_HOURGLASS_END_0} READY in $(timer_all) ms !${END_FUNCTION}"
 		hardcls
+		. "${ZSH_COMPUTE}/path.zsh"
 		gnu_coreutils
 	else
 		# if [ "${NODE_VERSION}" != "$(cut -d 'v' -f 2 <<<$(node -v))" ]; then

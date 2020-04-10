@@ -65,10 +65,15 @@ function compute_path() {
 function gnu_coreutils() {
     if [ "$SHOW_LOAD_CUTLS" = 'true' ]; then
         if [ "$GNU_COREUTILS" != 'true' ]; then
-            echo -n "${CLRLN}${normal}${BYL9K_GNU}$(tput setaf 2) ${COG_ICO}${bold} $(tput setaf 2)GNU/Linux utils are$(tput setaf 1) NOT in function${BKBK}${normal}\n"
+            (
+                echo -n "${CLRLN}${normal}${BYL9K_GNU}$(tput setaf 2) ${COG_ICO}${bold} $(tput setaf 2)GNU/Linux utils are$(tput setaf 1) NOT in function ${BKBK}${normal}${LEFT_TERMINATOR}\n"
+            )
         fi
         if [ "$GNU_COREUTILS" = 'true' ]; then
-            echo -n "${CLRLN}${normal}${BYL9K_GNU}$(tput setaf 2) ${COG_ICO}${bold} $(tput setaf 2)GNU/Linux utils$(tput setaf 2) are in function${BKBK}${normal}\n"
+            (
+                # echo -n "${CLRLN}${normal}${BYL9K_GNU}$(tput setaf 2) ${COG_ICO}${bold} $(tput setaf 2)GNU/Linux utils$(tput setaf 2) are in function ${BKBK}${normal}${LEFT_TERMINATOR}\n"
+                echo -n "${BYL9K_GNU}$(tput setaf 2) ${COG_ICO}${bold} $(tput setaf 2)GNU/Linux utils$(tput setaf 2) are in function ${BKBK}${normal}${LEFT_TERMINATOR}\n"
+            )
         fi
         SHOW_LOAD_CUTLS="false"
     fi
