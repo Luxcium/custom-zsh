@@ -1,16 +1,4 @@
 function source_all() {
-	source_ "${TMUX_FUNCTIONS_INDEX}"
-
-	function load_my_powerlevel10k_now() {
-		source_ "${ZSH_LAYOUTS}/pl10K-Layout.zsh"
-		call_ "load_my_powerlevel10k"
-	}
-
-	function source_prompt() {
-		## load_my_pl10K_layout_now
-		source_ "${ZSH_LAYOUTS}/pl10K-Layout.zsh"
-		call_ "load_my_powerlevel10k"
-	}
 
 	function activate_instant_prompt() {
 		# # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -23,10 +11,42 @@ function source_all() {
 		hardcls
 		# clear
 		# echo ${BBCOLR} toto
-		echo -n "${CLRLN}${normal}${BYL9K_GNU}$(tput setaf 2) ${COG_ICO}${bold} $(tput setaf 2)GNU/Linux utils$(tput setaf 2) are in function ${BKBK}${normal}${LEFT_TERMINATOR}\n"
+		echo -n "${CLRLN}${normal}${BYL9K_GNU}$(tput setaf 2) ${COG_ICO}${bold} $(tput setaf 2)GNU/Linux utils$(tput setaf 2) are ... ${BKBK}${normal}${LEFT_TERMINATOR}\n"
 		source_ "${ZSH_SOURCES}/instant-prompt"
 		source_ "${POWERLEVEL10K}/powerlevel10k.zsh-theme"
 		call_ pl10k_prompt_on
+	}
+
+	function load_oh_my_zsh_now() {
+		load_ "${ZSH_SOURCES}/load-oh-my-zsh.zsh" "load_oh_my_zsh"
+	}
+
+	function load_my_powerlevel10k_now() {
+		## load_my_pl10K_layout_now
+		load_ "${ZSH_LAYOUTS}/pl10K-Layout.zsh" "load_my_powerlevel10k"
+	}
+
+	function compute_pl10K_now() {
+		call_ "compute_pl10k"
+	}
+
+	function load_path() {
+		## load_flags_now
+		load_ "${ZSH_FLAGS}/flg-shortcuts.sh" "init_flags"
+		## source_ path.zsh
+		source_ "${ZSH_COMPUTE}/path.zsh"
+		## load_path
+		. $HOME/.cache/path.env
+	}
+
+	function load_autocomplete_now() {
+		load_ "${ZSH_COMPLETION}/autocomplete.sh" "load_autocomplete"
+		call_ npm_completion
+
+		# Load Zsh tools for syntax highlighting and autosuggestions
+		export HOMEBREW_FOLDER="/usr/local/share"
+		source_ "${HOMEBREW_FOLDER}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+		source_ "${HOMEBREW_FOLDER}/zsh-autosuggestions/zsh-autosuggestions.zsh"
 	}
 
 	function source_powerline_now() {
@@ -44,40 +64,6 @@ function source_all() {
 	function source_saybye_now() {
 		source_ "${ZSH_SOURCES}/say-bye.zsh"
 	}
-
-	function load_oh_my_zsh_now() {
-		load_ "${ZSH_SOURCES}/load-oh-my-zsh.zsh" "load_oh_my_zsh"
-	}
-
-	function load_autocomplete_now() {
-		load_ "${ZSH_COMPLETION}/autocomplete.sh" "load_autocomplete"
-		call_ npm_completion
-
-		# Load Zsh tools for syntax highlighting and autosuggestions
-		export HOMEBREW_FOLDER="/usr/local/share"
-		source_ "${HOMEBREW_FOLDER}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-		source_ "${HOMEBREW_FOLDER}/zsh-autosuggestions/zsh-autosuggestions.zsh"
-
-	}
-
-	function compute_pl10K_now() {
-		call_ "compute_pl10k"
-	}
-
-	function load_path() {
-		## load_flags_now
-		load_ "${ZSH_FLAGS}/flg-shortcuts.sh" "init_flags"
-		## source_ path.zsh
-		source_ "${ZSH_COMPUTE}/path.zsh"
-		## load_path
-		. $HOME/.cache/path.env
-	}
-
-	function reload_path() {
-		load_path
-		compute_path
-	}
-
 }
 
 function load_zshenv() {
@@ -87,7 +73,7 @@ function load_zshenv() {
 	load_ "${ZSH_SOURCES}/options.zsh" "load_options"
 
 	## load_my_pl10K_layout_now
-	call_ source_prompt
+	# call_ source_prompt
 
 	## load_path_now
 	call_ load_path
@@ -106,6 +92,7 @@ function load_zshrc() {
 	# 	#$ Interactive,login,non-login
 	# load_path
 
+	load_my_powerlevel10k_now
 	activate_instant_prompt
 	load_oh_my_zsh_now
 	load_autocomplete_now
@@ -118,15 +105,28 @@ function load_zshrc() {
 
 function precmd() {
 
-	# 	#$ Executed before each prompt. Note that precommand functions are not
+	# 	#$ Executed before each prompt. Note that precommandfunctions are not
 	# 	#$ re-executed simply because the command line is redrawn, as happens, for
 	# 	#$ example, when a notification about an exiting job is displayed.
 
 	if [ "$ENV_LOADED" != 'true' ]; then
 		export PARENT_ENV_LOADED='true'
 		ENV_LOADED='true'
-		echo "${BEGIN_HOURGLASS_END_0} READY in $(timer_all) ms !${END_FUNCTION}"
 		hardcls
+		if [ "${VERBOSA}" -gt 3 ]; then
+
+			if [ "$GNU_COREUTILS" != 'true' ]; then
+				echo -n "\u001b[1F                                        ${BEGIN_HOURGLASS_END_0} READY in $(timer_all) ms !${END_FUNCTION}"
+			else
+				echo -n "\u001b[1F                                    ${BEGIN_HOURGLASS_END_0} READY in $(timer_all) ms !${END_FUNCTION}"
+			fi
+		else
+			if [ "$GNU_COREUTILS" != 'true' ]; then
+				echo -n "                                        ${BEGIN_HOURGLASS_END_0} READY in $(timer_all) ms !${END_FUNCTION}"
+			else
+				echo -n "                                    ${BEGIN_HOURGLASS_END_0} READY in $(timer_all) ms !${END_FUNCTION}"
+			fi
+		fi
 		. "${ZSH_COMPUTE}/path.zsh"
 		gnu_coreutils
 	else
@@ -134,19 +134,6 @@ function precmd() {
 		# 	call_ compute_pl10k
 		# fi
 	fi
-
-}
-
-function load_zprofile() {
-	# pre load_zshrc()
-	# 	#$ Interactive,login
-
-}
-#
-
-function load_zlogin() {
-	# post load_zshrc()
-	# 	#$ Interactive,login
 
 }
 
@@ -159,53 +146,3 @@ function load_zlogout() {
 	say_bye_tom
 	hardcls
 }
-
-# |----------------|-----------|-----------|------|
-# |                |Interactive|Interactive|Script|
-# |----------------|-----------|-----------|------|
-# |                |login      |non-login  |      |
-# |----------------|-----------|-----------|------|
-# |/etc/zshenv     |    A      |    A      |  A   |
-# |~/.zshenv       |    B      |    B      |  B   |
-# |/etc/zprofile   |    C      |           |      |
-# |~/.zprofile     |    D      |           |      |
-# |/etc/zshrc      |    E      |    C      |      |
-# |~/.zshrc        |    F      |    D      |      | ***
-# |/etc/zlogin     |    G      |           |      |
-# |~/.zlogin       |    H      |           |      |
-# |                |           |           |      |
-# |                |           |           |      |
-# |~/.zlogout      |    I      |           |      |
-# |/etc/zlogout    |    J      |           |      |
-# |----------------|-----------|-----------|------|
-
-# /bin/bash ~ The bash executable
-# /etc/profile ~ The systemwide initialization file, executed for login shells
-# ~/.bash_profile ~ The personal initialization file, executed for login shells
-# ~/.bashrc ~ The individual per-interactive-shell startup file
-# ~/.bash_logout ~ The individual login shell cleanup file, executed when a login shell exits
-# ~/.inputrc ~ Individual readline initialization file
-
-# You will also have these commands:
-# imgcat filename
-#   Displays the image inline.
-# imgls
-#   Shows a directory listing with image thumbnails.
-# it2api
-#   Command-line utility to manipulate iTerm2.
-# it2attention start|stop|fireworks
-#   Gets your attention.
-# it2check
-#   Checks if the terminal is iTerm2.
-# it2copy [filename]
-#   Copies to the pasteboard.
-# it2dl filename
-#   Downloads the specified file, saving it in your Downloads folder.
-# it2setcolor ...
-#   Changes individual color settings or loads a color preset.
-# it2setkeylabel ...
-#   Changes Touch Bar function key labels.
-# it2ul
-#   Uploads a file.
-# it2universion
-#   Sets the current unicode version.

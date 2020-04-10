@@ -62,7 +62,8 @@ function load_my_powerlevel10k() {
                 # vi_mode                # vi mode (you don't need this if you've enabled prompt_char)
                 # direnv                 # direnv status (https://direnv.net/)
                 # virtualenv             # python virtual environment (https://docs.python.org/3/library/venv.html)
-                custom_tsc      #
+                custom_tsc #
+                wifi
                 newline         # !! ============[ Line #1 ]====================
                 custom_tsx      #
                 custom_npm      #

@@ -99,7 +99,7 @@ function base_layouts_cursors_moves() {
     export LLEFT_D='\u001b['  # Left: \u001b[{n}D moves cursor left by n
 
     export LNX_E='\u001b['    # Next Line: \u001b[{n}E moves cursor to beginning of line n lines down
-    export LPV_F='\u001b['    # Prev Line: \u001b[{n}F moves cursor to beginning of line n lines down
+    export LPV_F='\u001b['    # Prev Line: \u001b[{n}F moves cursor to beginning of line n lines up
     export LCOL_G='\u001b['   # Set Column: \u001b[{n}G moves cursor to column n
     export LPOSRC_H='\u001b[' # Set Position: \u001b[{n};{m}H moves cursor to row n column m
 

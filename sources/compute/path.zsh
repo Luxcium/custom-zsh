@@ -6,6 +6,10 @@ function rbenv_() {
     eval "$(rbenv init -)"
 }
 
+# function call_rbenv_() {
+#     call_ rbenv_
+# }
+
 function compute_path() {
     export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
     add_to_path_ "${TMUX_BIN}"
@@ -15,6 +19,7 @@ function compute_path() {
     call_ fnm_
 
     #  HOME=$HOMEtemp
+    # call_rbenv_
     call_ rbenv_
 
     if [ "$WITH_ANACONDA" = 'true' ]; then
@@ -66,13 +71,13 @@ function gnu_coreutils() {
     if [ "$SHOW_LOAD_CUTLS" = 'true' ]; then
         if [ "$GNU_COREUTILS" != 'true' ]; then
             (
-                echo -n "${CLRLN}${normal}${BYL9K_GNU}$(tput setaf 2) ${COG_ICO}${bold} $(tput setaf 2)GNU/Linux utils are$(tput setaf 1) NOT in function ${BKBK}${normal}${LEFT_TERMINATOR}\n"
+                echo -n "\u001b[1G${BYL9K_GNU}$(tput setaf 2) ${COG_ICO}${bold} $(tput setaf 2)GNU/Linux utils are$(tput setaf 1) NOT in function ${BKBK}${normal}${LEFT_TERMINATOR}\n"
             )
         fi
         if [ "$GNU_COREUTILS" = 'true' ]; then
             (
                 # echo -n "${CLRLN}${normal}${BYL9K_GNU}$(tput setaf 2) ${COG_ICO}${bold} $(tput setaf 2)GNU/Linux utils$(tput setaf 2) are in function ${BKBK}${normal}${LEFT_TERMINATOR}\n"
-                echo -n "${BYL9K_GNU}$(tput setaf 2) ${COG_ICO}${bold} $(tput setaf 2)GNU/Linux utils$(tput setaf 2) are in function ${BKBK}${normal}${LEFT_TERMINATOR}\n"
+                echo -n "\u001b[1G${BYL9K_GNU}$(tput setaf 2) ${COG_ICO}${bold} $(tput setaf 2)GNU/Linux utils$(tput setaf 2) are in function ${BKBK}${normal}${LEFT_TERMINATOR}\n"
             )
         fi
         SHOW_LOAD_CUTLS="false"
