@@ -1,22 +1,3 @@
-# |----------------|-----------|-----------|------|
-# |                |Interactive|Interactive|Script|
-# |----------------|-----------|-----------|------|
-# |                |login      |non-login  |      |
-# |----------------|-----------|-----------|------|
-# |/etc/zshenv     |    A      |    A      |  A   |
-# |~/.zshenv       |    B      |    B      |  B   |
-# |/etc/zprofile   |    C      |           |      |
-# |~/.zprofile     |    D      |           |      |
-# |/etc/zshrc      |    E      |    C      |      |
-# |~/.zshrc        |    F      |    D      |      | ***
-# |/etc/zlogin     |    G      |           |      |
-# |~/.zlogin       |    H      |           |      |
-# |                |           |           |      |
-# |                |           |           |      |
-# |~/.zlogout      |    I      |           |      |
-# |/etc/zlogout    |    J      |           |      |
-# |----------------|-----------|-----------|------|
-
 # /bin/bash ~ The bash executable
 # /etc/profile ~ The systemwide initialization file, executed for login shells
 # ~/.bash_profile ~ The personal initialization file, executed for login shells

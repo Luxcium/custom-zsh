@@ -11,10 +11,11 @@ function source_all() {
 		hardcls
 		# clear
 		# echo ${BBCOLR} toto
+
 		echo -n "${CLRLN}${normal}${BYL9K_GNU}$(tput setaf 2) ${COG_ICO}${bold} $(tput setaf 2)GNU/Linux utils$(tput setaf 2) are ... ${BKBK}${normal}${LEFT_TERMINATOR}\n"
-		source_ "${ZSH_SOURCES}/instant-prompt"
-		source_ "${POWERLEVEL10K}/powerlevel10k.zsh-theme"
-		call_ pl10k_prompt_on
+		. "${ZSH_SOURCES}/instant-prompt"
+		. "${POWERLEVEL10K}/powerlevel10k.zsh-theme"
+
 	}
 
 	function load_oh_my_zsh_now() {
@@ -23,7 +24,10 @@ function source_all() {
 
 	function load_my_powerlevel10k_now() {
 		## load_my_pl10K_layout_now
-		load_ "${ZSH_LAYOUTS}/pl10K-Layout.zsh" "load_my_powerlevel10k"
+		. "${ZSH_LAYOUTS}/pl10K-Layout.zsh"
+		load_my_powerlevel10k
+		pl10k_prompt_on
+
 	}
 
 	function compute_pl10K_now() {
@@ -85,7 +89,7 @@ function load_zshenv() {
 	## load_functions_now
 	load_ "${ZSH_SOURCES}/functions.zsh" "load_functions_definitions"
 
-	[ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_HOURGLASS_END_0} load_zshenv in $(timer_all) ms !${END_FUNCTION}"
+	[ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_HOURGLASS_END_1} load_zshenv in $(timer_all) ms !${END_FUNCTION}"
 }
 
 function load_zshrc() {
@@ -114,17 +118,16 @@ function precmd() {
 		ENV_LOADED='true'
 		hardcls
 		if [ "${VERBOSA}" -gt 3 ]; then
-
 			if [ "$GNU_COREUTILS" != 'true' ]; then
-				echo -n "\u001b[1F                                        ${BEGIN_HOURGLASS_END_0} READY in $(timer_all) ms !${END_FUNCTION}"
+				echo -n "\u001b[1F                                        ${BEGIN_HOURGLASS_END_1} READY in $(timer_all) ms !${END_FUNCTION}"
 			else
-				echo -n "\u001b[1F                                    ${BEGIN_HOURGLASS_END_0} READY in $(timer_all) ms !${END_FUNCTION}"
+				echo -n "\u001b[1F                                    ${BEGIN_HOURGLASS_END_1} READY in $(timer_all) ms !${END_FUNCTION}"
 			fi
 		else
 			if [ "$GNU_COREUTILS" != 'true' ]; then
-				echo -n "                                        ${BEGIN_HOURGLASS_END_0} READY in $(timer_all) ms !${END_FUNCTION}"
+				echo -n "                                        ${BEGIN_HOURGLASS_END_1} READY in $(timer_all) ms !${END_FUNCTION}"
 			else
-				echo -n "                                    ${BEGIN_HOURGLASS_END_0} READY in $(timer_all) ms !${END_FUNCTION}"
+				echo -n "                                    ${BEGIN_HOURGLASS_END_1} READY in $(timer_all) ms !${END_FUNCTION}"
 			fi
 		fi
 		. "${ZSH_COMPUTE}/path.zsh"
@@ -146,3 +149,22 @@ function load_zlogout() {
 	say_bye_tom
 	hardcls
 }
+
+# |----------------|-----------|-----------|------|
+# |                |Interactive|Interactive|Script|
+# |----------------|-----------|-----------|------|
+# |                |login      |non-login  |      |
+# |----------------|-----------|-----------|------|
+# |/etc/zshenv     |    A      |    A      |  A   |
+# |~/.zshenv       |    B      |    B      |  B   |
+# |/etc/zprofile   |    C      |           |      |
+# |~/.zprofile     |    D      |           |      |
+# |/etc/zshrc      |    E      |    C      |      |
+# |~/.zshrc        |    F      |    D      |      | ***
+# |/etc/zlogin     |    G      |           |      |
+# |~/.zlogin       |    H      |           |      |
+# |                |           |           |      |
+# |                |           |           |      |
+# |~/.zlogout      |    I      |           |      |
+# |/etc/zlogout    |    J      |           |      |
+# |----------------|-----------|-----------|------|

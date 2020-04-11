@@ -145,6 +145,18 @@ function base_layouts_icons() {
     export U='\u'
     export e0ba=e0ba
 
+    export H_SYM="#  "
+    export LD_COLR="\u001b[0m\u001b[34m"
+    export LD_COLR="\u001b[0m\u001b[34m"
+    export LD_FN_COLR="${LD_COLR}"
+
+    export LIGHTBULB="\uf835"     #// \uf835  LIGHTBULB
+    export LIGHTBULB_ON="\uf834"  #// \uf834  LIGHTBULB_ON
+    export HOURGLASS_END="\uf253" #// \uf253  HOURGLASS_END
+
+    export END_SOURCING="\u001b[0m\u001b[31;1m${LBOLD}"
+    export END_FUNCTION="${END_SOURCING}"
+
 }
 
 function base_layouts_icons_groups() {
@@ -169,9 +181,9 @@ function base_layouts_icons_groups() {
     export LD_FN_ICO="${LD_FN_ICO_COLR}${FNCT_ICO}${LD_FN_COLR}"
     export LBULB_ICO="${LD_ICO_COLR_OFF}${LIGHTBULB}${LD_COLR}"
     export LBULB_ON_ICO="${LD_ICO_COLR}${LIGHTBULB_ON}${LD_COLR}"
-    export HOURGLASS_END_ICO_0="${LD_ICO_COLR_0}${HOURGLASS_END}${LD_COLR}"
-    export HOURGLASS_END_ICO_1="${LD_ICO_COLR_1}${HOURGLASS_END}${LD_COLR}"
-    export HOURGLASS_END_ICO_2="${LD_ICO_COLR_2}${HOURGLASS_END}${LD_COLR}"
+    export HOURGLASS_END_ICO_0="${LD_ICO_COLR_0}${HOURGLASS_END}${FGR}"
+    export HOURGLASS_END_ICO_1="${LD_ICO_COLR_1}${HOURGLASS_END}${FGR}"
+    export HOURGLASS_END_ICO_2="${LD_ICO_COLR_2}${HOURGLASS_END}${FGR}"
     export BEGIN_SOURCING="${LD_COLR} ${H_SYM} ${LD_ICO}  >"
     export BEGIN_FUNCTION="${LD_FN_COLR} ${H_SYM} ${LD_FN_ICO}  >"
     export BEGIN_LBULB="${LD_COLR} ${H_SYM} ${LBULB_ICO}  "
@@ -202,17 +214,6 @@ function base_layouts_icons_groups() {
     export BGL9K_COGS="$BNG$FNK $COGS_ICO $BNK$FNG${LEFT_SEPRATOR2}${normal}"
     export GR_COGS_PROMPT="${normal}${CLRLN}${BGL9K_COGS}$(tput setaf 2) ${COG_ICO} ${bold} $(tput setaf 2)${BKBK}${normal}"
     export RD_COGS_PROMPT="${normal}${CLRLN}${BRL9K_COGS}$(tput setaf 1) ${COG_ICO} ${bold} $(tput setaf 2)"
-
-    export H_SYM="#  "
-    export LD_COLR="\u001b[0m\u001b[34m"
-    export LD_FN_COLR="${LD_COLR}"
-
-    export LIGHTBULB="\uf835"     #// \uf835  LIGHTBULB
-    export LIGHTBULB_ON="\uf834"  #// \uf834  LIGHTBULB_ON
-    export HOURGLASS_END="\uf253" #// \uf253  HOURGLASS_END
-
-    export END_SOURCING="\u001b[0m\u001b[31;1m${LBOLD}"
-    export END_FUNCTION="${END_SOURCING}"
 
     # export BASE_LAYOUTS="${ZSH_SOURCES}/layouts/base-layouts.sh"
     # . BASE_LAYOUTS
