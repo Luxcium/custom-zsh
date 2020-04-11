@@ -323,6 +323,7 @@ function load_aliases() {
 
   # PYTHONSTARTUP='~/.pythonrc'
   alias py='export PYTHONSTARTUP="$HOME/.pythonrc";clear;python3 -q'
+  alias a80='echo "1-------10--------20--------30--------40--------50--------60--------70--------80!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"'
 
   alias chrome='Google\ Chrome\ Canary --remote-debugging-port=222'
   alias lsc='lc'
