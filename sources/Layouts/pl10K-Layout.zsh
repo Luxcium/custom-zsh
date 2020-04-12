@@ -30,8 +30,8 @@ function load_my_powerlevel10k() {
                 # ====[ <-- LEFT PROMPT <-- ]====================[ Line #3 ]====
                 newline
                 background_jobs # presence of background jobs
-                history
                 ssh
+                history
                 custom_js
                 vcs                    # git status
                 command_execution_time # duration of the last command
