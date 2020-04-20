@@ -1,4 +1,5 @@
 function load_my_powerlevel10k() {
+    export ZLE_RPROMPT_INDENT=0
     function pl10k_prompt_on() {
         pl10k_left_prompt_on
         pl10k_right_prompt_on
