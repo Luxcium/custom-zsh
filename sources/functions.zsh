@@ -254,13 +254,9 @@ function load_functions_definitions() {
         command echo '>     Looking if everything is working correctly  . . . '
         command brew doctor
         command echo '>     UPGRADING NPM   . . . '
-        npm install -g npm@latest
-        command echo '>     UPGRADING YARN   . . . '
-        npm install -g yarn@latest
-        command echo '>     UPGRADING PNPM   . . . '
-        npm install -g pnpm@latest
-        # command echo '>     Will also uninstall && reinstall all Globals NPM and PNPM  . . . '
-        # reinstallNPMGlobal
+        npm install -g npm@latest vsce@latest
+        command echo '>     NOT UPGRADING YARN (do nothing) . . . '
+        command echo '>     NOT UPGRADING PNPM (do nothing) . . . '
         medusa
 
     }

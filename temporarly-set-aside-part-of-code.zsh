@@ -14,11 +14,6 @@ function source_all() {
         source_powerline_now
     }
 
-    function reload_path() {
-        load_path
-        compute_path
-    }
-
 }
 
 function load_zprofile() {

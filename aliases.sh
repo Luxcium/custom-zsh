@@ -1,5 +1,11 @@
 function load_aliases() {
 
+  ###############################
+  ## PERSONAL PROJECTS FOLDERS ##
+  ###############################
+
+  alias lxi="cd ${PATH_LXIO_PRJ}/luxcium.io"
+
   ######################
   ## POWER LEVEL 10 K ##
   ######################
@@ -292,6 +298,10 @@ function load_aliases() {
   alias ya='yarn add --exact --audit --force --link-duplicates --check-files --no-progress'
   alias yb='yarn run build --force'
   alias yt='yarn run test'
+  alias lint='yarn run lint'
+  alias lint:fix='yarn run lint:fix'
+  alias pretty='yarn run pretty'
+  alias lint:pretty='yarn run pretty'
   ###############
   ## NPM ALIAS ##
   ###############

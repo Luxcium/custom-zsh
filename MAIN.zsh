@@ -68,6 +68,11 @@ function source_all() {
 	function source_saybye_now() {
 		source_ "${ZSH_SOURCES}/say-bye.zsh"
 	}
+
+	function reload_path() {
+		load_path
+		compute_path
+	}
 }
 
 function load_zshenv() {
