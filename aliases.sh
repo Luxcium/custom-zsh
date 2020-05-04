@@ -374,8 +374,9 @@ function load_aliases() {
   alias yt='yarn run test'
   alias lint='yarn run lint'
   alias lint:fix='yarn run lint:fix'
-  alias git:lint='yarn run git:lint'
-  alias pretty='yarn run pretty'
+  alias github:lint='yarn run github:lint'
+  alias tsc:lint='yarn run tsc:lint'
+  alias prettify='yarn run pretty'
   alias lint:pretty='yarn run pretty'
   ###############
   ## NPM ALIAS ##
