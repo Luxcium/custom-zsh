@@ -59,7 +59,8 @@ function compute_path() {
     add_to_path_ "${HOME}/envs"
     echo "PATH=\"$PATH\"" >$HOME/.cache/path.env
 
-    export PATH
+
+    export PATH=$PATH:/usr/src/redis-6.0.4/src:/tmp/fnm-shell-3065347/bin:/home/luxcium/.fnm:/home/luxcium/.local/bin:/home/luxcium/bin:/usr/lib64/ccache:/home/luxcium/envs:/home/luxcium/mongo-shell/bin:/home/luxcium/ahmyzsh/custom-zsh/bin:/home/luxcium/.local/bin:/usr/local/share/zsh/site-functions:/home/luxcium/.dotnet/tools:/usr/local/opt/gettext/bin:/usr/local/share/dotnet:/usr/local/MacGPG2/bin:/opt/X11/bin:/home/luxcium/perl5/bin:/home/luxcium/.yarn/bin:/home/luxcium/.config/yarn/global/node_modules/.bin:/usr/local/opt/ncurses/bin:/usr/local/opt/unzip/bin:/usr/local/opt/sqlite/lib/pkgconfig:/usr/local/opt/sqlite/bin:/usr/local/opt/qt/bin:/usr/local/opt/make/libexec/gnubin:/usr/local/opt/m4/bin:/usr/local/opt/grep/libexec/gnubin:/usr/local/opt/gnu-which/libexec/gnubin:/usr/local/opt/gnu-tar/libexec/gnubin:/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/gnu-indent/libexec/gnubin:/usr/local/opt/gnu-getopt/bin:/usr/local/opt/findutils/libexec/gnubin:/usr/local/opt/file-formula/bin:/usr/local/opt/ed/libexec/gnubin:/usr/local/opt/binutils/bin:/usr/local/opt/apr/bin:/usr/local/opt/apr-util/bin:/usr/local/opt/coreutils/libexec/gnubin:/home/luxcium/ahmyzsh/custom-zsh/bin:/home/luxcium/ahmyzsh/custom-tmux/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
 
 }
 
