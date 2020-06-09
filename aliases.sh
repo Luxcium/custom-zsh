@@ -272,6 +272,9 @@ function load_aliases() {
   alias vsportablenew='newvsportable'
   alias portablevsnew='newvsportable'
   alias portablevs='newvsportable'
+  alias newportable='newvsportable'
+  alias newportablecode='newvsportable'
+
   # alias ='/Users/neb_401/Developer/VSCode-Instances/clean-16-fev-2020/VisualStudioCode.app'
   # author: https://github.com/MarsiBarsi
   # Use main Visual Studio Code version by default
@@ -360,23 +363,42 @@ function load_aliases() {
   alias yi1='concurrently  "rm yarn.lock" "rm -f package-lock.json" "rm -f pnpm-lock.yaml" "rm -rf node_modules"'
   #> /dev/null'
   alias yi2='yarn install --force --audit --link-duplicates --check-files;'
-  alias yu='fnm install latest-erbium && \
+  alias nodeupdate='fnm install latest-erbium && \
       fnm install latest && \
-     fnm use latest-erbium && \
+     fnm use 14 && \
       fnm default $(node -v)'
-  alias yg='yarn global add \
-    concurrently@latest yarn@latest typescript@3.9.0-dev.20200324 npm@latest ts-node@latest vsce@latest pnpm@latest  1> /dev/null &'
-  # alias yi3='yarn add -D typescript@rc @types/node@latest ts-node@latest > /dev/null 2>&1 &'
-  alias yi='yg; yu; yi1 ; yi2' # yi3'
+  #alias yg='yarn global add \
+  # concurrently@latest yarn@latest typescript@latest npm@latest ts-node@latest vsce@latest pnpm@latest  1> /dev/null &'
 
-  alias ya='yarn add --exact --audit --force --link-duplicates --check-files --no-progress'
-  alias yb='yarn run build --force'
-  alias yt='yarn run test'
+  alias ygu='yarn global add ts-node@latest typescript@latest yarn@latest npm@latest pnpm@latest concurrently@latest vsce@latest'
+  # alias yi3='yarn add -D typescript@rc @types/node@latest ts-node@latest > /dev/null 2>&1 &'
+  alias yi='ygu; nodeupdate; yi1 ; yi2' # yi3'
+  alias yarnupdate='nodeupdate;ygu;conda update -y conda; conda update -y --all'
+
+  alias yg='yarn global add --audit --force --link-duplicates --check-files'
+  alias ygq='yarn global add'
+
+  alias ya='yarn add --link-duplicates --force --check-files --audit'
+  alias ydev='yarn add --dev --link-duplicates --force --check-files --audit'
+  alias ypeer='yarn add --peer --link-duplicates --force --check-files --audit'
+  alias yoptional='yarn add --optional --link-duplicates --force --check-files --audit'
+  alias yexact='yarn add --exact --link-duplicates --force --check-files --audit'
+  alias ytilde='yarn add --tilde --link-duplicates --force --check-files --audit'
+
+  alias yaq='yarn add --ignore-scripts --link-duplicates --ignore-engines --ignore-optional'
+  alias yq='yarn add --ignore-scripts --link-duplicates --ignore-engines --ignore-optional'
+  alias yqdev='yarn add --dev --ignore-scripts --link-duplicates --ignore-engines --ignore-optional'
+  alias yqpeer='yarn add --peer --ignore-scripts --link-duplicates --ignore-engines --ignore-optional'
+  alias yqoptional='yarn add --optional --ignore-scripts --link-duplicates --ignore-engines --ignore-optional'
+  alias yqexact='yarn add --exact --ignore-scripts --link-duplicates --ignore-engines --ignore-optional'
+  alias yqtilde='yarn add --tilde --ignore-scripts --link-duplicates --ignore-engines --ignore-optional'
+
+  alias yb='yarn run --silent build --force'
+  alias yt='yarn run --silent test'
   alias lint='yarn run lint'
   alias lint:fix='yarn run lint:fix'
   alias github:lint='yarn run github:lint'
-  alias tsc:lint='yarn run tsc:lint'
-  alias prettify='yarn run pretty'
+  alias tsc:lint='yarn run --silent tsc:lint'
   alias lint:pretty='yarn run pretty'
   ###############
   ## NPM ALIAS ##
