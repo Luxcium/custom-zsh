@@ -104,6 +104,7 @@ function load_zshrc() {
 	if [ "${PARENT_ENV_LOADED}" != 'true' ]; then
 		compute_path
 	fi
+ 
 
 }
 
