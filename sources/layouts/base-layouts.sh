@@ -189,7 +189,7 @@ function base_layouts_icons_groups() {
     export BEGIN_LBULB="${LD_COLR} ${H_SYM} ${LBULB_ICO}  "
     export BEGIN_LBULB_ON="${LD_COLR} ${H_SYM} ${LBULB_ON_ICO}  "
     export BEGIN_HOURGLASS_END_0="${LD_COLR} ${H_SYM} ${HOURGLASS_END_ICO_0}  >"
-    export BEGIN_HOURGLASS_END_1="${LD_COLR} ${H_SYM} ${HOURGLASS_END_ICO_1}  >"
+    export BEGIN_HOURGLASS_END_1="${LD_COLR} ${HOURGLASS_END_ICO_1} > "
     export BEGIN_HOURGLASS_END_2="${LD_COLR} ${H_SYM} ${HOURGLASS_END_ICO_2}  >"
 
     export LDNCLR="${BBCOLR} $NPM_FOLDER_ICO ${YBCOLR}${LEFT_SEPRATOR}${normal}"

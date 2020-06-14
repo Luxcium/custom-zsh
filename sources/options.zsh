@@ -5,6 +5,8 @@ function load_options() {
     HISTSIZE=1000000
     SAVEHIST=1000000
 
+    export PROMPT_EOL_MARK=''
+    setopt PROMPT_CR
     unsetopt PROMPT_SP
     setopt appendhistory
     setopt autocd

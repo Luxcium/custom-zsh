@@ -594,11 +594,11 @@ function load_functions_definitions() {
     # command line programs
     function versions() {
         printf "\033\e[0m"
-        env echo "  $(echo_if $(program_is_installed node))  node $(env node -v)"
-        env echo "  $(echo_if $(program_is_installed npm))  npm v$(env npm -v)"
-        env echo "  $(echo_if $(program_is_installed fnm))  fnm v$(env fnm -v)"
-        env echo "  $(echo_if $(program_is_installed yarn))  yarn v$(env yarn -v)"
-        env echo "  $(echo_if $(program_is_installed pnpm))  pnpm v$(env pnpm -v)"
+        env echo "  $(echo_if $(program_is_installed node))  Node $(env node -v)"
+        env echo "  $(echo_if $(program_is_installed npm))  NPM v$(env npm -v)"
+        env echo "  $(echo_if $(program_is_installed fnm))  FNM v$(env fnm -v)"
+        env echo "  $(echo_if $(program_is_installed yarn))  Yarn v$(env yarn -v)"
+        env echo "  $(echo_if $(program_is_installed pnpm))  PNPM v$(env pnpm -v)"
         env echo "  $(echo_if $(program_is_installed tmux))  $(env tmux -V)"
         env echo "  $(echo_if $(program_is_installed eslint))  eslint $(env eslint -v)"
         env echo "  $(echo_if $(program_is_installed tsc))  TypeScript $(env tsc -v)"
@@ -607,7 +607,7 @@ function load_functions_definitions() {
         env echo "  $(echo_if $(program_is_installed rbenv))  $(env rbenv -v)"
         env echo "  $(echo_if $(program_is_installed gem))  gem v$(env gem -v)"
         env echo "  $(echo_if $(program_is_installed ruby))  $(env ruby -v)"
-        env echo "  $(echo_if $(program_is_installed brew))  $(env command brew -v)"
+        # env echo "  $(echo_if $(program_is_installed brew))  $(env command brew -v)"
     }
 
     # echo "gulp    $(echo_if $(program_is_installed gulp))  "
@@ -624,7 +624,7 @@ function load_functions_definitions() {
     function zsh_version() {
         local ZSH_X=$(echo $0)
         local ZSH_V=$($(echo "${ZSH_X/'-'/}" --version))
-        export MY_ZSH_VERSION=" ${TERM_ICO}  ${ZSH_V%%' (x86'*}"
+        export MY_ZSH_VERSION=" ${TERM_ICO}  ${ZSH_V%%' (x86)'*}"
         echo "${normal}$CLRLN$BYL9K_TERM$(tput setaf 2)${MY_ZSH_VERSION} ${BKBK}${normal}"
     }
 
