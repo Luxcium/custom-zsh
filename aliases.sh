@@ -72,80 +72,7 @@ function load_aliases() {
   alias ala=alsa
   alias finder='open .'
   alias allo='echo allo tout le monde'
-
-  alias attach="tmux attach"
-  alias bind="tmux bind"
-  alias breakp="tmux breakp"
-  alias capturep="tmux capturep"
-  alias clearhist="tmux clearhist"
-  alias confirm="tmux confirm"
-  alias deleteb="tmux deleteb"
-  alias detach='tmux detach'
-  alias display="tmux display"
-  alias displayp="tmux displayp"
-  alias findw="tmux findw"
-  alias has="tmux has"
-  alias joinp="tmux joinp"
-  alias killp="tmux killp"
-  alias killw="tmux killw"
-  alias lastp="tmux lastp"
-  alias linkw="tmux linkw"
-  alias loadb="tmux loadb"
-  alias lock="tmux lock"
-  alias lockc="tmux lockc"
-  alias locks="tmux locks"
-  alias lscm="tmux lscm"
-  alias lsk="tmux lsk"
-  alias lsp="tmux lsp"
-  alias lsw="tmux lsw"
-  alias menu="tmux menu"
-  alias movep="tmux movep"
-  alias movew="tmux movew"
-  alias neww="tmux neww"
-  alias next="tmux next"
-  alias nextl="tmux nextl"
-  alias pasteb="tmux pasteb"
-  alias pipep="tmux pipep"
-  alias prev="tmux prev"
-  alias prevl="tmux prevl"
-  alias refresh="tmux refresh"
-  alias rename="tmux rename"
-  alias renamew="tmux renamew"
-  alias resizep="tmux resizep"
-  alias resizew="tmux resizew"
-  alias respawnp="tmux respawnp"
-  alias respawnw="tmux respawnw"
-  alias rotatew="tmux rotatew"
-  alias run="tmux run"
-  alias saveb="tmux saveb"
-  alias selectl="tmux selectl"
-  alias selectp="tmux selectp"
-  alias selectw="tmux selectw"
-  alias send="tmux send"
-  alias setb="tmux setb"
-  alias setenv="tmux setenv"
-  alias show="tmux show"
-  alias showb="tmux showb"
-  alias showenv="tmux showenv"
-  alias showmsgs="tmux showmsgs"
-  alias splitw="tmux splitw"
-  alias start="tmux start"
-  alias suspendc="tmux suspendc"
-  alias swapp="tmux swapp"
-  alias swapw="tmux swapw"
-  alias switchc="tmux switchc"
-  alias unbind="tmux unbind"
-  alias unlinkw="tmux unlinkw"
-  alias list-clients="tmux lsc"   #* was already existing changed to diferent alias
-  alias list-sessions="tmux ls"   #* was already existing changed to diferent alias
-  alias new-session="tmux new"    #* was already existing changed to diferent alias
-  alias source-file="tmux source" #* was already existing changed to diferent alias
-  alias lasttx="tmux last"        #* was already existing changed to diferent alias
-  alias settx="tmux set"          #* was already existing changed to diferent alias
-  alias lsbtx="tmux lsb"          #* was already existing changed to diferent alias
-  alias iftx="tmux if"            #* was already existing changed to diferent alias
-  alias waittx="tmux wait"        #* was already existing changed to diferent alias
-  ####################
+ ####################
   ## Projects ALIAS ##
   ####################
   # PATH_
@@ -2005,4 +1932,147 @@ function load_aliases() {
   ## END https://github.com/grml/zsh-lovers
   ## under GNU General Public License v2.0
   ########
+
+
+
+
+  alias tmx:attach="tmux attach"
+  alias tmx:bind="tmux bind"
+  alias tmx:breakp="tmux breakp"
+  alias tmx:capturep="tmux capturep"
+  alias tmx:clearhist="tmux clearhist"
+  alias tmx:confirm="tmux confirm"
+  alias tmx:deleteb="tmux deleteb"
+  alias tmx:detach='tmux detach'
+  alias tmx:display="tmux display"
+  alias tmx:displayp="tmux displayp"
+  alias tmx:findw="tmux findw"
+  alias tmx:has="tmux has"
+  alias tmx:joinp="tmux joinp"
+  alias tmx:killp="tmux killp"
+  alias tmx:killw="tmux killw"
+  alias tmx:lastp="tmux lastp"
+  alias tmx:linkw="tmux linkw"
+  alias tmx:loadb="tmux loadb"
+  alias tmx:lock="tmux lock"
+  alias tmx:lockc="tmux lockc"
+  alias tmx:locks="tmux locks"
+  alias tmx:lscm="tmux lscm"
+  alias tmx:lsk="tmux lsk"
+  alias tmx:lsp="tmux lsp"
+  alias tmx:lsw="tmux lsw"
+  alias tmx:menu="tmux menu"
+  alias tmx:movep="tmux movep"
+  alias tmx:movew="tmux movew"
+  alias tmx:neww="tmux neww"
+  alias tmx:next="tmux next"
+  alias tmx:nextl="tmux nextl"
+  alias tmx:pasteb="tmux pasteb"
+  alias tmx:pipep="tmux pipep"
+  alias tmx:prev="tmux prev"
+  alias tmx:prevl="tmux prevl"
+  alias tmx:refresh="tmux refresh"
+  alias tmx:rename="tmux rename"
+  alias tmx:renamew="tmux renamew"
+  alias tmx:resizep="tmux resizep"
+  alias tmx:resizew="tmux resizew"
+  alias tmx:respawnp="tmux respawnp"
+  alias tmx:respawnw="tmux respawnw"
+  alias tmx:rotatew="tmux rotatew"
+  alias tmx:run="tmux run"
+  alias tmx:saveb="tmux saveb"
+  alias tmx:selectl="tmux selectl"
+  alias tmx:selectp="tmux selectp"
+  alias tmx:selectw="tmux selectw"
+  alias tmx:send="tmux send"
+  alias tmx:setb="tmux setb"
+  alias tmx:setenv="tmux setenv"
+  alias tmx:show="tmux show"
+  alias tmx:showb="tmux showb"
+  alias tmx:showenv="tmux showenv"
+  alias tmx:showmsgs="tmux showmsgs"
+  alias tmx:splitw="tmux splitw"
+  alias tmx:start="tmux start"
+  alias tmx:suspendc="tmux suspendc"
+  alias tmx:swapp="tmux swapp"
+  alias tmx:swapw="tmux swapw"
+  alias tmx:switchc="tmux switchc"
+  alias tmx:unbind="tmux unbind"
+  alias tmx:unlinkw="tmux unlinkw"
+  alias tmx:list-clients="tmux lsc"   #* was already existing changed
+  alias tmx:list-sessions="tmux ls"   #* was already existing changed
+  alias tmx:new-session="tmux new"    #* was already existing changed
+  alias tmx:source-file="tmux source" #* was already existing changed
+  alias tmx:lasttx="tmux last"        #* was already existing changed
+  alias tmx:settx="tmux set"          #* was already existing changed
+  alias tmx:lsbtx="tmux lsb"          #* was already existing changed
+  alias tmx:iftx="tmux if"            #* was already existing changed
+  alias tmx:waittx="tmux wait"        #* was already existing changed
+
+#            Command                                     s
+#            append-selection
+#            append-selection-and-cancel
+#            back-to-indentation
+#            begin-selection                             ace
+#            bottom-line
+#            cancel                                      pe
+#            clear-selection
+#            copy-end-of-line [<prefix>]
+#            copy-line [<prefix>]
+#            copy-pipe <command> [<prefix>]
+#            copy-pipe-no-clear <command> [<prefix>]
+#            copy-pipe-and-cancel <command> [<prefix>]
+#            copy-selection [<prefix>]
+#            copy-selection-no-clear [<prefix>]
+#            copy-selection-and-cancel [<prefix>]
+#            cursor-down
+#            cursor-left
+#            cursor-right                                t
+#            cursor-up
+#            end-of-line
+#            goto-line <line>
+#            halfpage-down                               wn
+#            halfpage-down-and-cancel
+#            halfpage-up
+#            history-bottom
+#            history-top
+#            jump-again
+#            jump-backward <to>
+#            jump-forward <to>
+#            jump-reverse
+#            jump-to-backward <to>
+#            jump-to-forward <to>
+#            middle-line
+#            next-matching-bracket                       f
+#            next-paragraph
+#            next-space
+#            next-space-end
+#            next-word
+#            next-word-end
+#            other-end
+#            page-down                                   Down
+#            page-down-and-cancel
+#            page-up                                     Up
+#            previous-matching-bracket                   b
+#            previous-paragraph
+#            previous-space
+#            previous-word
+#            rectangle-toggle
+#            scroll-down                                 wn
+#            scroll-down-and-cancel
+#            scroll-up
+#            search-again
+#            search-backward <for>
+#            search-forward <for>
+#            search-backward-incremental <for>
+#            search-forward-incremental <for>
+#            search-reverse
+#            select-line
+#            select-word
+#            start-of-line
+#            stop-selection
+#            top-line
+
+
+
 }

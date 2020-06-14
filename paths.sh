@@ -1,1 +1,0 @@
-# CUSTOM_ZSH_PATH
