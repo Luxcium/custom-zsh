@@ -1,0 +1,38 @@
+#! /bin/env zsh
+
+min_=60
+POMODORO=$((25 * min_))
+POMODORI=$((5 * min_))
+
+function pomodoro() {
+
+}
+
+function pomodori() {
+
+}
+
+exit 0
+# bell1; sleep 54,8 # //      5.1889s elevator
+# bell2; sleep 51,8 # //      8.2443s ding
+# bell3; sleep 51,8 # //      8.2024s round
+# bell4; sleep 45,3 # //      14.7364s resonant medium
+# bell5; sleep 57,9 # //      2.1095s metal bowl
+# bell6; sleep 2,6 # //       57.3887s singing bowl mallet
+# bell7; sleep 45,7 # //      14.3313s round medium
+# bell8; sleep 49,7 # //      10.2877s round medium resonant
+# bell9; sleep 39,8 # //      20.1896s ding
+# bell10; sleep 54,9 # //     5.1338s ding resonant
+# bell_ting; sleep 55,8 # //  4.1732s  small ting...
+
+# bell1; sleep 54,8 # //      5.1889s elevator
+# bell2; sleep 51,8 # //      8.2443s ding
+# bell3; sleep 51,8 # //      8.2024s round
+# bell4; sleep 45,3 # //      14.7364s resonant medium
+# bell5; sleep 57,9 # //      2.1095s metal bowl
+# bell6; sleep 2,6 # //       57.3887s singing bowl mallet
+# bell7; sleep 45,7 # //      14.3313s round medium
+# bell8; sleep 49,7 # //      10.2877s round medium resonant
+# bell9; sleep 39,8 # //      20.1896s ding
+# bell10; sleep 54,9 # //     5.1338s ding resonant
+# bell_ting; sleep 55,8 # //  4.1732s  small ting...
