@@ -6,7 +6,7 @@ POMODORI=$((5 * min_))
 
 function pomodoro25() {
   bell1
-  POMODORO=$((22 * min_))
+  local POMODORO=$((22 * min_))
   bell4
   sleep ${POMODORO}
   sleep 54.8
@@ -17,7 +17,7 @@ function pomodoro25() {
 
 function pomodoro20() {
   bell1
-  POMODORO=$((17 * min_))
+  local POMODORO=$((17 * min_))
   bell3
   sleep ${POMODORO}
   sleep 54.8
@@ -28,7 +28,7 @@ function pomodoro20() {
 
 function pomodoro15() {
   bell1
-  POMODORO=$((12 * min_))
+  local POMODORO=$((12 * min_))
   bell8
   sleep ${POMODORO}
   sleep 54.8
@@ -39,18 +39,7 @@ function pomodoro15() {
 
 function pomodori10() {
   bell2
-  POMODORI=$((7 * min_))
-  bell9
-  sleep ${POMODORI}
-  sleep 51.8
-  sleep 39.8
-  sleep 51.8
-  bell2
-}
-
-function pomodori5() {
-  bell2
-  POMODORI=$((2 * min_))
+  local POMODORI=$((7 * min_))
   bell6
   sleep ${POMODORI}
   sleep 51.8
@@ -59,6 +48,56 @@ function pomodori5() {
   bell2
 }
 
+function pomodori5() {
+  bell2
+  local POMODORI=$((2 * min_))
+  bell9
+  sleep ${POMODORI}
+  sleep 51.8
+  sleep 39.8
+  sleep 51.8
+  bell2
+}
+
+function pomodorotimer60min() {
+  pomodoro25
+  pomodori5
+  pomodoro25
+  pomodori5
+}
+
+function pomodorotimer75min() {
+  pomodoro25
+  pomodori5
+  pomodoro20
+  pomodori5
+  pomodoro15
+  pomodori5
+}
+
+function pomodorotimer90min() {
+  pomodoro20
+  pomodori5
+  pomodoro15
+  pomodori5
+  pomodoro20
+  pomodori5
+  pomodoro15
+  pomodori5
+
+}
+function pomodorotimer3heures() {
+  pomodorotimer90min
+  pomodorotimer90min
+}
+function pomodorotimer5heures() {
+  pomodorotimer75min
+  pomodorotimer75min
+  pomodorotimer75min
+  pomodorotimer75min
+}
+pomodorotimer5heures
+pomodorotimer3heures
 exit 0
 # bell1; sleep 54.8 # //      5.1889s elevator
 # bell2; sleep 51.8 # //      8.2443s ding
