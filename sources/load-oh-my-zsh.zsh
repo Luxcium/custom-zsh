@@ -19,13 +19,28 @@ function load_oh_my_zsh() {
     # DISABLE_UNTRACKED_FILES_DIRTY="true"
     plugins=(
         alias-finder
-        brew
         colorize
+        dnf
+        emoji
+        gem
         git
+        git-auto-fetch
+        git-hubflow
+        git-prompt
+        github
+        man
+        node
+        npm
         rbenv
+        redis-cli
+        ruby
+        safe-paste
+        systemadmin
+        systemd
         tmux
         tmuxinator
         vscode
+        yarn
     )
     source $ZSH/oh-my-zsh.sh
     unalias ll

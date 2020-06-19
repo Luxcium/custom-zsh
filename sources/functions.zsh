@@ -1,5 +1,9 @@
 function load_functions_definitions() {
 
+    function dnflist() {
+        sudo dnf list "*${@}*"
+    }
+
     function cdir() {
         mkdir -p -- "$1" &&
             cd -P -- "$1"
