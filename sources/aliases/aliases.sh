@@ -481,9 +481,9 @@ function ZSH_LOVERS() {
   # ~~~~~~~
   # Suffix aliases are supported in zsh since version 4.2.0. Some examples:
   # -----------------
-  alias -s tex=vim
-  alias -s html=w3m
-  alias -s org=w3m
+  # !! alias -s tex=vim
+  # !! alias -s html=w3m
+  # !! alias -s org=w3m
   # -----------------
   # Now pressing the return-key after entering 'foobar.tex' starts vim with
   # foobar.tex. Calling an html-file runs browser w3m. 'www.zsh.org' and pressing
@@ -508,33 +508,33 @@ function ZSH_LOVERS() {
   # in order to proxy the list of  results  (like  the  list  of  available
   # debian packages) Use a cache:
   # ----------------------------------------------------------------------------
-  zstyle ':completion:*' use-cache on
-  zstyle ':completion:*' cache-path ~/.zsh/cache
+  # !! zstyle ':completion:*' use-cache on
+  # !! zstyle ':completion:*' cache-path ~/.zsh/cache
   # ----------------------------------------------------------------------------
 
   # Prevent CVS files/directories from being completed:
   # ----------------------------------------------------------------------------
-  zstyle ':completion:*:(all-|)files' ignored-patterns '(|*/)CVS'
-  zstyle ':completion:*:cd:*' ignored-patterns '(*/)#CVS'
+  # !! zstyle ':completion:*:(all-|)files' ignored-patterns '(|*/)CVS'
+  # !! zstyle ':completion:*:cd:*' ignored-patterns '(*/)#CVS'
   # ----------------------------------------------------------------------------
 
   # Fuzzy matching of completions for when you mistype them:
   # ----------------------------------------------------------------------------
-  zstyle ':completion:*' completer _complete _match _approximate
-  zstyle ':completion:*:match:*' original only
-  zstyle ':completion:*:approximate:*' max-errors 1 numeric
+  # !! zstyle ':completion:*' completer _complete _match _approximate
+  # !! zstyle ':completion:*:match:*' original only
+  # !! zstyle ':completion:*:approximate:*' max-errors 1 numeric
   # ----------------------------------------------------------------------------
 
   # And  if  you  want  the  number  of  errors  allowed by _approximate to
   # increase with the length of what you have typed so far:
   # ----------------------------------------------------------------------------
-  # zstyle -e ':completion:*:approximate:*' \
+  # !! # zstyle -e ':completion:*:approximate:*' \
   # 	max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3))numeric)'
   # ----------------------------------------------------------------------------
 
   # Ignore completion functions for commands you don't have:
   # ----------------------------------------------------------------------------
-  zstyle ':completion:*:functions' ignored-patterns '_*'
+  # !! zstyle ':completion:*:functions' ignored-patterns '_*'
   # ----------------------------------------------------------------------------
 
   # With helper functions like:
@@ -548,25 +548,25 @@ function ZSH_LOVERS() {
   # you  might want to fall into menu selection immediately and to have the
   # words sorted by time:
   # ----------------------------------------------------------------------------
-  zstyle ':completion:*:*:xdvi:*' menu yes select
-  zstyle ':completion:*:*:xdvi:*' file-sort time
+  # !! zstyle ':completion:*:*:xdvi:*' menu yes select
+  # !! zstyle ':completion:*:*:xdvi:*' file-sort time
   # ----------------------------------------------------------------------------
 
   # Completing process IDs with menu selection:
   # ----------------------------------------------------------------------------
-  zstyle ':completion:*:*:kill:*' menu yes select
-  zstyle ':completion:*:kill:*' force-list always
+  # !! zstyle ':completion:*:*:kill:*' menu yes select
+  # !! zstyle ':completion:*:kill:*' force-list always
   # ----------------------------------------------------------------------------
 
   # If you end up using a directory  as  argument,  this  will  remove  the
   # trailing slash (useful in ln)
   # ----------------------------------------------------------------------------
-  zstyle ':completion:*' squeeze-slashes true
+  # !! zstyle ':completion:*' squeeze-slashes true
   # ----------------------------------------------------------------------------
 
   # cd will never select the parent directory (e.g.: cd ../<TAB>):
   # ----------------------------------------------------------------------------
-  zstyle ':completion:*:cd:*' ignore-parents parent pwd
+  # !! zstyle ':completion:*:cd:*' ignore-parents parent pwd
   # ----------------------------------------------------------------------------
 
   # Another method for 'quick change directories'.
@@ -580,10 +580,10 @@ function ZSH_LOVERS() {
       LBUFFER+=.
     fi
   }
-  zle -N rationalise-dot
-  bindkey . rationalise-dot
+  # !! zle -N rationalise-dot
+  # !! bindkey . rationalise-dot
   # ----------------------------------------------------------------------------
-  alias dnf="noglob dnf"
+  # !! alias dnf="noglob dnf"
 
   # COPYRIGHT
   # ---------

@@ -1,5 +1,11 @@
 function source_all() {
 
+	function activate_normal_prompt() {
+
+		typeset -g ZSH_THEME="../../powerlevel10k/powerlevel10k"
+		. "${POWERLEVEL10K}/powerlevel10k.zsh-theme"
+
+	}
 	function activate_instant_prompt() {
 		# # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 		# # Initialization code that may require console input (password prompts, [y/n]
@@ -76,21 +82,18 @@ function source_all() {
 function load_zshenv() {
 	#   #$ Interactive,Script,login,non-login
 
-	## load_options_now
-	load_ "${ZSH_SOURCES}/options.zsh" "load_options"
-
 	## load_my_pl10K_layout_now
 	# call_ source_prompt
 
 	## load_path_now
 	call_ load_path
 
+	## load_functions_now
+	load_ "${ZSH_SOURCES}/functions.zsh" "load_functions_definitions"
+
 	## load_aliases_now
 	export MY_ALIASES="${CUSTOM_ZSH}/aliases.sh"
 	load_ "${MY_ALIASES}" "load_aliases"
-
-	## load_functions_now
-	load_ "${ZSH_SOURCES}/functions.zsh" "load_functions_definitions"
 
 	[ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_HOURGLASS_END_1} load_zshenv in $(timer_all) ms !${END_FUNCTION}"
 }
@@ -98,9 +101,12 @@ function load_zshenv() {
 function load_zshrc() {
 	#   #$ Interactive,login,non-login
 	# load_path
-
+	## load_options_now
+	load_ "${ZSH_SOURCES}/options-list.zsh" "load_options_list"
+	load_ "${ZSH_SOURCES}/options.zsh" "load_options"
 	load_my_powerlevel10k_now
 	activate_instant_prompt
+	# activate_normal_prompt
 	load_oh_my_zsh_now
 	load_autocomplete_now
 
@@ -152,16 +158,20 @@ function precmd() {
 		. "${ZSH_COMPUTE}/path.zsh"
 
 		hardcls
-		echo "${BEGIN_HOURGLASS_END_1} READY in $(timer_all) ms !${END_FUNCTION}"
+		echo -n "${BEGIN_HOURGLASS_END_1} READY in $(timer_all) ms !${END_FUNCTION}"
+		echo -e "\a"
 		echo -n "\u001b[37m   >  $(python -V) \u001b[31m\n"
 		echo -n "\u001b[32m   >  Node: $(node -v) \u001b[31m\n"
 		echo -n "\u001b[31m   >  NPM: $(npm -v) \u001b[31m\n"
 		echo -n "\u001b[33m   >  Yarn: $(yarn -v) \u001b[31m\n"
 		echo -n "\u001b[34m   >  TSC: $(tsc -v) \u001b[31m"
-		echo -n "\u001b[37m "
+		# echo -n "\u001b[31m   >  $(ruby --version) \u001b[31m"
+		echo "\u001b[37m "
+		# date
 		right_prompt_off
+		# sleep 1
+		# exit
 	fi
-
 }
 
 function load_zlogout() {

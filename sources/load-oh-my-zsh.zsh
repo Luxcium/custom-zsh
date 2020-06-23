@@ -1,6 +1,4 @@
 function load_oh_my_zsh() {
-    # echo '\u001b[0m\u001b[34m# function load_oh_my_zsh() ...'
-    # echo -n "${normal}$CLRLN$LDSCLR$(tput setaf 1) \uf085 ${bold} LOADING!.. load_oh_my_zsh()${normal}"
     # Uncomment the following line to disable bi-weekly auto-update checks.
     DISABLE_AUTO_UPDATE="true"
 
@@ -16,32 +14,35 @@ function load_oh_my_zsh() {
     # Uncomment the following line if you want to disable marking untracked files
     # under VCS as dirty. This makes repository status check for large repositories
     # much, much faster.
-    # DISABLE_UNTRACKED_FILES_DIRTY="true"
+    DISABLE_UNTRACKED_FILES_DIRTY="true"
     plugins=(
-        alias-finder
-        colorize
-        dnf
-        emoji
-        gem
+        zsh-autosuggestions
+        zsh-syntax-highlighting
         git
-        git-auto-fetch
-        git-hubflow
-        git-prompt
-        github
-        man
-        node
-        npm
-        rbenv
-        redis-cli
-        ruby
-        safe-paste
-        systemadmin
-        systemd
-        tmux
-        tmuxinator
-        vscode
-        yarn
     )
+    # alias-finder
+    # colorize
+    # dnf
+    # emoji
+    # gem
+    # git
+    # git-auto-fetch
+    # git-hubflow
+    # git-prompt
+    # github
+    # man
+    # node
+    # npm
+    # rbenv
+    # redis-cli
+    # ruby
+    # safe-paste
+    # systemadmin
+    # systemd
+    # tmux
+    # tmuxinator
+    # vscode
+    # yarn
     source $ZSH/oh-my-zsh.sh
     unalias ll
     # echo -n "${normal}$CLRLN$LDLCLR$(tput setaf 2) \uf013 ${bold} DONE! load_oh_my_zsh()${normal}"

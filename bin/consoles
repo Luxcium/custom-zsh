@@ -1,0 +1,11 @@
+#!/bin/env zsh
+cool-retro-term -T 'old-server 001' --profile 'old-server-001' --verbose -e zsh -li -c top &
+cool-retro-term -T 'old-server 002' --profile 'old-server-002' --verbose -e zsh &
+cool-retro-term -T 'old-server 003' --profile 'old-server-003' --verbose -e zsh &
+cool-retro-term -T 'old-server 004' --profile 'old-server-004' --verbose -e zsh &
+cool-retro-term -T 'old-server 005' --profile 'old-server-005' --verbose -e zsh &
+cool-retro-term -T 'old-server 006' --profile 'old-server-006' --verbose -e zsh &
+function crtexitall() {
+  kill $(pidof cool-retro-term)
+}
+exit 0
