@@ -14,11 +14,6 @@ function source_all() {
 		typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 		typeset -g ZSH_THEME="../../powerlevel10k/powerlevel10k"
 
-		# hardcls
-		# clear
-		# echo ${BBCOLR} toto
-
-		# echo -n "${CLRLN}${normal}${BYL9K_GNU}$(tput setaf 2) ${COG_ICO}${bold} $(tput setaf 2)GNU/Linux utils$(tput setaf 2) are ... ${BKBK}${normal}${LEFT_TERMINATOR}\n"
 		. "${ZSH_SOURCES}/instant-prompt"
 		. "${POWERLEVEL10K}/powerlevel10k.zsh-theme"
 
@@ -46,7 +41,11 @@ function source_all() {
 		## source_ path.zsh
 		source_ "${ZSH_COMPUTE}/path.zsh"
 		## load_path
-		. $HOME/.cache/path.env
+		if [ -f "$HOME/envs/path.env" ]; then
+			. $HOME/envs/path.env
+		else
+			compute_path
+		fi
 	}
 
 	function load_autocomplete_now() {
@@ -54,12 +53,7 @@ function source_all() {
 		call_ npm_completion
 		source_ "/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 		source_ "/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-		# /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-		# /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-		# Load Zsh tools for syntax highlighting and autosuggestions
-		# export HOMEBREW_FOLDER="/usr/local/share"
-		# source_ "${HOMEBREW_FOLDER}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-		# source_ "${HOMEBREW_FOLDER}/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
 	}
 
 	function source_powerline_now() {
@@ -82,9 +76,6 @@ function source_all() {
 function load_zshenv() {
 	#   #$ Interactive,Script,login,non-login
 
-	## load_my_pl10K_layout_now
-	# call_ source_prompt
-
 	## load_path_now
 	call_ load_path
 
@@ -100,49 +91,22 @@ function load_zshenv() {
 
 function load_zshrc() {
 	#   #$ Interactive,login,non-login
-	# load_path
-	## load_options_now
-	load_ "${ZSH_SOURCES}/options-list.zsh" "load_options_list"
-	load_ "${ZSH_SOURCES}/options.zsh" "load_options"
+
 	load_my_powerlevel10k_now
 	activate_instant_prompt
 	# activate_normal_prompt
-	load_oh_my_zsh_now
-	load_autocomplete_now
 
 	if [ "${PARENT_ENV_LOADED}" != 'true' ]; then
 		compute_path
 	fi
 
-	# export LESS_TERMCAP_mb=$'\e[1;32m'
-	# export LESS_TERMCAP_md=$'\e[1;32m'
-	# export LESS_TERMCAP_me=$'\e[0m'
-	# export LESS_TERMCAP_se=$'\e[0m'
-	# export LESS_TERMCAP_so=$'\e[01;33m'
-	# export LESS_TERMCAP_ue=$'\e[0m'
-	# export LESS_TERMCAP_us=$'\e[1;4;31m'
+	load_ "${ZSH_SOURCES}/options-list.zsh" "load_options_list"
+	load_ "${ZSH_SOURCES}/options.zsh" "load_options"
 
-	## Less Colors for Man Pages
-	# export LESS=-R
-	# export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
-	# export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
-	# export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
-	# export LESS_TERMCAP_so=$'\E[01;44;33m' # begin reverse video
-	# export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
-	# export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
-	# export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
+	load_autocomplete_now
+	load_oh_my_zsh_now
 
 	export PAGER="/usr/bin/most -s"
-
-	# function man() {
-	# 	LESS_TERMCAP_md=$'\e[01;31m' \
-	# 		LESS_TERMCAP_me=$'\e[0m' \
-	# 		LESS_TERMCAP_se=$'\e[0m' \
-	# 		LESS_TERMCAP_so=$'\e[01;44;33m' \
-	# 		LESS_TERMCAP_ue=$'\e[0m' \
-	# 		LESS_TERMCAP_us=$'\e[01;32m' \
-	# 		command man "$@"
-	# }
 }
 
 function precmd() {
@@ -155,8 +119,9 @@ function precmd() {
 		export PARENT_ENV_LOADED='true'
 		ENV_LOADED='true'
 
-		. "${ZSH_COMPUTE}/path.zsh"
+		# . "${ZSH_COMPUTE}/path.zsh"
 
+		right_prompt_off
 		hardcls
 		echo -n "${BEGIN_HOURGLASS_END_1} READY in $(timer_all) ms !${END_FUNCTION}"
 		echo -e "\a"
@@ -165,23 +130,14 @@ function precmd() {
 		echo -n "\u001b[31m   >  NPM: $(npm -v) \u001b[31m\n"
 		echo -n "\u001b[33m   >  Yarn: $(yarn -v) \u001b[31m\n"
 		echo -n "\u001b[34m   >  TSC: $(tsc -v) \u001b[31m"
-		# echo -n "\u001b[31m   >  $(ruby --version) \u001b[31m"
-		echo "\u001b[37m "
-		# date
-		right_prompt_off
-		# sleep 1
-		# exit
+		echo "\u001b[37m"
 	fi
 }
 
 function load_zlogout() {
-	# [ "${VERBOSA}" = 'true' ] && echo "${BEGIN_FUNCTION} 'load_zlogout()' ${END_FUNCTION}"
 	#   #$ Interactive,login
-	source_saybye_now
 	(compute_path &)
 	(_p9k_dump_instant_prompt &)
-	say_bye_tom
-	# hardcls
 }
 
 # |----------------|-----------|-----------|------|

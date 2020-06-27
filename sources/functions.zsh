@@ -1,9 +1,16 @@
 function load_functions_definitions() {
 
-    function dnflist() {
+    function dnfl() {
         sudo dnf list "*${@}*"
     }
 
+    function dnfr() {
+        sudo dnf remove "*${@}*"
+    }
+
+    function dnfi() {
+        sudo dnf install "*${@}*"
+    }
     function cdir() {
         mkdir -p -- "$1" &&
             cd -P -- "$1"

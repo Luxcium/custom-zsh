@@ -41,6 +41,18 @@ function load_aliases() {
 
   personal_projects_paths
 
+  alias quietupdate="(
+    ( \
+      sudo dnf group install -yq --refresh custom-environment minimal-environment kde-desktop-environment basic-desktop-environment admin-tools books c-development cloud-infrastructure container-management d-development design-suite development-tools editors education libreoffice medical network-server neuron-modelling-simulators office text-internet window-managers graphical-internet kde-desktop fonts games hardware-support sound-and-video system-tools; \
+      sudo dnf upgrade -yq; \
+      sudo dnf distro-sync -yq \
+    ) & \
+    ( \
+      conda update -q conda -y; \
+      conda update -q --all -y \
+    ) & \
+  )"
+
   ######################
   ## POWER LEVEL 10 K ##
   ######################
@@ -156,6 +168,7 @@ function load_aliases() {
   ## VSCODE ZSH PLUGIN ##
   #######################
   # eslint-config-airbnb-base@latest eslint@latest eslint-config-prettier@latest eslint-plugin-import@latest eslint-plugin-unicorn@latest @typescript-eslint/parser@latest @typescript-eslint/eslint-plugin
+
   alias newvsportable='bash <(curl -s   https://gist.githubusercontent.com/Luxcium/7357d34622c148f6041842321f315d7a/raw/a758b82e6818b9b9b664b210228ea93f9314c1b4/luxcium-vscode-portable.sh)'
   alias vsportablenew='newvsportable'
   alias portablevsnew='newvsportable'

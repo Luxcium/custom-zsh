@@ -156,6 +156,7 @@ function load_aliases() {
   ## VSCODE ZSH PLUGIN ##
   #######################
   # eslint-config-airbnb-base@latest eslint@latest eslint-config-prettier@latest eslint-plugin-import@latest eslint-plugin-unicorn@latest @typescript-eslint/parser@latest @typescript-eslint/eslint-plugin
+
   alias newvsportable='bash <(curl -s   https://gist.githubusercontent.com/Luxcium/7357d34622c148f6041842321f315d7a/raw/a758b82e6818b9b9b664b210228ea93f9314c1b4/luxcium-vscode-portable.sh)'
   alias vsportablenew='newvsportable'
   alias portablevsnew='newvsportable'

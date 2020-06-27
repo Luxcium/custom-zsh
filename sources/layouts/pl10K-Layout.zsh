@@ -431,18 +431,15 @@ function load_my_powerlevel10k() {
 
     function compute_pl10k() {
 
-        # /Users/neb_401/.cache/p10k-neb_401/NODE_VERSION
-        # /Users/neb_401/.cache/p10k-neb_401/NPM_VERSION
-
         # export NODE_VERSION="$(cut -d 'v' -f 2 <<<$(node -v))"
         # export POWERLEVEL9K_CUSTOM_NODE="echo -n '\uf898 ' $NODE_VERSION"
 
-        ( (env echo $(npm -v) >"${CACHE_FOLDER}/NPM_VERSION") &)
-        ( (env echo "$(cut -d ' ' -f 2 <<<$(tsc -v))" >"${CACHE_FOLDER}/TSC_VERSION") &)
+        ( (env echo $(npm -v) >"${CACHE_FOLDER_}/NPM_VERSION") &)
+        ( (env echo "$(cut -d ' ' -f 2 <<<$(tsc -v))" >"${CACHE_FOLDER_}/TSC_VERSION") &)
 
         load_pl10K
-        export NPM_VERSION="$(cat "${CACHE_FOLDER}/NPM_VERSION")"
-        export TSC_VERSION="$(cat "${CACHE_FOLDER}/TSC_VERSION")"
+        export NPM_VERSION="$(cat "${CACHE_FOLDER_}/NPM_VERSION")"
+        export TSC_VERSION="$(cat "${CACHE_FOLDER_}/TSC_VERSION")"
 
         export POWERLEVEL9K_CUSTOM_NPM="echo -n '\ue71e ' $NPM_VERSION"
         export POWERLEVEL9K_CUSTOM_TSC="echo -n '\ufbe4' $TSC_VERSION"

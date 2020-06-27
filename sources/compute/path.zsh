@@ -17,11 +17,10 @@ function conda_() {
 }
 function compute_path() {
 
+    export DOTNET_ROOT="/usr/lib64/dotnet/"
+
     # - ${PATH}
-
-    export PATH=""
-
-    add_to_path_ "/sbin"
+    export PATH="/sbin"
     add_to_path_ "/usr/sbin"
     add_to_path_ "/usr/local/sbin"
 
@@ -48,14 +47,15 @@ function compute_path() {
     add_to_path_ "${HOME}/anaconda3/vanadium/condabin"
     call_ conda_
 
+    add_to_path_ "${DOTNET_ROOT}"
+
     add_to_path_ "${HOME}/bin"
 
-    echo "PATH=\"$PATH\"" >$HOME/.cache/path.env
+    echo "PATH=\"$PATH\"" >$HOME/envs/path.env
 
-    export PATH=":::${PATH}:::"
+    export PATH="${AHMYZSH}/bin/plugins:${PATH}:${AHMYZSH}/bin/core"
 
 }
-
 # if [ "$WITH_ANACONDA" = 'true' ]; then
 # fi
 
