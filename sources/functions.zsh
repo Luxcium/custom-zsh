@@ -658,7 +658,7 @@ function load_functions_definitions() {
 
         init_paths
 
-        source_all
+        source_all_zsh
         load_fab_four
 
         source_TMUX

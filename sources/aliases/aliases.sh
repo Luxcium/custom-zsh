@@ -40,6 +40,24 @@ function projects_paths() {
 function load_aliases() {
 
   personal_projects_paths
+  function mkramdir() {
+    # LASTVIRTUALRAM
+    if [ -d "${MYVIRTUALRAM_PATH}" ]; then
+
+      LASTVIRTUALRAM="${MYVIRTUALRAM_PATH}/${1}"
+      mkdir -p "${LASTVIRTUALRAM}"
+      chmod 1777 "${LASTVIRTUALRAM}"
+      # cd "${LASTVIRTUALRAM}"
+      # ln -s LASTVIRTUALRAM -v
+      export LASTVIRTUALRAM
+
+    fi
+    # echo "'\$@:' $@, \n'\$1:' $1, \n'\$2:' $2, \n'\$3:' $3, \n'\$4:' $4"
+
+  }
+
+  alias dfnupdate="sudo dnf group install -y --refresh custom-environment minimal-environment kde-desktop-environment basic-desktop-environment admin-tools books c-development cloud-infrastructure container-management d-development design-suite development-tools editors education libreoffice  medical network-server neuron-modelling-simulators office text-internet window-managers graphical-internet kde-desktop fonts games hardware-support sound-and-video system-tools; sudo dnf upgrade -y; sudo dnf distro-sync -y; \
+  conda update -q conda -y; conda update -q --all -y; sudo snap refresh"
 
   alias quietupdate="(
     ( \

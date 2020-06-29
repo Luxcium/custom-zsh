@@ -1,4 +1,4 @@
-function source_all() {
+function source_all_zsh() {
 
 	function activate_normal_prompt() {
 
