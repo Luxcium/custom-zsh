@@ -1,31 +1,24 @@
-#!/bin/zsh
+#!/bin/sh
 
 MY_DIR="${HOME}/virtualram/"
 
-cd ${MY_DIR}
+if [ -d "${MY_DIR}" ]; then
+  \cd ${MY_DIR}
+  git clone https://github.com/Luxcium/luxcium.io.git
+fi
 
 MY_DIR="${HOME}/virtualram/luxcium.io"
 
 if [ -d "${MY_DIR}" ]; then
-  echo "\"${MY_DIR}\" already exist..."
-  EXITCODE=0
-  git clone https://github.com/Luxcium/luxcium.io.git
-  EXITCODE=$?
-  if [ EXITCODE -ne 0 ]; then
-    echo "ERROR: git clone exited with non ${EXITCODE} exit code"
-    exit EXITCODE
+  \cd "${MY_DIR}"
+  git checkout in-ram-test-001
+  if [ -f "./package.json" ]; then
+    yarn install
   else
+    echo "ERROR: Can not find \'package.json\' file insidde of \"$(pwd)\"..."
+    exit 1
   fi
 fi
 
-cd "${MY_DIR}"
-
-if [ -f "./package.json" ]; then
-  echo "\"${MY_DIR}\" already exist..."
-else
-  echo "ERROR: Can not find \'package.json\' file insidde of \"$(pwd)\"..."
-  exit 1
-fi
-
-# yarn install
+code .
 exit 0
