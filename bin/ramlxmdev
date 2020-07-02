@@ -24,7 +24,7 @@ MY_DIR="${HOME}/virtualram/luxcium.io"
 
 if [ -d "${MY_DIR}" ]; then
   \cd "${MY_DIR}"
-  git checkout -B in-ram-test-001
+  git checkout in-ram-test-001
   if [ -f "./package.json" ]; then
     yarn install
   else

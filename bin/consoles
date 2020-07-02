@@ -7,7 +7,7 @@ function activityconsoles() {
   {
     cool-retro-term -T 'cool-retro-term window activity 1. Main' --profile 'new-ibm-green' --verbose -e zsh &
     cool-retro-term -T 'cool-retro-term window activity 2. Secondary' --profile 'old-server-006' --verbose -e zsh &
-    cool-retro-term -T 'cool-retro-term window activity 3. Monitoring' --profile 'default-amber-monochrome' --verbose -e zsh &
+    cool-retro-term -T 'cool-retro-term window activity 3. Monitoring' --profile 'activity-003' --verbose -e zsh &
     cool-retro-term -T 'cool-retro-term window activity 4. °Luxcium.io°' --profile 'cool-brown' --verbose -e zsh &
     cool-retro-term -T 'cool-retro-term window activity 5. °Ah! MYZSH°' --profile 'cool-brown' --verbose -e zsh &
     cool-retro-term -T 'cool-retro-term window activity 6. Code' --profile 'old-server-006' --verbose -e zsh &

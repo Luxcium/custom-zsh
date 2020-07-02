@@ -27,3 +27,13 @@ alias hist25='print -l ${(o)history%% *} | uniq -c | sort -nr | head -n 25'
 alias hist50='print -l ${(o)history%% *} | uniq -c | sort -nr | head -n 50'
 alias histall='print -l ${(o)history%% *} | uniq -c | sort -nr'
 # ------------------------------------------------------------------------------
+
+# ----REDIS-CLI-----------------------------------------------------------------
+alias rcli="redis-cli"
+alias redisall="redis-cli keys \*"
+alias smembers="redis-cli smembers"
+alias hgetall="redis-cli hgetall"
+alias hexist="redis-cli hexist"
+alias exists="redis-cli exists"
+# SYMBOL_ITEM:IEX_CLOUD@JRI
+# ------------------------------------------------------------------------------
