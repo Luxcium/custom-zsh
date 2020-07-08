@@ -41,8 +41,8 @@ function source_all_zsh() {
 		## source_ path.zsh
 		source_ "${ZSH_COMPUTE}/path.zsh"
 		## load_path
-		if [ -f "$HOME/envs/path.env" ]; then
-			. $HOME/envs/path.env
+		if [ -f "${CACHED_PATH}" ]; then
+			. "${CACHED_PATH}"
 		else
 			compute_path
 		fi
@@ -131,7 +131,7 @@ function precmd() {
 		# . "${ZSH_COMPUTE}/path.zsh"
 
 		right_prompt_off
-		hardcls
+		# hardcls
 		echo -n "${BEGIN_HOURGLASS_END_1} READY in $(timer_all) ms !${END_FUNCTION}"
 		echo -e "\a"
 		echo -n "\u001b[37m   >  $(python -V) \u001b[31m\n"
