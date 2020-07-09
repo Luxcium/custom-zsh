@@ -34,8 +34,9 @@ function compute_path() {
     add_to_path_ "${HOME}/.config/yarn/global/node_modules/.bin"
     add_to_path_ "${HOME}/.yarn/bin"
 
-    add_to_path_ "${TMUX_BIN}"
+    add_to_path_ "${AHMYZSH_BIN}"
     add_to_path_ "${ZSH_BIN}"
+    add_to_path_ "${TMUX_BIN}"
 
     add_to_path_ "${HOME}/.local/bin"
     add_to_path_ "${HOME}/.fnm"
@@ -52,10 +53,9 @@ function compute_path() {
 
     add_to_path_ "${HOME}/bin"
 
+    export PATH="${AHMYZSH}/plugins/bin:${PATH}:${AHMYZSH}/core/bin"
+
     echo "PATH=\"$PATH\"" >${CACHED_PATH}
-
-    export PATH="${AHMYZSH}/bin/plugins:${PATH}:${AHMYZSH}/bin/core"
-
 }
 # if [ "$WITH_ANACONDA" = 'true' ]; then
 # fi

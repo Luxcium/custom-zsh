@@ -19,6 +19,7 @@ function load_oh_my_zsh() {
         zsh-autosuggestions
         zsh-syntax-highlighting
         git
+        redis-cli
     )
     # alias-finder
     # colorize
