@@ -4,6 +4,23 @@ source_ "${ALIASES_FEDORA_FOLDER}/bells.sh"
 source_ "${ALIASES_FOLDER}/aliases.sh"
 ZSH_LOVERS
 
+alias rnd2='echo $(sha224hmac <<< $(date +%s%N) | cut -c -2 | tr \[a-z\] \[A-Z\])'
+alias rnd4='echo $(sha224hmac <<< $(date +%s%N) | cut -c -4 | tr \[a-z\] \[A-Z\])'
+alias rnd6='echo $(sha224hmac <<< $(date +%s%N) | cut -c -6 | tr \[a-z\] \[A-Z\])'
+alias rnd8='echo $(sha224hmac <<< $(date +%s%N) | cut -c -8 | tr \[a-z\] \[A-Z\])'
+alias rnd10='echo $(sha224hmac <<< $(date +%s%N) | cut -c -10 | tr \[a-z\] \[A-Z\])'
+alias rnd12='echo $(sha224hmac <<< $(date +%s%N) | cut -c -12 | tr \[a-z\] \[A-Z\])'
+alias rnd14='echo $(sha224hmac <<< $(date +%s%N) | cut -c -14 | tr \[a-z\] \[A-Z\])'
+alias rnd16='echo $(sha224hmac <<< $(date +%s%N) | cut -c -16 | tr \[a-z\] \[A-Z\])'
+alias rnd18='echo $(sha224hmac <<< $(date +%s%N) | cut -c -18 | tr \[a-z\] \[A-Z\])'
+alias rnd20='echo $(sha224hmac <<< $(date +%s%N) | cut -c -20 | tr \[a-z\] \[A-Z\])'
+alias rnd22='echo $(sha224hmac <<< $(date +%s%N) | cut -c -22 | tr \[a-z\] \[A-Z\])'
+alias rnd24='echo $(sha224hmac <<< $(date +%s%N) | cut -c -24 | tr \[a-z\] \[A-Z\])'
+alias rnd26='echo $(sha224hmac <<< $(date +%s%N) | cut -c -26 | tr \[a-z\] \[A-Z\])'
+alias rnd28='echo $(sha224hmac <<< $(date +%s%N) | cut -c -28 | tr \[a-z\] \[A-Z\])'
+alias rnd30='echo $(sha224hmac <<< $(date +%s%N) | cut -c -30 | tr \[a-z\] \[A-Z\])'
+alias rnd32='echo $(sha224hmac <<< $(date +%s%N) | cut -c -32 | tr \[a-z\] \[A-Z\])'
+
 # ------------------------------------------------------------------------------
 # Modified by Luxcium
 # Original author Dongweiming <ciici123@gmail.com>
@@ -37,3 +54,228 @@ alias hexist="redis-cli hexist"
 alias exists="redis-cli exists"
 # SYMBOL_ITEM:IEX_CLOUD@JRI
 # ------------------------------------------------------------------------------
+
+alias killdd="sudo kill $(pidof dd)"
+unset DD5_
+
+alias ddx="sudo dd if=/dev/zero of=/dev/null &"
+alias dd5="(
+  sudo killall dd &>/dev/null
+  sudo dd if=/dev/zero of=/dev/null &
+  sudo dd if=/dev/zero of=/dev/null &
+  sudo dd if=/dev/zero of=/dev/null &
+  sudo dd if=/dev/zero of=/dev/null &
+  sudo dd if=/dev/zero of=/dev/null &
+  (
+  sleep 10
+  sudo killall dd
+  ) &
+  )"
+
+alias dd10="(
+  sudo killall dd &>/dev/null
+  sudo dd if=/dev/zero of=/dev/null &
+  sudo dd if=/dev/zero of=/dev/null &
+  sudo dd if=/dev/zero of=/dev/null &
+  sudo dd if=/dev/zero of=/dev/null &
+  sudo dd if=/dev/zero of=/dev/null &
+  sudo dd if=/dev/zero of=/dev/null &
+  sudo dd if=/dev/zero of=/dev/null &
+  sudo dd if=/dev/zero of=/dev/null &
+  sudo dd if=/dev/zero of=/dev/null &
+  sudo dd if=/dev/zero of=/dev/null &
+  (
+  sleep 10
+  sudo killall dd
+  ) &
+  )"
+
+alias dd5x="(
+  sudo killall dd &>/dev/null
+  sudo nice -n 20 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+  sudo nice -n 20 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+  sudo nice -n 20 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+  sudo nice -n 20 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+  sudo nice -n 20 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+  (
+  sleep 10
+  sudo killall dd
+  ) &
+  )"
+
+alias dd10x="(
+  sudo killall dd &>/dev/null
+  sudo dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+  sudo dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+  sudo dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+  sudo dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+  sudo dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+  sudo dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+  sudo dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+  sudo dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+  sudo dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+  sudo dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+  (
+  sleep 10
+  sudo killall dd
+  ) &
+  )"
+
+alias dd20x="(
+  sudo killall dd &>/dev/null
+  sudo dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+  (
+  sleep 5
+  sudo killall dd
+  ) &
+  )"
+
+alias dd20xx="(
+  sudo killall dd &>/dev/null
+  sudo dd if=/dev/zero of=/dev/null &
+  sleep 0.25
+    sudo dd if=/dev/zero of=/dev/null &
+  sleep 0.25
+    sudo dd if=/dev/zero of=/dev/null &
+  sleep 0.25
+    sudo dd if=/dev/zero of=/dev/null &
+  sleep 0.25
+    sudo dd if=/dev/zero of=/dev/null &
+  sleep 0.25
+    sudo dd if=/dev/zero of=/dev/null &
+  sleep 0.25
+    sudo dd if=/dev/zero of=/dev/null &
+  sleep 0.25
+    sudo dd if=/dev/zero of=/dev/null &
+  sleep 0.25
+    sudo dd if=/dev/zero of=/dev/null &
+  sleep 0.25
+    sudo dd if=/dev/zero of=/dev/null &
+  sleep 0.25
+    sudo dd if=/dev/zero of=/dev/null &
+  sleep 0.25
+    sudo dd if=/dev/zero of=/dev/null &
+  sleep 0.25
+    sudo dd if=/dev/zero of=/dev/null &
+  sleep 0.25
+    sudo dd if=/dev/zero of=/dev/null &
+  sleep 0.25
+    sudo dd if=/dev/zero of=/dev/null &
+  sleep 0.25
+    sudo dd if=/dev/zero of=/dev/null &
+  sleep 0.25
+    sudo dd if=/dev/zero of=/dev/null &
+  sleep 0.25
+    sudo dd if=/dev/zero of=/dev/null &
+  sleep 0.25
+    sudo dd if=/dev/zero of=/dev/null &
+  sleep 0.25
+    sudo dd if=/dev/zero of=/dev/null &
+  sleep 0.25
+  (
+  sleep 10
+  sudo killall dd
+  ) &
+  )"
+
+alias dd20xxx="(
+  sudo killall dd &>/dev/null
+    sudo nice -n 20  dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n 20  dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n 20  dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n 20  dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n 20  dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n 20  dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n 20  dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n 20  dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n -15 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n -15  dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n -15 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n -15 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n -15 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n -15 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n -15 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n -15 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n -15 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+    sudo nice -n -15 dd if=/dev/zero of=/dev/null &
+  sleep 0.5
+  (
+  sleep 20
+  sudo killall dd
+  ) &
+  )"

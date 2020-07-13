@@ -130,7 +130,7 @@ function precmd() {
 
 		# . "${ZSH_COMPUTE}/path.zsh"
 
-		right_prompt_off
+		# right_prompt_off
 		# hardcls
 		echo -n "${BEGIN_HOURGLASS_END_1} READY in $(timer_all) ms !${END_FUNCTION}"
 		echo -e "\a"
