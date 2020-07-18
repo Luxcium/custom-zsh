@@ -4,21 +4,11 @@ source_ "${ALIASES_FEDORA_FOLDER}/bells.sh"
 source_ "${ALIASES_FOLDER}/aliases.sh"
 ZSH_LOVERS
 
-alias rnd2='echo $(sha224hmac <<< $(date +%s%N) | cut -c -2 | tr \[a-z\] \[A-Z\])'
 alias rnd4='echo $(sha224hmac <<< $(date +%s%N) | cut -c -4 | tr \[a-z\] \[A-Z\])'
 alias rnd6='echo $(sha224hmac <<< $(date +%s%N) | cut -c -6 | tr \[a-z\] \[A-Z\])'
 alias rnd8='echo $(sha224hmac <<< $(date +%s%N) | cut -c -8 | tr \[a-z\] \[A-Z\])'
-alias rnd10='echo $(sha224hmac <<< $(date +%s%N) | cut -c -10 | tr \[a-z\] \[A-Z\])'
-alias rnd12='echo $(sha224hmac <<< $(date +%s%N) | cut -c -12 | tr \[a-z\] \[A-Z\])'
-alias rnd14='echo $(sha224hmac <<< $(date +%s%N) | cut -c -14 | tr \[a-z\] \[A-Z\])'
 alias rnd16='echo $(sha224hmac <<< $(date +%s%N) | cut -c -16 | tr \[a-z\] \[A-Z\])'
-alias rnd18='echo $(sha224hmac <<< $(date +%s%N) | cut -c -18 | tr \[a-z\] \[A-Z\])'
-alias rnd20='echo $(sha224hmac <<< $(date +%s%N) | cut -c -20 | tr \[a-z\] \[A-Z\])'
-alias rnd22='echo $(sha224hmac <<< $(date +%s%N) | cut -c -22 | tr \[a-z\] \[A-Z\])'
 alias rnd24='echo $(sha224hmac <<< $(date +%s%N) | cut -c -24 | tr \[a-z\] \[A-Z\])'
-alias rnd26='echo $(sha224hmac <<< $(date +%s%N) | cut -c -26 | tr \[a-z\] \[A-Z\])'
-alias rnd28='echo $(sha224hmac <<< $(date +%s%N) | cut -c -28 | tr \[a-z\] \[A-Z\])'
-alias rnd30='echo $(sha224hmac <<< $(date +%s%N) | cut -c -30 | tr \[a-z\] \[A-Z\])'
 alias rnd32='echo $(sha224hmac <<< $(date +%s%N) | cut -c -32 | tr \[a-z\] \[A-Z\])'
 
 # ------------------------------------------------------------------------------
@@ -45,7 +35,7 @@ alias hist50='print -l ${(o)history%% *} | uniq -c | sort -nr | head -n 50'
 alias histall='print -l ${(o)history%% *} | uniq -c | sort -nr'
 # ------------------------------------------------------------------------------
 
-# ----REDIS-CLI-----------------------------------------------------------------
+# ---- REDIS-CLI ---------------------------------------------------------------
 alias rcli="redis-cli"
 alias redisall="redis-cli keys \*"
 alias smembers="redis-cli smembers"
@@ -53,229 +43,196 @@ alias hgetall="redis-cli hgetall"
 alias hexist="redis-cli hexist"
 alias exists="redis-cli exists"
 # SYMBOL_ITEM:IEX_CLOUD@JRI
-# ------------------------------------------------------------------------------
+# ------- CPU TESTING WITH DD NOTHING TO NOWHERE -------------------------------
 
-alias killdd="sudo kill $(pidof dd)"
-unset DD5_
-
-alias ddx="sudo dd if=/dev/zero of=/dev/null &"
-alias dd5="(
-  sudo killall dd &>/dev/null
-  sudo dd if=/dev/zero of=/dev/null &
-  sudo dd if=/dev/zero of=/dev/null &
-  sudo dd if=/dev/zero of=/dev/null &
-  sudo dd if=/dev/zero of=/dev/null &
-  sudo dd if=/dev/zero of=/dev/null &
+function ddsoft() {
   (
-  sleep 10
-  sudo killall dd
-  ) &
-  )"
+    sudo ionice -c 3 nice -n 35 dd if=/dev/zero of=/dev/null &
+  )
+}
 
-alias dd10="(
-  sudo killall dd &>/dev/null
-  sudo dd if=/dev/zero of=/dev/null &
-  sudo dd if=/dev/zero of=/dev/null &
-  sudo dd if=/dev/zero of=/dev/null &
-  sudo dd if=/dev/zero of=/dev/null &
-  sudo dd if=/dev/zero of=/dev/null &
-  sudo dd if=/dev/zero of=/dev/null &
-  sudo dd if=/dev/zero of=/dev/null &
-  sudo dd if=/dev/zero of=/dev/null &
-  sudo dd if=/dev/zero of=/dev/null &
-  sudo dd if=/dev/zero of=/dev/null &
+function ddhard() {
   (
-  sleep 10
-  sudo killall dd
-  ) &
-  )"
+    sudo ionice -c 1 -n 0 nice -n -35 dd if=/dev/zero of=/dev/null &
+  )
+}
 
-alias dd5x="(
-  sudo killall dd &>/dev/null
-  sudo nice -n 20 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-  sudo nice -n 20 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-  sudo nice -n 20 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-  sudo nice -n 20 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-  sudo nice -n 20 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
+function dd4soft() {
   (
-  sleep 10
-  sudo killall dd
-  ) &
-  )"
+    ddsoft
+    ddsoft
+    ddsoft
+    ddsoft
+  )
+}
 
-alias dd10x="(
-  sudo killall dd &>/dev/null
-  sudo dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-  sudo dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-  sudo dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-  sudo dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-  sudo dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-  sudo dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-  sudo dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-  sudo dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-  sudo dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-  sudo dd if=/dev/zero of=/dev/null &
-  sleep 0.5
+function dd4hard() {
   (
-  sleep 10
-  sudo killall dd
-  ) &
-  )"
+    ddhard
+    ddhard
+    ddhard
+    ddhard
+  )
+}
 
-alias dd20x="(
-  sudo killall dd &>/dev/null
-  sudo dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
+function dd5soft() {
   (
-  sleep 5
-  sudo killall dd
-  ) &
-  )"
+    ddsoft
+    ddsoft
+    ddsoft
+    ddsoft
+    ddsoft
+  )
+}
 
-alias dd20xx="(
-  sudo killall dd &>/dev/null
-  sudo dd if=/dev/zero of=/dev/null &
-  sleep 0.25
-    sudo dd if=/dev/zero of=/dev/null &
-  sleep 0.25
-    sudo dd if=/dev/zero of=/dev/null &
-  sleep 0.25
-    sudo dd if=/dev/zero of=/dev/null &
-  sleep 0.25
-    sudo dd if=/dev/zero of=/dev/null &
-  sleep 0.25
-    sudo dd if=/dev/zero of=/dev/null &
-  sleep 0.25
-    sudo dd if=/dev/zero of=/dev/null &
-  sleep 0.25
-    sudo dd if=/dev/zero of=/dev/null &
-  sleep 0.25
-    sudo dd if=/dev/zero of=/dev/null &
-  sleep 0.25
-    sudo dd if=/dev/zero of=/dev/null &
-  sleep 0.25
-    sudo dd if=/dev/zero of=/dev/null &
-  sleep 0.25
-    sudo dd if=/dev/zero of=/dev/null &
-  sleep 0.25
-    sudo dd if=/dev/zero of=/dev/null &
-  sleep 0.25
-    sudo dd if=/dev/zero of=/dev/null &
-  sleep 0.25
-    sudo dd if=/dev/zero of=/dev/null &
-  sleep 0.25
-    sudo dd if=/dev/zero of=/dev/null &
-  sleep 0.25
-    sudo dd if=/dev/zero of=/dev/null &
-  sleep 0.25
-    sudo dd if=/dev/zero of=/dev/null &
-  sleep 0.25
-    sudo dd if=/dev/zero of=/dev/null &
-  sleep 0.25
-    sudo dd if=/dev/zero of=/dev/null &
-  sleep 0.25
+function dd5hard() {
   (
-  sleep 10
-  sudo killall dd
-  ) &
-  )"
+    ddhard
+    ddhard
+    ddhard
+    ddhard
+    ddhard
+  )
+}
 
-alias dd20xxx="(
-  sudo killall dd &>/dev/null
-    sudo nice -n 20  dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n 20  dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n 20  dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n 20  dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n 20  dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n 20  dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n 20  dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n 20  dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n 20 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n -15 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n -15  dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n -15 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n -15 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n -15 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n -15 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n -15 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n -15 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n -15 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
-    sudo nice -n -15 dd if=/dev/zero of=/dev/null &
-  sleep 0.5
+alias dd4='(
+    echo "4 softs dd moving nothing to nowhere the for 40 seconds"
+    sudo killall dd &>/dev/null && echo "max 4 at the time for max 40 seconds"
   (
-  sleep 20
-  sudo killall dd
-  ) &
-  )"
+      dd4soft
+    )
+    (
+      sleep 40
+      echo "killall dd"
+      sudo killall dd
+    )
+  )&'
+
+alias hardd4='(
+    echo "4 hards dd moving nothing to nowhere the for 40 seconds"
+    sudo killall dd &>/dev/null && echo "max 4 at the time for max 40 seconds"
+    (
+      dd4hard
+    )
+    (
+      sleep 40
+      echo "killall dd"
+      sudo killall dd &>/dev/null
+    )
+  ) &'
+
+alias dd5='(
+    echo "5 softs dd moving nothing to nowhere the for 20 seconds"
+    sudo killall dd &>/dev/null && echo "max 5 at the time for max 20 seconds"
+    (
+      dd5soft
+    )
+    (
+      sleep 20
+      echo "killall dd"
+      sudo killall dd
+    )
+  )&'
+
+alias hardd5='(
+    echo "5 hards dd moving nothing to nowhere the for 20 seconds"
+    sudo killall dd &>/dev/null && echo "max 5 at the time for max 20 seconds"
+    (
+      dd5hard
+    )
+    (
+      sleep 20
+      echo "killall dd"
+      sudo killall dd &>/dev/null
+    )
+  ) &'
+
+alias dd10='(
+    echo "10 softs dd moving nothing to nowhere the for 15 seconds"
+    sudo killall dd &>/dev/null && echo "max 15 at the time for max 15 seconds"
+    (
+      dd5soft
+      dd5soft
+    )
+    (
+      sleep 15
+      echo "killall dd"
+      sudo killall dd &>/dev/null
+    )
+  ) &'
+
+alias hardd10='(
+    echo "10 hards dd moving nothing to nowhere the for 15 seconds"
+    sudo killall dd &>/dev/null && echo "max 15 at the time for max 15 seconds"
+    (
+      dd5hard
+      dd5hard
+    )
+    (
+      sleep 15
+      echo "killall dd"
+      sudo killall dd &>/dev/null
+    )
+  ) &'
+
+alias dd15='(
+    echo "15 softs dd moving nothing to nowhere the for 10 seconds"
+    sudo killall dd &>/dev/null && echo "max 15 at the time for max 10 seconds"
+    (
+      dd5soft
+      dd5soft
+      dd5soft
+    )
+    (
+      sleep 10
+      echo "killall dd"
+      sudo killall dd &>/dev/null
+    )
+  ) &'
+
+alias hsrdd15='(
+    echo "15 hards dd moving nothing to nowhere the for 10 seconds"
+    sudo killall dd &>/dev/null && echo "max 15 at the time for max 10 seconds"
+    (
+      dd5hard
+      dd5hard
+      dd5hard
+    )
+    (
+      sleep 10
+      echo "killall dd"
+      sudo killall dd &>/dev/null
+    )
+  ) &'
+
+alias dd20='(
+    echo "20 softs dd moving nothing to nowhere the for 5 seconds"
+    sudo killall dd &>/dev/null && echo "max 20 at the time for max 5 seconds"
+    (
+      dd5soft
+      dd5soft
+      dd5soft
+      dd5soft
+    )
+    (
+      sleep 5
+      echo "killall dd"
+      sudo killall dd &>/dev/null
+    )
+  ) &'
+
+alias hardd20='(
+    echo "20 hards dd moving nothing to nowhere the for 5 seconds"
+    sudo killall dd &>/dev/null && echo "max 20 at the time for max 5 seconds"
+    (
+      dd5hard
+      dd5hard
+      dd5hard
+      dd5hard
+    )
+    (
+      sleep 5
+      echo "killall dd"
+      sudo killall dd &>/dev/null
+    )
+  ) &'
