@@ -1,4 +1,5 @@
 function fnm_() {
+    # (rm -f /tmp/fnm-shell*) &>/dev/null
     eval "$(fnm env --multi)"
 }
 

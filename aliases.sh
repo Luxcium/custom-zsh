@@ -34,7 +34,7 @@ alias hist25='print -l ${(o)history%% *} | uniq -c | sort -nr | head -n 25'
 alias hist50='print -l ${(o)history%% *} | uniq -c | sort -nr | head -n 50'
 alias histall='print -l ${(o)history%% *} | uniq -c | sort -nr'
 # ------------------------------------------------------------------------------
-
+alias mktmp='TMPDIRLOCATION="/tmp/LXCM$(uxid)"; mkdir "${TMPDIRLOCATION:0:27}S"; cd "${TMPDIRLOCATION:0:27}S" ;unset -v TMPDIRLOCATION'
 # ---- REDIS-CLI ---------------------------------------------------------------
 alias rcli="redis-cli"
 alias redisall="redis-cli keys \*"
@@ -236,3 +236,54 @@ alias hardd20='(
       sudo killall dd &>/dev/null
     )
   ) &'
+
+alias lxid='(echo -n "$(uxid)")'
+alias getuxid='(TMPUXIDGET="$(uxid)"; echo -n "${TMPUXIDGET}"; unset -v TMPUXIDGET)'
+alias getuxid0='(TMPUXIDGET="$(uxid)"; echo -n "${TMPUXIDGET}"; unset -v TMPUXIDGET)'
+# alias getuxid1='(TMPUXIDGET="$(uxid)"; echo -n "${TMPUXIDGET:0:0}A"; unset -v TMPUXIDGET)'
+# alias getuxid2='(TMPUXIDGET="$(uxid)"; echo -n "${TMPUXIDGET:0:1}B"; unset -v TMPUXIDGET)'
+# alias getuxid3='(TMPUXIDGET="$(uxid)"; echo -n "${TMPUXIDGET:0:2}C"; unset -v TMPUXIDGET)'
+# alias getuxid4='(TMPUXIDGET="$(uxid)"; echo -n "${TMPUXIDGET:0:3}D"; unset -v TMPUXIDGET)'
+# alias getuxid5='(TMPUXIDGET="$(uxid)"; echo -n "${TMPUXIDGET:0:4}E"; unset -v TMPUXIDGET)'
+# alias getuxid6='(TMPUXIDGET="$(uxid)"; echo -n "${TMPUXIDGET:0:5}F"; unset -v TMPUXIDGET)'
+alias getuxid7='(TMPUXIDGET="$(uxid)"; echo -n "${TMPUXIDGET:0:6}G"; unset -v TMPUXIDGET)'
+alias getuxid8='(TMPUXIDGET="$(uxid)"; echo -n "${TMPUXIDGET:0:7}H"; unset -v TMPUXIDGET)'
+alias getuxid9='(TMPUXIDGET="$(uxid)"; echo -n "${TMPUXIDGET:0:8}I"; unset -v TMPUXIDGET)'
+alias getuxid10='(TMPUXIDGET="$(uxid)"; echo -n "${TMPUXIDGET:0:9}J"; unset -v TMPUXIDGET)'
+alias getuxid11='(TMPUXIDGET="$(uxid)"; echo -n "${TMPUXIDGET:0:10}K"; unset -v TMPUXIDGET)'
+alias getuxid12='(TMPUXIDGET="$(uxid)"; echo -n "${TMPUXIDGET:0:11}L"; unset -v TMPUXIDGET)'
+alias getuxid13='(TMPUXIDGET="$(uxid)"; echo -n "${TMPUXIDGET:0:12}M"; unset -v TMPUXIDGET)'
+alias getuxid14='(TMPUXIDGET="$(uxid)"; echo -n "${TMPUXIDGET:0:13}N"; unset -v TMPUXIDGET)'
+alias getuxid15='(TMPUXIDGET="$(uxid)"; echo -n "${TMPUXIDGET:0:13}XV"; unset -v TMPUXIDGET)'
+alias getuxid16='(TMPUXIDGET="$(uxid)"; echo -n "${TMPUXIDGET:0:15}P"; unset -v TMPUXIDGET)'
+alias getuxid17='(TMPUXIDGET="$(uxid)"; echo -n "${TMPUXIDGET:0:16}Q"; unset -v TMPUXIDGET)'
+alias getuxid18='(TMPUXIDGET="$(uxid)"; echo -n "${TMPUXIDGET:0:17}R"; unset -v TMPUXIDGET)'
+alias getuxid19='(TMPUXIDGET="$(uxid)"; echo -n "${TMPUXIDGET:0:18}S"; unset -v TMPUXIDGET)'
+alias getuxid20='(TMPUXIDGET="$(uxid)"; echo -n "${TMPUXIDGET:0:19}T"; unset -v TMPUXIDGET)'
+alias getuxid21='(TMPUXIDGET="$(uxid)"; echo -n "${TMPUXIDGET:0:20}U"; unset -v TMPUXIDGET)'
+alias getuxid22='(TMPUXIDGET="$(uxid)"; echo -n "${TMPUXIDGET:0:21}V"; unset -v TMPUXIDGET)'
+alias getuxid23='(TMPUXIDGET="$(uxid)"; echo -n "${TMPUXIDGET:0:22}W"; unset -v TMPUXIDGET)'
+alias getuxid24='(TMPUXIDGET="$(uxid)"; echo -n "${TMPUXIDGET:0:23}X"; unset -v TMPUXIDGET)'
+alias getuxid25='(TMPUXIDGET="$(uxid)"; echo -n "${TMPUXIDGET:0:24}Y"; unset -v TMPUXIDGET)'
+alias getuxid26='(TMPUXIDGET="$(uxid)"; echo -n "${TMPUXIDGET:0:25}Z"; unset -v TMPUXIDGET)'
+
+# X20X20X
+# X20X20XH
+# X20X20X0I
+# X20X20X07X
+# X20X20X07XK
+# X20X20X07X1L
+# X20X20X07X19X
+# X20X20X07X19XN
+# X20X20X07X19XXV
+# X20X20X07X19X14X
+# X20X20X07X19X14XQ
+# X20X20X07X19X14X1R
+# X20X20X07X19X14X11X
+# X20X20X07X19X14X11X
+# X20X20X07X19X14X11X
+# X20X20X07X19X14X11X
+# X20X20X07X19X14X11X
+# X20X20X07X19X14X11X
+# X20X20X07X19X14X11X
+# X20X20X07X19X14X11X
