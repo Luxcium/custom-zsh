@@ -1,5 +1,4 @@
 function load_functions_definitions() {
-
     function dnfl() {
         sudo dnf list "*${@}*"
     }
@@ -652,7 +651,7 @@ function load_functions_definitions() {
 
         . "${AHMYZSH}/initial_load.zsh"
 
-        . "${AHMYZSH}/paths.sh"
+        . "${AH_LIBRARIES}/paths.sh"
 
         . "${CUSTOM_ZSH}/notice.sh"
 
@@ -671,6 +670,7 @@ function load_functions_definitions() {
         compute_path
         # load_autocomplete
         echo "${BEGIN_FUNCTION} $(timer_now) 'source_load_all()' ${END_FUNCTION}"
+        source "${ZSH_FUNCTIONS_FOLDER}/getportablecode.sh"
 
     }
 }
