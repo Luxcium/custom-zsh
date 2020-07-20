@@ -16,7 +16,7 @@ function getportablecode() {
     ## CUSTOM VARIABLES
     {
       vsbranch="${1}" # 'STABLE' or 'INSIDERS'
-
+      echo "vsbranch=${1}"
       if [[ vsbranch = 'INSIDERS' ]]; then
         VSCODERPM="${VSCODEURL_INSIDERS_RPM}"
         VSCODESHORTPATH="${VSCODESHORTPATH_INSIDERS}"
@@ -67,6 +67,7 @@ function getportablecode() {
     ## CREATING THE PORTABLE VERSION
     {
       cp -r "/etc/vscode-portable/vs-${VSCODESHORTPATH}/" "${WORKING_LOCATION}" || return 1
+      echo "/etc/vscode-portable/vs-${VSCODESHORTPATH}/"
       mv "${WORKING_LOCATION}/usr/share/${VSCODESHORTPATH}" "${WORKING_LOCATION}/${VSCODESHORTPATH}" || return 1
       mkdir -p "${WORKING_LOCATION}/vs-${VSCODESHORTPATH}/completions/" || return 1
 

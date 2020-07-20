@@ -117,23 +117,70 @@ function load_functions_definitions() {
     }
 
     function eslint_global() {
-        install-peerdeps -Y -g @typescript-eslint/parser@latest
-        install-peerdeps -Y -g @typescript-eslint/eslint-plugin@latest
-        install-peerdeps -Y -g eslint-config-airbnb-base@latest
-        install-peerdeps -Y -g eslint-config-prettier@latest
-        install-peerdeps -Y -g eslint-plugin-flowtype@latest
-        install-peerdeps -Y -g eslint-plugin-import@latest
-        install-peerdeps -Y -g eslint-plugin-jest@latest
-        install-peerdeps -Y -g eslint-plugin-jsx-a11y@latest
-        install-peerdeps -Y -g eslint-plugin-node@latest
-        install-peerdeps -Y -g eslint-plugin-prettier@latest
-        install-peerdeps -Y -g eslint-plugin-react-hooks@latest
-        install-peerdeps -Y -g eslint-plugin-react@latest
-        install-peerdeps -Y -g eslint-plugin-unicorn@latest
+        npx install-peerdeps -g @typescript-eslint/parser@latest
+        npx install-peerdeps -g @typescript-eslint/eslint-plugin@latest
+        npx install-peerdeps -g eslint-config-airbnb-base@latest
+        npx install-peerdeps -g eslint-config-prettier@latest
+        npx install-peerdeps -g eslint-plugin-flowtype@latest
+        npx install-peerdeps -g eslint-plugin-import@latest
+        npx install-peerdeps -g eslint-plugin-jest@latest
+        npx install-peerdeps -g eslint-plugin-jsx-a11y@latest
+        npx install-peerdeps -g eslint-plugin-node@latest
+        npx install-peerdeps -g eslint-plugin-prettier@latest
+        npx install-peerdeps -g eslint-plugin-react-hooks@latest
+        npx install-peerdeps -g eslint-plugin-react@latest
+        npx install-peerdeps -g eslint-plugin-unicorn@latest
         yarn-update_ &
         return 0
 
     }
+
+    #     /home/luxcium/.fnm/node-versions/v12.18.2/installation/lib
+    # ├── @typescript-eslint/parser@3.6.1
+    # ├── UNMET PEER DEPENDENCY eslint@^5.0.0 || ^6.0.0 || ^7.0.0
+    # ├── npm@6.14.6
+    # ├── pnpm@5.4.0
+    # └── yarn@1.22.4
+
+    # npm ERR! peer dep missing: eslint@^5.0.0 || ^6.0.0 || ^7.0.0, required by @typescript-eslint/parser@3.6.1
+    # npm ERR! peer dep missing: eslint@*, required by @typescript-eslint/experimental-utils@3.6.1
+    # npm ERR! peer dep missing: typescript@>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta, required by tsutils@3.17.1
+    # yarn global v1.22.4
+    # info "create-react-app@3.4.1" has binaries:
+    #    - create-react-app
+    # info "eslint@7.5.0" has binaries:
+    #    - eslint
+    # info "eslint-config-prettier@6.11.0" has binaries:
+    #    - eslint-config-prettier-check
+    # info "install-peerdeps@2.0.3" has binaries:
+    #    - install-peerdeps
+    # info "npm@6.14.6" has binaries:
+    #    - npm
+    #    - npx
+    # info "pnpm@5.4.0" has binaries:
+    #    - pnpm
+    #    - pnpx
+    # info "prettier@2.0.5" has binaries:
+    #    - prettier
+    # info "serve@11.3.2" has binaries:
+    #    - serve
+    # info "shelljs@0.8.4" has binaries:
+    #    - shjs
+    # info "shx@0.3.2" has binaries:
+    #    - shx
+    # info "ts-node@8.10.2" has binaries:
+    #    - ts-node
+    #    - ts-script
+    #    - ts-node-script
+    #    - ts-node-transpile-only
+    # info "typescript@3.9.7" has binaries:
+    #    - tsc
+    #    - tsserver
+    # info "yarn@1.22.4" has binaries:
+    #    - yarn
+    #    - yarnpkg
+    # Done in 0.48s.
+
     function tsu() {
         yarn add -D yarn@latest &&
             yarn add -D eslint@latest typescript@latest ts-node@latest @types/node@latest &
@@ -670,7 +717,7 @@ function load_functions_definitions() {
         compute_path
         # load_autocomplete
         echo "${BEGIN_FUNCTION} $(timer_now) 'source_load_all()' ${END_FUNCTION}"
-        source "${ZSH_FUNCTIONS_FOLDER}/getportablecode.sh"
+        # source "${ZSH_FUNCTIONS_FOLDER}/getportablecode.sh"
 
     }
 }

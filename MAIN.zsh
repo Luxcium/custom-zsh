@@ -81,7 +81,6 @@ function load_zshenv() {
 
 	## load_functions_now
 	load_ "${ZSH_SOURCES}/functions.zsh" "load_functions_definitions"
-	echo "${ZSH_FUNCTIONS_FOLDER}/getportablecode.sh"
 	source "${ZSH_FUNCTIONS_FOLDER}/getportablecode.sh"
 
 	## load_aliases_now
