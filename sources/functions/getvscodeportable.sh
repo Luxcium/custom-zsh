@@ -1,4 +1,26 @@
-function getportablecode() {
+#$ LUXCIUM LICENSE *NO* PERMISSION GRANTED - PROVIDED "AS IS" - WITHOUT WARRANTY
+#$
+#% Copyright © 2020 - LUXCIUM† (Benjamin Vincent Kasapoglu) <luxcium@neb401.com>
+#%
+#% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ALL KIND, EXPRESS OR
+#% IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#% FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+#% AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ALL CLAIM, DAMAGES OR OTHER
+#% LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#% OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+#% SOFTWARE.
+#&
+#& *NO* PERMISSION ARE GRANTED. NOT TO PUBLISH, NOT TO DISTRIBUTE, NOT TO
+#& SUBLICENSE, AND/OR NOT TO SELL COPIES OF THE SOFTWARE.
+#& YOU MAY USE IT ONLY FOR YOURSELF AND YOU HAVE THE RIGHT TO: DISTRIBUTE TO
+#& YOUR FRIENDS, TO YOUR STUDENTS, OR TO YOU COWORKER FOR PERSONAL USE AT HOME
+#& AT SCHOOL OR AT WORK.
+#&
+#& IN ANY CASES THE COPYRIGHT AND NOTICE ABOVE MUST BE INCLUDED.
+#$
+#$ Scientia es lux principium✨ ™
+
+function getvscodeportable() {
   (
 
     ## CONSTANTS
@@ -11,15 +33,21 @@ function getportablecode() {
       VSCODESHORTPATH_INSIDERS='code-insiders'
       VSCODERPM="${VSCODEURL_STABLE_RPM}"
       VSCODESHORTPATH="${VSCODESHORTPATH_STABLE}"
+      VSINSIDERSCHANNEL='INSIDERS'
+      VSCODESTABLECHANNEL='STABLEVS'
     }
 
     ## CUSTOM VARIABLES
     {
-      vsbranch="${1}" # 'STABLE' or 'INSIDERS'
-      echo "vsbranch=${1}"
-      if [[ vsbranch = 'INSIDERS' ]]; then
+      # VSCHANNEL="${1}" # 'STABLE' or 'INSIDERS'
+      if [[ "${1}" = 'INSIDERS' ]]; then
+        VSCHANNEL="${VSINSIDERSCHANNEL}"
         VSCODERPM="${VSCODEURL_INSIDERS_RPM}"
         VSCODESHORTPATH="${VSCODESHORTPATH_INSIDERS}"
+      else
+        VSCHANNEL="${VSCODESTABLECHANNEL}"
+        VSCODERPM="${VSCODEURL_STABLE_RPM}"
+        VSCODESHORTPATH="${VSCODESHORTPATH_STABLE}"
       fi
     }
 
@@ -41,10 +69,10 @@ function getportablecode() {
 
     ## INTERNAL VARIABLES
     {
-      myUXIDlong="$(luxid)" || return 1
-      WORKING_LOCATION="/tmp/LXCM-vscode-${vsbranch}-${myUXIDlong}" || return 1
+      myUXIDlong="$(date +%s)-$(luxid)" || return 1
+      WORKING_LOCATION="$(echo LXCM-vscode-${VSCHANNEL}-${myUXIDlong} | tr \[a-z\] \[A-Z\])" || return 1
+      WORKING_LOCATION="/tmp/${WORKING_LOCATION}"
       DOWNLOAD_LOCATION="${WORKING_LOCATION}/download" || return 1
-
       sudo nice -n -35 ionice -c 1 -n 1 mkdir -p "${DOWNLOAD_LOCATION}" || return 1
       sudo nice -n -35 ionice -c 1 -n 1 chown -R $(whoami) "${WORKING_LOCATION}" || return 1
     }
@@ -53,9 +81,9 @@ function getportablecode() {
     {
       cd ${DOWNLOAD_LOCATION}
 
-      echo -e "\n >    download ${vsbranch}.rpm from microsoft server"
+      echo -e "\n >    download ${VSCHANNEL}.x86_64.rpm from microsoft server"
       sudo nice -n -35 ionice -c 1 -n 1 curl -O -L -J -S# "${VSCODERPM}" || return 1
-      myUXIDshort="${vsbranch}-$(date +%s)-${myUXIDlong:7:11}L" || return 1
+      myUXIDshort="${VSCHANNEL}-$(date +%s)-${myUXIDlong:7:11}L" || return 1
 
       cd ${WORKING_LOCATION}
       for f in $(ls ${DOWNLOAD_LOCATION}/*code*.x86_64.rpm); do
@@ -66,9 +94,13 @@ function getportablecode() {
 
     ## CREATING THE PORTABLE VERSION
     {
-      cp -r "/etc/vscode-portable/vs-${VSCODESHORTPATH}/" "${WORKING_LOCATION}" || return 1
-      echo "/etc/vscode-portable/vs-${VSCODESHORTPATH}/"
-      mv "${WORKING_LOCATION}/usr/share/${VSCODESHORTPATH}" "${WORKING_LOCATION}/${VSCODESHORTPATH}" || return 1
+      if [[ -d "/etc/vscode-portable/vs-${VSCODESHORTPATH}/" ]]; then
+        cp -r "/etc/vscode-portable/vs-${VSCODESHORTPATH}/" "${WORKING_LOCATION}" || return 1
+      else
+        mkdir -p "${WORKING_LOCATION}/vs-${VSCODESHORTPATH}/" || return 1
+      fi
+
+      mv "${WORKING_LOCATION}/usr/share/${VSCODESHORTPATH}" "${WORKING_LOCATION}/tmp-${VSCODESHORTPATH}" || return 1
       mkdir -p "${WORKING_LOCATION}/vs-${VSCODESHORTPATH}/completions/" || return 1
 
       # cp -r "${WORKING_LOCATION}/usr/share/zsh/site-functions/" "${WORKING_LOCATION}/vs-${VSCODESHORTPATH}/completions/zsh/" || return 1
@@ -77,8 +109,8 @@ function getportablecode() {
 
       # cp -r "${WORKING_LOCATION}/usr/share/pixmaps/" "${WORKING_LOCATION}/vs-${VSCODESHORTPATH}/pixmaps/" || return 1
 
-      for f in $(ls "${WORKING_LOCATION}/${VSCODESHORTPATH}"); do
-        mv "${WORKING_LOCATION}/${VSCODESHORTPATH}/$f" "${WORKING_LOCATION}/vs-${VSCODESHORTPATH}/" || return 1
+      for f in $(ls "${WORKING_LOCATION}/tmp-${VSCODESHORTPATH}"); do
+        mv "${WORKING_LOCATION}/tmp-${VSCODESHORTPATH}/$f" "${WORKING_LOCATION}/vs-${VSCODESHORTPATH}/" || return 1
       done
     }
 
@@ -89,7 +121,7 @@ function getportablecode() {
       sudo groupadd "luxcium.io" &>/dev/null
       sudo nice -n -35 ionice -c 1 -n 1 chgrp -R "luxcium.io" "${WORKING_LOCATION}" || return 1
       mv "${WORKING_LOCATION}/vs-${VSCODESHORTPATH}/" "${HOME}/potable-vscode/vs-code_${myUXIDshort}/" || return 1
-      sudo rm -rf "${WORKING_LOCATION}" || return 1
+      # sudo rm -rf "${WORKING_LOCATION}" || return 1
 
     }
 

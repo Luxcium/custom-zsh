@@ -3,7 +3,7 @@ function source_all_zsh() {
 	function activate_normal_prompt() {
 
 		typeset -g ZSH_THEME="../../powerlevel10k/powerlevel10k"
-		. "${POWERLEVEL10K}/powerlevel10k.zsh-theme"
+		source_ "${POWERLEVEL10K}/powerlevel10k.zsh-theme"
 
 	}
 	function activate_instant_prompt() {
@@ -14,8 +14,8 @@ function source_all_zsh() {
 		typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 		typeset -g ZSH_THEME="../../powerlevel10k/powerlevel10k"
 
-		. "${ZSH_SOURCES}/instant-prompt"
-		. "${POWERLEVEL10K}/powerlevel10k.zsh-theme"
+		source_ "${ZSH_SOURCES}/instant-prompt"
+		source_ "${POWERLEVEL10K}/powerlevel10k.zsh-theme"
 
 	}
 
@@ -25,7 +25,7 @@ function source_all_zsh() {
 
 	function load_my_powerlevel10k_now() {
 		## load_my_pl10K_layout_now
-		. "${ZSH_LAYOUTS}/pl10K-Layout.zsh"
+		source_ "${ZSH_LAYOUTS}/pl10K-Layout.zsh"
 		load_my_powerlevel10k
 		pl10k_prompt_on
 
@@ -42,7 +42,7 @@ function source_all_zsh() {
 		source_ "${ZSH_COMPUTE}/path.zsh"
 		## load_path
 		if [ -f "${CACHED_PATH}" ]; then
-			. "${CACHED_PATH}"
+			source_ "${CACHED_PATH}"
 		else
 			compute_path
 		fi
@@ -81,7 +81,8 @@ function load_zshenv() {
 
 	## load_functions_now
 	load_ "${ZSH_SOURCES}/functions.zsh" "load_functions_definitions"
-	source "${ZSH_FUNCTIONS_FOLDER}/getportablecode.sh"
+	source_ "${ZSH_FUNCTIONS_FOLDER}/getportablecode.sh"
+	source_ "${ZSH_FUNCTIONS_FOLDER}/getvscodeportable.sh"
 
 	## load_aliases_now
 	export MY_ALIASES="${CUSTOM_ZSH}/aliases.sh"

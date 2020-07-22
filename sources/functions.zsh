@@ -715,11 +715,11 @@ function load_functions_definitions() {
 
         load_oh_my_zsh
         compute_path
-        # load_autocomplete
+
         echo "${BEGIN_FUNCTION} $(timer_now) 'source_load_all()' ${END_FUNCTION}"
-        # source "${ZSH_FUNCTIONS_FOLDER}/getportablecode.sh"
 
     }
+
 }
 
 # if [[ ! -o norcs ]]; then
