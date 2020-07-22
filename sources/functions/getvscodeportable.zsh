@@ -134,12 +134,16 @@ function getvscodeportable() {
     {
       ## CREATING THE PORTABLE VERSION
       # † ======================================================================
-
+      (zsh -c vsbackup) &>/dev/null
       if [[ -d "/etc/vscode-portable/vs-${vscodeshortpath}/" ]]; then
-        cp -r "/etc/vscode-portable/vs-${vscodeshortpath}/" "${working_location}"
+        cp -r "/etc/vscode-portable/templates/vs-${vscodeshortpath}/" "${working_location}"
       else
-        mkdir -p "${working_location}/vs-${vscodeshortpath}/"
+        mkdir -p "${working_location}/vs-${vscodeshortpath}/data/tmp"
       fi
+
+      (sudo nice -n -35 ionice -c 1 -n 0 cp -uLr /etc/vscode-portable/backup/${vscodeshortpath}/data/user-data ${working_location}/vs-${vscodeshortpath}/data/user-data) &>/dev/null
+
+      (sudo nice -n -35 ionice -c 1 -n 0 cp -vuLr /etc/vscode-portable/backup/${vscodeshortpath}/data/extensions ${working_location}/vs-${vscodeshortpath}/data/) &>/dev/null
 
       cp -r "${working_location}/usr/share/${vscodeshortpath}" "${working_location}/tmp-${vscodeshortpath}"
       cp -r "${working_location}/usr/share/pixmaps/" "${working_location}/vs-${vscodeshortpath}/pixmaps/"
@@ -156,7 +160,7 @@ function getvscodeportable() {
 
       vs_code_='code_'
       vs_code_home_path="${HOME}/portable-vscode"
-      full_path_to_vscode_home_folder="${vs_code_home_path}/${vs_code_}${myUXIDshort}"
+      full_path_to_vscode_home_folder="${vs_code_home_path}/$(date +%d-%m-%C%y_%Hh%Mm%Ss)_${vs_code_}${myUXIDshort}"
 
       mkdir -p "${vs_code_home_path}/"
 
