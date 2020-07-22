@@ -82,7 +82,7 @@ function load_zshenv() {
 	## load_functions_now
 	load_ "${ZSH_SOURCES}/functions.zsh" "load_functions_definitions"
 	source_ "${ZSH_FUNCTIONS_FOLDER}/getportablecode.sh"
-	source_ "${ZSH_FUNCTIONS_FOLDER}/getvscodeportable.sh"
+	source_ "${ZSH_FUNCTIONS_FOLDER}/getvscodeportable.zsh"
 
 	## load_aliases_now
 	export MY_ALIASES="${CUSTOM_ZSH}/aliases.sh"
