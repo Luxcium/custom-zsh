@@ -98,7 +98,6 @@ function load_aliases() {
   alias alsa="atom ${MY_ALIASES}"
   alias alsc="code ${MY_ALIASES}"
   alias als="load_ ${MY_ALIASES} 'load_aliases'"
-  alias alc=alsc
   alias ala=alsa
   alias finder='open .'
   alias allo='echo allo tout le monde'
