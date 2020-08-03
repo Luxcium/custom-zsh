@@ -4,7 +4,16 @@ function fnm_() {
 }
 
 function rbenv_() {
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    export PATH="$HOME/.rbenv/shims:$PATH"
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    export PATH="$HOME/.rbenv/shims:$PATH"
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    export PATH="$HOME/.rbenv/shims:$PATH"
     eval "$(rbenv init -)"
+
 }
 
 function nvm_() {
@@ -46,8 +55,9 @@ function compute_path() {
     add_to_path_ "${HOME}/.rbenv/bin"
     call_ rbenv_
 
-    add_to_path_ "${HOME}/anaconda3/vanadium/bin"
-    add_to_path_ "${HOME}/anaconda3/vanadium/condabin"
+    export MINICONDA3="${HOME}/miniconda3"
+    add_to_path_ "${MINICONDA3}/bin"
+    add_to_path_ "${MINICONDA3}/condabin"
     call_ conda_
 
     add_to_path_ "${DOTNET_ROOT}"

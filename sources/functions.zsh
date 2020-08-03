@@ -212,54 +212,79 @@ function load_functions_definitions() {
     }
 
     function pw() {
-        pwd | lolcat
+        (pwd | lolcat "${@}")
+
     }
 
     function lsf() {
-        echo ''
-        pw
-        colorls --almost-all --gs -f
-        pw
-        echo ''
+        (
+            local mypath="${@:-$(pwd)}"
+            echo ''
+            builtin cd "${mypath}"
+            pw
+            colorls --almost-all --gs -f
+            pw
+            echo ''
+        )
     }
 
     function lsd() {
-        echo ''
-        pw
-        colorls --all -d
-        pw
-        echo ''
+        (
+            local mypath="${@:-$(pwd)}"
+            echo ''
+            builtin cd "${mypath}"
+            pw
+            colorls --all -d
+            pw
+            echo ''
+        )
     }
 
     function ll() {
-        echo ''
-        pw
-        colorls -lA --sd --gs
-        pw
-        echo ''
+        (
+
+            local mypath="${@:-$(pwd)}"
+            echo ''
+            builtin cd "${mypath}"
+            pw
+            colorls -lA --sd --gs
+            pw
+            echo ''
+        )
     }
 
     function lf() {
-        echo ''
-        pw
-        colorls -lA --sf -f
-        pw
-        echo ''
+        (
+            local mypath="${@:-$(pwd)}"
+            echo ''
+            builtin cd "${mypath}"
+            pw
+            colorls -lA --sf -f
+            pw
+            echo ''
+        )
     }
 
     function ld() {
-        echo ''
-        pw
-        colorls -lA --sd -d
-        pw
-        echo ''
+        (
+            local mypath="${@:-$(pwd)}"
+            echo ''
+            builtin cd "${mypath}"
+            pw
+            colorls -lA --sd -d
+            pw
+            echo ''
+        )
     }
 
     function lc() {
-
-        colorls -a --sd --gs -S
-        pw -ta -d 5
-        echo ''
+        (
+            local mypath="${@:-$(pwd)}"
+            builtin cd "${mypath}"
+            colorls -a --sd --gs -S
+            pw -ta -d 20
+            echo ''
+        )
     }
 
     function cls() {
@@ -270,8 +295,9 @@ function load_functions_definitions() {
 
     function cd() {
 
-        builtin cd $@
+        local mypath="${@:-$(pwd)}"
         echo ''
+        builtin cd "${mypath}"
         pw
         colorls -lA --sd -d
         pw
@@ -727,3 +753,23 @@ function load_functions_definitions() {
 #     echo "                    such as setting options> ..."
 # fi
 # }
+
+# yarn global v1.22.4
+# info "eslint@7.5.0" has binaries:
+#    - eslint
+# info "prettier@2.0.5" has binaries:
+#    - prettier
+# info "ts-node@8.10.2" has binaries:
+#    - ts-node
+#    - ts-script
+#    - ts-node-script
+#    - ts-node-transpile-only
+# info "typescript@3.9.7" has binaries:
+#    - tsc
+#    - tsserver
+# info "yarn@1.22.4" has binaries:
+#    - yarn
+#    - yarnpkg
+# Done in 0.15s.
+
+# function npmupdate
