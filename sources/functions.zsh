@@ -655,7 +655,7 @@ function load_functions_definitions() {
     # echo echo_fail "Yes"
     function echo_pass() {
         # echo first argument in green
-        printf "\e[32m✔ ${1}"
+        echo -n "\e[32m✔ ${1}"
         # reset colours back to normal
         printf "\033\e[0m"
     }
@@ -687,9 +687,15 @@ function load_functions_definitions() {
         env echo "  $(echo_if $(program_is_installed tsc))  TypeScript $(env tsc -v)"
         env echo "  $(echo_if $(program_is_installed conda))  $(env conda -V)"
         env echo "  $(echo_if $(program_is_installed python))  $(env python -V)"
+        # env echo "  $(echo_if $(program_is_installed python3))  $(env python3 -V)"
+        # Python2Version=$(echo -n $(python2 -V))
+        # env echo "  $(echo_if $(program_is_installed python2))  ${Python2Version}"
         env echo "  $(echo_if $(program_is_installed rbenv))  $(env rbenv -v)"
         env echo "  $(echo_if $(program_is_installed gem))  gem v$(env gem -v)"
         env echo "  $(echo_if $(program_is_installed ruby))  $(env ruby -v)"
+        env echo "  $(echo_if $(program_is_installed zsh))  $(env zsh --version)"
+        env echo "  $(echo_if $(program_is_installed uname))  Kernel $(env uname -r)"
+        #  uname -r
         # env echo "  $(echo_if $(program_is_installed brew))  $(env command brew -v)"
     }
 

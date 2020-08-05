@@ -27,6 +27,7 @@ function conda_() {
 }
 function compute_path() {
 
+    export MINICONDA3="${HOME}/miniconda3"
     export DOTNET_ROOT="/usr/lib64/dotnet/"
 
     # - ${PATH}
@@ -40,6 +41,8 @@ function compute_path() {
 
     add_to_path_ "/usr/lib64/qt-3.3/bin"
     add_to_path_ "/usr/lib64/ccache"
+
+    add_to_path_ "${HOME}/bin"
 
     add_to_path_ "${HOME}/.config/yarn/global/node_modules/.bin"
     add_to_path_ "${HOME}/.yarn/bin"
@@ -55,14 +58,11 @@ function compute_path() {
     add_to_path_ "${HOME}/.rbenv/bin"
     call_ rbenv_
 
-    export MINICONDA3="${HOME}/miniconda3"
     add_to_path_ "${MINICONDA3}/bin"
     add_to_path_ "${MINICONDA3}/condabin"
     call_ conda_
 
     add_to_path_ "${DOTNET_ROOT}"
-
-    add_to_path_ "${HOME}/bin"
 
     export PATH="${AHMYZSH}/plugins/bin:${PATH}:${AHMYZSH}/core/bin"
 
