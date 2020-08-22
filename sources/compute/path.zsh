@@ -31,6 +31,7 @@ function compute_path() {
     export DOTNET_ROOT="/usr/lib64/dotnet/"
 
     # - ${PATH}
+    export PATH_BAK="${PATH}"
     export PATH="/sbin"
     add_to_path_ "/usr/sbin"
     add_to_path_ "/usr/local/sbin"
@@ -63,6 +64,32 @@ function compute_path() {
     call_ conda_
 
     add_to_path_ "${DOTNET_ROOT}"
+
+    ## Environment Setup
+    #+ -----------------------------------------------------------------------------
+    # The PATH variable needs to include
+    export PATH=/usr/local/cuda-11.0/bin${PATH:+:${PATH}}
+    # Nsight Compute has moved to /opt/nvidia/nsight-compute/ only in rpm/deb
+    # installation method. When using .run installer it is still located under
+    # /usr/local/cuda-11.0/.
+
+    # To add this path to the PATH variable:
+
+    export PATH=/usr/local/cuda-10.2/bin${PATH:+:${PATH}}
+    # In addition, when using the runfile installation method, the LD_LIBRARY_PATH
+    # variable needs to contain /usr/local/cuda-11.0/lib64 on a 64-bit system, or
+    # /usr/local/cuda-11.0/lib on a 32-bit system
+
+    # To change the environment variables for 64-bit operating systems:
+
+    export LD_LIBRARY_PATH=/usr/local/cuda-11.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+    export LD_LIBRARY_PATH=/usr/local/cuda-10.2/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+    # To change the environment variables for 32-bit operating systems:
+
+    # $ export LD_LIBRARY_PATH=/usr/local/cuda-11.0/lib\
+    #                          ${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+    # Note that the above paths change when using a custom install path with the
+    # runfile installation method.
 
     export PATH="${AHMYZSH}/plugins/bin:${PATH}:${AHMYZSH}/core/bin"
 

@@ -53,8 +53,22 @@ alias alt="ls -alGhSvF -rt"
 alias alu="ls -alGhSvF -rut"
 alias alc="ls -alGhSvF -rct"
 
+alias rmout="rm -fr ./out"
+
+alias lxicode="nice -5 /home/luxcium/bin/code-luxcium.io; cd /home/luxcium/dev/vscode-luxcium.io/project/luxcium.io"
 # ---- DNF ---------------------------------------------------------------
 # alias dnfi
 # alias dnfr
 # alias dnfu
 # alias dnfl
+
+alias rdhard="rdfind -deterministic true -followsymlinks true -removeidentinode false -makehardlinks true -deleteduplicates false -outputname 'rdhard-results.txt' ./"
+
+alias rdsoft="rdfind -deterministic true -followsymlinks true -removeidentinode false -makesymlinks true -deleteduplicates false -outputname 'rdsoft-results.txt' ./"
+
+alias rdsoftdry="rdfind -n true -deterministic true -followsymlinks true -removeidentinode false -makesymlinks true -deleteduplicates false -outputname 'rddry-results.txt' ./"
+
+alias rdharddry="rdfind -n true -deterministic true -followsymlinks true -removeidentinode false -makehardlinks true -deleteduplicates false -outputname 'rdhard-results.txt' ./"
+alias apt-get="sudo dnf"
+alias apt="sudo dnf"
+alias dnf="sudo dnf"

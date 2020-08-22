@@ -135,7 +135,7 @@ function load_aliases() {
   alias lxi="cd ${PATH_LXIO_PRJ}/luxcium.io"
   alias lxicd=" mycode ${PATH_LXIO_PRJ}/luxcium.io; lxi;"
   alias lximux="tmux-luxcium"
-  alias lxicode="lxicd; lximux"
+  # alias lxicode="lxicd; lximux"
   alias lxic="lxicd;" # lximux
   # alias lxicode="lxcode; tmux new-session -A -s $LXI_SESSION"
   alias lxikill="tmux kill-session -t $LXI_SESSION"
