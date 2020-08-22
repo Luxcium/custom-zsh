@@ -1,85 +1,105 @@
 function fnm_() {
+    # (rm -f /tmp/fnm-shell*) &>/dev/null
     eval "$(fnm env --multi)"
 }
 
 function rbenv_() {
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    export PATH="$HOME/.rbenv/shims:$PATH"
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    export PATH="$HOME/.rbenv/shims:$PATH"
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    export PATH="$HOME/.rbenv/shims:$PATH"
     eval "$(rbenv init -)"
+
 }
 
-# function call_rbenv_() {
-#     call_ rbenv_
-# }
+function nvm_() {
+    export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+}
 
+function conda_() {
+    load_ "${ZSH_SOURCES}/conda-initialize.zsh" "conda_init"
+
+}
 function compute_path() {
-    export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
-    add_to_path_ "${TMUX_BIN}"
+
+    export MINICONDA3="${HOME}/miniconda3"
+    export DOTNET_ROOT="/usr/lib64/dotnet/"
+
+    # - ${PATH}
+    export PATH_BAK="${PATH}"
+    export PATH="/sbin"
+    add_to_path_ "/usr/sbin"
+    add_to_path_ "/usr/local/sbin"
+
+    add_to_path_ "/bin"
+    add_to_path_ "/usr/bin"
+    add_to_path_ "/usr/local/bin"
+
+    add_to_path_ "/usr/lib64/qt-3.3/bin"
+    add_to_path_ "/usr/lib64/ccache"
+
+    add_to_path_ "${HOME}/bin"
+
+    add_to_path_ "${HOME}/.config/yarn/global/node_modules/.bin"
+    add_to_path_ "${HOME}/.yarn/bin"
+
+    add_to_path_ "${AHMYZSH_BIN}"
     add_to_path_ "${ZSH_BIN}"
-    # /bin
-    # FNM
+    add_to_path_ "${TMUX_BIN}"
+
+    add_to_path_ "${HOME}/.local/bin"
+    add_to_path_ "${HOME}/.fnm"
     call_ fnm_
 
-    #  HOME=$HOMEtemp
-    # call_rbenv_
+    add_to_path_ "${HOME}/.rbenv/bin"
     call_ rbenv_
 
-    if [ "$WITH_ANACONDA" = 'true' ]; then
-        load_ "${ZSH_SOURCES}/conda-initialize.zsh" "conda_init"
-    fi
+    add_to_path_ "${MINICONDA3}/bin"
+    add_to_path_ "${MINICONDA3}/condabin"
+    call_ conda_
 
-    if [ "$GNU_COREUTILS" = 'true' ]; then
-        add_to_path_ "/usr/local/opt/coreutils/libexec/gnubin"
-        add_to_path_ "/usr/local/opt/apr-util/bin"
-        add_to_path_ "/usr/local/opt/apr/bin"
-        add_to_path_ "/usr/local/opt/binutils/bin"
-        add_to_path_ "/usr/local/opt/ed/libexec/gnubin"
-        add_to_path_ "/usr/local/opt/file-formula/bin"
-        add_to_path_ "/usr/local/opt/findutils/libexec/gnubin"
-        add_to_path_ "/usr/local/opt/gnu-getopt/bin"
-        add_to_path_ "/usr/local/opt/gnu-indent/libexec/gnubin"
-        add_to_path_ "/usr/local/opt/gnu-sed/libexec/gnubin"
-        add_to_path_ "/usr/local/opt/gnu-tar/libexec/gnubin"
-        add_to_path_ "/usr/local/opt/gnu-which/libexec/gnubin"
-        add_to_path_ "/usr/local/opt/grep/libexec/gnubin"
-        add_to_path_ "/usr/local/opt/m4/bin"
-        add_to_path_ "/usr/local/opt/make/libexec/gnubin"
-        add_to_path_ "/usr/local/opt/qt/bin"
-        add_to_path_ "/usr/local/opt/sqlite/bin"
-        add_to_path_ "/usr/local/opt/sqlite/lib/pkgconfig"
-        add_to_path_ "/usr/local/opt/unzip/bin"
-    fi
+    add_to_path_ "${DOTNET_ROOT}"
 
-    add_to_path_ "/usr/local/opt/ncurses/bin"
-    add_to_path_ "${HOME}/.yarn/bin:${HOME}/.config/yarn/global/node_modules/.bin"
-    add_to_path_ "${HOME}/perl5/bin"
-    add_to_path_ "/opt/X11/bin"
-    add_to_path_ "/usr/local/MacGPG2/bin"
-    add_to_path_ "/usr/local/share/dotnet"
-    add_to_path_ "/usr/local/opt/gettext/bin"
-    add_to_path_ "${HOME}/.dotnet/tools"
-    add_to_path_ "/usr/local/share/zsh/site-functions"
-    add_to_path_ "${HOME}/.local/bin"
+    ## Environment Setup
+    #+ -----------------------------------------------------------------------------
+    # The PATH variable needs to include
+    export PATH=/usr/local/cuda-11.0/bin${PATH:+:${PATH}}
+    # Nsight Compute has moved to /opt/nvidia/nsight-compute/ only in rpm/deb
+    # installation method. When using .run installer it is still located under
+    # /usr/local/cuda-11.0/.
 
-    # call_ eval $(docker-machine env default)
+    # To add this path to the PATH variable:
 
-    echo "PATH=\"$PATH\"" >$HOME/.cache/path.env
+    export PATH=/usr/local/cuda-10.2/bin${PATH:+:${PATH}}
+    # In addition, when using the runfile installation method, the LD_LIBRARY_PATH
+    # variable needs to contain /usr/local/cuda-11.0/lib64 on a 64-bit system, or
+    # /usr/local/cuda-11.0/lib on a 32-bit system
 
-    export PATH
+    # To change the environment variables for 64-bit operating systems:
 
+    export LD_LIBRARY_PATH=/usr/local/cuda-11.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+    export LD_LIBRARY_PATH=/usr/local/cuda-10.2/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+    # To change the environment variables for 32-bit operating systems:
+
+    # $ export LD_LIBRARY_PATH=/usr/local/cuda-11.0/lib\
+    #                          ${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+    # Note that the above paths change when using a custom install path with the
+    # runfile installation method.
+
+    export PATH="${AHMYZSH}/plugins/bin:${PATH}:${AHMYZSH}/core/bin"
+
+    echo "PATH=\"$PATH\"" >${CACHED_PATH}
 }
+# if [ "$WITH_ANACONDA" = 'true' ]; then
+# fi
 
-function gnu_coreutils() {
-    if [ "$SHOW_LOAD_CUTLS" = 'true' ]; then
-        if [ "$GNU_COREUTILS" != 'true' ]; then
-            (
-                echo -n "\u001b[1G${BYL9K_GNU}$(tput setaf 2) ${COG_ICO}${bold} $(tput setaf 2)GNU/Linux utils are$(tput setaf 1) NOT in function ${BKBK}${normal}${LEFT_TERMINATOR}\n"
-            )
-        fi
-        if [ "$GNU_COREUTILS" = 'true' ]; then
-            (
-                # echo -n "${CLRLN}${normal}${BYL9K_GNU}$(tput setaf 2) ${COG_ICO}${bold} $(tput setaf 2)GNU/Linux utils$(tput setaf 2) are in function ${BKBK}${normal}${LEFT_TERMINATOR}\n"
-                echo -n "\u001b[1G${BYL9K_GNU}$(tput setaf 2) ${COG_ICO}${bold} $(tput setaf 2)GNU/Linux utils$(tput setaf 2) are in function ${BKBK}${normal}${LEFT_TERMINATOR}\n"
-            )
-        fi
-        SHOW_LOAD_CUTLS="false"
-    fi
-}
+# add_to_path_ "/usr/local/opt/ncurses/bin"
+# add_to_path_ "${HOME}/perl5/bin"
+# add_to_path_ "/usr/local/opt/gettext/bin"
+# add_to_path_ "/usr/local/share/zsh/site-functions"
+# add_to_path_ "/home/luxcium/.nvm/versions/node/v14.4.0/bin"

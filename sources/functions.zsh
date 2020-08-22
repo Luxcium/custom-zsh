@@ -1,5 +1,15 @@
 function load_functions_definitions() {
+    function dnfl() {
+        sudo dnf list "*${@}*"
+    }
 
+    function dnfr() {
+        sudo dnf remove "*${@}*"
+    }
+
+    function dnfi() {
+        sudo dnf install "*${@}*"
+    }
     function cdir() {
         mkdir -p -- "$1" &&
             cd -P -- "$1"
@@ -107,23 +117,70 @@ function load_functions_definitions() {
     }
 
     function eslint_global() {
-        install-peerdeps -Y -g @typescript-eslint/parser@latest
-        install-peerdeps -Y -g @typescript-eslint/eslint-plugin@latest
-        install-peerdeps -Y -g eslint-config-airbnb-base@latest
-        install-peerdeps -Y -g eslint-config-prettier@latest
-        install-peerdeps -Y -g eslint-plugin-flowtype@latest
-        install-peerdeps -Y -g eslint-plugin-import@latest
-        install-peerdeps -Y -g eslint-plugin-jest@latest
-        install-peerdeps -Y -g eslint-plugin-jsx-a11y@latest
-        install-peerdeps -Y -g eslint-plugin-node@latest
-        install-peerdeps -Y -g eslint-plugin-prettier@latest
-        install-peerdeps -Y -g eslint-plugin-react-hooks@latest
-        install-peerdeps -Y -g eslint-plugin-react@latest
-        install-peerdeps -Y -g eslint-plugin-unicorn@latest
+        npx install-peerdeps -g @typescript-eslint/parser@latest
+        npx install-peerdeps -g @typescript-eslint/eslint-plugin@latest
+        npx install-peerdeps -g eslint-config-airbnb-base@latest
+        npx install-peerdeps -g eslint-config-prettier@latest
+        npx install-peerdeps -g eslint-plugin-flowtype@latest
+        npx install-peerdeps -g eslint-plugin-import@latest
+        npx install-peerdeps -g eslint-plugin-jest@latest
+        npx install-peerdeps -g eslint-plugin-jsx-a11y@latest
+        npx install-peerdeps -g eslint-plugin-node@latest
+        npx install-peerdeps -g eslint-plugin-prettier@latest
+        npx install-peerdeps -g eslint-plugin-react-hooks@latest
+        npx install-peerdeps -g eslint-plugin-react@latest
+        npx install-peerdeps -g eslint-plugin-unicorn@latest
         yarn-update_ &
         return 0
 
     }
+
+    #     /home/luxcium/.fnm/node-versions/v12.18.2/installation/lib
+    # ├── @typescript-eslint/parser@3.6.1
+    # ├── UNMET PEER DEPENDENCY eslint@^5.0.0 || ^6.0.0 || ^7.0.0
+    # ├── npm@6.14.6
+    # ├── pnpm@5.4.0
+    # └── yarn@1.22.4
+
+    # npm ERR! peer dep missing: eslint@^5.0.0 || ^6.0.0 || ^7.0.0, required by @typescript-eslint/parser@3.6.1
+    # npm ERR! peer dep missing: eslint@*, required by @typescript-eslint/experimental-utils@3.6.1
+    # npm ERR! peer dep missing: typescript@>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta, required by tsutils@3.17.1
+    # yarn global v1.22.4
+    # info "create-react-app@3.4.1" has binaries:
+    #    - create-react-app
+    # info "eslint@7.5.0" has binaries:
+    #    - eslint
+    # info "eslint-config-prettier@6.11.0" has binaries:
+    #    - eslint-config-prettier-check
+    # info "install-peerdeps@2.0.3" has binaries:
+    #    - install-peerdeps
+    # info "npm@6.14.6" has binaries:
+    #    - npm
+    #    - npx
+    # info "pnpm@5.4.0" has binaries:
+    #    - pnpm
+    #    - pnpx
+    # info "prettier@2.0.5" has binaries:
+    #    - prettier
+    # info "serve@11.3.2" has binaries:
+    #    - serve
+    # info "shelljs@0.8.4" has binaries:
+    #    - shjs
+    # info "shx@0.3.2" has binaries:
+    #    - shx
+    # info "ts-node@8.10.2" has binaries:
+    #    - ts-node
+    #    - ts-script
+    #    - ts-node-script
+    #    - ts-node-transpile-only
+    # info "typescript@3.9.7" has binaries:
+    #    - tsc
+    #    - tsserver
+    # info "yarn@1.22.4" has binaries:
+    #    - yarn
+    #    - yarnpkg
+    # Done in 0.48s.
+
     function tsu() {
         yarn add -D yarn@latest &&
             yarn add -D eslint@latest typescript@latest ts-node@latest @types/node@latest &
@@ -155,54 +212,79 @@ function load_functions_definitions() {
     }
 
     function pw() {
-        pwd | lolcat
+        (pwd | lolcat "${@}")
+
     }
 
     function lsf() {
-        echo ''
-        pw
-        colorls --almost-all --gs -f
-        pw
-        echo ''
+        (
+            local mypath="${@:-$(pwd)}"
+            echo ''
+            builtin cd "${mypath}"
+            pw
+            colorls --almost-all --gs -f
+            pw
+            echo ''
+        )
     }
 
     function lsd() {
-        echo ''
-        pw
-        colorls --all -d
-        pw
-        echo ''
+        (
+            local mypath="${@:-$(pwd)}"
+            echo ''
+            builtin cd "${mypath}"
+            pw
+            colorls --all -d
+            pw
+            echo ''
+        )
     }
 
     function ll() {
-        echo ''
-        pw
-        colorls -lA --sd --gs
-        pw
-        echo ''
+        (
+
+            local mypath="${@:-$(pwd)}"
+            echo ''
+            builtin cd "${mypath}"
+            pw
+            colorls -lA --sd --gs
+            pw
+            echo ''
+        )
     }
 
     function lf() {
-        echo ''
-        pw
-        colorls -lA --sf -f
-        pw
-        echo ''
+        (
+            local mypath="${@:-$(pwd)}"
+            echo ''
+            builtin cd "${mypath}"
+            pw
+            colorls -lA --sf -f
+            pw
+            echo ''
+        )
     }
 
     function ld() {
-        echo ''
-        pw
-        colorls -lA --sd -d
-        pw
-        echo ''
+        (
+            local mypath="${@:-$(pwd)}"
+            echo ''
+            builtin cd "${mypath}"
+            pw
+            colorls -lA --sd -d
+            pw
+            echo ''
+        )
     }
 
     function lc() {
-
-        colorls -a --sd --gs -S
-        pw -ta -d 5
-        echo ''
+        (
+            local mypath="${@:-$(pwd)}"
+            builtin cd "${mypath}"
+            colorls -a --sd --gs -S
+            pw -ta -d 20
+            echo ''
+        )
     }
 
     function cls() {
@@ -213,8 +295,9 @@ function load_functions_definitions() {
 
     function cd() {
 
-        builtin cd $@
+        local mypath="${@:-$(pwd)}"
         echo ''
+        builtin cd "${mypath}"
         pw
         colorls -lA --sd -d
         pw
@@ -572,7 +655,7 @@ function load_functions_definitions() {
     # echo echo_fail "Yes"
     function echo_pass() {
         # echo first argument in green
-        printf "\e[32m✔ ${1}"
+        echo -n "\e[32m✔ ${1}"
         # reset colours back to normal
         printf "\033\e[0m"
     }
@@ -594,20 +677,26 @@ function load_functions_definitions() {
     # command line programs
     function versions() {
         printf "\033\e[0m"
-        env echo "  $(echo_if $(program_is_installed node))  node $(env node -v)"
-        env echo "  $(echo_if $(program_is_installed npm))  npm v$(env npm -v)"
-        env echo "  $(echo_if $(program_is_installed fnm))  fnm v$(env fnm -v)"
-        env echo "  $(echo_if $(program_is_installed yarn))  yarn v$(env yarn -v)"
-        env echo "  $(echo_if $(program_is_installed pnpm))  pnpm v$(env pnpm -v)"
+        env echo "  $(echo_if $(program_is_installed node))  Node $(env node -v)"
+        env echo "  $(echo_if $(program_is_installed npm))  NPM v$(env npm -v)"
+        env echo "  $(echo_if $(program_is_installed fnm))  FNM v$(env fnm -v)"
+        env echo "  $(echo_if $(program_is_installed yarn))  Yarn v$(env yarn -v)"
+        env echo "  $(echo_if $(program_is_installed pnpm))  PNPM v$(env pnpm -v)"
         env echo "  $(echo_if $(program_is_installed tmux))  $(env tmux -V)"
         env echo "  $(echo_if $(program_is_installed eslint))  eslint $(env eslint -v)"
         env echo "  $(echo_if $(program_is_installed tsc))  TypeScript $(env tsc -v)"
         env echo "  $(echo_if $(program_is_installed conda))  $(env conda -V)"
         env echo "  $(echo_if $(program_is_installed python))  $(env python -V)"
+        # env echo "  $(echo_if $(program_is_installed python3))  $(env python3 -V)"
+        # Python2Version=$(echo -n $(python2 -V))
+        # env echo "  $(echo_if $(program_is_installed python2))  ${Python2Version}"
         env echo "  $(echo_if $(program_is_installed rbenv))  $(env rbenv -v)"
         env echo "  $(echo_if $(program_is_installed gem))  gem v$(env gem -v)"
         env echo "  $(echo_if $(program_is_installed ruby))  $(env ruby -v)"
-        env echo "  $(echo_if $(program_is_installed brew))  $(env command brew -v)"
+        env echo "  $(echo_if $(program_is_installed zsh))  $(env zsh --version)"
+        env echo "  $(echo_if $(program_is_installed uname))  Kernel $(env uname -r)"
+        #  uname -r
+        # env echo "  $(echo_if $(program_is_installed brew))  $(env command brew -v)"
     }
 
     # echo "gulp    $(echo_if $(program_is_installed gulp))  "
@@ -624,7 +713,7 @@ function load_functions_definitions() {
     function zsh_version() {
         local ZSH_X=$(echo $0)
         local ZSH_V=$($(echo "${ZSH_X/'-'/}" --version))
-        export MY_ZSH_VERSION=" ${TERM_ICO}  ${ZSH_V%%' (x86'*}"
+        export MY_ZSH_VERSION=" ${TERM_ICO}  ${ZSH_V%%' (x86)'*}"
         echo "${normal}$CLRLN$BYL9K_TERM$(tput setaf 2)${MY_ZSH_VERSION} ${BKBK}${normal}"
     }
 
@@ -635,19 +724,19 @@ function load_functions_definitions() {
     }
 
     function source_load_all_() {
-        TIMER_THEN=$(/usr/local/bin/gdate +%s%N)
+        TIMER_THEN=$(/usr/bin/date +%s%N)
 
         AHMYZSH="${HOME}/ahmyzsh"
 
         . "${AHMYZSH}/initial_load.zsh"
 
-        . "${AHMYZSH}/paths.sh"
+        . "${AH_LIBRARIES}/paths.sh"
 
         . "${CUSTOM_ZSH}/notice.sh"
 
         init_paths
 
-        source_all
+        source_all_zsh
         load_fab_four
 
         source_TMUX
@@ -658,10 +747,11 @@ function load_functions_definitions() {
 
         load_oh_my_zsh
         compute_path
-        # load_autocomplete
+
         echo "${BEGIN_FUNCTION} $(timer_now) 'source_load_all()' ${END_FUNCTION}"
 
     }
+
 }
 
 # if [[ ! -o norcs ]]; then
@@ -669,3 +759,23 @@ function load_functions_definitions() {
 #     echo "                    such as setting options> ..."
 # fi
 # }
+
+# yarn global v1.22.4
+# info "eslint@7.5.0" has binaries:
+#    - eslint
+# info "prettier@2.0.5" has binaries:
+#    - prettier
+# info "ts-node@8.10.2" has binaries:
+#    - ts-node
+#    - ts-script
+#    - ts-node-script
+#    - ts-node-transpile-only
+# info "typescript@3.9.7" has binaries:
+#    - tsc
+#    - tsserver
+# info "yarn@1.22.4" has binaries:
+#    - yarn
+#    - yarnpkg
+# Done in 0.15s.
+
+# function npmupdate

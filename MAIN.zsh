@@ -1,5 +1,11 @@
-function source_all() {
+function source_all_zsh() {
 
+	function activate_normal_prompt() {
+
+		typeset -g ZSH_THEME="../../powerlevel10k/powerlevel10k"
+		source_ "${POWERLEVEL10K}/powerlevel10k.zsh-theme"
+
+	}
 	function activate_instant_prompt() {
 		# # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 		# # Initialization code that may require console input (password prompts, [y/n]
@@ -8,13 +14,8 @@ function source_all() {
 		typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 		typeset -g ZSH_THEME="../../powerlevel10k/powerlevel10k"
 
-		hardcls
-		# clear
-		# echo ${BBCOLR} toto
-
-		echo -n "${CLRLN}${normal}${BYL9K_GNU}$(tput setaf 2) ${COG_ICO}${bold} $(tput setaf 2)GNU/Linux utils$(tput setaf 2) are ... ${BKBK}${normal}${LEFT_TERMINATOR}\n"
-		. "${ZSH_SOURCES}/instant-prompt"
-		. "${POWERLEVEL10K}/powerlevel10k.zsh-theme"
+		source_ "${ZSH_SOURCES}/instant-prompt"
+		source_ "${POWERLEVEL10K}/powerlevel10k.zsh-theme"
 
 	}
 
@@ -24,7 +25,7 @@ function source_all() {
 
 	function load_my_powerlevel10k_now() {
 		## load_my_pl10K_layout_now
-		. "${ZSH_LAYOUTS}/pl10K-Layout.zsh"
+		source_ "${ZSH_LAYOUTS}/pl10K-Layout.zsh"
 		load_my_powerlevel10k
 		pl10k_prompt_on
 
@@ -40,17 +41,19 @@ function source_all() {
 		## source_ path.zsh
 		source_ "${ZSH_COMPUTE}/path.zsh"
 		## load_path
-		. $HOME/.cache/path.env
+		if [ -f "${CACHED_PATH}" ]; then
+			source_ "${CACHED_PATH}"
+		else
+			compute_path
+		fi
 	}
 
 	function load_autocomplete_now() {
 		load_ "${ZSH_COMPLETION}/autocomplete.sh" "load_autocomplete"
 		call_ npm_completion
+		source_ "/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+		source_ "/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
-		# Load Zsh tools for syntax highlighting and autosuggestions
-		export HOMEBREW_FOLDER="/usr/local/share"
-		source_ "${HOMEBREW_FOLDER}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-		source_ "${HOMEBREW_FOLDER}/zsh-autosuggestions/zsh-autosuggestions.zsh"
 	}
 
 	function source_powerline_now() {
@@ -71,83 +74,81 @@ function source_all() {
 }
 
 function load_zshenv() {
-	# 	#$ Interactive,Script,login,non-login
-
-	## load_options_now
-	load_ "${ZSH_SOURCES}/options.zsh" "load_options"
-
-	## load_my_pl10K_layout_now
-	# call_ source_prompt
+	#   #$ Interactive,Script,login,non-login
 
 	## load_path_now
 	call_ load_path
+
+	## load_functions_now
+	load_ "${ZSH_SOURCES}/functions.zsh" "load_functions_definitions"
+	source_ "${ZSH_FUNCTIONS_FOLDER}/getportablecode.sh"
+	source_ "${ZSH_FUNCTIONS_FOLDER}/getvscodeportable.zsh"
 
 	## load_aliases_now
 	export MY_ALIASES="${CUSTOM_ZSH}/aliases.sh"
 	load_ "${MY_ALIASES}" "load_aliases"
 
-	## load_functions_now
-	load_ "${ZSH_SOURCES}/functions.zsh" "load_functions_definitions"
-
 	[ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_HOURGLASS_END_1} load_zshenv in $(timer_all) ms !${END_FUNCTION}"
 }
 
 function load_zshrc() {
-	# 	#$ Interactive,login,non-login
-	# load_path
+	#   #$ Interactive,login,non-login
 
 	load_my_powerlevel10k_now
 	activate_instant_prompt
-	load_oh_my_zsh_now
-	load_autocomplete_now
+	# activate_normal_prompt
 
 	if [ "${PARENT_ENV_LOADED}" != 'true' ]; then
 		compute_path
 	fi
 
+	load_ "${ZSH_SOURCES}/options-list.zsh" "load_options_list"
+	load_ "${ZSH_SOURCES}/options.zsh" "load_options"
+
+	# https://github.com/zsh-users/zsh-autosuggestions#configuration
+	ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#677787"
+
+	# https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters.md
+	ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
+
+	zle_highlight=(region:standout special:standout
+		suffix:bold isearch:underline paste:none)
+
+	load_autocomplete_now
+	load_oh_my_zsh_now
+
+	export PAGER="/usr/bin/most -s"
 }
 
 function precmd() {
 
-	# 	#$ Executed before each prompt. Note that precommandfunctions are not
-	# 	#$ re-executed simply because the command line is redrawn, as happens, for
-	# 	#$ example, when a notification about an exiting job is displayed.
+	#   #$ Executed before each prompt. Note that precommandfunctions are not
+	#   #$ re-executed simply because the command line is redrawn, as happens, for
+	#   #$ example, when a notification about an exiting job is displayed.
 
 	if [ "$ENV_LOADED" != 'true' ]; then
 		export PARENT_ENV_LOADED='true'
 		ENV_LOADED='true'
-		hardcls
-		if [ "${VERBOSA}" -gt 3 ]; then
-			if [ "$GNU_COREUTILS" != 'true' ]; then
-				echo -n "\u001b[1F                                        ${BEGIN_HOURGLASS_END_1} READY in $(timer_all) ms !${END_FUNCTION}"
-			else
-				echo -n "\u001b[1F                                    ${BEGIN_HOURGLASS_END_1} READY in $(timer_all) ms !${END_FUNCTION}"
-			fi
-		else
-			if [ "$GNU_COREUTILS" != 'true' ]; then
-				echo -n "                                        ${BEGIN_HOURGLASS_END_1} READY in $(timer_all) ms !${END_FUNCTION}"
-			else
-				echo -n "                                    ${BEGIN_HOURGLASS_END_1} READY in $(timer_all) ms !${END_FUNCTION}"
-			fi
-		fi
-		. "${ZSH_COMPUTE}/path.zsh"
-		gnu_coreutils
-	else
-		# if [ "${NODE_VERSION}" != "$(cut -d 'v' -f 2 <<<$(node -v))" ]; then
-		# 	call_ compute_pl10k
-		# fi
-	fi
 
+		# . "${ZSH_COMPUTE}/path.zsh"
+
+		# right_prompt_off
+		# hardcls
+		echo -n "${BEGIN_HOURGLASS_END_1} READY in $(timer_all) ms !${END_FUNCTION}"
+		echo -e "\a"
+		echo -n "\u001b[37m   >  $(python -V) \u001b[31m\n"
+		echo -n "\u001b[32m   >  Node: $(node -v) \u001b[31m\n"
+		echo -n "\u001b[31m   >  NPM: $(npm -v) \u001b[31m\n"
+		echo -n "\u001b[33m   >  Yarn: $(yarn -v) \u001b[31m\n"
+		echo -n "\u001b[34m   >  TSC: $(tsc -v) \u001b[31m"
+		echo "\u001b[37m"
+	fi
 }
 
 function load_zlogout() {
-	# [ "${VERBOSA}" = 'true' ] && echo "${BEGIN_FUNCTION} 'load_zlogout()' ${END_FUNCTION}"
-	# 	#$ Interactive,login
-	source_saybye_now
+	#   #$ Interactive,login
 	(compute_path &)
 	(_p9k_dump_instant_prompt &)
-	say_bye_tom
-	hardcls
 }
 
 # |----------------|-----------|-----------|------|
