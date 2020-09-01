@@ -2,6 +2,8 @@ export ALIASES_FOLDER="${CUSTOM_ZSH}/sources/aliases"
 export ALIASES_FEDORA_FOLDER="${ALIASES_FOLDER}/fedora"
 source_ "${ALIASES_FEDORA_FOLDER}/bells.sh"
 source_ "${ALIASES_FOLDER}/aliases.sh"
+source_ "${ALIASES_FOLDER}/for-do.sh"
+source_ "${ALIASES_FOLDER}/dnf.sh"
 ZSH_LOVERS
 
 alias rnd4='echo $(sha224hmac <<< $(date +%s%N) | cut -c -4 | tr \[a-z\] \[A-Z\])'
@@ -56,11 +58,6 @@ alias alc="ls -alGhSvF -rct"
 alias rmout="rm -fr ./out"
 
 alias lxicode="nice -5 /home/luxcium/bin/code-luxcium.io; cd /home/luxcium/dev/vscode-luxcium.io/project/luxcium.io"
-# ---- DNF ---------------------------------------------------------------
-# alias dnfi
-# alias dnfr
-# alias dnfu
-# alias dnfl
 
 alias rdhard="rdfind -deterministic true -followsymlinks true -removeidentinode false -makehardlinks true -deleteduplicates false -outputname 'rdhard-results.txt' ./"
 
@@ -72,3 +69,5 @@ alias rdharddry="rdfind -n true -deterministic true -followsymlinks true -remove
 alias apt-get="sudo dnf"
 alias apt="sudo dnf"
 alias dnf="sudo dnf"
+
+alias ahmyzsh="code ~/ahmyzsh"

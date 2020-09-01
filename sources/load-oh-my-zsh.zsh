@@ -16,8 +16,8 @@ function load_oh_my_zsh() {
     # much, much faster.
     DISABLE_UNTRACKED_FILES_DIRTY="true"
     plugins=(
-        zsh-autosuggestions
-        zsh-syntax-highlighting
+        # zsh-autosuggestions
+        # zsh-syntax-highlighting
         git
         redis-cli
     )
