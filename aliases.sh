@@ -71,3 +71,13 @@ alias apt="sudo dnf"
 alias dnf="sudo dnf"
 
 alias ahmyzsh="code ~/ahmyzsh"
+alias testtext="echo '0OoLl1IiGQgq;&function;=>*const;fi;!@ ( ) [ ] { } « » < > (‽)-?'"
+
+alias wheelr="sudo chgrp -R wheel ./ && sudo chmod -c -R g+r ./"
+alias wheelw="sudo chgrp -R wheel ./ && sudo chmod -c -R g+w ./"
+alias wheelx="sudo chgrp -R wheel ./ && sudo chmod -c -R g+x ./"
+
+alias wheelrw="wheelr;wheelw"
+alias wheelrx="wheelr;wheelx"
+alias wheelwx="wheelw;wheelx"
+alias wheelrwx="wheelr;wheelw;wheelx"
