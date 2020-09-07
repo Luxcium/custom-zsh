@@ -167,7 +167,7 @@ function load_zlogout() {
 # |/etc/zprofile   |    C      |           |      |
 # |~/.zprofile     |    D      |           |      |
 # |/etc/zshrc      |    E      |    C      |      |
-# |~/.zshrc        |    F      |    D      |      | ***
+# |~/.zshrc        |    F      |    D      |      |
 # |/etc/zlogin     |    G      |           |      |
 # |~/.zlogin       |    H      |           |      |
 # |                |           |           |      |
