@@ -43,11 +43,17 @@ function source_all_zsh() {
 		## load_path
 		if [ -f "${CACHED_PATH}" ]; then
 			source_ "${CACHED_PATH}"
+			(compute_path &) >/dev/null
 		else
 			compute_path
 		fi
 	}
 
+	function re_load_path() {
+		load_ "${ZSH_FLAGS}/flg-shortcuts.sh" "init_flags"
+		source_ "${ZSH_COMPUTE}/path.zsh"
+		compute_path
+	}
 	function load_autocomplete_now() {
 		load_ "${ZSH_COMPLETION}/autocomplete.sh" "load_autocomplete"
 		call_ npm_completion
@@ -81,7 +87,7 @@ function load_zshenv() {
 
 	## load_functions_now
 	load_ "${ZSH_SOURCES}/functions.zsh" "load_functions_definitions"
-	source_ "${ZSH_FUNCTIONS_FOLDER}/getportablecode.sh"
+	# source_ "${ZSH_FUNCTIONS_FOLDER}/getportablecode.sh"
 	source_ "${ZSH_FUNCTIONS_FOLDER}/getvscodeportable.zsh"
 
 	## load_aliases_now
@@ -99,7 +105,7 @@ function load_zshrc() {
 	# activate_normal_prompt
 
 	if [ "${PARENT_ENV_LOADED}" != 'true' ]; then
-		compute_path
+		(compute_path &) >/dev/null
 	fi
 
 	load_ "${ZSH_SOURCES}/options-list.zsh" "load_options_list"
@@ -130,31 +136,31 @@ function precmd() {
 		export PARENT_ENV_LOADED='true'
 		ENV_LOADED='true'
 
-		# . "${ZSH_COMPUTE}/path.zsh"
-
-		right_prompt_off
+		# right_prompt_off
 		# hardcls
-		echo -n "\n  ${BEGIN_HOURGLASS_END_1} READY in $(timer_all) ms !${END_FUNCTION}"
+		echo -n "  ${BEGIN_HOURGLASS_END_1} READY in $(timer_all) ms !${END_FUNCTION}"
 		echo -e "\a"
 		echo -n "\e[30m   # >\e[30m\e[31m\n"
 		echo -n "\e[30m   # \e[38;2;55;118;171m>  $(python -V) \u001b[31m\n"
-		echo -n "\e[30m   # >\e[30m\e[31m\n"
+		# echo -n "\e[30m   # >\e[30m\e[31m\n"
 		echo -n "\e[30m   # \e[38;2;51;153;51m>  Node: $(node -v) \u001b[31m\n"
 		echo -n "\e[30m   # \e[38;2;203;56;55m>  NPM: $(npm -v) \u001b[31m\n"
 		echo -n "\e[30m   # \e[38;2;44;142;187m>  Yarn: $(yarn -v) \u001b[31m\n"
 		echo -n "\e[30m   # \e[38;2;0;122;204m>  TSC: $(tsc -v) \u001b[31m\n"
-		echo -n "\e[30m   # >\e[30m\e[31m\n"
+		# echo -n "\e[30m   # >\e[30m\e[31m\n"
 		echo -n "\e[30m   # \e[38;2;252;198;36m>  $(uname): $(uname -r) \u001b[31m\n"
 		echo -n "\e[30m   # \e[37m>  $(zsh --version | grep zsh) \u001b[31m\n"
-		echo -n "\u001b[37m"
+		echo -n "\u001b[37m\n"
 	fi
 }
-# \u001b[38;2;44;142;187m
 
 function load_zlogout() {
 	#   #$ Interactive,login
-	(compute_path &)
-	(_p9k_dump_instant_prompt &)
+	(compute_path &) >/dev/null
+	(_p9k_dump_instant_prompt &) >/dev/null
+	(zsh_compile_all_R &) >/dev/null
+	echo -e "\a"
+	echo "BYE !"
 }
 
 # |----------------|-----------|-----------|------|
