@@ -155,12 +155,14 @@ function precmd() {
 }
 
 function load_zlogout() {
-	#   #$ Interactive,login
-	(compute_path &) >/dev/null
-	(_p9k_dump_instant_prompt &) >/dev/null
-	(zsh_compile_all_R &) >/dev/null
+	##$ Interactive,login
+	compute_path
+	_p9k_dump_instant_prompt
+	zsh_compile_all_R
+	echo -en "\n\e[30m   # \e[38;2;51;153;51m>  BYE !"
+	sleep 1
 	echo -e "\a"
-	echo "BYE !"
+	sleep 0.5
 }
 
 # |----------------|-----------|-----------|------|
