@@ -94,7 +94,7 @@ function load_zshenv() {
 	export MY_ALIASES="${CUSTOM_ZSH}/aliases.sh"
 	load_ "${MY_ALIASES}" "load_aliases"
 
-	[ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_HOURGLASS_END_1} load_zshenv in $(timer_all) ms !${END_FUNCTION}"
+	[ "${VERBOSA}" -gt . ] && echo "${BEGIN_HOURGLASS_END_1} load_zshenv in $(timer_all) ms !${END_FUNCTION}"
 }
 
 function load_zshrc() {
@@ -156,14 +156,37 @@ function precmd() {
 
 function load_zlogout() {
 	##$ Interactive,login
-	compute_path
-	_p9k_dump_instant_prompt
-	zsh_compile_all_R
-	echo -en "\n\e[30m   # \e[38;2;51;153;51m>  BYE !"
-	sleep 1
-	echo -e "\a"
-	sleep 0.5
+	echo -en "\u001b[1A"
+	echo -en "\e[38;2;252;198;36m| . . . . . . B  '102\%' |          \u001b[1000D"
+	sleep 0.1
+	echo -en "\e[38;2;252;198;36m|    . . . . .BY ' 92\%' |          \u001b[1000D"
+	sleep 0.1
+	echo -en "\e[38;2;252;198;36m|    . . . . BYE ' 82\%' |          \u001b[1000D"
+	sleep 0.1
+	echo -en "\e[38;2;252;198;36m|      . . .BYE  ' 78\%' |          \u001b[1000D"
+	_p9k_dump_instant_prompt 2>/dev/null
+	echo -en "\e[38;2;252;198;36m|      . . BYE ! ' 66\%' |          \u001b[1000D"
+	compute_path 2>/dev/null
+	echo -en "\e[38;2;252;198;36m|        .BYE !  ' 54\%' |          \u001b[1000D"
+	zsh_compile_all_R 2>/dev/null
+	echo -en "\e[38;2;252;198;36m|        BYE !   ' 42\%' |          \u001b[1000D"
+	sleep 0.1
+	echo -en "\e[38;2;252;198;36m|       BYE !    ' 32\%' |          \u001b[1000D"
+	sleep 0.1
+	echo -en "\e[38;2;252;198;36m|      BYE !     ' 22\%' |          \u001b[1000D"
+	sleep 0.1
+	echo -en "\e[38;2;252;198;36m|    B YE !      ' 12\%' |          \u001b[1000D"
+	sleep 0.1
+	echo -en "\e[38;2;252;198;36m| Y  E !         ' 12\%' |          \u001b[1000D"
+	sleep 0.1
+	echo -en "\e[38;2;252;198;36m| !              '  2\%' |          \u001b[1000D"
+	sleep 0.1
 }
+#      \u001b[1000D
+# Up: \u001b[{n}A
+# Down: \u001b[{n}B
+# Right: \u001b[{n}C
+# Left: \u001b[{n}D
 
 # |----------------|-----------|-----------|------|
 # |                |Interactive|Interactive|Script|
