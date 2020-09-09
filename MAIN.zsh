@@ -94,7 +94,7 @@ function load_zshenv() {
 	export MY_ALIASES="${CUSTOM_ZSH}/aliases.sh"
 	load_ "${MY_ALIASES}" "load_aliases"
 
-	[ "${VERBOSA}" -gt . ] && echo "${BEGIN_HOURGLASS_END_1} load_zshenv in $(timer_all) ms !${END_FUNCTION}"
+	[ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_HOURGLASS_END_1} load_zshenv in $(timer_all) ms !${END_FUNCTION}"
 }
 
 function load_zshrc() {
@@ -136,7 +136,7 @@ function precmd() {
 		export PARENT_ENV_LOADED='true'
 		ENV_LOADED='true'
 
-		# right_prompt_off
+		right_prompt_off
 		# hardcls
 		echo -n "  ${BEGIN_HOURGLASS_END_1} READY in $(timer_all) ms !${END_FUNCTION}"
 		echo -e "\a"
