@@ -138,9 +138,8 @@ function precmd() {
 
 		right_prompt_off
 		# hardcls
-		echo -n "  ${BEGIN_HOURGLASS_END_1} READY in $(timer_all) ms !${END_FUNCTION}"
-		echo -e "\a"
-		echo -n "\e[30m   # >\e[30m\e[31m\n"
+		echo "  ${BEGIN_HOURGLASS_END_1} READY in $(timer_all) ms !${END_FUNCTION}"
+		# echo -n "\e[30m   # >\e[30m\e[31m\n"
 		echo -n "\e[30m   # \e[38;2;55;118;171m>  $(python -V) \u001b[31m\n"
 		# echo -n "\e[30m   # >\e[30m\e[31m\n"
 		echo -n "\e[30m   # \e[38;2;51;153;51m>  Node: $(node -v) \u001b[31m\n"
@@ -151,36 +150,49 @@ function precmd() {
 		echo -n "\e[30m   # \e[38;2;252;198;36m>  $(uname): $(uname -r) \u001b[31m\n"
 		echo -n "\e[30m   # \e[37m>  $(zsh --version | grep zsh) \u001b[31m\n"
 		echo -n "\u001b[37m\n"
+		echo -e "\a"
 	fi
+	exit
 }
 
 function load_zlogout() {
 	##$ Interactive,login
+	( (_p9k_dump_instant_prompt 2>/dev/null) &) # 0.0310s
+	( (compute_path 2>/dev/null) &)             # 0.3838s
+	( (zsh_compile_all_R 2>/dev/null) &)        # 0.3157s
 	echo -en "\u001b[1A"
-	echo -en "\e[38;2;252;198;36m| . . . . . . B  '102\%' |          \u001b[1000D"
-	sleep 0.1
-	echo -en "\e[38;2;252;198;36m|    . . . . .BY ' 92\%' |          \u001b[1000D"
-	sleep 0.1
-	echo -en "\e[38;2;252;198;36m|    . . . . BYE ' 82\%' |          \u001b[1000D"
-	sleep 0.1
-	echo -en "\e[38;2;252;198;36m|      . . .BYE  ' 78\%' |          \u001b[1000D"
-	_p9k_dump_instant_prompt 2>/dev/null
-	echo -en "\e[38;2;252;198;36m|      . . BYE ! ' 66\%' |          \u001b[1000D"
-	compute_path 2>/dev/null
-	echo -en "\e[38;2;252;198;36m|        .BYE !  ' 54\%' |          \u001b[1000D"
-	zsh_compile_all_R 2>/dev/null
-	echo -en "\e[38;2;252;198;36m|        BYE !   ' 42\%' |          \u001b[1000D"
-	sleep 0.1
-	echo -en "\e[38;2;252;198;36m|       BYE !    ' 32\%' |          \u001b[1000D"
-	sleep 0.1
-	echo -en "\e[38;2;252;198;36m|      BYE !     ' 22\%' |          \u001b[1000D"
-	sleep 0.1
-	echo -en "\e[38;2;252;198;36m|    B YE !      ' 12\%' |          \u001b[1000D"
-	sleep 0.1
-	echo -en "\e[38;2;252;198;36m| Y  E !         ' 12\%' |          \u001b[1000D"
-	sleep 0.1
-	echo -en "\e[38;2;252;198;36m| !              '  2\%' |          \u001b[1000D"
-	sleep 0.1
+	echo -en "\e[38;2;252;198;36m                                    \u001b[1000D"
+	sleep 0.028
+	echo -en "\e[38;2;252;198;36m          B                         \u001b[1000D"
+	sleep 0.028
+	echo -en "\e[38;2;252;198;36m         BY                         \u001b[1000D"
+	sleep 0.028
+	echo -en "\e[38;2;252;198;36m        BYE                         \u001b[1000D"
+	sleep 0.028
+	echo -en "\e[38;2;252;198;36m       BYE                          \u001b[1000D"
+	sleep 0.028
+	echo -en "\e[38;2;252;198;36m      BYE !                         \u001b[1000D"
+	sleep 0.028
+	echo -en "\e[38;2;252;198;36m     BYE !!                         \u001b[1000D"
+	sleep 0.028
+	echo -en "\e[38;2;252;198;36m    BYE !!!                         \u001b[1000D"
+	sleep 0.028
+	echo -en "\e[38;2;252;198;36m   BYE !!!                          \u001b[1000D"
+	sleep 0.028
+	echo -en "\e[38;2;252;198;36m  BYE !!!                           \u001b[1000D"
+	sleep 0.028
+	echo -en "\e[38;2;252;198;36m  YE !!!                            \u001b[1000D"
+	sleep 0.028
+	echo -en "\e[38;2;252;198;36m  E !!!                             \u001b[1000D"
+	sleep 0.028
+	echo -en "\e[38;2;252;198;36m   !!!                              \u001b[1000D"
+	sleep 0.028
+	echo -en "\e[38;2;252;198;36m  !!!                               \u001b[1000D"
+	sleep 0.028
+	echo -en "\e[38;2;252;198;36m  !!                                \u001b[1000D"
+	sleep 0.028
+	echo -en "\e[38;2;252;198;36m  !                               \u001b[1000D\a"
+	sleep 0.028
 }
 #      \u001b[1000D
 # Up: \u001b[{n}A

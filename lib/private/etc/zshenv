@@ -56,7 +56,13 @@ export PATH_ENV_CACHE="${AHMYZSH_CACHE}/path.env"
 #+ LET THERE BE LIGHT "יְהִי אוֹר" ...
 #+ ECHO DELAY TO PATH
 #+ =============================================================================≈
-# 'LET THERE BE LIGHT "יְהִי אוֹר" ... '
+# 'LET THERE BE LIGHT " יְהִי־א֑וֹר "'
+# "Au commencement, Dieu créa le ciel et la terre."
+# "In the beginning of God's creation he created the heavens and the earth."
+# "בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָרֶץ."
+# "Dieu dit: "Que la lumière soit!" Et la lumière fut."
+# "God said, “Let there be light”; and there was light."
+# "וַיֹּאמֶר אֱלֹהִים יְהִי אוֹר וַיְהִי אוֹר."
 if [[ -o interactive ]]; then
   echo "\u001b[1m      רֹוא יִהְי \u001b[0m"
   local TIMER_NOW=$(/usr/bin/date +%s%N)
