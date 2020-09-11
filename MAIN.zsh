@@ -152,7 +152,7 @@ function precmd() {
 		echo -n "\u001b[37m\n"
 		echo -e "\a"
 	fi
-	exit
+	# exit
 }
 
 function load_zlogout() {
