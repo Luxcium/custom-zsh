@@ -39,7 +39,10 @@ function projects_paths() {
 
 function load_aliases() {
 
-  personal_projects_paths
+  # TODO Section: Fix thiss mess :
+  # personal_projects_paths
+  # TODO Section end: Fix thiss mess :
+
   function mkramdir() {
     # LASTVIRTUALRAM
     if [ -d "${MYVIRTUALRAM_PATH}" ]; then
@@ -55,21 +58,6 @@ function load_aliases() {
     # echo "'\$@:' $@, \n'\$1:' $1, \n'\$2:' $2, \n'\$3:' $3, \n'\$4:' $4"
 
   }
-
-  alias dfnupdate="sudo dnf group install -y --refresh custom-environment minimal-environment kde-desktop-environment basic-desktop-environment admin-tools books c-development cloud-infrastructure container-management d-development design-suite development-tools editors education libreoffice  medical network-server neuron-modelling-simulators office text-internet window-managers graphical-internet kde-desktop fonts games hardware-support sound-and-video system-tools; sudo dnf upgrade -y; sudo dnf distro-sync -y; \
-  conda update -q conda -y; conda update -q --all -y; sudo snap refresh"
-
-  alias quietupdate="(
-    ( \
-      sudo dnf group install -yq --refresh custom-environment minimal-environment kde-desktop-environment basic-desktop-environment admin-tools books c-development cloud-infrastructure container-management d-development design-suite development-tools editors education libreoffice medical network-server neuron-modelling-simulators office text-internet window-managers graphical-internet kde-desktop fonts games hardware-support sound-and-video system-tools; \
-      sudo dnf upgrade -yq; \
-      sudo dnf distro-sync -yq \
-    ) & \
-    ( \
-      conda update -q conda -y; \
-      conda update -q --all -y \
-    ) & \
-  )"
 
   ######################
   ## POWER LEVEL 10 K ##
@@ -367,10 +355,6 @@ function parse_options() {
   if [[ $root[1] != '/' ]]; then root="$PWD/$root"; fi
 }
 
-function more_aliases() {
-
-}
-
 function ZSH_LOVERS() {
 
   ########
@@ -554,3 +538,7 @@ function ZSH_LOVERS() {
   ########
 
 }
+
+# function _more_aliases() {
+#   # echo more_aliases
+# }

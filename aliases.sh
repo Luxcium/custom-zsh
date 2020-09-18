@@ -1,10 +1,14 @@
-export ALIASES_FOLDER="${CUSTOM_ZSH}/sources/aliases"
-export ALIASES_FEDORA_FOLDER="${ALIASES_FOLDER}/fedora"
-source_ "${ALIASES_FEDORA_FOLDER}/bells.sh"
-source_ "${ALIASES_FOLDER}/aliases.sh"
-source_ "${ALIASES_FOLDER}/for-do.sh"
-source_ "${ALIASES_FOLDER}/dnf.sh"
-ZSH_LOVERS
+# source_ "${ALIASES_FOLDER}/aliases.sh"
+# source_ "${ALIASES_FOLDER}/for-do.sh"
+# source_ "${ALIASES_FOLDER}/dnf.sh"
+
+# local S1="${AH_LIBRARIES}/paths.sh"
+# if [ -f "${S1}" ]; then
+#   . "${S1}"
+#   init_paths
+# else
+#   echo "Error loading '${S1}'... File or path can not be resolved"
+# fi
 
 alias rnd4='echo $(sha224hmac <<< $(date +%s%N) | cut -c -4 | tr \[a-z\] \[A-Z\])'
 alias rnd6='echo $(sha224hmac <<< $(date +%s%N) | cut -c -6 | tr \[a-z\] \[A-Z\])'
@@ -49,8 +53,9 @@ alias exists="redis-cli exists"
 alias ucp="sudo nice -n -10 ionice -c 1 -n 5 cp -uRL"
 alias vucp="sudo nice -n -10 ionice -c 1 -n 5 cp -vuR"
 alias vrmf="sudo nice -n -15 ionice -c 1 -n 3 rm -vRf"
-alias upnboot="sudo nice -n -15 ionice -c 1 -n 3 dnf update && sudo reboot& bye"
-alias up="sudo nice -n -15 ionice -c 1 -n 3 dnf update && sudo reboot& bye"
+alias dnfup="( (sudo nice -n -15 ionice -c 1 -n 3 dnf upgrade --downloadonly -y) &)>/dev/null; sudo nice -n -15 ionice -c 1 -n 3 dnf upgrade"
+alias upnboot="dnfup && sudo reboot & bye"
+alias up="sudo nice -n -15 ionice -c 1 -n 3 dnf upgrade && sudo reboot& bye"
 alias al="ls -alhSvF -X"
 alias alt="ls -alGhSvF -rt"
 alias alu="ls -alGhSvF -rut"
@@ -67,9 +72,9 @@ alias rdsoft="rdfind -deterministic true -followsymlinks true -removeidentinode 
 alias rdsoftdry="rdfind -n true -deterministic true -followsymlinks true -removeidentinode false -makesymlinks true -deleteduplicates false -outputname 'rddry-results.txt' ./"
 
 alias rdharddry="rdfind -n true -deterministic true -followsymlinks true -removeidentinode false -makehardlinks true -deleteduplicates false -outputname 'rdhard-results.txt' ./"
-alias apt-get="sudo dnf"
-alias apt="sudo dnf"
-alias dnf="sudo dnf"
+alias apt-get="sudo nice -n -15 ionice -c 1 -n 3 dnf"
+alias apt="sudo nice -n -15 ionice -c 1 -n 3 dnf"
+alias dnf="sudo nice -n -15 ionice -c 1 -n 3 dnf"
 
 alias ahmyzsh="code ~/ahmyzsh"
 alias testtext="echo '0OoLl1IiGQgq;&function;=>*const;fi;!@ ( ) [ ] { } « » < > (‽)-?'"

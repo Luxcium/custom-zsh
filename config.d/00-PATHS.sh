@@ -1,0 +1,2 @@
+export ALIASES_FOLDER="${CUSTOM_ZSH}/aliases"
+export ALIASES_FEDORA_FOLDER="${ALIASES_FOLDER}/fedora"
