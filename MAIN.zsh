@@ -30,7 +30,7 @@ else
 	echo "Error loading '${S1}'... File or path can not be resolved"
 fi
 
-S1="${CUSTOM_ZSH}/lib/load-zlogout.sh" #
+S1="${CUSTOM_ZSH}/lib/load-zlogout-d.sh" #
 if [ -f "${S1}" ]; then
 	. "${S1}"
 	# load_zlogout
