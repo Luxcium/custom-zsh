@@ -1,4 +1,4 @@
-S1="${CUSTOM_ZSH}/source-all-zsh.sh" #
+S1="${CUSTOM_ZSH}/lib/source-all-zsh.sh" #
 if [ -f "${S1}" ]; then
 	. "${S1}"
 	# source_all_zsh
@@ -6,7 +6,7 @@ else
 	echo "Error loading '${S1}'... File or path can not be resolved"
 fi
 
-S1="${CUSTOM_ZSH}/load-zshenv.sh" #
+S1="${CUSTOM_ZSH}/lib/load-zshenv.sh" #
 if [ -f "${S1}" ]; then
 	. "${S1}"
 	# load_zshenv
@@ -14,7 +14,7 @@ else
 	echo "Error loading '${S1}'... File or path can not be resolved"
 fi
 
-S1="${CUSTOM_ZSH}/load-zshrc.sh" #
+S1="${CUSTOM_ZSH}/lib/load-zshrc.sh" #
 if [ -f "${S1}" ]; then
 	. "${S1}"
 	# load_zshrc
@@ -22,7 +22,7 @@ else
 	echo "Error loading '${S1}'... File or path can not be resolved"
 fi
 
-S1="${CUSTOM_ZSH}/precmd.sh" #
+S1="${CUSTOM_ZSH}/lib/precmd.sh" #
 if [ -f "${S1}" ]; then
 	. "${S1}"
 	# precmd
@@ -30,7 +30,7 @@ else
 	echo "Error loading '${S1}'... File or path can not be resolved"
 fi
 
-S1="${CUSTOM_ZSH}/load-zlogout.sh" #
+S1="${CUSTOM_ZSH}/lib/load-zlogout.sh" #
 if [ -f "${S1}" ]; then
 	. "${S1}"
 	# load_zlogout

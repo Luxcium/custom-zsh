@@ -9,8 +9,8 @@ function load_zshrc() {
     (compute_path &) >/dev/null
   fi
 
-  load_ "${ZSH_SOURCES}/options-list.zsh" "load_options_list"
-  load_ "${ZSH_SOURCES}/options.zsh" "load_options"
+  load_ "${CUSTOM_ZSH}/lib/options-list.zsh" "load_options_list"
+  load_ "${CUSTOM_ZSH}/lib/options.zsh" "load_options"
 
   # https://github.com/zsh-users/zsh-autosuggestions#configuration
   ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#677787"

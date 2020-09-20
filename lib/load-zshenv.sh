@@ -13,10 +13,10 @@ function load_zshenv() {
   ## load_aliases_now
   source /home/luxcium/ahmyzsh/custom-zsh/aliases/aliases.sh
   export ALIASES_FOLDER="${CUSTOM_ZSH}/aliases"
-  export MY_ALIASES="${CUSTOM_ZSH}/aliases.sh"
+  export MY_ALIASES="${CUSTOM_ZSH}/aliases/my-aliases.sh"
   ls -d1 ${ALIASES_FOLDER}/*.sh | foreachline source
   load_ "${MY_ALIASES}" "load_aliases"
-  source_ "${ALIASES_FEDORA_FOLDER}/bells.sh"
+  # source_ "${ALIASES_FEDORA_FOLDER}/bells.sh"
   ZSH_LOVERS
   # TODO SECTION END: Fix thiss mess :
 

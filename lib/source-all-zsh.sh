@@ -14,18 +14,18 @@ function source_all_zsh() {
 		typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 		typeset -g ZSH_THEME="../../powerlevel10k/powerlevel10k"
 
-		source_ "${ZSH_SOURCES}/instant-prompt"
+		source_ "${CUSTOM_ZSH}/lib/instant-prompt"
 		source_ "${POWERLEVEL10K}/powerlevel10k.zsh-theme"
 
 	}
 
 	function load_oh_my_zsh_now() {
-		load_ "${ZSH_SOURCES}/load-oh-my-zsh.zsh" "load_oh_my_zsh"
+		load_ "${CUSTOM_ZSH}/lib/load-oh-my-zsh.zsh" "load_oh_my_zsh"
 	}
 
 	function load_my_powerlevel10k_now() {
 		## load_my_pl10K_layout_now
-		source_ "${ZSH_LAYOUTS}/pl10K-Layout.zsh"
+		source_ "${CUSTOM_ZSH}/layouts/pl10K-Layout.zsh"
 		load_my_powerlevel10k
 		pl10k_prompt_on
 
