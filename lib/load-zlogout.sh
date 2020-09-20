@@ -1,5 +1,5 @@
 function load_zlogout() {
-  ##$ Interactive,login
+  ##$  Interactive,login
 
   (
     (builtin cd $AHMYZSH &&
