@@ -53,8 +53,7 @@ alias exists="redis-cli exists"
 alias ucp="sudo nice -n -10 ionice -c 1 -n 5 cp -uRL"
 alias vucp="sudo nice -n -10 ionice -c 1 -n 5 cp -vuR"
 alias vrmf="sudo nice -n -15 ionice -c 1 -n 3 rm -vRf"
-alias dnfup="( (sudo nice -n -35 ionice -c 1 -n 0 dnf upgrade --downloadonly -y) &)>/dev/null;\
- sudo nice -n 15 dnf upgrade"
+alias dnfup="( (sudo nice -n -35 ionice -c 1 -n 0 dnf upgrade --downloadonly -y &) &)>/dev/null; sudo nice -n 15 dnf upgrade"
 alias upnboot="dnfup && sudo reboot & bye"
 alias up="sudo nice -n -15 ionice -c 1 -n 3 dnf upgrade && sudo reboot& bye"
 alias al="ls -alhSvF -X"
@@ -270,109 +269,53 @@ function load_aliases() {
   alias lx4="cd ~ && atom . ;lxqc;lxec;lxic && cd ${PATH_LXIO_PRJ}/"
   alias lxcode="cd ${PATH_LXIO_PRJ}/ && mycode ./.vscode/luxcium-project.code-workspace"
 
-  #######################
-  ## VSCODE ZSH PLUGIN ##
-  #######################
-  # eslint-config-airbnb-base@latest eslint@latest eslint-config-prettier@latest eslint-plugin-import@latest eslint-plugin-unicorn@latest @typescript-eslint/parser@latest @typescript-eslint/eslint-plugin
+  # ################
+  # ## YARN ALIAS ##
+  # ################
+  # # npm i concurrently@latest
+  # # alias yarnu='npm install -g yarn@latest'
+  # # alias linters='yarn add --dev eslint-config-airbnb-base@latest eslint@latest eslint-config-prettier@latest eslint-plugin-import@latest eslint-plugin-unicorn@latest @typescript-eslint/parser@latest @typescript-eslint/eslint-plugin@latest tslint@latest'
+  # # alias gnlint='yarn add --glogal --dev eslint-config-airbnb-base@latest eslint@latest eslint-config-prettier@latest eslint-plugin-import@latest eslint-plugin-unicorn@latest @typescript-eslint/parser@latest @typescript-eslint/eslint-plugin@latest tslint@latest typescript@rc ts-node@latest'
+  # # alias ylint='linters'
+  # alias yarn2="yarn set version berry 1>& /dev/null || yarn set version latest; yarn install --immutable --immutable-cache;  yarn stage --commit; git add .yarn* package.json yarn.lock; git commit -m 'yarn update';push"
+  # alias yi1='concurrently  "rm yarn.lock" "rm -f package-lock.json" "rm -f pnpm-lock.yaml" "rm -rf node_modules"'
+  # #> /dev/null'
+  # alias yi2='yarn install --force --audit --link-duplicates --check-files;'
+  # alias yu='fnm install latest-erbium && \
+  #     fnm install latest && \
+  #    fnm use latest-erbium && \
+  #     fnm default $(node -v)'
+  # alias yg='yarn global add \
+  #   concurrently@latest yarn@latest typescript@3.9.0-dev.20200324 npm@latest ts-node@latest vsce@latest pnpm@latest  1> /dev/null &'
+  # # alias yi3='yarn add -D typescript@rc @types/node@latest ts-node@latest > /dev/null 2>&1 &'
+  # alias yi='yg; yu; yi1 ; yi2' # yi3'
 
-  alias newvsportable='bash <(curl -s   https://gist.githubusercontent.com/Luxcium/7357d34622c148f6041842321f315d7a/raw/a758b82e6818b9b9b664b210228ea93f9314c1b4/luxcium-vscode-portable.sh)'
-  alias vsportablenew='newvsportable'
-  alias portablevsnew='newvsportable'
-  alias portablevs='newvsportable'
-  # alias ='/Users/neb_401/Developer/VSCode-Instances/clean-16-fev-2020/VisualStudioCode.app'
-  # author: https://github.com/MarsiBarsi
-  # Use main Visual Studio Code version by default
-  : ${VSCODE:=code}
+  # alias ya='yarn add --exact --audit --force --link-duplicates --check-files --no-progress'
+  # alias yb='yarn run build --force'
+  # alias yt='yarn run test'
+  # ###############
+  # ## NPM ALIAS ##
+  # ###############
+  # alias npmu='npm install -g npm@latest'
+  # npmglobal='@types/node@latest npm-check-unused@latest npm-check-updates@latest npm-check@latest pnpm@latest prettier@latest ts-node@latest tslib@latest tslint@latest typescript@latest vsce@latest yarn@latest gulp-yaml@latest standard-version@latest bash-language-server@latest eslint@latest eslint-plugin-react@latest eslint-plugin-react@latest @typescript-eslint/parser@latest @typescript-eslint/eslint-plugin@latest eslint@latest prettier@latest eslint-conf-prettier@latest eslint-plugin-prettier@latest @nestjs/cli@latest'
+  # unnpmglobal='@types/node npm-check npm-check-unused npm-check-updates prettier ts-node tslib tslint typescript vsce yarn gulp-yaml standard-version bash-language-server eslint eslint-plugin-react eslint-plugin-react @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint prettier eslint-conf-prettier eslint-plugin-prettier @nestjs/cli'
 
-  # alias vsc="$VSCODE ."
-  alias vsca="$VSCODE --add"
-  alias vscd="$VSCODE --diff"
-  alias vscg="$VSCODE --goto"
-  alias vscn="$VSCODE --new-window"
-  alias vscr="$VSCODE --reuse-window"
-  alias vscw="$VSCODE --wait"
-  alias vscu="$VSCODE --user-data-dir"
-
-  alias vsced="$VSCODE --extensions-dir"
-  alias vscie="$VSCODE --install-extension"
-  alias vscue="$VSCODE --uninstall-extension"
-
-  alias vscv="$VSCODE --verbose"
-  alias vscl="$VSCODE --log"
-  alias vscde="$VSCODE --disable-extensions"
-
-  ##########################
-  ## INSIDERS CODE PLUGIN ##
-  ##########################
-  # author: https://github.com/MarsiBarsi
-  # Use INSIDER Visual Studio Code
-
-  : ${ISCODE:=insiders}
-
-  alias ivsc="$ISCODE ."
-  alias ivsca="$ISCODE --add"
-  alias ivscd="$ISCODE --diff"
-  alias ivscg="$ISCODE --goto"
-  alias ivscn="$ISCODE --new-window"
-  alias ivscr="$ISCODE --reuse-window"
-  alias ivscw="$ISCODE --wait"
-  alias ivscu="$ISCODE --user-data-dir"
-
-  alias ivsced="$ISCODE --extensions-dir"
-  alias ivscie="$ISCODE --install-extension"
-  alias ivscue="$ISCODE --uninstall-extension"
-
-  alias ivscv="$ISCODE --verbose"
-  alias ivscl="$ISCODE --log"
-  alias ivscde="$ISCODE --disable-extensions"
-
-  ################
-  ## YARN ALIAS ##
-  ################
-  # npm i concurrently@latest
-  # alias yarnu='npm install -g yarn@latest'
-  # alias linters='yarn add --dev eslint-config-airbnb-base@latest eslint@latest eslint-config-prettier@latest eslint-plugin-import@latest eslint-plugin-unicorn@latest @typescript-eslint/parser@latest @typescript-eslint/eslint-plugin@latest tslint@latest'
-  # alias gnlint='yarn add --glogal --dev eslint-config-airbnb-base@latest eslint@latest eslint-config-prettier@latest eslint-plugin-import@latest eslint-plugin-unicorn@latest @typescript-eslint/parser@latest @typescript-eslint/eslint-plugin@latest tslint@latest typescript@rc ts-node@latest'
-  # alias ylint='linters'
-  alias yarn2="yarn set version berry 1>& /dev/null || yarn set version latest; yarn install --immutable --immutable-cache;  yarn stage --commit; git add .yarn* package.json yarn.lock; git commit -m 'yarn update';push"
-  alias yi1='concurrently  "rm yarn.lock" "rm -f package-lock.json" "rm -f pnpm-lock.yaml" "rm -rf node_modules"'
-  #> /dev/null'
-  alias yi2='yarn install --force --audit --link-duplicates --check-files;'
-  alias yu='fnm install latest-erbium && \
-      fnm install latest && \
-     fnm use latest-erbium && \
-      fnm default $(node -v)'
-  alias yg='yarn global add \
-    concurrently@latest yarn@latest typescript@3.9.0-dev.20200324 npm@latest ts-node@latest vsce@latest pnpm@latest  1> /dev/null &'
-  # alias yi3='yarn add -D typescript@rc @types/node@latest ts-node@latest > /dev/null 2>&1 &'
-  alias yi='yg; yu; yi1 ; yi2' # yi3'
-
-  alias ya='yarn add --exact --audit --force --link-duplicates --check-files --no-progress'
-  alias yb='yarn run build --force'
-  alias yt='yarn run test'
-  ###############
-  ## NPM ALIAS ##
-  ###############
-  alias npmu='npm install -g npm@latest'
-  npmglobal='@types/node@latest npm-check-unused@latest npm-check-updates@latest npm-check@latest pnpm@latest prettier@latest ts-node@latest tslib@latest tslint@latest typescript@latest vsce@latest yarn@latest gulp-yaml@latest standard-version@latest bash-language-server@latest eslint@latest eslint-plugin-react@latest eslint-plugin-react@latest @typescript-eslint/parser@latest @typescript-eslint/eslint-plugin@latest eslint@latest prettier@latest eslint-conf-prettier@latest eslint-plugin-prettier@latest @nestjs/cli@latest'
-  unnpmglobal='@types/node npm-check npm-check-unused npm-check-updates prettier ts-node tslib tslint typescript vsce yarn gulp-yaml standard-version bash-language-server eslint eslint-plugin-react eslint-plugin-react @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint prettier eslint-conf-prettier eslint-plugin-prettier @nestjs/cli'
-
-  # npm i -g install-peerdeps; npm i -g bash-language-server@latest; npm i -g @types/node@latest; npm i -g eslint@latest; npm i -g gulp-yaml@latest; npm i -g npm-check-unused@latest; npm i -g npm-check-updates@latest; npm i -g npm-check@latest; npm i -g pnpm@latest; npm i -g prettier@latest; npm i -g standard-version@latest; npm i -g tslib@latest; npm i -g tslint@latest; npm i -g typescript@latest; npm i -g vsce@latest; npm i -g yarn@latest; install-peerdeps -g @typescript-eslint/eslint-plugin; install-peerdeps -g @typescript-eslint/parser; install-peerdeps -g eslint-conf-prettier; install-peerdeps -g eslint-plugin-prettier; install-peerdeps -g eslint-plugin-react; install-peerdeps -g ts-node;
-  alias NPMupdate="npm -g i npm@latest ${npmglobal}"
-  alias PNPMupdate="pnpm -g i ${npmglobal}"
-  alias unNPMupdate="npm -g un pnpm ${unnpmglobal}"
-  alias unPNPMupdate="pnpm -g un npm ${unnpmglobal} pnpm"
-  alias installNPMGlobal='npm i -g npm@latest && npm i -g pnpm@latest && NPMupdate && PNPMupdate'
-  alias uninstallNPMGlobal='unPNPMupdate && unNPMupdate'
-  alias reinstallNPMGlobal='uninstallNPMGlobal && echo "\n\n==============================\n\n" && installNPMGlobal && pnpm i -g pnpm'
-  alias build='yarn run build'
-  alias quick='yarn run quick'
-  alias tests='yarn run test'
-  alias rebuild='yarn run rebuild'
-  alias debug='yarn run debug'
-  alias nlist='npm list -g --depth 0'
-  alias lsg='npm list -g --depth 0;yarn global list'
-  alias lg=lsg
+  # # npm i -g install-peerdeps; npm i -g bash-language-server@latest; npm i -g @types/node@latest; npm i -g eslint@latest; npm i -g gulp-yaml@latest; npm i -g npm-check-unused@latest; npm i -g npm-check-updates@latest; npm i -g npm-check@latest; npm i -g pnpm@latest; npm i -g prettier@latest; npm i -g standard-version@latest; npm i -g tslib@latest; npm i -g tslint@latest; npm i -g typescript@latest; npm i -g vsce@latest; npm i -g yarn@latest; install-peerdeps -g @typescript-eslint/eslint-plugin; install-peerdeps -g @typescript-eslint/parser; install-peerdeps -g eslint-conf-prettier; install-peerdeps -g eslint-plugin-prettier; install-peerdeps -g eslint-plugin-react; install-peerdeps -g ts-node;
+  # alias NPMupdate="npm -g i npm@latest ${npmglobal}"
+  # alias PNPMupdate="pnpm -g i ${npmglobal}"
+  # alias unNPMupdate="npm -g un pnpm ${unnpmglobal}"
+  # alias unPNPMupdate="pnpm -g un npm ${unnpmglobal} pnpm"
+  # alias installNPMGlobal='npm i -g npm@latest && npm i -g pnpm@latest && NPMupdate && PNPMupdate'
+  # alias uninstallNPMGlobal='unPNPMupdate && unNPMupdate'
+  # alias reinstallNPMGlobal='uninstallNPMGlobal && echo "\n\n==============================\n\n" && installNPMGlobal && pnpm i -g pnpm'
+  # alias build='yarn run build'
+  # alias quick='yarn run quick'
+  # alias tests='yarn run test'
+  # alias rebuild='yarn run rebuild'
+  # alias debug='yarn run debug'
+  # alias nlist='npm list -g --depth 0'
+  # alias lsg='npm list -g --depth 0;yarn global list'
+  # alias lg=lsg
 
   alias jpac='code ./package.json'
   alias tsfig='code ./tsconfig.json'
@@ -426,191 +369,3 @@ function parse_options() {
   log=$o_log[2]
   if [[ $root[1] != '/' ]]; then root="$PWD/$root"; fi
 }
-
-function ZSH_LOVERS() {
-
-  ########
-  ## GNU GPL v2.0
-  ## https://github.com/grml/zsh-lovers
-  ########
-
-  # from man pages ZSH-LOVERS(1)
-  alias ZSH-LOVERS="man ZSH-LOVERS"
-  # =============
-
-  # NAME
-  # ----
-  # zsh-lovers - tips, tricks and examples for the Z shell
-
-  alias -s tex=vim
-  alias -s html=w3m
-  alias -s org=w3m
-  alias -g ...='../..'
-  alias -g ....='../../..'
-  alias -g .....='../../../..'
-  alias -g CA="2>&1 | cat -A"
-  alias -g C='| wc -l'
-  alias -g D="DISPLAY=:0.0"
-  alias -g DN=/dev/null
-  alias -g ED="export DISPLAY=:0.0"
-  alias -g EG='|& egrep'
-  alias -g EH='|& head'
-  alias -g EL='|& less'
-  alias -g ELS='|& less -S'
-  alias -g ETL='|& tail -20'
-  alias -g ET='|& tail'
-  alias -g F=' | fmt -'
-  alias -g G='| egrep'
-  alias -g H='| head'
-  alias -g HL='|& head -20'
-  alias -g Sk="*~(*.bz2|*.gz|*.tgz|*.zip|*.z)"
-  alias -g LL="2>&1 | less"
-  alias -g L="| less"
-  alias -g LS='| less -S'
-  alias -g MM='| most'
-  alias -g M='| more'
-  alias -g NE="2> /dev/null"
-  alias -g NS='| sort -n'
-  alias -g NUL="> /dev/null 2>&1"
-  alias -g PIPE='|'
-  alias -g R=' > /c/aaa/tee.txt '
-  alias -g RNS='| sort -nr'
-  alias -g S='| sort'
-  alias -g TL='| tail -20'
-  alias -g T='| tail'
-  alias -g US='| sort -u'
-  alias -g VM=/var/log/messages
-  alias -g X0G='| xargs -0 egrep'
-  alias -g X0='| xargs -0'
-  alias -g XG='| xargs egrep'
-  alias -g X='| xargs'
-
-  # EXAMPLES
-  # --------
-  # Available subsections are *Aliases*, *Completion*, *Unsorted/Misc examples*,
-  # *(Recursive) Globbing - Examples*, *Modifiers usage*, *Redirection-Examples*,
-  # *ZMV-Examples* and *Module-Examples*.
-
-  # ALIASES
-  # ~~~~~~~
-  # Suffix aliases are supported in zsh since version 4.2.0. Some examples:
-  # -----------------
-  # !! alias -s tex=vim
-  # !! alias -s html=w3m
-  # !! alias -s org=w3m
-  # -----------------
-  # Now pressing the return-key after entering 'foobar.tex' starts vim with
-  # foobar.tex. Calling an html-file runs browser w3m. 'www.zsh.org' and pressing
-  # enter starts w3m with argument www.zsh.org. +
-  # Global aliases can be used anywhere in the command line. Example:
-  # ----------------------
-  # $ alias -g C='| wc -l'
-  # $ grep alias ~/.zsh/* C
-  # 443
-  # ----------------------
-  # Some more or less useful global aliases (choose whether they are useful or not
-  # for you on your own):
-
-  # ----------------------------------------------------------------------------
-  # COMPLETION
-  # ~~~~~~~~~~
-  # See also man 1 zshcompctl zshcompsys zshcompwid. zshcompctl is the old
-  # style of zsh programmable completion, zshcompsys is the new completion
-  # system, zshcompwid are the zsh completion widgets.
-
-  # Some functions, like _apt and _dpkg, are very slow. You can use a cache
-  # in order to proxy the list of  results  (like  the  list  of  available
-  # debian packages) Use a cache:
-  # ----------------------------------------------------------------------------
-  # !! zstyle ':completion:*' use-cache on
-  # !! zstyle ':completion:*' cache-path ~/.zsh/cache
-  # ----------------------------------------------------------------------------
-
-  # Prevent CVS files/directories from being completed:
-  # ----------------------------------------------------------------------------
-  # !! zstyle ':completion:*:(all-|)files' ignored-patterns '(|*/)CVS'
-  # !! zstyle ':completion:*:cd:*' ignored-patterns '(*/)#CVS'
-  # ----------------------------------------------------------------------------
-
-  # Fuzzy matching of completions for when you mistype them:
-  # ----------------------------------------------------------------------------
-  # !! zstyle ':completion:*' completer _complete _match _approximate
-  # !! zstyle ':completion:*:match:*' original only
-  # !! zstyle ':completion:*:approximate:*' max-errors 1 numeric
-  # ----------------------------------------------------------------------------
-
-  # And  if  you  want  the  number  of  errors  allowed by _approximate to
-  # increase with the length of what you have typed so far:
-  # ----------------------------------------------------------------------------
-  # !! # zstyle -e ':completion:*:approximate:*' \
-  # 	max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3))numeric)'
-  # ----------------------------------------------------------------------------
-
-  # Ignore completion functions for commands you don't have:
-  # ----------------------------------------------------------------------------
-  # !! zstyle ':completion:*:functions' ignored-patterns '_*'
-  # ----------------------------------------------------------------------------
-
-  # With helper functions like:
-  # ----------------------------------------------------------------------------
-  xdvi() {
-    command xdvi ${*:-*.dvi(om[1])}
-  }
-  # ----------------------------------------------------------------------------
-
-  # you can avoid having to complete at all in many cases, but if  you  do,
-  # you  might want to fall into menu selection immediately and to have the
-  # words sorted by time:
-  # ----------------------------------------------------------------------------
-  # !! zstyle ':completion:*:*:xdvi:*' menu yes select
-  # !! zstyle ':completion:*:*:xdvi:*' file-sort time
-  # ----------------------------------------------------------------------------
-
-  # Completing process IDs with menu selection:
-  # ----------------------------------------------------------------------------
-  # !! zstyle ':completion:*:*:kill:*' menu yes select
-  # !! zstyle ':completion:*:kill:*' force-list always
-  # ----------------------------------------------------------------------------
-
-  # If you end up using a directory  as  argument,  this  will  remove  the
-  # trailing slash (useful in ln)
-  # ----------------------------------------------------------------------------
-  # !! zstyle ':completion:*' squeeze-slashes true
-  # ----------------------------------------------------------------------------
-
-  # cd will never select the parent directory (e.g.: cd ../<TAB>):
-  # ----------------------------------------------------------------------------
-  # !! zstyle ':completion:*:cd:*' ignore-parents parent pwd
-  # ----------------------------------------------------------------------------
-
-  # Another method for 'quick change directories'.
-  # Add this to your ~/.zshrc, then just enter
-  # ``cd ..../dir''
-  # ----------------------------------------------------------------------------
-  rationalise-dot() {
-    if [[ $LBUFFER = *.. ]]; then
-      LBUFFER+=/..
-    else
-      LBUFFER+=.
-    fi
-  }
-  # !! zle -N rationalise-dot
-  # !! bindkey . rationalise-dot
-  # ----------------------------------------------------------------------------
-  # !! alias dnf="noglob dnf"
-
-  # COPYRIGHT
-  # ---------
-  # Copyright (C) Michael Prokop, Christian Schneider and Matthias
-  # Kopfermann.
-
-  ########
-  ## https://github.com/grml/zsh-lovers
-  ## under GNU GPL v2.0
-  ########
-
-}
-
-# function _more_aliases() {
-#   # echo more_aliases
-# }
