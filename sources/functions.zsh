@@ -14,6 +14,7 @@ function load_functions_definitions() {
         mkdir -p -- "$1" &&
             cd -P -- "$1"
     }
+    alias cmdir=cdir
 
     function source_notice_now() {
         source_ "${CUSTOM_ZSH}/notice.sh"
