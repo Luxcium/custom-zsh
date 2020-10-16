@@ -10,11 +10,7 @@ function load_functions_definitions() {
     function dnfi() {
         sudo dnf install "*${@}*"
     }
-    function cdir() {
-        mkdir -p -- "$1" &&
-            cd -P -- "$1"
-    }
-    alias cmdir=cdir
+
 
     function source_notice_now() {
         source_ "${CUSTOM_ZSH}/notice.sh"
