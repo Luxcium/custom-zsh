@@ -102,7 +102,4 @@ function load_autocomplete() {
         compinit
     done
     compinit -C
-    # End of lines added for compinstall
-    # autoload -U compinit && compinit
-
 }

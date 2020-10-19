@@ -24,7 +24,7 @@
 
 	function load_my_powerlevel10k_now() {
 		## load_my_pl10K_layout_now
-		source_ "${CUSTOM_ZSH}/layouts/pl10K-Layout.zsh"
+		source_ "${CUSTOM_ZSH}/sources/pl10K-Layout.zsh"
 		load_my_powerlevel10k
 		pl10k_prompt_on
 
