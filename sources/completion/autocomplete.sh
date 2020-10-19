@@ -1,5 +1,5 @@
 function load_autocomplete() {
-
+    
     _node_complete() {
         local cur_word options
         cur_word="${COMP_WORDS[COMP_CWORD]}"
@@ -12,7 +12,7 @@ function load_autocomplete() {
         fi
     }
     # complete -F _node_complete node node_g
-
+    
     function npm_completion() {
         ###-begin-npm-completion-###
         #
@@ -29,31 +29,31 @@ function load_autocomplete() {
                     cword="$COMP_CWORD"
                     words=("${COMP_WORDS[@]}")
                 fi
-
+                
                 local si="$IFS"
                 IFS=$'\n' COMPREPLY=($(COMP_CWORD="$cword" \
-                    COMP_LINE="$COMP_LINE" \
-                    COMP_POINT="$COMP_POINT" \
-                    npm completion -- "${words[@]}" \
-                    2>/dev/null)) || return $?
+                        COMP_LINE="$COMP_LINE" \
+                        COMP_POINT="$COMP_POINT" \
+                        npm completion -- "${words[@]}" \
+                2>/dev/null)) || return $?
                 IFS="$si"
                 if type __ltrim_colon_completions &>/dev/null; then
                     __ltrim_colon_completions "${words[cword]}"
                 fi
             }
             complete -o default -F _npm_completion npm
-        elif type compdef &>/dev/null; then
+            elif type compdef &>/dev/null; then
             _npm_completion() {
                 local si=$IFS
                 compadd -- $(COMP_CWORD=$((CURRENT - 1)) \
                     COMP_LINE=$BUFFER \
                     COMP_POINT=0 \
                     npm completion -- "${words[@]}" \
-                    2>/dev/null)
+                2>/dev/null)
                 IFS=$si
             }
             compdef _npm_completion npm
-        elif type compctl &>/dev/null; then
+            elif type compctl &>/dev/null; then
             _npm_completion() {
                 local cword line point words si
                 read -Ac words
@@ -63,40 +63,40 @@ function load_autocomplete() {
                 read -ln point
                 si="$IFS"
                 IFS=$'\n' reply=($(COMP_CWORD="$cword" \
-                    COMP_LINE="$line" \
-                    COMP_POINT="$point" \
-                    npm completion -- "${words[@]}" \
-                    2>/dev/null)) || return $?
+                        COMP_LINE="$line" \
+                        COMP_POINT="$point" \
+                        npm completion -- "${words[@]}" \
+                2>/dev/null)) || return $?
                 IFS="$si"
             }
             compctl -K _npm_completion npm
         fi
         ###-end-npm-completion-###
     }
-
+    
     # npm_completion
-
+    
     #* pip zsh completion start
     function _pip_completion() {
         local words cword
         read -Ac words
         read -cn cword
         reply=($(COMP_WORDS="$words[*]" \
-            COMP_CWORD=$((cword - 1)) \
-            PIP_AUTO_COMPLETE=1 $words[1]))
+                COMP_CWORD=$((cword - 1)) \
+        PIP_AUTO_COMPLETE=1 $words[1]))
     }
     compctl -K _pip_completion pip
     #* pip zsh completion end
-
+    
     # The following lines were added by compinstall
     zstyle ':completion:*' completer _list _oldlist _expand _complete _ignored _match _correct _approximate _prefix
     zstyle ':completion:*' expand prefix
     zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:]}={[:upper:]}'
     zstyle :compinstall filename "${HOME}/.zshrc"
-
+    
     autoload -U +X compinit && compinit
     autoload -U +X bashcompinit && bashcompinit
-
+    
     autoload -Uz compinit
     for dump in "${HOME}/.zcompdump(N.mh+24)"; do
         compinit
@@ -104,4 +104,6 @@ function load_autocomplete() {
     compinit -C
     # End of lines added for compinstall
     # autoload -U compinit && compinit
+    source ${AHMYZSH_PLUGINS}/zsh-better-npm-completion/zsh-better-npm-completion.plugin.zsh
+    source ${AHMYZSH_PLUGINS}/yarn-autocompletions/yarn-autocompletions.plugin.zsh
 }
