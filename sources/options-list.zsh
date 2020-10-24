@@ -1,12 +1,12 @@
 function load_options_list() {
   #% 16.2.1 Changing Directories
-  # setopt AUTO_CD # (-J)
+  setopt AUTO_CD # (-J)
   #$ If a command is issued that can’t be executed as a normal command, and the command is the name of a directory, perform the cd command to that directory. This option is only applicable if the option SHIN_STDIN is set, i.e. if commands are being read from standard input. The option is designed for interactive use; it is recommended that cd be used explicitly in scripts to avoid ambiguity.
 
-  # setopt AUTO_PUSHD # (-N)
+  setopt AUTO_PUSHD # (-N)
   #$ Make cd push the old directory onto the directory stack.
 
-  # setopt CDABLE_VARS # (-T)
+  setopt CDABLE_VARS # (-T)
   #$ If the argument to a cd command (or an implied cd with the AUTO_CD option set) is not a directory, and does not begin with a slash, try to expand the expression as if it were preceded by a ‘~’ (see Filename Expansion).
 
   # setopt CD_SILENT
@@ -25,7 +25,7 @@ function load_options_list() {
 
   #$ Also, if the option is set, the conditions under which the shell prints the new directory after changing to it are m$odified. It is no longer restricted to interactive shells (although printing of the directory stack with pushd is still limited to interactive shells); and any use of a component of CDPATH, including a ‘.’ but excluding an empty component that is otherwise treated as ‘.’, causes the directory to be printed.
 
-  # setopt PUSHD_IGNORE_DUPS
+  setopt PUSHD_IGNORE_DUPS
   #$ Don’t push multiple copies of the same directory onto the directory stack.
 
   # setopt PUSHD_MINUS
@@ -56,16 +56,16 @@ function load_options_list() {
   # setopt AUTO_PARAM_KEYS # <D>
   #$ If a parameter name was completed and a following character (normally a space) automatically inserted, and the next character typed is one of those that have to come directly after the name (like ‘}’, ‘:’, etc.), the automatically added character is deleted, so that the character typed comes immediately after the parameter name. Completion in a brace expansion is affected similarly: the added character is a ‘,’, which will be removed if ‘}’ is typed next.
 
-  # setopt AUTO_PARAM_SLASH # <D>
+   setopt AUTO_PARAM_SLASH # <D>
   #$ If a parameter is completed whose content is the name of a directory, then add a trailing slash instead of a space.
 
-  # setopt AUTO_REMOVE_SLASH # <D>
+   setopt AUTO_REMOVE_SLASH # <D>
   #$ When the last character resulting from a completion is a slash and the next character typed is a word delimiter, a slash, or a character that ends a command (such as a semicolon or an ampersand), remove the slash.
 
   # setopt BASH_AUTO_LIST
   #$ On an ambiguous completion, automatically list choices when the completion function is called twice in succession. This takes precedence over AUTO_LIST. The setting of LIST_AMBIGUOUS is respected. If AUTO_MENU is set, the menu behaviour will then start with the third press. Note that this will not work with MENU_COMPLETE, since repeated completion calls immediately cycle through the list in that case.
 
-  # setopt COMPLETE_ALIASES
+   setopt COMPLETE_ALIASES
   #$ Prevents aliases on the command line from being internally substituted before completion is attempted. The effect is to make the alias a distinct command for completion purposes.
 
   # setopt COMPLETE_IN_WORD
@@ -88,7 +88,7 @@ function load_options_list() {
   # setopt LIST_PACKED
   #$ Try to make the completion list smaller (occupying less lines) by printing the matches in columns with different widths.
 
-  setopt LIST_ROWS_FIRST
+  # setopt LIST_ROWS_FIRST
   #$ Lay out the matches in completion lists sorted horizontally, that is, the second match is to the right of the first one, not under it as usual.
 
   # setopt LIST_TYPES # (-X) # <D>
@@ -222,7 +222,7 @@ function load_options_list() {
   # setopt BANG_HIST # (+K) <C> <Z>
   #$ Perform textual history expansion, csh-style, treating the character ‘!’ specially.
 
-  # setopt EXTENDED_HISTORY # <C>
+  setopt EXTENDED_HISTORY # <C>
   #$ Save each command’s beginning timestamp (in seconds since the epoch) and the duration (in seconds) to the history file. The format of this prefixed data is:
 
   #$ setopt ‘: <beginning time>:<elapsed seconds>;<command>’.
@@ -230,10 +230,10 @@ function load_options_list() {
   # setopt HIST_ALLOW_CLOBBER
   #$ Add ‘|’ to output redirections in the history. This allows history references to clobber files even when CLOBBER is unset.
 
-  # setopt HIST_BEEP # <D>
+  setopt HIST_BEEP # <D>
   #$ Beep in ZLE when a widget attempts to access a history entry which isn’t there.
 
-  # setopt HIST_EXPIRE_DUPS_FIRST
+  setopt HIST_EXPIRE_DUPS_FIRST
   #$ If the internal history needs to be trimmed to add the current command line, setting this option will cause the oldest history event that has a duplicate to be lost before losing a unique event from the list. You should be sure to set the value of HISTSIZE to a larger number than SAVEHIST in order to give you some room for the duplicated events, otherwise this option will behave just like HIST_IGNORE_ALL_DUPS once the history fills up with unique events.
 
   # setopt HIST_FCNTL_LOCK
@@ -406,7 +406,7 @@ function load_options_list() {
   # setopt MONITOR # (-m, ksh: -m)
   #$ Allow job control. Set by default in interactive shells.
 
-  # setopt NOTIFY # (-5, ksh: -b) # <Z>
+  setopt NOTIFY # (-5, ksh: -b) # <Z>
   #$ Report the status of background jobs immediately, rather than waiting until just before printing a prompt.
 
   # setopt POSIX_JOBS # <K> <S>
@@ -900,6 +900,7 @@ function load_options_list() {
   #$ CHASE_LINKS
 
   # setopt -x
+  # setopt XTRACE
   #$ XTRACE
 
   # setopt -y
