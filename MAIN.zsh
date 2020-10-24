@@ -18,10 +18,6 @@ function activate_instant_prompt() {
 
 }
 
-# function load_oh_my_zsh_now() {
-# 	load_ "${CUSTOM_ZSH}/sources/load-oh-my-zsh.zsh" "load_oh_my_zsh"
-# }
-
 function load_my_powerlevel10k_now() {
   ## load_my_pl10K_layout_now
   source_ "${CUSTOM_ZSH}/sources/pl10K-Layout.zsh"
@@ -188,7 +184,7 @@ function load_zlogout() {
   sleep 0.085
   echo -en "\e[38;2;252;198;36m  !                               \u001b[1000D\a"
   sleep 0.085
-
+  exit
 }
 
 function load_autocomplete_now() {
@@ -252,6 +248,7 @@ function load_options() {
 }
 
 function load_oh_my_zsh() {
+
   # Uncomment the following line to disable bi-weekly auto-update checks.
   DISABLE_AUTO_UPDATE="true"
 
