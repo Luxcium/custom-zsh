@@ -66,80 +66,6 @@ function source_saybye_now() {
   source_ "${ZSH_SOURCES}/say-bye.zsh"
 }
 
-function load_zshenv() {
-  #   #$ Interactive,Script,login,non-login
-
-  ## load_path_now
-  call_ load_path
-
-  ## load_functions_now
-  load_ "${ZSH_SOURCES}/functions.zsh" "load_functions_definitions"
-  source_ "${ZSH_FUNCTIONS_FOLDER}/getvscodeportable.zsh"
-
-  [ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_HOURGLASS_END_1} load_zshenv in $(timer_all) ms !${END_FUNCTION}"
-}
-
-function load_zshrc() {
-  #   #$ Interactive,login,non-login
-
-  load_my_powerlevel10k_now
-  activate_instant_prompt
-  # activate_normal_prompt
-
-  if [ "${PARENT_ENV_LOADED}" != 'true' ]; then
-    (compute_path &) >/dev/null
-  fi
-
-  call_ load_oh_my_zsh
-
-  load_ "${CUSTOM_ZSH}/sources/options-list.zsh" "load_options_list"
-  call_ load_options
-
-  # https://github.com/zsh-users/zsh-autosuggestions#configuration
-  ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#677787"
-
-  # https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters.md
-  ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
-
-  zle_highlight=(region:standout special:standout
-    suffix:bold isearch:underline paste:none)
-
-  call_ load_autocomplete_now
-
-  export PAGER="/usr/bin/most -s"
-}
-
-function precmd() {
-
-  #   #$ Executed before each prompt. Note that precommandfunctions are not
-  #   #$ re-executed simply because the command line is redrawn, as happens, for
-  #   #$ example, when a notification about an exiting job is displayed.
-
-  if [ "$ENV_LOADED" != 'true' ]; then
-    export PARENT_ENV_LOADED='true'
-    ENV_LOADED='true'
-
-    right_prompt_off
-    # hardcls
-    echo "  ${BEGIN_HOURGLASS_END_1} READY in $(timer_all) ms !${END_FUNCTION}"
-    echo -n "\e[30m   # \e[38;2;0;122;204m>  Code: $(code -v | grep '1\.') \u001b[31m\n"
-    # echo -n "\e[30m   # >\e[30m\e[31m\n"
-    echo -n "\e[30m   # \e[38;2;55;118;171m>  $(python -V) \u001b[31m\n"
-    # echo -n "\e[30m   # >\e[30m\e[31m\n"
-    echo -n "\e[30m   # \e[38;2;51;153;51m>  Node: $(node -v) \u001b[31m\n"
-    echo -n "\e[30m   # \e[38;2;203;56;55m>  NPM: $(npm -v) \u001b[31m\n"
-    echo -n "\e[30m   # \e[38;2;44;142;187m>  Yarn: $(yarn -v) \u001b[31m\n"
-    echo -n "\e[30m   # \e[38;2;0;122;204m>  TSC: $(tsc -v) \u001b[31m\n"
-    # echo -n "\e[30m   # >\e[30m\e[31m\n"
-    echo -n "\e[30m   # \e[38;2;252;198;36m>  $(uname): $(uname -r) \u001b[31m\n"
-    echo -n "\e[30m   # \e[37m>  $(zsh --version | grep zsh) \u001b[31m\n"
-
-    echo -n "\u001b[37m\n"
-    echo -e "\a"
-  fi
-  # exit
-}
-
 function load_zlogout() {
   ##$  Interactive,login
 
@@ -297,4 +223,78 @@ function load_oh_my_zsh() {
   source $ZSH/oh-my-zsh.sh
   unalias ll
   # echo -n "${normal}$CLRLN$LDLCLR$(tput setaf 2) \uf013 ${bold} DONE! load_oh_my_zsh()${normal}"
+}
+
+function load_zshenv() {
+  #   #$ Interactive,Script,login,non-login
+
+  ## load_path_now
+  call_ load_path
+
+  ## load_functions_now
+  load_ "${ZSH_SOURCES}/functions.zsh" "load_functions_definitions"
+  source_ "${ZSH_FUNCTIONS_FOLDER}/getvscodeportable.zsh"
+
+  [ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_HOURGLASS_END_1} load_zshenv in $(timer_all) ms !${END_FUNCTION}"
+}
+
+function load_zshrc() {
+  #   #$ Interactive,login,non-login
+
+  load_my_powerlevel10k_now
+  # activate_instant_prompt
+  activate_normal_prompt
+
+  if [ "${PARENT_ENV_LOADED}" != 'true' ]; then
+    (compute_path &) # >/dev/null
+  fi
+
+  call_ load_oh_my_zsh
+
+  load_ "${CUSTOM_ZSH}/sources/options-list.zsh" "load_options_list"
+  call_ load_options
+
+  # https://github.com/zsh-users/zsh-autosuggestions#configuration
+  ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#677787"
+
+  # https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters.md
+  ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
+
+  zle_highlight=(region:standout special:standout
+    suffix:bold isearch:underline paste:none)
+
+  call_ load_autocomplete_now
+
+  export PAGER="/usr/bin/most -s"
+}
+
+function precmd() {
+
+  #   #$ Executed before each prompt. Note that precommandfunctions are not
+  #   #$ re-executed simply because the command line is redrawn, as happens, for
+  #   #$ example, when a notification about an exiting job is displayed.
+
+  if [ "$ENV_LOADED" != 'true' ]; then
+    export PARENT_ENV_LOADED='true'
+    ENV_LOADED='true'
+
+    right_prompt_off
+    # hardcls
+    echo "  ${BEGIN_HOURGLASS_END_1} READY in $(timer_all) ms !${END_FUNCTION}"
+    echo -n "\e[30m   # \e[38;2;0;122;204m>  Code: $(code -v | grep '1\.') \u001b[31m\n"
+    # echo -n "\e[30m   # >\e[30m\e[31m\n"
+    echo -n "\e[30m   # \e[38;2;55;118;171m>  $(python -V) \u001b[31m\n"
+    # echo -n "\e[30m   # >\e[30m\e[31m\n"
+    echo -n "\e[30m   # \e[38;2;51;153;51m>  Node: $(node -v) \u001b[31m\n"
+    echo -n "\e[30m   # \e[38;2;203;56;55m>  NPM: $(npm -v) \u001b[31m\n"
+    echo -n "\e[30m   # \e[38;2;44;142;187m>  Yarn: $(yarn -v) \u001b[31m\n"
+    echo -n "\e[30m   # \e[38;2;0;122;204m>  TSC: $(tsc -v) \u001b[31m\n"
+    # echo -n "\e[30m   # >\e[30m\e[31m\n"
+    echo -n "\e[30m   # \e[38;2;252;198;36m>  $(uname): $(uname -r) \u001b[31m\n"
+    echo -n "\e[30m   # \e[37m>  $(zsh --version | grep zsh) \u001b[31m\n"
+
+    echo -n "\u001b[37m\n"
+    echo -e "\a"
+  fi
+  # exit
 }
