@@ -50,6 +50,8 @@ function re_load_path() {
   compute_path
 }
 
+alias reloadpath="re_load_path"
+
 function source_powerline_now() {
   source_ "${POWERLINE_BINDINGS}/zsh/powerline.zsh"
   return 0
