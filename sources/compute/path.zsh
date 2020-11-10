@@ -19,6 +19,18 @@ function rbenv_() {
 
 }
 
+function rust_up_() {
+
+    # Rust is installed now. Great!
+
+    # To get started you need Cargo's bin directory in your PATH
+    echo -n $HOME/.cargo/bin
+
+    # To configure your current shell environment variable run:
+    source $HOME/.cargo/env
+
+}
+
 function nvm_() {
     export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
@@ -59,13 +71,15 @@ function compute_path() {
     add_to_path_ "${HOME}/.fnm"
     call_ fnm_
 
-    add_to_path_ "${HOME}/.rbenv/bin"
+    add_to_path_ $(rust_up_)
+
+    # add_to_path_ "${HOME}/.rbenv/bin"
     call_ rbenv_
 
     add_to_path_ "/opt/vlang"
 
-    add_to_path_ "${MINICONDA3}/bin"
-    add_to_path_ "${MINICONDA3}/condabin"
+    # add_to_path_ "${MINICONDA3}/bin"
+    # add_to_path_ "${MINICONDA3}/condabin"
     call_ conda_
 
     add_to_path_ "${DOTNET_ROOT}"
@@ -97,6 +111,8 @@ function compute_path() {
     # runfile installation method.
 
     export PATH="${AHMYZSH}/plugins/bin:${PATH}:${AHMYZSH}/core/bin"
+
+    dedup_path
 
     echo "export PATH=\"$PATH\"" >"${CACHED_PATH}"
     zcompile "${CACHED_PATH}"
