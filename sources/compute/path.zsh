@@ -2,7 +2,8 @@ function fnm_() {
     # (rm -f /tmp/fnm-shell*) &>/dev/null
     # eval "$(fnm env --multi)"
     export PATH=/home/luxcium/.fnm:$PATH
-    eval "$(fnm env --multi)"
+    eval "$(fnm env --use-on-cd)"
+    eval "$(fnm completions --shell=zsh)"
 
 }
 

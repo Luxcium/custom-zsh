@@ -119,6 +119,7 @@ function load_autocomplete_now() {
   fpath=(${AHMYZSH_PLUGINS}/nestjs-cli-completion ${fpath})
   fpath=(${AHMYZSH_PLUGINS}/zsh-better-npm-completion ${fpath})
   fpath=(${AHMYZSH_PLUGINS}/yarn-autocompletions ${fpath})
+  fpath=(${AHMYZSH_PLUGINS}/fnm_completion.sh ${fpath})
   source_ "${AHMYZSH_PLUGINS}/zsh-better-npm-completion/zsh-better-npm-completion.plugin.zsh"
   source_ "${AHMYZSH_PLUGINS}/yarn-autocompletions/yarn-autocompletions.plugin.zsh"
   source_ "/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
@@ -196,6 +197,9 @@ function load_oh_my_zsh() {
   plugins=(
     # zsh-autosuggestions
     # zsh-syntax-highlighting
+    zsh-better-npm-completion
+    yarn-autocompletions
+    zsh-completions
     git
     redis-cli
   )
@@ -268,6 +272,8 @@ function load_zshrc() {
   call_ load_autocomplete_now
 
   export PAGER="/usr/bin/most -s"
+  autoload -U compinit && compinit
+
 }
 
 function precmd() {
