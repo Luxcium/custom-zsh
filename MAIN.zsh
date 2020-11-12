@@ -119,7 +119,7 @@ function load_autocomplete_now() {
   fpath=(${AHMYZSH_PLUGINS}/nestjs-cli-completion ${fpath})
   fpath=(${AHMYZSH_PLUGINS}/zsh-better-npm-completion ${fpath})
   fpath=(${AHMYZSH_PLUGINS}/yarn-autocompletions ${fpath})
-  fpath=(${AHMYZSH_PLUGINS}/fnm_completion.sh ${fpath})
+  # fpath=(${AHMYZSH_PLUGINS}/fnm_completion.sh ${fpath})
   source_ "${AHMYZSH_PLUGINS}/zsh-better-npm-completion/zsh-better-npm-completion.plugin.zsh"
   source_ "${AHMYZSH_PLUGINS}/yarn-autocompletions/yarn-autocompletions.plugin.zsh"
   source_ "/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
