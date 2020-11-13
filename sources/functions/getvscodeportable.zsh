@@ -36,10 +36,25 @@ function getvscodeportable() {
       VSCODESHORTPATH_INSIDERS='code-insiders'
       VSINSIDERSCHANNEL='INSIDERS'
       VSCODESTABLECHANNEL='STABLE'
+
       # ========================================================================
 
       ## CUSTOM VARIABLES DEFINITIONS
       # † ======================================================================
+
+      # sudo nice -n -35 ionice -c 1 -n 0
+      _NICE_VAL='35'
+      _IONICE_C='2'
+      # _IONICE_N='2'
+
+      #       Options :
+      #   -c, --class <classe>  nom ou numéro de classe d’ordonnancement
+      #                           0 : aucune,
+      #                           1 : temps réel,
+      #   -n, --classdata <nbr> priorité (0-7) dans les classes d’ordonnancement
+      #                           2 : au mieux,
+      #   -n, --classdata <nbr> priorité (0-7) dans les classes d’ordonnancement
+      #                           3 : au ralenti
 
       vscoderpm="${VSCODEURL_STABLE_RPM}"
       vscodeshortpath="${VSCODESHORTPATH_STABLE}"
@@ -57,6 +72,7 @@ function getvscodeportable() {
         vscoderpm="${VSCODEURL_STABLE_RPM}"
         vscodeshortpath="${VSCODESHORTPATH_STABLE}"
       fi
+
       # ========================================================================
 
       ## UTILITY FUNCTIONS DEFINITIONS
@@ -90,8 +106,8 @@ function getvscodeportable() {
       ## CREATE THE DOWNLOAD FOLDER IN /tmp
       # † ======================================================================
 
-      (sudo nice -n -35 ionice -c 1 -n 0 mkdir -p "${download_location}") || exit 1
-      (sudo nice -n -35 ionice -c 1 -n 0 chown -R ${iamtheuser} "${working_location}") || exit 1
+      (sudo nice -n "${_NICE_VAL}" ionice -c "${_IONICE_C}" -n 1 mkdir -p "${download_location}") || exit 1
+      (sudo nice -n "${_NICE_VAL}" ionice -c "${_IONICE_C}" -n 1 chown -R ${iamtheuser} "${working_location}") || exit 1
 
       unset -v VSCODEURL_STABLE_RPM
       unset -v VSCODEURL_STABLE_TAR_GZ
@@ -113,7 +129,7 @@ function getvscodeportable() {
       cd ${download_location}
 
       echo -e "\n >    download ${vschannel}.x86_64.rpm from microsoft server"
-      (sudo nice -n -35 ionice -c 1 -n 0 curl -O -L -J -S# "${vscoderpm}") || exit 1
+      (sudo nice -n "${_NICE_VAL}" ionice -c "${_IONICE_C}" -n 1 curl -O -L -J -S# "${vscoderpm}") || exit 1
 
       myUXIDshort="$(date +%s)-${myuxidlong:7:11}L-${vschannel}"
 
@@ -121,12 +137,12 @@ function getvscodeportable() {
 
       for f in $(ls ${download_location}/*code*.x86_64.rpm); do
         (
-          sudo nice -n -35 ionice -c 1 -n 0 rpm2cpio "$f" |
-            sudo nice -n -35 ionice -c 1 -n 0 cpio -idm --no-absolute-filenames &>/dev/null
+          sudo nice -n "${_NICE_VAL}" ionice -c "${_IONICE_C}" -n 1 rpm2cpio "$f" |
+            sudo nice -n "${_NICE_VAL}" ionice -c "${_IONICE_C}" -n 1 cpio -idm --no-absolute-filenames &>/dev/null
         ) || exit 1
       done
 
-      sudo nice -n -35 ionice -c 1 -n 0 chown -R ${iamtheuser} "${working_location}" >/dev/null
+      sudo nice -n "${_NICE_VAL}" ionice -c "${_IONICE_C}" -n 1 chown -R ${iamtheuser} "${working_location}" >/dev/null
 
       # ========================================================================
     }
@@ -141,15 +157,15 @@ function getvscodeportable() {
         mkdir -p "${working_location}/vs-${vscodeshortpath}/data/tmp"
       fi
 
-      (sudo nice -n -35 ionice -c 1 -n 0 cp -uLr /etc/vscode-portable/backup/${vscodeshortpath}/data/user-data ${working_location}/vs-${vscodeshortpath}/data/user-data) &>/dev/null
+      (sudo nice -n "${_NICE_VAL}" ionice -c "${_IONICE_C}" -n 1 cp -uLr /etc/vscode-portable/backup/${vscodeshortpath}/data/user-data ${working_location}/vs-${vscodeshortpath}/data/user-data) &>/dev/null
 
-      (sudo nice -n -35 ionice -c 1 -n 0 cp -vuLr /etc/vscode-portable/backup/${vscodeshortpath}/data/extensions ${working_location}/vs-${vscodeshortpath}/data/) &>/dev/null
+      (sudo nice -n "${_NICE_VAL}" ionice -c "${_IONICE_C}" -n 1 cp -vuLr /etc/vscode-portable/backup/${vscodeshortpath}/data/extensions ${working_location}/vs-${vscodeshortpath}/data/) &>/dev/null
 
       cp -r "${working_location}/usr/share/${vscodeshortpath}" "${working_location}/tmp-${vscodeshortpath}"
       cp -r "${working_location}/usr/share/pixmaps/" "${working_location}/vs-${vscodeshortpath}/pixmaps/"
 
       for f in $(ls "${working_location}/tmp-${vscodeshortpath}"); do
-        sudo nice -n -35 ionice -c 1 -n 0 cp -r "${working_location}/tmp-${vscodeshortpath}/$f" "${working_location}/vs-${vscodeshortpath}/" ||  exit 1
+        sudo nice -n "${_NICE_VAL}" ionice -c "${_IONICE_C}" -n 1 cp -r "${working_location}/tmp-${vscodeshortpath}/$f" "${working_location}/vs-${vscodeshortpath}/" ||  exit 1
       done
       # ========================================================================
     }
@@ -159,14 +175,18 @@ function getvscodeportable() {
       # † ======================================================================
 
       vs_code_='code_'
+      if [[ "${2}" = 'UPDATE' ]]; then
+        vs_code_='code_update_'
+      fi
+
       vs_code_home_path="${HOME}/portable-vscode"
       full_path_to_vscode_home_folder="${vs_code_home_path}/$(date +%d-%m-%C%y_%Hh%Mm%Ss)_${vs_code_}${myUXIDshort}"
 
       mkdir -p "${vs_code_home_path}/"
 
-      (sudo nice -n -35 ionice -c 1 -n 0 chown -R ${iamtheuser} "${working_location}") ||  exit 1
+      (sudo nice -n "${_NICE_VAL}" ionice -c "${_IONICE_C}" -n 1 chown -R ${iamtheuser} "${working_location}") ||  exit 1
       (sudo groupadd "luxcium.io" &>/dev/null)
-      (sudo nice -n -35 ionice -c 1 -n 0 chgrp -R "luxcium.io" "${working_location}")
+      (sudo nice -n "${_NICE_VAL}" ionice -c "${_IONICE_C}" -n 1 chgrp -R "luxcium.io" "${working_location}")
 
       mv "${working_location}/vs-${vscodeshortpath}/" "${full_path_to_vscode_home_folder}/"
       sudo rm -rf "${working_location}"
@@ -176,10 +196,25 @@ function getvscodeportable() {
       echo "${full_path_to_vscode_home_folder}/bin/code"
       cd "${full_path_to_vscode_home_folder}/"
 
+      if [[ "${2}" = 'UPDATE' ]]; then
+        rm -fr "${full_path_to_vscode_home_folder}/project"
+        rm -fr "${full_path_to_vscode_home_folder}/data"
+
+        if [[ "${1}" = 'INSIDERS' ]]; then
+          rm -fr "${full_path_to_vscode_home_folder}/code-insiders.png"
+          cp "${full_path_to_vscode_home_folder}/icons/visual-studio-code-insiders..bsvg" "${full_path_to_vscode_home_folder}/code-insiders.svg"
+        else
+          rm -fr "${full_path_to_vscode_home_folder}/code.png"
+          cp "${full_path_to_vscode_home_folder}/icons/visualstudiocode.svg" "${full_path_to_vscode_home_folder}/code.svg"
+        fi
+      fi
       # ========================================================================
     }
   ) ||
     return 1
-
-  echo -e "\n   -OK-" && return 0
+  if [[ "${2}" = 'UPDATE' ]]; then
+    echo -e "\n   -UPDATE-" && return 0
+  else
+    echo -e "\n   -OK-" && return 0
+  fi
 }
