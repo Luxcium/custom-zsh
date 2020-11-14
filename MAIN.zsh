@@ -262,8 +262,7 @@ function load_zshrc() {
 
   call_ load_autocomplete_now
 
-  export PAGER="/usr/bin/most -s"
-  autoload -U compinit && compinit
+  # autoload -U compinit && compinit
 
 }
 

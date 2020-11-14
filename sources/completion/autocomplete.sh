@@ -1,4 +1,6 @@
 function load_autocomplete() {
+    autoload bashcompinit
+    bashcompinit
 
     fpath=(${AHMYZSH_PLUGINS}/nestjs-cli-completion ${fpath})
     fpath=(${AHMYZSH_PLUGINS}/zsh-better-npm-completion ${fpath})
@@ -100,5 +102,7 @@ function load_autocomplete() {
     #* pip zsh completion end
 
     source "${ZSH_SOURCES}/completion/autocomplete.conf.sh"
+
+    Load_all_files_d "${AHMYZSH_CORE}/complete.d"
 
 }
