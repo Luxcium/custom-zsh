@@ -2,7 +2,7 @@
 
 ## Don't have any expectations
 
-This project is for my personal use, it is not currently maintained in a way that is friendly for general use by others (this includes you), therefor *it is garanteed that this project will **NOT** be fit for any particular purpose*. 
+This project is for my personal use, it is not currently maintained in a way that is friendly for general use by others (this includes you), therefor *it is garanteed that this project will **NOT** be fit for any particular purpose*.
 
 ### Use what can be useful to you
 
@@ -47,7 +47,16 @@ Consider the folowing text as being part of each files you get from this repo. F
 ##                                                                            ##
 ################################################################################
 ```
+# SECURITY WARNING !!!
 
+
+AUDIT ANY FILES YOU IMPORT FROM THIS PROJECT PRIOR: DOWNLOAD / INSTALL / USE
+
+Please asses security risks by yourself befor to use the product and report
+
+any security issues or vulnerability on the issues page of the main repo site:
+
+[AHMYZSH project issues](https://github.com/Luxcium/ahmyzsh/issues)
 ## Disclaimer of Warranty
 
 ```bash
