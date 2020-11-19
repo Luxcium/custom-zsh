@@ -66,7 +66,6 @@ function compute_path() {
 
     add_to_path_ "${AHMYZSH_BIN}"
     add_to_path_ "${ZSH_BIN}"
-    add_to_path_ "${TMUX_BIN}"
 
     add_to_path_ "${HOME}/.local/bin"
     add_to_path_ "${HOME}/.fnm"

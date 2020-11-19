@@ -57,13 +57,6 @@ function source_powerline_now() {
   return 0
 }
 
-function source_tmux() {
-  source_ "${TMUX_FUNCTIONS}/index.sh"
-  source_ "${TMUX_BIN}/tmux-loader.sh"
-  load_tmux
-  source_powerline_now
-}
-
 function source_saybye_now() {
   source_ "${ZSH_SOURCES}/say-bye.zsh"
 }
@@ -213,8 +206,6 @@ function load_oh_my_zsh() {
   # safe-paste
   # systemadmin
   # systemd
-  # tmux
-  # tmuxinator
   # vscode
   # yarn
   source $ZSH/oh-my-zsh.sh
