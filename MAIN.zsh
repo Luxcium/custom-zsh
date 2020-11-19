@@ -57,10 +57,6 @@ function source_powerline_now() {
   return 0
 }
 
-function source_saybye_now() {
-  source_ "${ZSH_SOURCES}/say-bye.zsh"
-}
-
 function load_zlogout() {
   ##$  Interactive,login
 
@@ -71,40 +67,7 @@ function load_zlogout() {
   )                                           # 1.2385s
   ( (_p9k_dump_instant_prompt 2>/dev/null) &) # 0.0310s
   ( (compute_path 2>/dev/null) &)             # 0.4123s
-
-  echo -en "\u001b[1A"
-  echo -en "\e[38;2;252;198;36m                                    \u001b[1000D"
-  sleep 0.085
-  echo -en "\e[38;2;252;198;36m          B                         \u001b[1000D"
-  sleep 0.085
-  echo -en "\e[38;2;252;198;36m         BY                         \u001b[1000D"
-  sleep 0.085
-  echo -en "\e[38;2;252;198;36m        BYE                         \u001b[1000D"
-  sleep 0.085
-  echo -en "\e[38;2;252;198;36m       BYE                          \u001b[1000D"
-  sleep 0.085
-  echo -en "\e[38;2;252;198;36m      BYE !                         \u001b[1000D"
-  sleep 0.085
-  echo -en "\e[38;2;252;198;36m     BYE !!                         \u001b[1000D"
-  sleep 0.085
-  echo -en "\e[38;2;252;198;36m    BYE !!!                         \u001b[1000D"
-  sleep 0.085
-  echo -en "\e[38;2;252;198;36m   BYE !!!                          \u001b[1000D"
-  sleep 0.085
-  echo -en "\e[38;2;252;198;36m  BYE !!!                           \u001b[1000D"
-  sleep 0.085
-  echo -en "\e[38;2;252;198;36m  YE !!!                            \u001b[1000D"
-  sleep 0.085
-  echo -en "\e[38;2;252;198;36m  E !!!                             \u001b[1000D"
-  sleep 0.085
-  echo -en "\e[38;2;252;198;36m   !!!                              \u001b[1000D"
-  sleep 0.085
-  echo -en "\e[38;2;252;198;36m  !!!                               \u001b[1000D"
-  sleep 0.085
-  echo -en "\e[38;2;252;198;36m  !!                                \u001b[1000D"
-  sleep 0.085
-  echo -en "\e[38;2;252;198;36m  !                               \u001b[1000D\a"
-  sleep 0.085
+  say_bye
   exit
 }
 
@@ -114,50 +77,6 @@ function load_autocomplete_now() {
 
 function load_aliases() {
   call_ Load_all_files_d "${AHMYZSH_CORE}/aliases"
-}
-
-function load_options() {
-  bindkey -e
-
-  HISTFILE="${HOME}/.zsh_history"
-  HISTSIZE=1000000
-  SAVEHIST=1000000
-
-  export PROMPT_EOL_MARK=''
-  setopt PROMPT_CR
-  unsetopt PROMPT_SP
-  setopt appendhistory
-  setopt autocd
-  setopt BANG_HIST # Treat the '!' character specially during expansion.
-  setopt beep
-  setopt EXTENDED_HISTORY # Write the history file in the ":start:elapsed;command" format.
-  setopt HIST_BEEP
-  setopt HIST_EXPIRE_DUPS_FIRST # Expire duplicate entries first when trimming history.
-  # setopt HIST_FIND_NO_DUPS      # Do not display a line previously found.
-  # setopt HIST_IGNORE_ALL_DUPS   # Delete old recorded entry if new entry is a duplicate.
-  # setopt HIST_IGNORE_DUPS       # Don't record an entry that was just recorded again.
-  setopt HIST_IGNORE_SPACE  # Don't record an entry starting with a space.
-  setopt HIST_REDUCE_BLANKS # Remove superfluous blanks before recording entry.
-  # setopt HIST_SAVE_NO_DUPS      # Don't write duplicate entries in the history file.
-  setopt HIST_VERIFY        # Don't execute immediately upon history expansion.
-  setopt INC_APPEND_HISTORY # Write to the history file immediately, not when the shell exits.
-  setopt INTERACTIVE_COMMENTS
-  setopt SHARE_HISTORY # Share history between all sessions.
-
-  export TERM="xterm-256color"
-  export CLICOLOR='1'
-  export LSCOLORS='GxFxCxDxBxDgedabagacad'
-  export GPG_TT=(tty)
-
-  # Correctly display UTF-8 with combining characters.
-  if [ "$TERM_PROGRAM" = "Apple_Terminal" ]; then
-    setopt combiningchars
-  fi
-  # disable log
-  [ -r "/etc/zshrc_$TERM_PROGRAM" ] && . "/etc/zshrc_$TERM_PROGRAM"
-
-  TIMEFMT=$'\n================\nCPU\t%P\nuser\t%*U\nsystem\t%*S\ntotal\t%*E'
-
 }
 
 function load_oh_my_zsh() {
@@ -220,8 +139,8 @@ function load_zshenv() {
   call_ load_path
 
   ## load_functions_now
-  load_ "${ZSH_SOURCES}/functions.zsh" "load_functions_definitions"
-  source_ "${ZSH_FUNCTIONS_FOLDER}/getvscodeportable.zsh"
+  source_ "${ZSH_SOURCES}/functions.zsh"
+  call_ load_functions_definitions
 
   [ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_HOURGLASS_END_1} load_zshenv in $(timer_all) ms !${END_FUNCTION}"
 }
@@ -229,61 +148,20 @@ function load_zshenv() {
 function load_zshrc() {
   #   #$ Interactive,login,non-login
 
-  load_my_powerlevel10k_now
-  # activate_instant_prompt
-  activate_normal_prompt
+  call_ load_my_powerlevel10k_now
+  call_ activate_normal_prompt
+  # call_ activate_instant_prompt
 
   if [ "${PARENT_ENV_LOADED}" != 'true' ]; then
     (compute_path &) # >/dev/null
   fi
 
+  source_ "${CUSTOM_ZSH}/sources/options-list.zsh"
   call_ load_oh_my_zsh
-
-  load_ "${CUSTOM_ZSH}/sources/options-list.zsh" "load_options_list"
+  call_ load_options_list
   call_ load_options
-
-  # https://github.com/zsh-users/zsh-autosuggestions#configuration
-  ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#677787"
-
-  # https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters.md
-  ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
-
-  zle_highlight=(region:standout special:standout
-    suffix:bold isearch:underline paste:none)
-
   call_ load_autocomplete_now
 
   # autoload -U compinit && compinit
 
-}
-
-function precmd() {
-
-  #   #$ Executed before each prompt. Note that precommandfunctions are not
-  #   #$ re-executed simply because the command line is redrawn, as happens, for
-  #   #$ example, when a notification about an exiting job is displayed.
-
-  if [ "$ENV_LOADED" != 'true' ]; then
-    export PARENT_ENV_LOADED='true'
-    ENV_LOADED='true'
-
-    right_prompt_off
-    # hardcls
-    echo "  ${BEGIN_HOURGLASS_END_1} READY in $(timer_all) ms !${END_FUNCTION}"
-    echo -n "\e[30m   # \e[38;2;0;122;204m>  Code: $(code -v | grep '1\.') \u001b[31m\n"
-    # echo -n "\e[30m   # >\e[30m\e[31m\n"
-    echo -n "\e[30m   # \e[38;2;55;118;171m>  $(python -V) \u001b[31m\n"
-    # echo -n "\e[30m   # >\e[30m\e[31m\n"
-    echo -n "\e[30m   # \e[38;2;51;153;51m>  Node: $(node -v) \u001b[31m\n"
-    echo -n "\e[30m   # \e[38;2;203;56;55m>  NPM: $(npm -v) \u001b[31m\n"
-    echo -n "\e[30m   # \e[38;2;44;142;187m>  Yarn: $(yarn -v) \u001b[31m\n"
-    echo -n "\e[30m   # \e[38;2;0;122;204m>  TSC: $(tsc -v) \u001b[31m\n"
-    # echo -n "\e[30m   # >\e[30m\e[31m\n"
-    echo -n "\e[30m   # \e[38;2;252;198;36m>  $(uname): $(uname -r) \u001b[31m\n"
-    echo -n "\e[30m   # \e[37m>  $(zsh --version | grep zsh) \u001b[31m\n"
-
-    echo -n "\u001b[37m\n"
-    echo -e "\a"
-  fi
-  # exit
 }

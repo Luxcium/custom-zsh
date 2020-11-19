@@ -1,4 +1,13 @@
 function load_options_list() {
+  # https://github.com/zsh-users/zsh-autosuggestions#configuration
+  ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#677787"
+
+  # https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters.md
+  ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
+
+  zle_highlight=(region:standout special:standout
+    suffix:bold isearch:underline paste:none)
+
   #% 16.2.1 Changing Directories
   setopt AUTO_CD # (-J)
   #$ If a command is issued that can’t be executed as a normal command, and the command is the name of a directory, perform the cd command to that directory. This option is only applicable if the option SHIN_STDIN is set, i.e. if commands are being read from standard input. The option is designed for interactive use; it is recommended that cd be used explicitly in scripts to avoid ambiguity.
@@ -56,16 +65,16 @@ function load_options_list() {
   # setopt AUTO_PARAM_KEYS # <D>
   #$ If a parameter name was completed and a following character (normally a space) automatically inserted, and the next character typed is one of those that have to come directly after the name (like ‘}’, ‘:’, etc.), the automatically added character is deleted, so that the character typed comes immediately after the parameter name. Completion in a brace expansion is affected similarly: the added character is a ‘,’, which will be removed if ‘}’ is typed next.
 
-   setopt AUTO_PARAM_SLASH # <D>
+  setopt AUTO_PARAM_SLASH # <D>
   #$ If a parameter is completed whose content is the name of a directory, then add a trailing slash instead of a space.
 
-   setopt AUTO_REMOVE_SLASH # <D>
+  setopt AUTO_REMOVE_SLASH # <D>
   #$ When the last character resulting from a completion is a slash and the next character typed is a word delimiter, a slash, or a character that ends a command (such as a semicolon or an ampersand), remove the slash.
 
   # setopt BASH_AUTO_LIST
   #$ On an ambiguous completion, automatically list choices when the completion function is called twice in succession. This takes precedence over AUTO_LIST. The setting of LIST_AMBIGUOUS is respected. If AUTO_MENU is set, the menu behaviour will then start with the third press. Note that this will not work with MENU_COMPLETE, since repeated completion calls immediately cycle through the list in that case.
 
-   setopt COMPLETE_ALIASES
+  setopt COMPLETE_ALIASES
   #$ Prevents aliases on the command line from being internally substituted before completion is attempted. The effect is to make the alias a distinct command for completion purposes.
 
   # setopt COMPLETE_IN_WORD
