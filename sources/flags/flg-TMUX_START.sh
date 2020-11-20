@@ -23,17 +23,17 @@
 
 ## GNU_COREUTILS
 
-function TMUX_START_ON() {
-    echo "TMUX_START='true'" >${ZSH_FLAGS_VALUES}/.TMUX_START
-    source ${ZSH_FLAGS_VALUES}/.TMUX_START
+# function TMUX_START_ON() {
+#     echo "TMUX_START='true'" >${ZSH_FLAGS_VALUES}/.TMUX_START
+#     source ${ZSH_FLAGS_VALUES}/.TMUX_START
 
-}
+# }
 
-function TMUX_START_OFF() {
-    echo "TMUX_START='false'" >${ZSH_FLAGS_VALUES}/.TMUX_START
-    source ${ZSH_FLAGS_VALUES}/.TMUX_START
+# function TMUX_START_OFF() {
+#     echo "TMUX_START='false'" >${ZSH_FLAGS_VALUES}/.TMUX_START
+#     source ${ZSH_FLAGS_VALUES}/.TMUX_START
 
-}
+# }
 
 ##!!0###########################################################################
 ##!!                                                                          ##
