@@ -1,6 +1,10 @@
 function fnm_() {
     # (rm -f /tmp/fnm-shell*) &>/dev/null
-    eval "$(fnm env --multi)"
+    # eval "$(fnm env --multi)"
+    export PATH=/home/luxcium/.fnm:$PATH
+    eval "$(fnm env --use-on-cd)"
+    # eval "$(fnm completions --shell=zsh)"
+
 }
 
 function rbenv_() {
@@ -13,6 +17,18 @@ function rbenv_() {
     export PATH="$HOME/.rbenv/bin:$PATH"
     export PATH="$HOME/.rbenv/shims:$PATH"
     eval "$(rbenv init -)"
+
+}
+
+function rust_up_() {
+
+    # Rust is installed now. Great!
+
+    # To get started you need Cargo's bin directory in your PATH
+    echo -n $HOME/.cargo/bin
+
+    # To configure your current shell environment variable run:
+    source $HOME/.cargo/env
 
 }
 
@@ -50,17 +66,20 @@ function compute_path() {
 
     add_to_path_ "${AHMYZSH_BIN}"
     add_to_path_ "${ZSH_BIN}"
-    add_to_path_ "${TMUX_BIN}"
 
     add_to_path_ "${HOME}/.local/bin"
     add_to_path_ "${HOME}/.fnm"
     call_ fnm_
 
-    add_to_path_ "${HOME}/.rbenv/bin"
+    add_to_path_ $(rust_up_)
+
+    # add_to_path_ "${HOME}/.rbenv/bin"
     call_ rbenv_
 
-    add_to_path_ "${MINICONDA3}/bin"
-    add_to_path_ "${MINICONDA3}/condabin"
+    add_to_path_ "/opt/vlang"
+
+    # add_to_path_ "${MINICONDA3}/bin"
+    # add_to_path_ "${MINICONDA3}/condabin"
     call_ conda_
 
     add_to_path_ "${DOTNET_ROOT}"
@@ -93,7 +112,10 @@ function compute_path() {
 
     export PATH="${AHMYZSH}/plugins/bin:${PATH}:${AHMYZSH}/core/bin"
 
-    echo "PATH=\"$PATH\"" >${CACHED_PATH}
+    dedup_path
+
+    echo "export PATH=\"$PATH\"" >"${CACHED_PATH}"
+    zcompile "${CACHED_PATH}"
 }
 # if [ "$WITH_ANACONDA" = 'true' ]; then
 # fi

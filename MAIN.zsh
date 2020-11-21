@@ -1,171 +1,167 @@
-function source_all_zsh() {
+function activate_normal_prompt() {
 
-	function activate_normal_prompt() {
+  typeset -g ZSH_THEME="../../powerlevel10k/powerlevel10k"
+  source_ "${POWERLEVEL10K}/powerlevel10k.zsh-theme"
 
-		typeset -g ZSH_THEME="../../powerlevel10k/powerlevel10k"
-		source_ "${POWERLEVEL10K}/powerlevel10k.zsh-theme"
-
-	}
-	function activate_instant_prompt() {
-		# # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-		# # Initialization code that may require console input (password prompts, [y/n]
-		# # confirmations, etc.) must go above this block, everything else may go below.
-
-		typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
-		typeset -g ZSH_THEME="../../powerlevel10k/powerlevel10k"
-
-		source_ "${ZSH_SOURCES}/instant-prompt"
-		source_ "${POWERLEVEL10K}/powerlevel10k.zsh-theme"
-
-	}
-
-	function load_oh_my_zsh_now() {
-		load_ "${ZSH_SOURCES}/load-oh-my-zsh.zsh" "load_oh_my_zsh"
-	}
-
-	function load_my_powerlevel10k_now() {
-		## load_my_pl10K_layout_now
-		source_ "${ZSH_LAYOUTS}/pl10K-Layout.zsh"
-		load_my_powerlevel10k
-		pl10k_prompt_on
-
-	}
-
-	function compute_pl10K_now() {
-		call_ "compute_pl10k"
-	}
-
-	function load_path() {
-		## load_flags_now
-		load_ "${ZSH_FLAGS}/flg-shortcuts.sh" "init_flags"
-		## source_ path.zsh
-		source_ "${ZSH_COMPUTE}/path.zsh"
-		## load_path
-		if [ -f "${CACHED_PATH}" ]; then
-			source_ "${CACHED_PATH}"
-		else
-			compute_path
-		fi
-	}
-
-	function load_autocomplete_now() {
-		load_ "${ZSH_COMPLETION}/autocomplete.sh" "load_autocomplete"
-		call_ npm_completion
-		source_ "/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-		source_ "/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-
-	}
-
-	function source_powerline_now() {
-		source_ "${POWERLINE_BINDINGS}/zsh/powerline.zsh"
-		return 0
-	}
-
-	function source_tmux() {
-		source_ "${TMUX_FUNCTIONS}/index.sh"
-		source_ "${TMUX_BIN}/tmux-loader.sh"
-		load_tmux
-		source_powerline_now
-	}
-
-	function source_saybye_now() {
-		source_ "${ZSH_SOURCES}/say-bye.zsh"
-	}
 }
 
-function load_zshenv() {
-	#   #$ Interactive,Script,login,non-login
+function activate_instant_prompt() {
+  # # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+  # # Initialization code that may require console input (password prompts, [y/n]
+  # # confirmations, etc.) must go above this block, everything else may go below.
 
-	## load_path_now
-	call_ load_path
+  typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+  typeset -g ZSH_THEME="../../powerlevel10k/powerlevel10k"
 
-	## load_functions_now
-	load_ "${ZSH_SOURCES}/functions.zsh" "load_functions_definitions"
-	source_ "${ZSH_FUNCTIONS_FOLDER}/getportablecode.sh"
-	source_ "${ZSH_FUNCTIONS_FOLDER}/getvscodeportable.zsh"
+  source_ "${CUSTOM_ZSH}/sources/instant-prompt"
+  source_ "${POWERLEVEL10K}/powerlevel10k.zsh-theme"
 
-	## load_aliases_now
-	export MY_ALIASES="${CUSTOM_ZSH}/aliases.sh"
-	load_ "${MY_ALIASES}" "load_aliases"
-
-	[ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_HOURGLASS_END_1} load_zshenv in $(timer_all) ms !${END_FUNCTION}"
 }
 
-function load_zshrc() {
-	#   #$ Interactive,login,non-login
+function load_my_powerlevel10k_now() {
+  ## load_my_pl10K_layout_now
+  source_ "${CUSTOM_ZSH}/sources/pl10K-Layout.zsh"
+  load_my_powerlevel10k
+  pl10k_prompt_on
 
-	load_my_powerlevel10k_now
-	activate_instant_prompt
-	# activate_normal_prompt
-
-	if [ "${PARENT_ENV_LOADED}" != 'true' ]; then
-		compute_path
-	fi
-
-	load_ "${ZSH_SOURCES}/options-list.zsh" "load_options_list"
-	load_ "${ZSH_SOURCES}/options.zsh" "load_options"
-
-	# https://github.com/zsh-users/zsh-autosuggestions#configuration
-	ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#677787"
-
-	# https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters.md
-	ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
-
-	zle_highlight=(region:standout special:standout
-		suffix:bold isearch:underline paste:none)
-
-	load_autocomplete_now
-	load_oh_my_zsh_now
-
-	export PAGER="/usr/bin/most -s"
 }
 
-function precmd() {
+function compute_pl10K_now() {
+  call_ "compute_pl10k"
+}
 
-	#   #$ Executed before each prompt. Note that precommandfunctions are not
-	#   #$ re-executed simply because the command line is redrawn, as happens, for
-	#   #$ example, when a notification about an exiting job is displayed.
+function load_path() {
+  ## load_flags_now
+  load_ "${ZSH_FLAGS}/flg-shortcuts.sh" "init_flags"
+  ## source_ path.zsh
+  source_ "${ZSH_COMPUTE}/path.zsh"
+  ## load_path
+  if [ -f "${CACHED_PATH}" ]; then
+    source_ "${CACHED_PATH}"
+    (compute_path &) >/dev/null
+  else
+    compute_path
+  fi
+}
 
-	if [ "$ENV_LOADED" != 'true' ]; then
-		export PARENT_ENV_LOADED='true'
-		ENV_LOADED='true'
+function re_load_path() {
+  load_ "${ZSH_FLAGS}/flg-shortcuts.sh" "init_flags"
+  source_ "${ZSH_COMPUTE}/path.zsh"
+  compute_path
+}
 
-		# . "${ZSH_COMPUTE}/path.zsh"
+alias reloadpath="re_load_path"
 
-		# right_prompt_off
-		# hardcls
-		echo -n "${BEGIN_HOURGLASS_END_1} READY in $(timer_all) ms !${END_FUNCTION}"
-		echo -e "\a"
-		echo -n "\u001b[37m   >  $(python -V) \u001b[31m\n"
-		echo -n "\u001b[32m   >  Node: $(node -v) \u001b[31m\n"
-		echo -n "\u001b[31m   >  NPM: $(npm -v) \u001b[31m\n"
-		echo -n "\u001b[33m   >  Yarn: $(yarn -v) \u001b[31m\n"
-		echo -n "\u001b[34m   >  TSC: $(tsc -v) \u001b[31m"
-		echo "\u001b[37m"
-	fi
+function source_powerline_now() {
+  source_ "${POWERLINE_BINDINGS}/zsh/powerline.zsh"
+  return 0
 }
 
 function load_zlogout() {
-	#   #$ Interactive,login
-	(compute_path &)
-	(_p9k_dump_instant_prompt &)
+  ##$  Interactive,login
+
+  ( 
+    (builtin cd $AHMYZSH &&
+      find $(pwd) | grep .zwc | foreachline rm -f &&
+      zsh_compile_all_R) &
+  )                                           # 1.2385s
+  ( (_p9k_dump_instant_prompt 2>/dev/null) &) # 0.0310s
+  ( (compute_path 2>/dev/null) &)             # 0.4123s
+  say_bye
+  exit
 }
 
-# |----------------|-----------|-----------|------|
-# |                |Interactive|Interactive|Script|
-# |----------------|-----------|-----------|------|
-# |                |login      |non-login  |      |
-# |----------------|-----------|-----------|------|
-# |/etc/zshenv     |    A      |    A      |  A   |
-# |~/.zshenv       |    B      |    B      |  B   |
-# |/etc/zprofile   |    C      |           |      |
-# |~/.zprofile     |    D      |           |      |
-# |/etc/zshrc      |    E      |    C      |      |
-# |~/.zshrc        |    F      |    D      |      | ***
-# |/etc/zlogin     |    G      |           |      |
-# |~/.zlogin       |    H      |           |      |
-# |                |           |           |      |
-# |                |           |           |      |
-# |~/.zlogout      |    I      |           |      |
-# |/etc/zlogout    |    J      |           |      |
-# |----------------|-----------|-----------|------|
+function load_autocomplete_now() {
+  load_ "${ZSH_COMPLETION}/autocomplete.sh" "load_autocomplete"
+}
+
+function load_aliases() {
+  call_ Load_all_files_d "${AHMYZSH_CORE}/aliases"
+}
+
+function load_oh_my_zsh() {
+
+  # Uncomment the following line to disable bi-weekly auto-update checks.
+  DISABLE_AUTO_UPDATE="true"
+
+  # Uncomment the following line to disable auto-setting terminal title.
+  DISABLE_AUTO_TITLE="true"
+
+  # Uncomment the following line to enable command auto-correction.
+  # ENABLE_CORRECTION="true"
+
+  # Uncomment the following line to display red dots whilst waiting for completion.
+  COMPLETION_WAITING_DOTS="true"
+
+  # Uncomment the following line if you want to disable marking untracked files
+  # under VCS as dirty. This makes repository status check for large repositories
+  # much, much faster.
+  DISABLE_UNTRACKED_FILES_DIRTY="true"
+  plugins=(
+    # zsh-autosuggestions
+    # zsh-syntax-highlighting
+    zsh-better-npm-completion
+    yarn-autocompletions
+    zsh-completions
+    git
+    redis-cli
+  )
+  # alias-finder
+  # colorize
+  # dnf
+  # emoji
+  # gem
+  # git
+  # git-auto-fetch
+  # git-hubflow
+  # git-prompt
+  # github
+  # man
+  # node
+  # npm
+  # rbenv
+  # redis-cli
+  # ruby
+  # safe-paste
+  # systemadmin
+  # systemd
+  # vscode
+  # yarn
+  source $ZSH/oh-my-zsh.sh
+  unalias ll
+  # echo -n "${normal}$CLRLN$LDLCLR$(tput setaf 2) \uf013 ${bold} DONE! load_oh_my_zsh()${normal}"
+}
+
+function load_zshenv() {
+  #   #$ Interactive,Script,login,non-login
+
+  ## load_path_now
+  call_ load_path
+
+  ## load_functions_now
+  source_ "${ZSH_SOURCES}/functions.zsh"
+  call_ load_functions_definitions
+
+  [ "${VERBOSA}" -gt 0 ] && echo "${BEGIN_HOURGLASS_END_1} load_zshenv in $(timer_all) ms !${END_FUNCTION}"
+}
+
+function load_zshrc() {
+  #   #$ Interactive,login,non-login
+
+  call_ load_my_powerlevel10k_now
+  # call_ activate_instant_prompt
+  call_ activate_normal_prompt
+
+  if [ "${PARENT_ENV_LOADED}" != 'true' ]; then
+    (compute_path &) # >/dev/null
+  fi
+
+  source_ "${CUSTOM_ZSH}/sources/options-list.zsh"
+  call_ load_oh_my_zsh
+  call_ load_options_list
+  call_ load_options
+  call_ load_autocomplete_now
+
+  # autoload -U compinit && compinit
+
+}

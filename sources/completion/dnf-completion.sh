@@ -61,6 +61,7 @@ _dnf()
     	local curcontext="$curcontext"
 
 	    cmd="${${_dnf_cmds[(r)$words[1]:*]%%:*}}"
+
 		# Deal with any aliases
 		case $cmd in
 			remove) cmd="erase";;

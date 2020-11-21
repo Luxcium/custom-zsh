@@ -1,4 +1,17 @@
 function load_autocomplete() {
+    autoload bashcompinit
+    bashcompinit
+
+    fpath=(${AHMYZSH_PLUGINS}/nestjs-cli-completion ${fpath})
+    fpath=(${AHMYZSH_PLUGINS}/zsh-better-npm-completion ${fpath})
+    fpath=(${AHMYZSH_PLUGINS}/yarn-autocompletions ${fpath})
+    fpath=(${ZSH_COMPLETION}/fnm_completion.sh ${fpath})
+
+    source_ "${AHMYZSH_PLUGINS}/zsh-better-npm-completion/zsh-better-npm-completion.plugin.zsh"
+    source_ "${AHMYZSH_PLUGINS}/yarn-autocompletions/yarn-autocompletions.plugin.zsh"
+
+    source_ "/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+    source_ "/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
     _node_complete() {
         local cur_word options
@@ -11,7 +24,7 @@ function load_autocomplete() {
             return 0
         fi
     }
-    # complete -F _node_complete node node_g
+    complete -F _node_complete node node_g
 
     function npm_completion() {
         ###-begin-npm-completion-###
@@ -74,7 +87,7 @@ function load_autocomplete() {
         ###-end-npm-completion-###
     }
 
-    # npm_completion
+    npm_completion
 
     #* pip zsh completion start
     function _pip_completion() {
@@ -88,20 +101,8 @@ function load_autocomplete() {
     compctl -K _pip_completion pip
     #* pip zsh completion end
 
-    # The following lines were added by compinstall
-    zstyle ':completion:*' completer _list _oldlist _expand _complete _ignored _match _correct _approximate _prefix
-    zstyle ':completion:*' expand prefix
-    zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:]}={[:upper:]}'
-    zstyle :compinstall filename "${HOME}/.zshrc"
+    source "${ZSH_SOURCES}/completion/autocomplete.conf.sh"
 
-    autoload -U +X compinit && compinit
-    autoload -U +X bashcompinit && bashcompinit
+    Load_all_files_d "${AHMYZSH_CORE}/complete.d"
 
-    autoload -Uz compinit
-    for dump in "${HOME}/.zcompdump(N.mh+24)"; do
-        compinit
-    done
-    compinit -C
-    # End of lines added for compinstall
-    # autoload -U compinit && compinit
 }
