@@ -149,8 +149,8 @@ function load_zshrc() {
   #   #$ Interactive,login,non-login
 
   call_ load_my_powerlevel10k_now
-  call_ activate_normal_prompt
   # call_ activate_instant_prompt
+  call_ activate_normal_prompt
 
   if [ "${PARENT_ENV_LOADED}" != 'true' ]; then
     (compute_path &) # >/dev/null
