@@ -113,7 +113,7 @@ function compute_path() {
     export PATH="${AHMYZSH}/plugins/bin:${PATH}:${AHMYZSH}/core/bin"
 
     dedup_path
-
+    mkdir -p "${AHMYZSH_CACHE}"
     echo "export PATH=\"$PATH\"" >"${CACHED_PATH}"
     zcompile "${CACHED_PATH}"
 }
