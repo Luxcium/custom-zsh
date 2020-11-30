@@ -47,7 +47,7 @@ function compute_path() {
     export DOTNET_ROOT="/usr/lib64/dotnet/"
 
     # - ${PATH}
-    export PATH_BAK="${PATH}"
+    export PATH_BAK2="${PATH}"
     export PATH="/sbin"
     add_to_path_ "/usr/sbin"
     add_to_path_ "/usr/local/sbin"
@@ -111,6 +111,11 @@ function compute_path() {
     # runfile installation method.
 
     export PATH="${AHMYZSH}/plugins/bin:${PATH}:${AHMYZSH}/core/bin"
+
+    # echo PATH_BAK
+    # echo $PATH_BAK
+    # echo PATH_BAK2
+    # echo $PATH_BAK2
 
     dedup_path
     mkdir -p "${AHMYZSH_CACHE}"
